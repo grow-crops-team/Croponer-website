@@ -6,7 +6,7 @@ const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
 
 const router = Router()
-const staticPath = path.join(__dirname, "../../public/dist")
+const staticPath = path.join(__dirname, "../../../frontend/public")
 router.use(express.static(staticPath))
 
 

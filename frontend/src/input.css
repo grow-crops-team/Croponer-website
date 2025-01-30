@@ -1,1 +1,7 @@
 @import "tailwindcss";
+
+
+
+body {
+  background-image: url('/assets/images/hero/main_bg.jpg');
+} 

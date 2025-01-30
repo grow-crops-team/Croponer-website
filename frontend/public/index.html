@@ -1,14 +1,382 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="./assets/css/style.css">
-</head>
-<body>
-   
-    <script src="./assets/js/main.js"></script>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     
-</body>
+
+    <title>Croponer</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+      integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+    />
+    <link rel="stylesheet" href="./assets/css/style.css" />
+    
+  </head>
+
+  <body
+   
+  >
+    <!------------------------------------- Header------------------------->
+    <header
+      class="bg-gradient-to-r from-[#07182f] to-[#16233b] w-full h-auto sticky top-0 z-10 select-none"
+    >
+      <nav
+        aria-label="Main Navigation"
+        id="navbar"
+        class="container w-full h-14 items-center mx-auto flex justify-between sticky top-0 z-10"
+      >
+        <div class="logo h-9">
+          <img
+            class="w-full h-full select-none"
+            src="./img/logo/Nexura.svg"
+            alt="Nexura"
+            loading="lazy"
+          />
+        </div>
+        <div
+          id="menu"
+          class="bg-[#192549] h-screen w-56 top-[56px] right-[-224px] transition-all duration-500 delay-200 ease-in-out fixed rounded-bl-md z-20 lg:static lg:right-0 lg:block lg:z-0 lg:bg-transparent lg:h-auto lg:w-[670px] lg:p-0 lg:ml-8"
+        >
+          <ul
+            class="text-gray-300 p-4 ml-6 pl-5 text-base space-y-3 lg:space-y-0 lg:flex lg:space-x-6 lg:p-0"
+          >
+            <li class="hover:cursor-pointer hover:text-gray-100 select-none">
+              <a href="/home" target="_parent">Home</a>
+            </li>
+            <li class="hover:cursor-pointer hover:text-gray-100 select-none">
+              <a href="/about" target="_self">About</a>
+            </li>
+            <li class="hover:cursor-pointer hover:text-gray-100 select-none">
+              <a id="service" href="/service" target="_self"> Services </a>
+            </li>
+            <li class="hover:cursor-pointer hover:text-gray-100 select-none">
+              <a href="/work" target="_self">Works</a>
+            </li>
+            <li class="hover:cursor-pointer hover:text-gray-100 select-none">
+              <a id="team" target="_self">Team</a>
+            </li>
+            <li class="hover:cursor-pointer hover:text-gray-100 select-none">
+              <a href="/contact" target="_self">Contact </a>
+            </li>
+            <li class="hover:cursor-pointer hover:text-gray-100 select-none">
+              <a id="admin" class="hidden" target="_blank">Admin Login </a>
+              <p
+                id="secretMassage"
+                class="hidden absolute right-0 bg-slate-800 text-base text-[#ff2103dd] lg:bg-transparent lg:right-[30rem] lg:top-[34px] top-0"
+              >
+                You are not an Admin logout and login again with valid
+                credential.
+              </p>
+            </li>
+            <li class="block relative lg:hidden hover:cursor-pointer">
+              <span class="hover:text-gray-100 select-none" id="smModeChange">
+                <i
+                  class="bi bi-moon-stars-fill text-gray-300 hover:text-gray-100 select-none"
+                ></i>
+                Toggle Mode</span
+              >
+              <div
+                id="smChangeMode"
+                class="absolute hidden z-30 text-base top-7 left-[-2px] text-center w-[120px] h-[105px] p-1 bg-gradient-to-t dark:from-[#151a41] dark:to-[#243b55] rounded-md"
+              >
+                <p
+                  id="smlight"
+                  class="hover:bg-[#205796] hover:text-white hover:cursor-pointer hover:rounded-md hover:p-1 p-1 select-none"
+                >
+                  <i class="bi bi-brightness-high"></i> Light
+                </p>
+                <p
+                  id="smdark"
+                  class="hover:bg-[#205796] hover:text-white hover:cursor-pointer hover:rounded-md hover:p-1 p-1 select-none"
+                >
+                  <i class="bi bi-moon-stars-fill"></i> Dark
+                </p>
+                <p
+                  id="smauto"
+                  class="hover:bg-[#205796] hover:text-white hover:cursor-pointer hover:rounded-md hover:p-1 p-1 select-none"
+                >
+                  <i class="bi bi-circle-half"></i> Auto
+                </p>
+              </div>
+            </li>
+            <li>
+              <div class="search lg:hidden">
+                <!-- <input type="text" placeholder="Search"> -->
+                <i class="bi bi-search hover:text-gray-100 font-semibold"></i>
+              </div>
+            </li>
+          </ul>
+        </div>
+
+        <!----------------------------------Change mode && Search for large screen------------------------------------------------------------>
+        <div class="relative ml-14 hidden lg:block">
+          <i
+            id="dropDown"
+            class="bi bi-gear-fill text-xl bg-gradient-to-r from-[#ff4841] to-[#0579fe] bg-clip-text text-transparent hover:from-[#d7141ad6] hover:to-[#0579fed9]"
+          ></i>
+
+          <div
+            id="dropDownMenu"
+            class="absolute hidden z-20 top-12 left-0 text-center w-[100px] h-[105px] px-1 pb-2 bg-gradient-to-t from-[#c0fffc] to-[#fba9c3] dark:from-[#151a41] dark:to-[#243b55] rounded-b-md"
+          >
+            <p
+              id="light"
+              class="hover:bg-[#205796] hover:text-white hover:cursor-pointer hover:rounded-md hover:p-1 p-1 select-none"
+            >
+              <i class="bi bi-brightness-high"></i> Light
+            </p>
+            <p
+              id="dark"
+              class="hover:bg-[#205796] hover:text-white hover:cursor-pointer hover:rounded-md hover:p-1 p-1 select-none"
+            >
+              <i class="bi bi-moon-stars-fill"></i> Dark
+            </p>
+            <p
+              id="auto"
+              class="hover:bg-[#205796] hover:text-white hover:cursor-pointer hover:rounded-md hover:p-1 p-1 select-none"
+            >
+              <i class="bi bi-circle-half"></i> Auto
+            </p>
+          </div>
+          <input
+            class="ml-2 w-56 h-10 bg-transparent text-gray-300 border border-gray-700 rounded-md py-1 px-3 focus:border-blue-500 focus:outline-none caret-blue-500 select-text"
+            type="text"
+            name="search"
+            placeholder="Search"
+          />
+          <i
+            class="bi bi-search text-lg border border-gray-700 rounded-md py-[9px] px-4 hover:cursor-pointer active:border-blue-500 bg-gradient-to-r from-[#ff3f38] to-[#0a4398] bg-clip-text text-transparent hover:from-[#ff0008c8] hover:to-[#009093c6]"
+          ></i>
+        </div>
+
+        <!--login DropDown  -->
+        <div class="relative ml-52 lg:ml-0">
+          <div id="loginDropDown" class="text-center cursor-pointer">
+            <i
+              class="bi bi-person-rolodex text-2xl bg-gradient-to-r from-[#d71419] to-[#17a9ab] bg-clip-text text-transparent hover:cursor-pointer hover:from-[#d7141adb] hover:to-[#009093d6]"
+            ></i>
+            <p
+              id="userProfile"
+              class="-mt-[10px] hover:cursor-pointer text-gray-300 hover:text-white"
+            >
+              Login
+            </p>
+          </div>
+          <div
+            id="loginDropDownMenu"
+            class="absolute hidden z-10 top-[52px] right-0 lg:-right-20 text-center w-40 px-7 pb-4 bg-gradient-to-t from-[#7dfff9] to-[#ff9aba] dark:from-[#151a41] dark:to-[#243b55] rounded-b-md"
+          >
+            <a id="login" href="/login" target="_self">
+              <p
+                id="logintext"
+                class="text-lg text-[#350f14] border-b-[3px] border-transparent mt-2 hover:cursor-pointer dark:text-gray-300 hover:border-b-[3px] dark:hover:border-[#4072d5] select-none"
+              >
+                login
+              </p>
+            </a>
+            <a id="signup" href="/signup" target="_blank">
+              <p
+                class="text-lg text-[#0c2524] mt-2 border-b-[3px] border-transparent hover:cursor-pointer dark:text-gray-300 hover:border-b-[3px] dark:hover:border-[#4072d5] select-none"
+              >
+                signup
+              </p>
+            </a>
+            <a href="/home" target="_parent">
+              <p
+                id="logout"
+                class="text-lg hidden text-[#0d2e2c] mt-2 border-b-[3px] border-transparent hover:cursor-pointer dark:text-gray-300 hover:border-b-[3px] dark:hover:border-[#4072d5] select-none"
+              >
+                logout
+              </p>
+            </a>
+          </div>
+        </div>
+
+        <!--------------------------------- Menu Bar for Small Device ------------------------------------------------>
+        <div class="lg:hidden">
+          <i
+            id="menuBar"
+            class="bi bi-list text-[34px] cursor-pointer font-bold bg-gradient-to-r from-[#ff4841] to-[#0579fe] bg-clip-text text-transparent hover:from-[#d7141ad8] hover:to-[#0579fee0] select-none"
+          ></i>
+        </div>
+      </nav>
+    </header>
+
+    <div class="bg-[url(./assets/images/hero/main_bg.jpg)]"></div>
+
+    <!-------------------------------- Hero Section---------------------->
+    
+    <!------------------------------ footer ----------------------->
+    <footer class="bg-[#1d2536] select-none mt-40">
+      <div
+        class="flex flex-col lg:flex-row lg:space-x-2 lg:space-y-0 lg:justify-center mx-5 mt-10 lg:py-10 px-5 pt-10 pb-14 space-y-16 text-gray-400 border-b-[1px] border-[#ffffffa7]"
+      >
+        <div class="lg:h-60 lg:w-56 lg:mr-24 text-pretty">
+          <p class="text-lg font-semibold text-gray-300 mb-2">Contact</p>
+          <ul class="text-sm space-y-3">
+            <li>
+              Address:
+              <address>Egra, East Midnapore, West Bengal, 721329</address>
+            </li>
+            <li>Phone: <a href="tell:9800068420"></a>+91 9800068420</li>
+            <li>
+              Email:
+              <a href="mailto:beramarnath5@gmail.com">beramarnath5@gmail.com</a>
+            </li>
+            <li>Follow us on:</li>
+            <li class="space-x-5 mt-1 ml-3 text-lg">
+              <a href=" https://wa.me/919800068420" target="_blank"
+                ><i class="bi bi-whatsapp text-green-600"></i
+              ></a>
+              <a
+                href="https://x.com/beraamarnath5?t=KKq15XBe-CzS9TBV16vgXA&s=08"
+                target="_blank"
+                ><i class="bi bi-twitter-x text-black"></i
+              ></a>
+              <a
+                href="https://www.linkedin.com/in/amarnath-bera-9a19a02b8?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app"
+                target="_blank"
+                ><i class="fa-brands fa-linkedin text-blue-700"></i
+              ></a>
+            </li>
+          </ul>
+        </div>
+
+        <div class="lg:h-60 w-60 text-pretty">
+          <p class="text-lg font-semibold text-gray-300 mb-2">Quick Links</p>
+          <ul class="text-sm space-y-2">
+            <li><a href="/about">About Us</a></li>
+            <li><a href="/work">Works</a></li>
+            <li><a href="/service">Website Development</a></li>
+            <li><a href="/service">Graphics Design</a></li>
+            <li><a href="/service">Photo Editing</a></li>
+            <li><a href="/service">Video Editing</a></li>
+          </ul>
+        </div>
+
+        <div class="lg:h-60 w-60 text-pretty">
+          <p class="text-lg font-semibold text-gray-300 mb-2">Help/Support</p>
+          <ul class="text-sm space-y-3">
+            <li><a href="/contact">Contact Us</a></li>
+            <li><a href="/help">help</a></li>
+            <li><a href="/support">Support</a></li>
+            <li><a href="/terms">Terms & Condition</a></li>
+          </ul>
+        </div>
+
+        <div class="lg:h-60 w-60 text-pretty">
+          <p class="text-lg font-semibold text-gray-300 mb-2">Community</p>
+          <ul class="text-sm space-y-3">
+            <li><a href="/team">Our Community</a></li>
+            <li><a href="/gallery">Gallery</a></li>
+            <li><a href="/blog">Our Blogs</a></li>
+            <li><a href="/events">Special Events</a></li>
+          </ul>
+        </div>
+
+        <div class="w-60">
+          <div>
+            <p class="text-lg font-semibold text-gray-300">Write a review</p>
+            <p><a href="/review">feedback</a></p>
+          </div>
+          <div class="mt-16">
+            <p class="text-lg font-semibold text-gray-300 mb-2">
+              Download Our mobile app
+            </p>
+            <img
+              class="inline-block h-8"
+              src="./img/hero/app-store.png"
+              alt=""
+            />
+            <img
+              class="inline-block h-8"
+              src="./img/hero/play-store.png"
+              alt=""
+            />
+          </div>
+        </div>
+      </div>
+      <!-- footer last -->
+      <div>
+        <p class="text-center align-middle p-6 text-sm text-gray-400">
+          &copy; 2023 Nexura. All rights reserved.
+        </p>
+      </div>
+    </footer>
+
+    <!---------------------- Modal Content ----------------------->
+    <div id="adminModal" class="hidden">
+      <div
+        class="absolute top-0 z-20 w-full h-full flex items-center bg-[#8998c758]"
+      >
+        <div class="w-80 mx-auto">
+          <h2 class="text-3xl font-semibold mb-4 text-center">
+            <i
+              id="loginClosebtn"
+              class="bi bi-x-octagon text-red-800 absolute top-32 right-40 lg:top-40 lg:right-[36rem] cursor-pointer"
+            ></i>
+            <p id="message" class="text-[#2fe821]"></p>
+
+            <i
+              class="bi bi-person-fill-gear bg-gradient-to-r from-[#d71419] to-[#07163e] bg-clip-text text-transparent"
+            ></i>
+            <span
+              class="bg-gradient-to-r from-[#d71419] to-[#07163e] bg-clip-text text-transparent"
+              >A</span
+            ><span class="text-[#141e63]">dmin Login</span>
+          </h2>
+          <form id="adminLoginForm" class="space-y-4">
+            <div>
+              <input
+                type="text"
+                id="adminUsername"
+                name="username"
+                placeholder="username"
+                required
+                class="w-full px-3 py-2 mt-1 text-[#141e63] border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
+              />
+            </div>
+
+            <div>
+              <input
+                type="password"
+                id="adminPassword"
+                name="password"
+                placeholder="password"
+                required
+                class="w-full px-3 py-2 mt-1 text-[#141e63] border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
+              />
+            </div>
+
+            <button
+              type="submit"
+              class="w-full bg-[#1a26d3] text-white px-4 py-2 rounded-lg hover:bg-[#2f41e7]"
+            >
+              Login
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <!------------------------------- Loader Element ------------------->
+    <div id="loader" class="hidden">
+      <div
+        class="fixed inset-0 bg-gray-800 bg-opacity-75 flex items-center justify-center z-50"
+      >
+        <div class="loader"></div>
+      </div>
+    </div>
+
+    <script src="./js/script.js"></script>
+    <script src="./js/adminlogin.js"></script>
+  </body>
 </html>
