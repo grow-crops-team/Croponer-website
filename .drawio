@@ -1,0 +1,46 @@
+<mxfile host="65bd71144e">
+    <diagram id="mKDkzHDbpJRkhZCWS3i1" name="Page-1">
+        <mxGraphModel dx="478" dy="611" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+            <root>
+                <mxCell id="0"/>
+                <mxCell id="1" parent="0"/>
+                <mxCell id="11" value="" style="group" vertex="1" connectable="0" parent="1">
+                    <mxGeometry x="20" y="60" width="200" height="270" as="geometry"/>
+                </mxCell>
+                <mxCell id="2" value="" style="whiteSpace=wrap;html=1;align=left;" vertex="1" parent="11">
+                    <mxGeometry width="200" height="270" as="geometry"/>
+                </mxCell>
+                <mxCell id="4" value="User Register model" style="text;strokeColor=none;align=center;fillColor=none;html=1;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=14;fontStyle=5;fontColor=#CCCCFF;" vertex="1" parent="11">
+                    <mxGeometry x="25" width="150" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="5" value="UserName" style="text;strokeColor=none;align=center;fillColor=none;html=1;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=14;fontColor=#CCCCFF;" vertex="1" parent="11">
+                    <mxGeometry x="55" y="60" width="90" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="6" value="created At&lt;br&gt;UpdatedAt&lt;br&gt;refreshToken" style="text;strokeColor=none;align=center;fillColor=none;html=1;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=14;fontColor=#CCCCFF;" vertex="1" parent="11">
+                    <mxGeometry x="55" y="160" width="90" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="7" value="password" style="text;strokeColor=none;align=center;fillColor=none;html=1;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=14;fontColor=#CCCCFF;" vertex="1" parent="11">
+                    <mxGeometry x="55" y="120" width="90" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="8" value="email" style="text;strokeColor=none;align=center;fillColor=none;html=1;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=14;fontColor=#CCCCFF;" vertex="1" parent="11">
+                    <mxGeometry x="55" y="100" width="90" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="9" value="fullName" style="text;strokeColor=none;align=center;fillColor=none;html=1;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=14;fontColor=#CCCCFF;" vertex="1" parent="11">
+                    <mxGeometry x="55" y="80" width="90" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="12" value="" style="whiteSpace=wrap;html=1;align=left;" vertex="1" parent="1">
+                    <mxGeometry x="280" y="70" width="140" height="100" as="geometry"/>
+                </mxCell>
+                <mxCell id="13" value="&lt;b&gt;&lt;u&gt;user login&lt;/u&gt;&lt;/b&gt;" style="text;strokeColor=none;align=center;fillColor=none;html=1;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=14;fontColor=#CCCCFF;" vertex="1" parent="1">
+                    <mxGeometry x="300" y="70" width="100" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="14" value="username/email&lt;br&gt;password" style="text;strokeColor=none;align=center;fillColor=none;html=1;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=14;fontColor=#CCCCFF;" vertex="1" parent="1">
+                    <mxGeometry x="320" y="120" width="60" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="15" style="html=1;exitX=1;exitY=0.25;exitDx=0;exitDy=0;entryX=0;entryY=0.25;entryDx=0;entryDy=0;fontSize=14;fontColor=#CCCCFF;" edge="1" parent="1" source="2" target="12">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
+</mxfile>
