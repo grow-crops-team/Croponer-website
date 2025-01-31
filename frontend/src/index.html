@@ -26,7 +26,7 @@
       <nav
         aria-label="Main Navigation"
         id="navbar"
-        class="w-full h-14 flex items-center justify-between  px-5 lg:px-12 z-10"
+        class="w-full h-14 flex items-center justify-between px-5 lg:px-12 z-10"
       >
         <!-- logo -->
         <div class="logo">
@@ -40,7 +40,7 @@
         <!-- menu bar -->
         <div
           id="menu"
-          class="bg-[#080A53] h-screen w-56  top-[56px] right-[-224px] transition-all duration-500 delay-200 ease-in-out fixed rounded-bl-md z-20 lg:static lg:right-0 lg:block lg:z-0 lg:bg-transparent lg:h-auto lg:w-auto lg:top-auto lg:transition-none lg:delay-0 lg:ease-none lg:rounded-none lg:ml-10"
+          class="bg-[#080A53] h-screen w-56 top-[56px] right-[-224px] transition-all duration-500 delay-200 ease-in-out fixed rounded-bl-md z-20 lg:static lg:right-0 lg:block lg:z-0 lg:bg-transparent lg:h-auto lg:w-auto lg:top-auto lg:transition-none lg:delay-0 lg:ease-none lg:rounded-none lg:ml-10"
         >
           <ul
             class="text-gray-300 p-4 ml-6 pl-5 text-base space-y-3 lg:space-y-0 lg:flex lg:space-x-6 lg:p-0"
@@ -126,7 +126,7 @@
         <div class="ml-32 lg:hidden">
           <i
             id="searchBar"
-            class="bi bi-search cursor-pointer text-lg text-gray-300 "
+            class="bi bi-search cursor-pointer text-lg text-gray-300"
           ></i>
         </div>
 
@@ -154,13 +154,136 @@
     </header>
 
     <!------------------------------------- Hero Section ------------------------->
-    <picture>
-      <source media="(min-width: 1024px)" srcset="https://images.unsplash.com/photo-1498408040764-ab6eb772a145?q=80&w=2072">
-      <img src="../public/assets/images/hero/iPhone SE - 1(index page).png" alt="Background Image" class="w-full h-screen object-cover">
-    </picture>
-    
+    <main class="w-full h-screen relative">
+      <picture>
+        <source
+          media="(min-width: 1024px)"
+          srcset="
+            https://images.unsplash.com/photo-1498408040764-ab6eb772a145?q=80&w=2072
+          "
+        />
+        <img
+          src="../public/assets/images/hero/iPhone SE - 1(index page).png"
+          alt="Background Image"
+          class="w-full h-screen object-cover"
+        />
+      </picture>
 
-   
+      <div
+        class="hero-section z-10 absolute inset-0 text-center text-white lg:text-black mt-10 mx-4"
+      >
+        <h1 class="text-3xl lg:text-4xl font-bold">It's the 3p Thing</h1>
+        <p class="text-lg lg:text-xl text-wrap my-1">
+          From Cultivation to conservation, we redefine farming through
+          innovation;
+        </p>
+
+        <p class="text-lg lg:text-xl text-wrap">
+          we are deeply committed to 3<span>p</span> (<span
+            class="text-green-400"
+            >p</span
+          >addy <span class="text-stone-800 lg:text-stone-400">p</span>eanut
+          <span class="text-yellow-400">p</span>otato) excellence.
+        </p>
+      </div>
+    </main>
+
+
+    <!------------------------------------- Footer ------------------------->
+    <footer class="bg-[#092050] select-none mt-40">
+      <div
+        class="flex flex-col lg:flex-row lg:space-x-2 lg:space-y-0 lg:justify-center mx-5 mt-10 lg:py-10 px-5 pt-10 pb-14 space-y-16 text-gray-400 border-b-[1px] border-[#ffffffa7]"
+      >
+        <div class="lg:h-60 lg:w-56 lg:mr-24 text-pretty">
+          <p class="text-lg font-semibold text-gray-300 mb-2">Contact</p>
+          <ul class="text-sm space-y-3">
+            <li>
+              Address:
+              <address>Egra, East Midnapore, West Bengal, 721329</address>
+            </li>
+            <li>
+              Email:
+              <a href="mailto:growcropsteam@gmail.com">growcropsteam@gmail.com</a>
+            </li>
+            <li>Follow us on:</li>
+            <li class="space-x-5 mt-1 ml-3 text-lg">
+              <a href=" https://wa.me/919800068420" target="_blank"
+                ><i class="bi bi-whatsapp text-green-600"></i
+              ></a>
+              <a
+               
+                target="_blank"
+                ><i class="bi bi-twitter-x text-black"></i
+              ></a>
+              <a
+               
+                target="_blank"
+                ><i class="fa-brands fa-linkedin text-blue-700"></i
+              ></a>
+            </li>
+          </ul>
+        </div>
+
+        <div class="lg:h-60 w-60 text-pretty">
+          <p class="text-lg font-semibold text-gray-300 mb-2">Quick Links</p>
+          <ul class="text-sm space-y-2">
+            <li><a href="/about">About Us</a></li>
+            <li><a href="/work">our Works</a></li>
+            <li><a href="/work">Our Team</a></li>
+            <li><a href="/work"></a>Read Article</li>
+            
+          </ul>
+        </div>
+
+        <div class="lg:h-60 w-60 text-pretty">
+          <p class="text-lg font-semibold text-gray-300 mb-2">Help/Support</p>
+          <ul class="text-sm space-y-3">
+            <li><a href="/contact">Contact Us</a></li>
+            <li><a href="/help">help</a></li>
+            <li><a href="/support">Support</a></li>
+            <li><a href="/terms">Terms & Condition</a></li>
+          </ul>
+        </div>
+
+        <div class="lg:h-60 w-60 text-pretty">
+          <p class="text-lg font-semibold text-gray-300 mb-2">Community</p>
+          <ul class="text-sm space-y-3">
+            <li><a href="/team">Join our Community</a></li>
+            <li><a href="/gallery">Gallery</a></li>
+            <li><a href="/blog">Our Blogs</a></li>
+            <li><a href="/events">Special Events</a></li>
+          </ul>
+        </div>
+
+        <div class="w-60">
+          <div>
+            <p class="text-lg font-semibold text-gray-300">Write a review</p>
+            <p><a href="/review">feedback</a></p>
+          </div>
+          <!-- <div class="mt-16">
+            <p class="text-lg font-semibold text-gray-300 mb-2">
+              Download Our mobile app
+            </p>
+            <img
+              class="inline-block h-8"
+              src="./img/hero/app-store.png"
+              alt=""
+            />
+            <img
+              class="inline-block h-8"
+              src="./img/hero/play-store.png"
+              alt=""
+            />
+          </div> -->
+        </div>
+      </div>
+      <!-- footer last -->
+      <div>
+        <p class="text-center align-middle p-6 text-sm text-gray-400">
+          &copy; 2025 Croponer. All rights reserved.
+        </p>
+      </div>
+    </footer>
 
     <script src="script.js"></script>
   </body>
