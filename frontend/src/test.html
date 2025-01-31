@@ -1,0 +1,62 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../public/assets/css/style.css">
+</head>
+<body>
+    <header class="bg-blue-900 w-full select-none">
+        <nav class="w-full h-14 flex items-center justify-between px-5 lg:px-10">
+          <!-- Logo -->
+          <div class="logo">
+            <img src="#" alt="Croponer Logo" class="w-28 h-auto" loading="lazy" />
+          </div>
+      
+          <!-- Menu -->
+          <div class="hidden lg:flex space-x-6 text-gray-300">
+            <a href="/about" class="hover:text-gray-100">About</a>
+            <a href="/blog" class="hover:text-gray-100">Blog</a>
+            <a href="/research" class="hover:text-gray-100">Research</a>
+          </div>
+      
+          <!-- Login Dropdown -->
+          <div class="relative hidden lg:block">
+            <button id="loginDropDown" class="text-gray-300 hover:text-white">
+              Login/Signup
+            </button>
+            <div id="loginDropDownMenu" class="absolute hidden bg-[#05063a] p-3 rounded-md top-12 w-32">
+              <a href="/login" class="block text-gray-300 hover:text-white">Login</a>
+              <a href="/signup" class="block text-gray-300 hover:text-white">Signup</a>
+            </div>
+          </div>
+      
+          <!-- Search Box -->
+          <div class="relative hidden lg:block">
+            <input class="w-56 h-10 bg-transparent border border-gray-500 rounded-md px-3 text-gray-300 focus:border-blue-500 focus:outline-none transition duration-200 ease-in-out" type="text" placeholder="Search">
+            <i class="bi bi-search text-lg absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-300 cursor-pointer"></i>
+          </div>
+      
+          <!-- Mobile Menu Icon -->
+          <button id="menuBar" class="lg:hidden">
+            <i class="bi bi-list text-3xl text-gray-300"></i>
+          </button>
+        </nav>
+      </header>
+      
+      <!-- Hero Section -->
+      <picture>
+        <source media="(min-width: 1024px)" srcset="https://images.unsplash.com/photo-1498408040764-ab6eb772a145?q=80&w=2072">
+        <img src="../public/assets/images/hero/iPhone SE - 1(index page).png" alt="Background Image" class="w-full h-screen object-cover">
+      </picture>
+      
+</body>
+</html>
+
+
+
+
+

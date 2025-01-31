@@ -22,7 +22,7 @@
   </head>
 
   <body
-   
+   style="background: url(./assets/images/hero/main_bg.jpg);"
   >
     <!------------------------------------- Header------------------------->
     <header
@@ -34,12 +34,12 @@
         class="container w-full h-14 items-center mx-auto flex justify-between sticky top-0 z-10"
       >
         <div class="logo h-9">
-          <img
+          <!-- <img
             class="w-full h-full select-none"
             src="./img/logo/Nexura.svg"
             alt="Nexura"
             loading="lazy"
-          />
+          /> -->
         </div>
         <div
           id="menu"
@@ -210,7 +210,7 @@
       </nav>
     </header>
 
-    <div class="bg-[url(./assets/images/hero/main_bg.jpg)]"></div>
+   
 
     <!-------------------------------- Hero Section---------------------->
     
@@ -291,7 +291,7 @@
             <p class="text-lg font-semibold text-gray-300 mb-2">
               Download Our mobile app
             </p>
-            <img
+            <!-- <img
               class="inline-block h-8"
               src="./img/hero/app-store.png"
               alt=""
@@ -300,7 +300,7 @@
               class="inline-block h-8"
               src="./img/hero/play-store.png"
               alt=""
-            />
+            /> -->
           </div>
         </div>
       </div>
@@ -312,71 +312,9 @@
       </div>
     </footer>
 
-    <!---------------------- Modal Content ----------------------->
-    <div id="adminModal" class="hidden">
-      <div
-        class="absolute top-0 z-20 w-full h-full flex items-center bg-[#8998c758]"
-      >
-        <div class="w-80 mx-auto">
-          <h2 class="text-3xl font-semibold mb-4 text-center">
-            <i
-              id="loginClosebtn"
-              class="bi bi-x-octagon text-red-800 absolute top-32 right-40 lg:top-40 lg:right-[36rem] cursor-pointer"
-            ></i>
-            <p id="message" class="text-[#2fe821]"></p>
+   
 
-            <i
-              class="bi bi-person-fill-gear bg-gradient-to-r from-[#d71419] to-[#07163e] bg-clip-text text-transparent"
-            ></i>
-            <span
-              class="bg-gradient-to-r from-[#d71419] to-[#07163e] bg-clip-text text-transparent"
-              >A</span
-            ><span class="text-[#141e63]">dmin Login</span>
-          </h2>
-          <form id="adminLoginForm" class="space-y-4">
-            <div>
-              <input
-                type="text"
-                id="adminUsername"
-                name="username"
-                placeholder="username"
-                required
-                class="w-full px-3 py-2 mt-1 text-[#141e63] border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
-              />
-            </div>
-
-            <div>
-              <input
-                type="password"
-                id="adminPassword"
-                name="password"
-                placeholder="password"
-                required
-                class="w-full px-3 py-2 mt-1 text-[#141e63] border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
-              />
-            </div>
-
-            <button
-              type="submit"
-              class="w-full bg-[#1a26d3] text-white px-4 py-2 rounded-lg hover:bg-[#2f41e7]"
-            >
-              Login
-            </button>
-          </form>
-        </div>
-      </div>
-    </div>
-
-    <!------------------------------- Loader Element ------------------->
-    <div id="loader" class="hidden">
-      <div
-        class="fixed inset-0 bg-gray-800 bg-opacity-75 flex items-center justify-center z-50"
-      >
-        <div class="loader"></div>
-      </div>
-    </div>
-
-    <script src="./js/script.js"></script>
-    <script src="./js/adminlogin.js"></script>
+    <script src="assets/js/main.js"></script>
+   
   </body>
 </html>
