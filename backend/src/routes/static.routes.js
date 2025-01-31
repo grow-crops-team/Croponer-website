@@ -22,9 +22,9 @@ router.route("/")
 
 router.route("/register")
     .get((req, res) => {
-        res.sendFile(path.join(staticPath, "userRegister.html"), (err) => {
+        res.sendFile(path.join(staticPath, "register.html"), (err) => {
             if (err) {
-                res.status(500).send("Error loading userRegister.html")
+                res.status(500).send("Error loading register.html")
             }
         })
         // console.log(req.url)
@@ -35,9 +35,9 @@ router.route("/register")
 
 router.route("/login")
     .get((req, res) => {
-        res.sendFile(path.join(staticPath, "userLogin.html"), (err) => {
+        res.sendFile(path.join(staticPath, "login.html"), (err) => {
             if (err) {
-                res.status(500).send("Error loading userLogin.html")
+                res.status(500).send("Error loading login.html")
             }
         })
         // console.log(req.url)
