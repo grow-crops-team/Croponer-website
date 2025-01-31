@@ -34,21 +34,25 @@ document.addEventListener("click", (evt) => {
 
 // ---------------------- Login Dropdown ----------------------
 
-const loginDropDowns = document.querySelectorAll("#loginDropDown");
-const loginDropDownMenus = document.querySelectorAll("#loginDropDownMenu");
+const loginDropDowns = document.querySelectorAll("#loginDropDown")
+const loginDropDownMenus = document.querySelectorAll("#loginDropDownMenu")
 
 loginDropDowns.forEach((dropDown, index) => {
     dropDown.addEventListener("click", (evt) => {
         // console.log("open");
-        loginDropDownMenus[index].classList.toggle("hidden");
-    });
-});
+        loginDropDownMenus[index].classList.toggle("hidden")
+    })
+    dropDown.addEventListener("mouseover", (evt) => {
+        // console.log("open");
+        loginDropDownMenus[index].classList.remove("hidden")
+    })
+})
 
 document.addEventListener("click", (evt) => {
     loginDropDowns.forEach((dropDown, index) => {
         if (!dropDown.contains(evt.target) && !loginDropDownMenus[index].contains(evt.target)) {
             // console.log("close");
-            loginDropDownMenus[index].classList.add("hidden");
+            loginDropDownMenus[index].classList.add("hidden")
         }
-    });
-});
+    })
+})
