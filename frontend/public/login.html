@@ -76,7 +76,7 @@
               type="text"
               name="userName"
               placeholder="Username"
-              required
+             
               class="border-b-2 border-[#4980c4] w-[300px] px-1 text-[17px] text-[#080b3e] placeholder:text-[#080b3e] focus:outline-none bg-transparent caret-[#080b3e] select-text"
             /><span
               id="userNameError"
@@ -90,7 +90,7 @@
               type="password"
               name="password"
               placeholder="Password"
-              required
+             
               class="border-b-2 border-[#4980c4] w-[300px] px-1 mt-10 text-[17px] text-[#080b3e] placeholder:text-[#080b3e] focus:outline-none bg-transparent caret-[#080b3e]"
             /><span
               id="userNameError"
@@ -104,6 +104,7 @@
 
           <button
             type="submit"
+            id="loginSubmitbtn"
             class="mt-10 lg:mt-11 rounded-md w-56 bg-gradient-to-tr from-[#6190E8] to-[#0f238b] h-11 text-lg font-semibold hover:bg-gradient-to-bl text-[#0c1657]"
           >
             Login
@@ -124,10 +125,10 @@
     </div>
 
     <div
-      class="loginModal hidden absolute transition-all duration-500 top-0 left-32 lg:top-14 lg:left-[401px]"
+      class="displayError hidden absolute transition-all duration-500 top-0 left-32 lg:top-14 lg:left-[401px]"
     >
       <div
-        class="loginModalContent rounded-lg bg-gradient-to-tl from-[#7ca7bdb7] to-[#338dc9d0] p-4 w-[355px]"
+        class="displayErrorContent rounded-lg bg-gradient-to-tl from-[#7ca7bdb7] to-[#338dc9d0] p-4 w-[355px]"
       >
         <p id="message" class="text-lg text-[#173059]">
            Your account has been created
@@ -231,6 +232,6 @@
       </div>
     </footer>
 
-    
+    <script type="module" src="./assets/js/user.login.js"></script>
   </body>
 </html>

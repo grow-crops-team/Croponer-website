@@ -91,7 +91,7 @@
 
         <!-- Login Form start from here -->
 
-        <form action="signupForm" id="from" class="signupForm mt-8 lg:mt-10">
+        <form action="signupForm" id="signupFrom" class="signupForm mt-8 lg:mt-10">
           <div class="userName relative">
             <i
               class="fa-solid fa-user text-[#080b3e] absolute top-1 lg:left-7 left-8"
@@ -180,7 +180,7 @@
           </div>
 
           <button
-            id="submit"
+            id="submitBtn"
             type="submit"
             class="mt-7 rounded-md w-56 bg-gradient-to-l from-[#81ccf7c0] to-[#0c4ca6b8] h-11 text-lg font-semibold hover:bg-gradient-to-l hover:from-[#8bcbf0d7] hover:to-[#144384da] text-[#091236]"
           >
@@ -200,10 +200,10 @@
     </div>
     <!-- display message -->
     <div
-      class="signupModal hidden absolute transition-all duration-500 top-0 left-32 lg:top-14 lg:left-[401px]"
+      class="displayError hidden absolute transition-all duration-500 top-0 left-32 lg:top-14 lg:left-[401px]"
     >
       <div
-        class="signupModalContent rounded-lg bg-gradient-to-tl from-[#b4b3b0d4] to-[#385d76] p-4 w-[355px]"
+        class="displayErrorContent rounded-lg bg-gradient-to-tl from-[#b4b3b0d4] to-[#385d76] p-4 w-[355px]"
       >
         <p id="message" class="text-lg text-[#173059]">
           <!-- <i class="bi bi-check2-all"></i> -->
@@ -306,5 +306,6 @@
         </p>
       </div>
     </footer>
+    <script type="module" src="./assets/js/user.register.js"></script>
   </body>
 </html>

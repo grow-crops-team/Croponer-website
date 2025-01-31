@@ -1,57 +1,92 @@
 // ---------- Menu bar----------------------------
-const menuBar = document.querySelector("#menuBar")
-const menu = document.querySelector("#menu")
 
 function openMenu() {
-    if (menu.classList.contains("right-0")) {
-        menu.classList.remove("right-0")
-        menu.classList.add("right-[-224px]")
-    }
-    else {
-        menu.classList.remove("right-[-224px]")
-        menu.classList.add("right-0")
+    const menuBar = document.querySelector("#menuBar")
+    const menu = document.querySelector("#menu")
+
+    if (menu && menuBar) {
+        function openMenu() {
+            if (menu.classList.contains("right-0")) {
+                menu.classList.remove("right-0")
+                menu.classList.add("right-[-224px]")
+            }
+            else {
+                menu.classList.remove("right-[-224px]")
+                menu.classList.add("right-0")
+            }
+        }
+        const openMenuBar = () => {
+
+            menuBar.addEventListener("click", (evt) => {
+                openMenu()
+            })
+            document.addEventListener("click", (evt) => {
+                if (!menuBar.contains(evt.target) && !menu.contains(evt.target)) {
+                    menu.classList.remove("right-0")
+                    menu.classList.add("right-[-224px]")
+                }
+            })
+        }
     }
 }
-menuBar.addEventListener("click", (evt) => {
-    openMenu()
-})
-document.addEventListener("click", (evt) => {
-    if (!menuBar.contains(evt.target) && !menu.contains(evt.target)) {
-        menu.classList.remove("right-0")
-        menu.classList.add("right-[-224px]")
-    }
-})
+openMenu()
 
 // ---------------------- Login Dropdown ----------------------
+function openLoginDropdown() {
+    const loginDropDowns = document.querySelectorAll("#loginDropDown")
+    const loginDropDownMenus = document.querySelectorAll("#loginDropDownMenu")
 
-const loginDropDowns = document.querySelectorAll("#loginDropDown")
-const loginDropDownMenus = document.querySelectorAll("#loginDropDownMenu")
+    if (loginDropDowns && loginDropDownMenus) {
 
-loginDropDowns.forEach((dropDown, index) => {
-    dropDown.addEventListener("click", (evt) => {
-        // console.log("open");
-        loginDropDownMenus[index].classList.toggle("hidden")
-    })
-    dropDown.addEventListener("mouseover", (evt) => {
-        // console.log("open");
-        loginDropDownMenus[index].classList.remove("hidden")
-    })
-})
+        loginDropDowns.forEach((dropDown, index) => {
+            dropDown.addEventListener("click", (evt) => {
+                // console.log("open");
+                loginDropDownMenus[index].classList.toggle("hidden")
+            })
+            dropDown.addEventListener("mouseover", (evt) => {
+                // console.log("open");
+                loginDropDownMenus[index].classList.remove("hidden")
+            })
+        })
 
-document.addEventListener("click", (evt) => {
-    loginDropDowns.forEach((dropDown, index) => {
-        if (!dropDown.contains(evt.target) && !loginDropDownMenus[index].contains(evt.target)) {
-            // console.log("close");
-            loginDropDownMenus[index].classList.add("hidden")
-        }
-    })
-})
+        document.addEventListener("click", (evt) => {
+            loginDropDowns.forEach((dropDown, index) => {
+                if (!dropDown.contains(evt.target) && !loginDropDownMenus[index].contains(evt.target)) {
+                    // console.log("close");
+                    loginDropDownMenus[index].classList.add("hidden")
+                }
+            })
+        })
+    }
+}
+openLoginDropdown()
 
 
+
+
+// ---------- error and success messages for validation check
+const setError = (element, message) => {
+    // console.log(element)
+    const formControl = element.parentElement
+    // console.log(formControl)
+    const errorMessage = formControl.querySelector(".error")
+    // console.log(errorMessage)
+    errorMessage.innerText = message
+    element.classList.add("border-red-900");
+
+}
+const setSuccess = (element) => {
+    const formControl = element.parentElement
+    // console.log(formControl)
+    const errorMessage = formControl.querySelector(".error")
+    // console.log(errorMessage)
+    errorMessage.innerText = ""
+    element.classList.remove("border-red-900");
+}
 
 
 // ----------------------  checking user login form------
-const loginValidateInput = () => {
+const loginValidateInput = (username, password) => {
     let isValid = true;
     const usernameValue = username.value.trim()
     const passwordValue = password.value.trim()
@@ -74,9 +109,9 @@ const loginValidateInput = () => {
 
     return isValid
 }
-//-------------------------------- Toggle Eye Button-----------------
-const showPassWord = document.querySelector("#showPassword")
-function showPassword() {
+
+//--------------------- Toggle Eye Button-----------------
+function showPassword(showPassWord, password) {
     showPassWord.addEventListener("click", (evt) => {
         const type = password.getAttribute("type") === "password" ? "text" : "password";
         password.setAttribute("type", type)
@@ -86,12 +121,12 @@ function showPassword() {
     })
 }
 
-// ---------------- checking user registration form  ------------------
-const signupValidateInput = () => {
+// --------- checking user registration form  ------------------
+const signupValidateInput = (userName, fullName,userEmail,password,confirmPassword) => {
     let isValid = true;
     const userNameValue = userName.value.trim()
     const fullNameValue = fullName.value.trim()
-    const emailValue = email.value.trim()
+    const emailValue = userEmail.value.trim()
     const passwordValue = password.value.trim()
     const confirmPasswordValue = confirmPassword.value.trim()
     //------------- For Username----------------
@@ -114,7 +149,7 @@ const signupValidateInput = () => {
     }
 
     else if (/[^a-z0-9_]/.test(userNameValue)) {
-        setError(password, "* username contains only letter and number .");
+        setError(userName, "* username contains only letter and number .");
         isValid = false
     }
     else {
@@ -182,5 +217,30 @@ const signupValidateInput = () => {
     return isValid
 }
 
+// ----------- display message modal open and close  -------
 
-export { loginValidateInput, showPassword , signupValidateInput }
+
+
+function displayMessage(type, message) {
+    const signupModal = document.querySelector(".signupModal")
+    const messageElement = document.querySelector("#message");
+    messageElement.textContent = message;
+    signupModal.classList.remove("hidden")
+
+}
+
+
+const closeDisplayModal = () => {
+    const modalClose = document.querySelector(".modalClose");
+    if (modalClose) {
+        modalClose.addEventListener("click", () => {
+            document.querySelector(".signupModal").classList.add("hidden");
+        })
+    }
+}
+
+
+
+
+
+export { loginValidateInput, showPassword, signupValidateInput, displayMessage, closeDisplayModal }

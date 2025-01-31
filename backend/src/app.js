@@ -15,12 +15,12 @@ app.use(express.static('public'))
 app.use(cookieParser())
 
 //import routes
-// import userRoutes from './routes/user.routes.js'
+import userRoutes from './routes/user.routes.js'
 import staticRoutes from './routes/static.routes.js'
 
 
 //routes
-// app.use('/api/v2/user', userRoutes)
+app.use('/api/v2/user', userRoutes)
 app.use('/', staticRoutes)
 
 
