@@ -32,14 +32,17 @@ userRegister.addEventListener("submit", async (evt) => {
             })
 
             const result = await response.json()
-            console.log("\n the json response(result) :", result)
+
+            // console.log("\n the json response(result) :", result)
             if (result.statuscode === 201) {
+
                 displayMessage("success", result.message)
+
                 localStorage.setItem("isLoggedIn", true)
 
                 setTimeout(() => {
                     window.location.href = "/"
-                }, 3000)
+                }, 5000)
 
             }
             else {
@@ -47,7 +50,7 @@ userRegister.addEventListener("submit", async (evt) => {
             }
 
         } catch (error) {
-            displayMessage("error", "An unexpected error occurred")
+            displayMessage("error", "An unexpected error occurred! Please try again.")
             console.error("Fetch error:", error)
         }
 

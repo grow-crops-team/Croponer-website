@@ -18,7 +18,7 @@ const generateAccessAndRefreshTokens = async (userId) => {
     } catch (error) {
         throw new ApiError(
             500,
-            "something went wrong when generate access and refresh token"
+            "Something went wrong when generate access and refresh token"
         )
     }
 }
@@ -38,7 +38,7 @@ const registerUser = asyncHandler(async (req, res) => {
     })
 
     if (existedUser) {
-        throw new ApiError(409, "Username/email is already exit")
+        throw new ApiError(409, "Your are  already registered !! \nClick on login to continue")
     }
 
     const user = await User.create({
@@ -58,13 +58,13 @@ const registerUser = asyncHandler(async (req, res) => {
     }
     return res
         .status(201)
-        .json(new ApiResponse(201, createdUser, "User successfully Registered"))
+        .json(new ApiResponse(201, createdUser, "User successfully Registered !! \n Save your credentials for future login"))
 })
 
 const loginUser = asyncHandler(async (req, res) => {
     const { email, username, password } = req.body
-    if (!(username || email)) {
-        throw new ApiError(400, "username or email is required")
+    if (!username) {
+        throw new ApiError(400, "username is required")
     }
 
     const user = await User.findOne({
@@ -72,12 +72,12 @@ const loginUser = asyncHandler(async (req, res) => {
     })
 
     if (!user) {
-        throw new ApiError(404, "User not found");
+        throw new ApiError(404, "User does not exist!! \n Click on Register to continue");
     }
     const isPasswordValid = await user.isPasswordCorrect(password)
 
     if (!isPasswordValid) {
-        throw new ApiError(401, "Invalid user credentials")
+        throw new ApiError(401, "Invalid user credentials !! \n Click on forgot password to reset your password")
     }
     const { refreshToken, accessToken } = await generateAccessAndRefreshTokens(
         user._id
@@ -104,7 +104,7 @@ const loginUser = asyncHandler(async (req, res) => {
                     accessToken,
                     refreshToken,
                 },
-                "User logged In successfully"
+                "Login is successful !! \n Glad to see you again"
             )
         )
 })
@@ -131,14 +131,14 @@ const logoutUser = asyncHandler(async (req, res) => {
         .status(200)
         .clearCookie("accessToken", options)
         .clearCookie("refreshToken", options)
-        .json(new ApiResponse(200, {}, "User logged out"))
+        .json(new ApiResponse(200, {}, "Logged out successfully !! \n waiting to See you soon"))
 })
 
 const refreshAccessToken = asyncHandler(async (req, res) => {
     const incomingRefreshToken =
         req.cookies.refreshToken || req.body.refreshToken
     if (!incomingRefreshToken) {
-        throw new ApiError(401, "unauthorize request")
+        throw new ApiError(401, "unauthorize request ")
     }
     try {
         const decodedToken = jwt.verify(
@@ -183,13 +183,13 @@ const changeCurrentPassword = asyncHandler(async (req, res) => {
     const user = await User.findById(req.user?._id)
     const isPasswordCorrect = await user.isPasswordCorrect(oldPassword)
     if (!isPasswordCorrect) {
-        throw new ApiError(400, "Invalid Password")
+        throw new ApiError(400, "Invalid Password! Please enter correct password and try again")
     }
     user.password = newPassword
     await user.save({ validateBeforeSave: false })
     return res.status(200).json(
         new ApiResponse(
-            200, {}, "Password change successfully"
+            200, {}, "Password is changed successfully"
         )
     )
 })
