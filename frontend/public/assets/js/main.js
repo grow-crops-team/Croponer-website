@@ -222,10 +222,10 @@ const signupValidateInput = (userName, fullName,userEmail,password,confirmPasswo
 
 
 function displayMessage(type, message) {
-    const signupModal = document.querySelector(".signupModal")
+    const displayError = document.querySelector(".displayError")
     const messageElement = document.querySelector("#message");
     messageElement.textContent = message;
-    signupModal.classList.remove("hidden")
+    displayError.classList.remove("hidden")
 
 }
 

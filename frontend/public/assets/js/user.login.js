@@ -16,7 +16,7 @@ loginForm.addEventListener("submit", async (evt) => {
             password: formData.get('password').trim()
         }
         try {
-            const response = await fetch('/api/v2/user/login', {
+            const response = await fetch('/api/v1/users/login', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'

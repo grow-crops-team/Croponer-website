@@ -1,9 +1,10 @@
-import { asyncHandler } from '../utils/asyncHandler.js'
-import ApiError from '../utils/ApiError.js'
-import ApiResponse from '../utils/ApiResponse.js'
-import User from '../models/user.model.js'
-import jwt from 'jsonwebtoken'
-import mongoose from 'mongoose'
+import { asyncHandler } from "../utils/asyncHandler.js"
+import ApiError from "../utils/ApiError.js"
+import User from "../models/user.model.js"
+import uploadOnCloudinary from "../utils/cloudinary.js"
+import ApiResponse from "../utils/ApiResponse.js"
+import jwt from "jsonwebtoken"
+import mongoose from "mongoose"
 
 const generateAccessAndRefreshTokens = async (userId) => {
     try {
@@ -17,78 +18,78 @@ const generateAccessAndRefreshTokens = async (userId) => {
     } catch (error) {
         throw new ApiError(
             500,
-            "something west wrong when generate access and refresh token"
+            "something went wrong when generate access and refresh token"
         )
     }
 }
 
 const registerUser = asyncHandler(async (req, res) => {
-    const { username, email, fullname, password } = req.body
-
-    if ([username, email, fullname, password].some((allFields) => {
-        return allFields?.trim() === ""
-    })
+    const { username, email, fullName, password } = req.body
+    if (
+        [username, email, fullName, password].some((allFields) => {
+            return allFields?.trim() === "";
+        })
     ) {
         throw new ApiError(400, "All fields are required")
     }
 
-
     const existedUser = await User.findOne({
-        $or: [{ username }, { email }]
+        $or: [{ username }, { email }],
     })
+
     if (existedUser) {
         throw new ApiError(409, "Username/email is already exit")
     }
 
     const user = await User.create({
-        username: username.tolowerCase(),
-        email: email,
-        fullName: fullName,
-        password: password
+        username: username.toLowerCase(),
+        email,
+        fullName,
+        password,
     })
-    // console.log(user) //for debug
+    // for debugging
+    console.log("\nUser Details->", user);
 
-    const createdUser = await User.findById(user._id).select("-password -refreshToken")
-
+    const createdUser = await User.findById(user._id).select(
+        "-password -refreshToken"
+    );
     if (!createdUser) {
-        throw new ApiError(500, "internal server error, while registering the user!!")
+        throw new ApiError(500, "Internal server error: registering the user")
     }
     return res
         .status(201)
-        .json(new ApiResponse(
-            200,
-            createdUser,
-            "User Successfully Registered"
-        ))
-
+        .json(new ApiResponse(200, createdUser, "User successfully Registered"))
 })
 
 const loginUser = asyncHandler(async (req, res) => {
-
-    const { username, password } = req.body
-    if (!username) {
-        throw new ApiError(400, "Username is required")
-    }
-    if (!password) {
-        throw new ApiError(400, "Password is required")
+    const { email, username, password } = req.body
+    if (!(username || email)) {
+        throw new ApiError(400, "username or email is required")
     }
 
-    const user = await User.findOne({ username })
+    const user = await User.findOne({
+        $or: [{ email }, { username }],
+    })
+
     if (!user) {
-        throw new ApiError(404, "User does not exist")
+        throw new ApiError(404, "User not found");
     }
     const isPasswordValid = await user.isPasswordCorrect(password)
+
     if (!isPasswordValid) {
-        throw new ApiError(401, "Invalid User Credentials")
+        throw new ApiError(401, "Invalid user credentials")
     }
     const { refreshToken, accessToken } = await generateAccessAndRefreshTokens(
         user._id
     )
-    const loggedInUser = await User.findById(user._id).select("-password -refreshToken")
+
+    const loggedInUser = await User.findById(user._id).select(
+        "-password -refreshToken"
+    )
 
     const options = {
         httpOnly: true,
-        secure: true
+        secure: true,
     }
 
     return res
@@ -101,15 +102,15 @@ const loginUser = asyncHandler(async (req, res) => {
                 {
                     user: loggedInUser,
                     accessToken,
-                    refreshToken
+                    refreshToken,
                 },
-                "user logged in successfully"
+                "User logged In successfully"
             )
         )
 })
 
 const logoutUser = asyncHandler(async (req, res) => {
-    User.findByIdAndUpdate(
+   await User.findByIdAndUpdate(
         req.user._id,
         {
             $unset: {
@@ -177,6 +178,54 @@ const refreshAccessToken = asyncHandler(async (req, res) => {
     }
 })
 
+const changeCurrentPassword = asyncHandler(async (req, res) => {
+    const { oldPassword, newPassword } = req.body
+    const user = await User.findById(req.user?._id)
+    const isPasswordCorrect = await user.isPasswordCorrect(oldPassword)
+    if (!isPasswordCorrect) {
+        throw new ApiError(400, "Invalid Password")
+    }
+    user.password = newPassword
+    await user.save({ validateBeforeSave: false })
+    return res.status(200).json(
+        new ApiResponse(
+            200, {}, "Password change successfully"
+        )
+    )
+})
+
+const updateAccountDetails = asyncHandler(async (req, res) => {
+    const { fullName, email } = req.body
+    if (!fullName || !email) {
+        throw new ApiError(400, "All fields are required")
+    }
+
+    const user = await User.findByIdAndUpdate(
+        req.user?._id,
+        {
+            $set: {
+                fullName: fullName,
+                email: email
+            }
+        },
+        { new: true }
+
+    ).select("-password")
+
+    return res
+        .status(200)
+        .json(new ApiResponse(200, user, "Account details updated successfully"))
+})
 
 
-export { registerUser,loginUser,logoutUser,refreshAccessToken }
+
+// export default registerUser
+export {
+    registerUser,
+    loginUser,
+    logoutUser,
+    refreshAccessToken,
+    changeCurrentPassword,
+    updateAccountDetails,
+   
+}
