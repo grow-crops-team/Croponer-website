@@ -19,18 +19,37 @@ userRegister.addEventListener("submit", async (evt) => {
             email: formdata.get("email").trim(),
             password: formdata.get("password").trim()
         }
+        // console.log(data)
 
-        const response = await fetch("/api/v1/users/register", {
-            method: "post",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify(data)
-        })
+        try {
+            const response = await fetch("/api/v1/users/register", {
+                method: "post",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                credentials: "include",
+                body: JSON.stringify(data)
+            })
 
-        const result = await response.json()
-        console.log("\n the json response(result) :", result)
+            const result = await response.json()
+            console.log("\n the json response(result) :", result)
+            if (result.statuscode === 201) {
+                displayMessage("success", result.message)
+                localStorage.setItem("isLoggedIn", true)
 
+                setTimeout(() => {
+                    window.location.href = "/"
+                }, 3000)
+
+            }
+            else {
+                displayMessage("error", result.message)
+            }
+
+        } catch (error) {
+            displayMessage("error", "An unexpected error occurred")
+            console.error("Fetch error:", error)
+        }
 
 
     }
