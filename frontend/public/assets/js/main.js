@@ -1,5 +1,4 @@
 // ---------- Menu bar----------------------------
-
 function openMenu() {
     const menuBar = document.querySelector("#menuBar")
     const menu = document.querySelector("#menu")
@@ -61,9 +60,6 @@ function openLoginDropdown() {
 }
 openLoginDropdown()
 
-
-
-
 // ---------- error and success messages for validation check
 const setError = (element, message) => {
     // console.log(element)
@@ -84,35 +80,9 @@ const setSuccess = (element) => {
     element.classList.remove("border-red-900");
 }
 
-
-// ----------------------  checking user login form------
-const loginValidateInput = (username, password) => {
-    let isValid = true;
-    const usernameValue = username.value.trim()
-    const passwordValue = password.value.trim()
-
-    //------------- For Username----------------
-    if (usernameValue === "") {
-        setError(username, "* Username cannot be blank")
-        isValid = false
-    } else {
-        setSuccess(username)
-    }
-
-    //------------ For Password--------------
-    if (passwordValue === "") {
-        setError(password, "* Password cannot be blank")
-        isValid = false
-    } else {
-        setSuccess(password)
-    }
-
-    return isValid
-}
-
 //--------------------- Toggle Eye Button-----------------
-function showPassword(showPassWord, password) {
-    showPassWord.addEventListener("click", (evt) => {
+function showPassword(showPassWordBtn, password) {
+    showPassWordBtn.addEventListener("click", (evt) => {
         const type = password.getAttribute("type") === "password" ? "text" : "password";
         password.setAttribute("type", type)
 
@@ -217,6 +187,31 @@ const signupValidateInput = (userName, fullName,userEmail,password,confirmPasswo
     return isValid
 }
 
+// ----------------------  checking user login form------
+const loginValidateInput = (username, password) => {
+    let isValid = true;
+    const usernameValue = username.value.trim()
+    const passwordValue = password.value.trim()
+
+    //------------- For Username----------------
+    if (usernameValue === "") {
+        setError(username, "* Username cannot be blank")
+        isValid = false
+    } else {
+        setSuccess(username)
+    }
+
+    //------------ For Password--------------
+    if (passwordValue === "") {
+        setError(password, "* Password cannot be blank")
+        isValid = false
+    } else {
+        setSuccess(password)
+    }
+
+    return isValid
+}
+
 // ----------- display message modal open and close  -------
 
 
@@ -230,17 +225,6 @@ function displayMessage(type, message) {
 }
 
 
-const closeDisplayModal = () => {
-    const modalClose = document.querySelector(".modalClose");
-    if (modalClose) {
-        modalClose.addEventListener("click", () => {
-            document.querySelector(".signupModal").classList.add("hidden");
-        })
-    }
-}
 
 
-
-
-
-export { loginValidateInput, showPassword, signupValidateInput, displayMessage, closeDisplayModal }
+export { loginValidateInput, showPassword, signupValidateInput, displayMessage }

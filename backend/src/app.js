@@ -1,6 +1,7 @@
 import express from "express"
 import cookieParser from "cookie-parser"
 import cors from "cors"
+import errorHandler from "./middlewares/errorHandler.middleware.js"
 
 
 const app = express()
@@ -23,7 +24,9 @@ import staticRoutes from './routes/static.routes.js'
 app.use("/api/v1/users", userRoutes)
 app.use("/", staticRoutes)
 
+//Error Handler
+app.use(errorHandler)
 
 
 
-export { app }
+export default app 
