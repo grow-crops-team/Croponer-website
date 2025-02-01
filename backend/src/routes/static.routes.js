@@ -46,9 +46,9 @@ router.route("/login")
 
 router.route("/about")
     .get((req, res) => {
-        res.sendFile(path.join(staticPath, "aboutpage.html"), (err) => {
+        res.sendFile(path.join(staticPath, "aboutPage.html"), (err) => {
             if (err) {
-                res.status(500).send("Error loading aboutpage.html")
+                res.status(500).send("Error loading aboutPage.html")
             }
         })
         // console.log(req.url)
