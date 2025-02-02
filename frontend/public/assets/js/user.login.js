@@ -1,49 +1,58 @@
-import {loginValidateInput,displayMessage,showPassword,closeDisplayModal} from './main.js'
+import { loginValidateInput, showPassword, displayMessage } from './main.js'
 
+const userLogin = document.querySelector("#loginForm")
 const username = document.querySelector("#username")
 const password = document.querySelector("#password")
-const loginForm = document.querySelector(".loginForm")
-const loginBtn = document.querySelector(".loginBtn")
-const showPassWord = document.querySelector("#showPassword")
 
 
-loginForm.addEventListener("submit", async (evt) => {
+
+userLogin.addEventListener("submit", async (evt) => {
     evt.preventDefault()
     if (loginValidateInput(username, password)) {
-        const formData = new FormData(evt.target)
+        const formdata = new FormData(evt.target)
         const data = {
-            username: formData.get('username').trim(),
-            password: formData.get('password').trim()
+            username: formdata.get("username").trim(),
+            password: formdata.get("password").trim()
         }
+        // console.log(data)
+
         try {
-            const response = await fetch('/api/v1/users/login', {
-                method: 'POST',
+            const response = await fetch("/api/v1/users/login", {
+                method: "POST",
                 headers: {
-                    'Content-Type': 'application/json'
+                    "Content-Type": "application/json"
                 },
+                credentials: "include",
                 body: JSON.stringify(data)
             })
 
             const result = await response.json()
-            if (response.status === 200) {
-                // console.log(result)
-                displayMessage('success', result.message)
-                loginForm.reset()
+            console.log("Login Data frontend:", result)
+            if (result.statuscode === 200) {
+
+                displayMessage("success", result.message)
+
+                localStorage.setItem("isLoggedIn", true)
+                
                 setTimeout(() => {
                     window.location.href = "/"
-                }, 3000)
-            } else {
-                // console.log(result)
-                displayMessage('error', result.error)
+                }, 2000)
+
             }
+            else {
+                displayMessage("error", result.message)
+            }
+
+
         } catch (error) {
-            console.log("Data fetched error", error)
-            displayMessage("An error occurred while processing your request", 'error')
+            displayMessage("error", "An unexpected error occurred! Please try again.")
+            console.error("Fetch error:", error)
         }
+
     }
 })
 
 
 
-showPassword(showPassWord,password)
-closeDisplayModal()
+const showPassWordBtn = document.querySelector("#showPassword")
+showPassword(showPassWordBtn, password)

@@ -92,7 +92,7 @@ function showPassword(showPassWordBtn, password) {
 }
 
 // --------- checking user registration form  ------------------
-const signupValidateInput = (userName, fullName,userEmail,password,confirmPassword) => {
+const signupValidateInput = (userName, fullName, userEmail, password, confirmPassword) => {
     let isValid = true;
     const userNameValue = userName.value.trim()
     const fullNameValue = fullName.value.trim()
@@ -224,6 +224,8 @@ function displayMessage(type, message) {
 
 }
 
+
+// ------- when the user logged in ---
 
 
 

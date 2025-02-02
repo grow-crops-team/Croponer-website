@@ -69,13 +69,13 @@
           <div class="h-[1px] w-32 bg-[#100f43b6]"></div>
         </div>
 
-        <form action="loginForm" class="loginForm mt-8 lg:mt-9">
+        <form action="loginForm" id="loginForm" class="loginForm mt-8 lg:mt-9">
 
           <div class="userName relative">
             <input
               id="username"
               type="text"
-              name="userName"
+              name="username"
               placeholder="Username"
              
               class="border-b-2 border-[#4980c4] w-[300px] px-1 text-[17px] text-[#080b3e] placeholder:text-[#080b3e] focus:outline-none bg-transparent caret-[#080b3e] select-text"
@@ -94,7 +94,7 @@
              
               class="border-b-2 border-[#4980c4] w-[300px] px-1 mt-10 text-[17px] text-[#080b3e] placeholder:text-[#080b3e] focus:outline-none bg-transparent caret-[#080b3e]"
             /><span
-              id="userNameError"
+              id="passwordError"
               class="error absolute text-[13px] font-medium text-red-800 left-7 lg:left-3 top-[66px]"
             ></span>
             <i
@@ -115,7 +115,7 @@
             Don't have an account?
             <a
               id="signup"
-              href="/signup"
+              href="/register"
               target="_blank"
               class="hover:text-black"
               >Sign Up</a
@@ -132,7 +132,7 @@
         class="displayErrorContent rounded-lg bg-gradient-to-tl from-[#7ca7bdb7] to-[#338dc9d0] p-4 w-[355px]"
       >
         <p id="message" class="text-lg text-[#173059]">
-           Your account has been created
+           
         </p>
 
         <i
