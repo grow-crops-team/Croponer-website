@@ -58,7 +58,7 @@ const registerUser = asyncHandler(async (req, res) => {
     }
     return res
         .status(201)
-        .json(new ApiResponse(201, createdUser, "User successfully Registered !! \n Save your credentials for future login"))
+        .json(new ApiResponse(201, createdUser, "User successfully Registered !! \n Save your credentials and Please login again to continue"))
 })
 
 const loginUser = asyncHandler(async (req, res) => {

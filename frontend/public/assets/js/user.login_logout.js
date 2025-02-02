@@ -1,4 +1,4 @@
-import { loginValidateInput, showPassword, displayMessage } from './main.js'
+import { loginValidateInput, showPassword, displayMessage } from './utils.js'
 
 const userLogin = document.querySelector("#loginForm")
 const username = document.querySelector("#username")
@@ -34,11 +34,11 @@ if (userLogin) {
                     displayMessage("success", result.message)
 
                     localStorage.setItem("isLoggedIn", true)
-                    localStorage.setItem("username", result.data.user.username)
+                    localStorage.setItem("username", result.data.user.fullName)
 
                     setTimeout(() => {
                         window.location.href = "/"
-                    }, 1000)
+                    }, 3000)
 
                 }
                 else {
@@ -57,6 +57,7 @@ if (userLogin) {
 
 // Show password function
 const showPassWordBtn = document.querySelector("#showPassword")
+// console.log( showPassWordBtn, password)
 showPassword(showPassWordBtn, password)
 
 

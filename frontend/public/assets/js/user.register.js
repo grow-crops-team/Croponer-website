@@ -1,4 +1,4 @@
-import { signupValidateInput, showPassword, displayMessage } from './main.js'
+import { signupValidateInput, showPassword, displayMessage } from './utils.js'
 
 const userRegister = document.querySelector("#signupForm")
 
@@ -37,9 +37,6 @@ userRegister.addEventListener("submit", async (evt) => {
             if (result.statuscode === 201) {
 
                 displayMessage("success", result.message)
-
-                localStorage.setItem("isLoggedIn", true)
-
                 setTimeout(() => {
                     window.location.href = "/"
                 }, 5000)
@@ -61,4 +58,6 @@ userRegister.addEventListener("submit", async (evt) => {
 
 const showPassWordBtn = document.querySelector("#showPassword")
 const password = document.querySelector("#password")
+// console.log(showPassWordBtn, password);
+
 showPassword(showPassWordBtn, password)
