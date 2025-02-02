@@ -17,6 +17,7 @@
       href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
     />
     <link rel="stylesheet" href="./assets/css/style.css?v=1.0" />
+    <link rel="stylesheet" href="./assets/css/coustomCss.css?v=1.0" />
   </head>
 
   <body>
@@ -55,8 +56,8 @@
               <a href="/research" target="_self">Research</a>
             </li>
             <li>
-              <!--login DropDown  -->
-              <div class="relative lg:hidden">
+              <!-- login for mobile screen -->
+              <div id="loginOptionMobile" class="relative lg:hidden">
                 <div id="loginDropDown" class="cursor-pointer">
                   <p
                     id="userProfile"
@@ -87,11 +88,20 @@
                 </div>
               </div>
             </li>
+            <li>
+              <!-- search bar -->
+              <div class="lg:hidden">
+                <i
+                  id="searchBar"
+                  class="bi bi-search cursor-pointer text-lg text-gray-300"
+                ></i>
+              </div>
+            </li>
           </ul>
         </div>
 
         <!--login DropDown for large screen  -->
-        <div class="relative hidden lg:block lg:ml-96">
+        <div id="loginOptionDesktop" class="relative hidden lg:block lg:ml-96">
           <div id="loginDropDown" class="cursor-pointer">
             <p
               id="userProfile"
@@ -122,16 +132,8 @@
           </div>
         </div>
 
-        <!-- search bar -->
-        <div class="ml-32 lg:hidden">
-          <i
-            id="searchBar"
-            class="bi bi-search cursor-pointer text-lg text-gray-300"
-          ></i>
-        </div>
-
         <!-- search bar for large screen -->
-        <div class="relative ml-14 hidden lg:block">
+        <div id="searchBar" class=" searchOption relative hidden lg:block">
           <input
             class="ml-2 w-56 h-10 bg-transparent text-gray-300 border border-gray-500 rounded-md py-1 px-3 focus:border-blue-500 focus:outline-none caret-blue-500 select-text transition duration-200 ease-in-out"
             type="text"
@@ -142,7 +144,15 @@
             class="bi bi-search text-lg border text-gray-300 border-gray-500 rounded-md py-[6px] px-3 cursor-pointer active:border-blue-500"
           ></i>
         </div>
-
+        <!-- user profile -->
+        <div class="userAvatar hidden ml-24 lg:ml-0">
+          <div
+            id="smallAvatar"
+            class="smallAvatar rounded-full w-8 h-8 lg:w-10 lg:h-10 cursor-pointer"
+            role="button"
+            aria-label="user profile"
+          ></div>
+        </div>
         <!------------ Menu Bar icon for Small Device----------->
         <div class="lg:hidden">
           <i
@@ -255,7 +265,6 @@
             <p><a href="/review">feedback</a></p>
           </div>
         </div>
-
       </div>
 
       <!-- footer last -->
@@ -265,8 +274,34 @@
           &copy; 2025 Croponer. All rights reserved.
         </p>
       </div>
-
     </footer>
+
+    <!-- user profile  modal  after login -->
+    <div
+      id="userProfileModal"
+      class="absolute hidden z-10 top-14 right-10 lg:right-0"
+    >
+      <div
+        class="bg-[#a5c7e2f5] w-48 h-64  flex flex-col items-center space-y-3 py-5 rounded-md text-lg"
+      >
+        <div class="avatar w-20 h-20 rounded-full"></div>
+        <p
+          class=" userName border-b-2 border-transparent hover:border-b-2 hover:border-b-blue-700"
+        >
+          <a href="/user">Username</a>
+        </p>
+        <p
+          class="border-b-2 border-transparent hover:border-b-2 hover:border-b-blue-700"
+        >
+          <a href="/">Update profile</a>
+        </p>
+        <p
+          class="logout border-b-2 border-transparent hover:border-b-2 hover:border-b-blue-700"
+        >
+          <a href="/logout">logout</a>
+        </p>
+      </div>
+    </div>
 
     <script type="module" src="./assets/js/main.js"></script>
   </body>

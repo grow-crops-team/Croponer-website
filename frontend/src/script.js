@@ -56,3 +56,20 @@ document.addEventListener("click", (evt) => {
         }
     })
 })
+
+function openUserProfileModal(){
+const userProfile = document.querySelector(".userProfile")
+if (userProfile) {
+    const userProfileModal = document.querySelector("#userProfileModal")
+    userProfile.addEventListener("click", (evt)=>{
+        userProfileModal.classList.toggle("hidden")
+    })
+
+    document.addEventListener("click", (evt) => {
+        if (!userProfile.contains(evt.target) && !userProfileModal.contains(evt.target)) {
+            userProfileModal.classList.add("hidden")
+        }
+    })
+}
+}
+openUserProfileModal()

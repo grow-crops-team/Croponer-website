@@ -1,0 +1,14 @@
+
+.userAvatar div{
+    background-image: url(../images/login_signup/person_circle.svg);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;  
+}
+
+#userProfileModal .avatar{
+    background-image: url(../images/login_signup/person_circle.svg);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;  
+}

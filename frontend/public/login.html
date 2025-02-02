@@ -20,13 +20,13 @@
   </head>
 
   <body
-    class="bg-gradient-to-l from-[#072868] via-[#85a3dd] to-[#a2b6df] select-none" style="background-image: url(https://images.unsplash.com/photo-1561361376-f84b523f6a96?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D);"
+    class="login bg-gradient-to-l from-[#072868] via-[#85a3dd] to-[#a2b6df] select-none" 
   >
  
     <!---------------- main container --------------->
     <div
       id="outer-Container"
-      class="mx-auto mt-20 lg:mt-24 rounded-lg lg:bg-gradient-to-l bg-gradient-to-bl from-[#041b7a] via-[#6d8fc9] to-[#a2b6df] w-[400px] lg:w-[720px] p-4 lg:p-0 lg:pb-10 flex flex-col lg:flex-row " style="background-image: url(https://images.unsplash.com/photo-1587313507226-a710411d5634?q=80&w=2003&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D);"
+      class="text-white mx-auto mt-20 lg:mt-24 rounded-lg w-[400px] lg:w-[720px] p-4 lg:p-0 lg:pb-10 flex flex-col lg:flex-row "
     >
       <div class="lg:basis-1/2 lg:mt-10">
         <img src="" alt="croponer logo" class="w-36 h-16 mx-auto my-5" />
@@ -64,9 +64,9 @@
         </div>
 
         <div class="flex items-center justify-center mt-3 lg:mt-5">
-          <div class="h-[1px] w-32 bg-[#100f43b3]"></div>
-          <p class="text-[#100f43] text-[17px] mx-2">Or</p>
-          <div class="h-[1px] w-32 bg-[#100f43b6]"></div>
+          <div class="h-[2px] w-32 bg-[#bbddff] "></div>
+          <p class="text-[#ffffff] text-[17px] mx-2">Or</p>
+          <div class="h-[2px] w-32 bg-[#bbddff]"></div>
         </div>
 
         <form action="loginForm" id="loginForm" class="loginForm mt-8 lg:mt-9">
@@ -78,7 +78,7 @@
               name="username"
               placeholder="Username"
              
-              class="border-b-2 border-[#4980c4] w-[300px] px-1 text-[17px] text-[#080b3e] placeholder:text-[#080b3e] focus:outline-none bg-transparent caret-[#080b3e] select-text"
+              class="border-b-2 border-[#529ce7] w-[300px] px-1 text-[17px] text-[#ffffff] placeholder:text-[#ffffff] focus:outline-none bg-transparent caret-[#ffffff] select-text"
             /><span
               id="userNameError"
               class="error absolute text-[13px] font-medium text-red-800 left-7 lg:left-3 top-[26px]"
@@ -92,14 +92,14 @@
               name="password"
               placeholder="Password"
              
-              class="border-b-2 border-[#4980c4] w-[300px] px-1 mt-10 text-[17px] text-[#080b3e] placeholder:text-[#080b3e] focus:outline-none bg-transparent caret-[#080b3e]"
+              class="border-b-2 border-[#529ce7] w-[300px] px-1 mt-10 text-[17px] text-[#ffffff] placeholder:text-[#ffffff] focus:outline-none bg-transparent caret-[#ffffff]"
             /><span
               id="passwordError"
               class="error absolute text-[13px] font-medium text-red-800 left-7 lg:left-3 top-[66px]"
             ></span>
             <i
               id="showPassword"
-              class="bi bi-eye-slash-fill text-[#080b3e] absolute lg:right-5 right-9 top-10 cursor-pointer"
+              class="bi bi-eye-slash-fill text-[#ffffff] absolute lg:right-5 right-9 top-10 cursor-pointer"
             ></i>
           </div>
 
@@ -111,7 +111,7 @@
             Login
           </button>
 
-          <p class="text-sm text-blue-950 lg:text-[#071350] mt-5 lg:mt-7">
+          <p class="text-sm text-white lg:text-[#ffffff] mt-5 lg:mt-7">
             Don't have an account?
             <a
               id="signup"
@@ -233,6 +233,6 @@
       </div>
     </footer>
 
-    <script type="module" src="./assets/js/user.login.js"></script>
+    <script type="module" src="./assets/js/user.login_logout.js"></script>
   </body>
 </html>
