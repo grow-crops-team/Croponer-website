@@ -6,6 +6,7 @@ import {
     refreshAccessToken,
     changeCurrentPassword,
     updateAccountDetails,
+    uploadFiles
   
 } from "../controllers/user.controller.js"
 import { upload, uploadMultiple } from "../middlewares/multer.middleware.js"
