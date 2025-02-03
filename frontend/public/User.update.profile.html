@@ -20,7 +20,7 @@
   </head>
 
   <body class="bg-[#cae4f3] select-none">
-    <!--------- main container----- -->
+    
     <div class="mx-10 lg:mx-20 my-4 text-xl">
       <p>Hello<span class="username"> user</span>,</p>
       <p class="text-base ml-5">
@@ -29,21 +29,37 @@
       </p>
       <p class="text-base text-red-500 ml-5">*fields are mandatory</p>
     </div>
-    <div id="inputContainer" class=" mx-14 my-3 lg:w-[500px] lg:mx-auto  ">
-      <form action="/updateUserProfile" class="UpdateUserProfile">
+    <!--------- main container----- -->
+    <div id="inputContainer" class="mx-14 my-3 lg:w-[500px] lg:mx-auto">
+      <form action="/updateUserProfile" class="UpdateUserProfile" enctype="multipart/form-data">
         <div class="flex flex-col items-center space-y-8">
+          <div class="relative">
+            <label for="avatar" class="cursor-pointer">
+              <img
+                id="avatarPreview"
+                src="./assets/images/avatar/person_circle.svg"
+                alt="Avatar"
+                class="w-36 h-36 mx-auto my-5 rounded-full border-2 border-[#529ce7] object-cover"
+              />
+            </label>
+            <input
+              type="file"
+              id="avatar"
+              name="avatar"
+              accept="image/*"
+              class="hidden"
+            />
+          </div>
+
           <input
-            type="file"
-            name="avatar"
-            class="avatar w-36 h-36 mx-auto my-5 rounded-full cursor-pointer focus:outline-none"
-          />
-          <input
+          id="fullName"
             type="text"
             name="fullName"
             placeholder="* Your Name"
             class="border-2 border-[#529ce7] w-full px-2 h-12 text-lg placeholder:text-[#040101] focus:outline-none caret-[#bd8989] select-text rounded-2xl bg-[#b4dce7] focus:bg-[#aacfd9e8]"
           />
           <input
+          id="email"
             type="email"
             name="email"
             placeholder="* Your Email"
@@ -65,13 +81,13 @@
             </button>
 
             <button
-              type="menu"
+            id="cancelBtn"
+              type="button"
               id="loginSubmitbtn"
               class="rounded-md px-5 h-11 text-lg font-semibold bg-[#ff7d7df5] text-[#111849] cursor-pointer"
             >
               Cancel
             </button>
-
           </div>
         </div>
       </form>
@@ -178,6 +194,7 @@
         </p>
       </div>
     </footer>
-    <script type="module" src="./assets/js/user.register.js"></script>
+
+    <!-- <script type="module" src="./assets/js/user.register.js"></script> -->
   </body>
 </html>

@@ -24,28 +24,23 @@ if (userLogin) {
                     credentials: "include",
                     body: JSON.stringify(data)
                 })
-
                 const result = await response.json()
                 // console.log("Login Data frontend:", result)
-                
-
                 if (result.statuscode === 200) {
 
                     displayMessage("success", result.message)
 
                     localStorage.setItem("isLoggedIn", true)
                     localStorage.setItem("username", result.data.user.fullName)
+                    localStorage.setItem("accessToken", result.data.accessToken)
 
                     setTimeout(() => {
                         window.location.href = "/"
                     }, 3000)
-
                 }
                 else {
                     displayMessage("error", result.message)
                 }
-
-
             } catch (error) {
                 displayMessage("error", "An unexpected error occurred! Please try again.")
                 console.error("Fetch error:", error)
@@ -75,7 +70,6 @@ async function UserLogout() {
         if (result.statuscode === 200) {
             alert(result.message)
             window.location.href = "/"
-            
         } else {
             console.error("Logout failed:", result.message)
         }
