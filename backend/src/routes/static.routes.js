@@ -43,6 +43,15 @@ router.route("/login")
         // console.log(req.url)
     })
 
+    router.route("/user-Profile/edit")
+    .get((req, res) => {
+        res.sendFile(path.join(staticPath, "user.update.profile.html"), (err) => {
+            if (err) {
+                res.status(500).send("Error loading user.update.profile.html")
+            }
+        })
+        // console.log(req.url)
+    })
 
 router.route("/about")
     .get((req, res) => {
