@@ -110,11 +110,11 @@ const loginUser = asyncHandler(async (req, res) => {
 })
 
 const logoutUser = asyncHandler(async (req, res) => {
-   await User.findByIdAndUpdate(
+    await User.findByIdAndUpdate(
         req.user._id,
         {
             $unset: {
-                refreshToken:1,
+                refreshToken: 1,
             },
         },
         {
@@ -195,31 +195,81 @@ const changeCurrentPassword = asyncHandler(async (req, res) => {
 })
 
 const updateAccountDetails = asyncHandler(async (req, res) => {
-    const { fullName, email } = req.body
+    const { fullName, email } = req.body;
+
     if (!fullName || !email) {
         throw new ApiError(400, "All fields are required")
     }
+    const updatedData =
+    {
+        fullName,
+        email,
+    }
+    let avatarUrl
+    if (req.file) {
+        const avatarLocalPath = req.file.path
+        const avatar = await uploadOnCloudinary(avatarLocalPath)
+        if (!avatar) {
+            throw new ApiError(400, "Failed to upload avatar")
+        }
+        avatarUrl = avatar.secure_url
+    }
+
+    if (avatarUrl) {
+        updatedData.avatar = avatarUrl;
+    }
 
     const user = await User.findByIdAndUpdate(
-        req.user?._id,
-        {
-            $set: {
-                fullName: fullName,
-                email: email
-            }
-        },
+        req.user._id,
+        { $set: updatedData },
         { new: true }
-
     ).select("-password")
-
     return res
         .status(200)
         .json(new ApiResponse(200, user, "Account details updated successfully"))
+
+})
+
+
+const uploadFiles = asyncHandler(async (req, res) => {
+
+    if (!req.files || req.files.length === 0) {
+        throw new ApiError(400, "No files uploaded.")
+    }
+
+    const images = []
+
+    for (let i = 0; i < req.files.length; i++) {
+        const localFilePath = req.files[i].path;
+        const uploadedFile = await uploadOnCloudinary(localFilePath)
+        if (!uploadedFile) {
+            throw new ApiError(500, "Error uploading file to Cloudinary.")
+        }
+        images.push({
+            url: uploadedFile.url,
+            publicId: uploadedFile.public_id
+        })
+    }
+
+    // Create a record for the uploaded images associated with the user
+    const fileRecord = await File.create({
+        user: req.user._id,
+        images: images
+    })
+
+    // Send response
+    return res
+        .status(200)
+        .json(
+            new ApiResponse(
+                200,
+                fileRecord,
+                "Files uploaded successfully")
+        )
 })
 
 
 
-// export default registerUser
 export {
     registerUser,
     loginUser,
@@ -227,5 +277,6 @@ export {
     refreshAccessToken,
     changeCurrentPassword,
     updateAccountDetails,
-   
+    uploadFiles
+
 }
