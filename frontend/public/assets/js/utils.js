@@ -155,7 +155,7 @@ const loginValidateInput = (username, password) => {
 
 // ---------------------- Display Message ----------------------
 function displayMessage(type, message) {
-    const displayError = document.querySelector(".displayError");
+    const displayError = document.querySelector("#displayError");
     const messageElement = document.querySelector("#message");
     if (displayError && messageElement) {
         messageElement.textContent = message;

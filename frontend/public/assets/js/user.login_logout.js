@@ -31,7 +31,8 @@ if (userLogin) {
                     displayMessage("success", result.message)
 
                     localStorage.setItem("isLoggedIn", true)
-                    localStorage.setItem("username", result.data.user.fullName)
+                    localStorage.setItem("userFullname", result.data.user.fullName)
+                    localStorage.setItem("email", result.data.user.email )
                     localStorage.setItem("accessToken", result.data.accessToken)
 
                     setTimeout(() => {

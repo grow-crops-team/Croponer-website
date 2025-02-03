@@ -47,7 +47,7 @@
             href="/google"
             ><img
               class="w-4"
-              src="./assets/images/login_signup/Google__G__logo.svg"
+              src="/assets/images/login_signup/Google__G__logo.svg"
               alt="Google"
             />
             <p class="text-[17px]">Google</p></a
@@ -57,7 +57,7 @@
             href="/apple"
             ><img
               class="w-4"
-              src="./assets/images/login_signup/apple-black-logo-svgrepo-com.svg"
+              src="/assets/images/login_signup/apple-black-logo-svgrepo-com.svg"
               alt="Apple"
             />
             <p class="text-[17px]">Apple</p></a
@@ -125,20 +125,10 @@
         </form>
       </div>
     </div>
-
-    <div
-      class="displayError hidden absolute transition-all duration-500 top-0 left-32 lg:top-14 lg:left-[401px]"
-    >
-      <div
-        class="displayErrorContent rounded-lg bg-gradient-to-tl from-[#7ca7bdb7] to-[#338dc9d0] p-4 w-[355px]"
-      >
-        <p id="message" class="text-lg text-[#173059]">
-           
-        </p>
-
-        <i
-          class="modalClose bi bi-x-circle-fill text-xl text-red-800 absolute top-0 right-2 cursor-pointer"
-        ></i>
+<!-- Display messages -->
+    <div id="displayError" class="hidden">
+      <div id="displayErrorContent">
+        <p id="message"></p>
       </div>
     </div>
 

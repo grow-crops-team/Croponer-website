@@ -9,6 +9,11 @@ const router = Router()
 const staticPath = path.join(__dirname, "../../../frontend/public")
 router.use(express.static(staticPath))
 
+router.use("assets", express.static(path.join(staticPath, "assets")))
+router.use("/images", express.static(path.join(staticPath, "assets/images")))
+router.use("/css", express.static(path.join(staticPath, "assets/css")))
+
+
 
 router.route("/")
     .get((req, res) => {
@@ -43,11 +48,11 @@ router.route("/login")
         // console.log(req.url)
     })
 
-    router.route("/user-Profile/edit")
+    router.route("/edit-profile")
     .get((req, res) => {
-        res.sendFile(path.join(staticPath, "user.update.profile.html"), (err) => {
+        res.sendFile(path.join(staticPath, "userUpdateProfile.html"), (err) => {
             if (err) {
-                res.status(500).send("Error loading user.update.profile.html")
+                res.status(500).send("Error loading userUpdateProfile.html")
             }
         })
         // console.log(req.url)

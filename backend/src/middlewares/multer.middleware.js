@@ -1,5 +1,6 @@
 
 import multer from "multer"
+import path from "path"
 
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
@@ -11,16 +12,14 @@ const storage = multer.diskStorage({
     }
 })
 
-// File size limit (5MB for example)
 const fileSizeLimit = 5 * 1024 * 1024 // 5MB
 
-// Create single file upload middleware
 const upload = multer({
     storage,
     limits: { fileSize: fileSizeLimit }, 
 }).single("avatar")
 
-// Create multiple file upload middleware
+
 const uploadMultiple = multer({
     storage,
     limits: { fileSize: fileSizeLimit }, 

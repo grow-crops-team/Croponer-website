@@ -65,8 +65,8 @@ openLoginDropdown()
 // ------- when the user logged in ---
 document.addEventListener("DOMContentLoaded", () => {
     const isLoggedIn = localStorage.getItem("isLoggedIn") === "true"
-    const username = localStorage.getItem("username") || ""
-
+    const username = localStorage.getItem("userFullname") || ""
+    const avatarUrl = localStorage.getItem("avatar") || "../images/avatar/person_circle.svg"
     const userAvatar = document.querySelector(".userAvatar")
     const userName = document.querySelector(".userName")
     const loginOptionDesktop = document.querySelector("#loginOptionDesktop")
@@ -74,23 +74,33 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const userProfileModal = document.querySelector("#userProfileModal")
     const searchBar = document.querySelector(".searchOption")
-    // console.log(searchBar)
+    const avatars = document.querySelectorAll(".avatar")
+
     // console.log(isLoggedIn, username, userAvatar, userName, loginOptionDesktop, loginOptionMobile, userProfileModal)
 
     // Ensure elements exist before modifying them
-    if (userAvatar && userName && loginOptionDesktop && loginOptionMobile && userProfileModal && searchBar) {
+    if (userAvatar && userName && loginOptionDesktop && loginOptionMobile && userProfileModal && searchBar && avatars) {
         if (isLoggedIn) {
             // console.log("User is logged in.")
+
             userAvatar.classList.remove("hidden")
             userName.textContent = username
             loginOptionDesktop.classList.remove("lg:block")
             loginOptionMobile.classList.add("hidden")
-            // searchBar.classList.remove("ml-14")
             searchBar.classList.add("ml-96")
+
+            avatars.forEach(avatar => {
+                avatar.style.backgroundImage = `url(${avatarUrl})`
+            })
+
+
+
+
         } else {
             // console.log("User is logged out.")
+
             userAvatar.classList.add("hidden")
-            userName.textContent = "";
+            userName.textContent = ""
             loginOptionDesktop.classList.add("lg:block")
             loginOptionMobile.classList.remove("hidden")
         }
@@ -107,13 +117,17 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
 })
+
+
+
 // ------------- when user logged out ------------
 const logoutBtn = document.querySelector(".logout")
 if (logoutBtn) {
     logoutBtn.addEventListener("click", (evt) => {
         UserLogout()
         localStorage.setItem("isLoggedIn", false)
-        localStorage.setItem("username", "")
+        localStorage.setItem("userFullname", "")
     })
 }
+
 

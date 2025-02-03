@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>croponer-Register</title>
+    <title>croponer-Update-user-Profile</title>
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
@@ -16,11 +16,10 @@
       href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
     />
     <link rel="stylesheet" href="./assets/css/style.css?v=1.0" />
-    <link rel="stylesheet" href="./assets/css/coustomCss.css?v=1.0" />
+    <link rel="stylesheet" href="./assets/css/coustomCss.css" />
   </head>
 
   <body class="bg-[#cae4f3] select-none">
-    
     <div class="mx-10 lg:mx-20 my-4 text-xl">
       <p>Hello<span class="username"> user</span>,</p>
       <p class="text-base ml-5">
@@ -31,7 +30,12 @@
     </div>
     <!--------- main container----- -->
     <div id="inputContainer" class="mx-14 my-3 lg:w-[500px] lg:mx-auto">
-      <form action="/updateUserProfile" class="UpdateUserProfile" enctype="multipart/form-data">
+      <form
+        action="/updateUserProfile"
+        class="UpdateUserProfile"
+        id="UpdateUserProfile"
+        
+      >
         <div class="flex flex-col items-center space-y-8">
           <div class="relative">
             <label for="avatar" class="cursor-pointer">
@@ -52,14 +56,14 @@
           </div>
 
           <input
-          id="fullName"
+            id="fullName"
             type="text"
             name="fullName"
             placeholder="* Your Name"
             class="border-2 border-[#529ce7] w-full px-2 h-12 text-lg placeholder:text-[#040101] focus:outline-none caret-[#bd8989] select-text rounded-2xl bg-[#b4dce7] focus:bg-[#aacfd9e8]"
           />
           <input
-          id="email"
+            id="email"
             type="email"
             name="email"
             placeholder="* Your Email"
@@ -81,7 +85,7 @@
             </button>
 
             <button
-            id="cancelBtn"
+              id="cancelBtn"
               type="button"
               id="loginSubmitbtn"
               class="rounded-md px-5 h-11 text-lg font-semibold bg-[#ff7d7df5] text-[#111849] cursor-pointer"
@@ -93,15 +97,20 @@
       </form>
     </div>
     <!-- display message -->
-    <div
-      class="displayError hidden absolute transition-all duration-500 top-0 left-32 lg:top-14 lg:left-[401px]"
+    <div id="displayError" class="hidden">
+      <div id="displayErrorContent">
+        <p id="message"></p>
+      </div>
+    </div>
+    <!-- <div
+      class="displayError  absolute transition-all duration-500 top-0 left-32 lg:top-14 lg:left-[401px]"
     >
       <div
         class="displayErrorContent rounded-lg bg-gradient-to-tl from-[#b4b3b0d4] to-[#385d76] p-4 w-[355px]"
       >
         <p id="message" class="text-lg text-[#173059]"></p>
       </div>
-    </div>
+    </div> -->
 
     <!------------- footer-------- -->
 
@@ -195,6 +204,6 @@
       </div>
     </footer>
 
-    <!-- <script type="module" src="./assets/js/user.register.js"></script> -->
+     <script type="module" src="./assets/js/updateProfile.js"></script>
   </body>
 </html>

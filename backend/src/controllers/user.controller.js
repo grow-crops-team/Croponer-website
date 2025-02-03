@@ -5,6 +5,7 @@ import uploadOnCloudinary from "../utils/cloudinary.js"
 import ApiResponse from "../utils/ApiResponse.js"
 import jwt from "jsonwebtoken"
 import mongoose from "mongoose"
+import { log } from "console"
 
 const generateAccessAndRefreshTokens = async (userId) => {
     try {
@@ -205,10 +206,13 @@ const updateAccountDetails = asyncHandler(async (req, res) => {
         fullName,
         email,
     }
+   
     let avatarUrl
     if (req.file) {
         const avatarLocalPath = req.file.path
         const avatar = await uploadOnCloudinary(avatarLocalPath)
+        // console.log("response from cloudinary :", avatar.secure_url, avatar.url)
+        
         if (!avatar) {
             throw new ApiError(400, "Failed to upload avatar")
         }
@@ -224,6 +228,7 @@ const updateAccountDetails = asyncHandler(async (req, res) => {
         { $set: updatedData },
         { new: true }
     ).select("-password")
+    // console.log(user)
     return res
         .status(200)
         .json(new ApiResponse(
