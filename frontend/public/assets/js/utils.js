@@ -19,7 +19,7 @@ const setError = (element, message) => {
     const errorMessage = formControl.querySelector(".error")
     // console.log(errorMessage)
     errorMessage.innerText = message
-    element.classList.add("border-red-900");
+    element.classList.add("border-red-700");
 
 }
 const setSuccess = (element) => {
@@ -152,6 +152,42 @@ const loginValidateInput = (username, password) => {
     return isValid
 }
 
+// const updateValidateInput = ( oldPassword, newPassword) => {
+//     let isValid = true;
+//     const oldPasswordValue = oldPassword.value.trim()
+//     const newPasswordValue = newPassword.value.trim()
+   
+   
+//     //------------for password--------------
+    
+//     if (oldPasswordValue.length < 8) {
+//         setError(oldPassword, "* password must be atleast 8 character")
+//         isValid = false
+//     }
+
+//     else if (!/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@.#$!%*?&^]).{8,}$/.test(oldPasswordValue)) {
+//         setError(oldPassword, "* Password must contain atleast one uppercase, one lowercase, one number and one special character")
+//         isValid = false
+//     }
+//     else {
+//         setSuccess(oldPassword)
+//     }
+
+//     //------------for confirm password--------------
+//     if (newPasswordValue.length < 8) {
+//         setError(newPassword, "* password must be atleast 8 character")
+//         isValid = false
+//     }
+
+//     else if (!/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@.#$!%*?&^]).{8,}$/.test(newPasswordValue)) {
+//         setError(newPassword, "* Password must contain atleast one uppercase, one lowercase, one number and one special character")
+//         isValid = false
+//     }
+//     else {
+//         setSuccess(newPassword)
+//     }
+//     return isValid
+// }
 
 // ---------------------- Display Message ----------------------
 function displayMessage(type, message) {

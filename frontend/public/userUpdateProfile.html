@@ -35,16 +35,15 @@
         class="UpdateUserProfile"
         id="UpdateUserProfile"
         enctype="multipart/form-data"
-        
       >
-        <div class="flex flex-col items-center space-y-8">
+        <div class="flex flex-col items-center space-y-6">
           <div class="relative">
             <label for="avatar" class="cursor-pointer">
               <img
                 id="avatarPreview"
                 src="./assets/images/avatar/person_circle.svg"
                 alt="Avatar"
-                class="w-36 h-36 mx-auto my-5 rounded-full border-2 border-[#529ce7] object-cover"
+                class="w-36 h-36 mx-auto my-2 rounded-full border-2 border-[#529de7dd] hover:border-2 hover:border-[#006cdf] object-cover"
               />
             </label>
             <input
@@ -56,20 +55,69 @@
             />
           </div>
 
+          <div class="fullName relative w-full">
+            <input
+              id="fullName"
+              type="text"
+              name="fullName"
+              placeholder="* Your Name"
+              class="border-2 border-[#529ce7] w-full px-2 h-12 text-lg placeholder:text-[#040101] focus:outline-none caret-[#bd8989] select-text rounded-2xl bg-[#b4dce7] focus:bg-[#aacfd9e8]"
+            />
+            <span
+              id="fullNameError"
+              class="error absolute text-[13px] font-medium text-red-600 left-7 lg:left-3 top-12"
+            ></span>
+          </div>
+
+          <div class="email relative w-full">
+            <input
+              id="email"
+              type="email"
+              name="email"
+              placeholder="* Your Email"
+              class="border-2 border-[#529ce7] w-full px-2 h-12 text-lg placeholder:text-[#040101] focus:outline-none caret-[#bd8989] select-text rounded-2xl bg-[#b4dce7] focus:bg-[#aacfd9e8]"
+            />
+            <span
+              id="emailError"
+              class="error absolute text-[13px] font-medium text-red-600 left-7 lg:left-3 top-12"
+            ></span>
+          </div>
+
+          <!-- <div class=" oldpassword w-full relative">
+            <input
+              id="oldPassword"
+              type="password"
+              name="oldPassword"
+              placeholder="Current password"
+              class="border-2 border-[#529ce7] w-full px-2 h-12 text-lg placeholder:text-[#040101] focus:outline-none caret-[#bd8989] select-text rounded-2xl bg-[#b4dce7] focus:bg-[#aacfd9e8]"
+            />
+            <span
+              id="oldPasswordError"
+              class="error absolute text-[13px] font-medium text-red-600 left-7 lg:left-3 top-12"
+            ></span>
+            <i
+              id="showPassword"
+              class="bi bi-eye-slash-fill text-lg text-[#4c3030] absolute right-5 top-3 cursor-pointer"
+            ></i>
+          </div>
+          <div class="newPassword relative w-full">
+            <input
+              id="newPassword"
+              type="password"
+              name="newPassword"
+              placeholder="New password"
+              class="border-2 border-[#529ce7] w-full px-2 h-12 text-lg placeholder:text-[#040101] focus:outline-none caret-[#bd8989] select-text rounded-2xl bg-[#b4dce7] focus:bg-[#aacfd9e8]"
+            />
+            <span
+              id="newPasswordError"
+              class="error absolute text-[13px] font-medium text-red-600 left-7 lg:left-3 top-12"
+            ></span>
+            <i
+              id="showPassword"
+              class="bi bi-eye-slash-fill text-lg text-[#4c3030] absolute right-5 top-3 cursor-pointer"
+            ></i>
+          </div> -->
           <input
-            id="fullName"
-            type="text"
-            name="fullName"
-            placeholder="* Your Name"
-            class="border-2 border-[#529ce7] w-full px-2 h-12 text-lg placeholder:text-[#040101] focus:outline-none caret-[#bd8989] select-text rounded-2xl bg-[#b4dce7] focus:bg-[#aacfd9e8]"
-          />
-          <input
-            id="email"
-            type="email"
-            name="email"
-            placeholder="* Your Email"
-            class="border-2 border-[#529ce7] w-full px-2 h-12 text-lg placeholder:text-[#040101] focus:outline-none caret-[#bd8989] select-text rounded-2xl bg-[#b4dce7] focus:bg-[#aacfd9e8]"
-          /><input
             type="text"
             name="address"
             placeholder="Your address"
@@ -80,7 +128,7 @@
             <button
               type="submit"
               id="loginSubmitbtn"
-              class="rounded-md px-5 bg-[#07af4d] h-11 text-lg font-semibold text-[#012505] cursor-pointer"
+              class="rounded-md px-5 bg-[#00b21b] hover:bg-[#08c424eb] h-11 text-lg font-semibold text-[#012505] cursor-pointer"
             >
               update
             </button>
@@ -89,7 +137,7 @@
               id="cancelBtn"
               type="button"
               id="loginSubmitbtn"
-              class="rounded-md px-5 h-11 text-lg font-semibold bg-[#ff7d7df5] text-[#111849] cursor-pointer"
+              class="rounded-md px-5 h-11 text-lg font-semibold bg-[#ff3333] hover:bg-[#ff4242f8] text-[#111849] cursor-pointer"
             >
               Cancel
             </button>
@@ -103,16 +151,6 @@
         <p id="message"></p>
       </div>
     </div>
-    <!-- <div
-      class="displayError  absolute transition-all duration-500 top-0 left-32 lg:top-14 lg:left-[401px]"
-    >
-      <div
-        class="displayErrorContent rounded-lg bg-gradient-to-tl from-[#b4b3b0d4] to-[#385d76] p-4 w-[355px]"
-      >
-        <p id="message" class="text-lg text-[#173059]"></p>
-      </div>
-    </div> -->
-
     <!------------- footer-------- -->
 
     <footer class="bg-[#092050] select-none mt-20">
@@ -205,6 +243,6 @@
       </div>
     </footer>
 
-     <script type="module" src="./assets/js/updateProfile.js"></script>
+    <script type="module" src="./assets/js/updateProfile.js"></script>
   </body>
 </html>

@@ -5,25 +5,39 @@ const avatar = document.querySelector("#avatar")
 const fullName = document.querySelector("#fullName")
 const email = document.querySelector("#email")
 const avatarPreview = document.querySelector("#avatarPreview")
+const oldPassword = document.querySelector("#oldPassword")
+const newPassword = document.querySelector("#newPassword")
+
+
 // Handle form submission
 UpdateUserProfile.addEventListener("submit", async (evt) => {
     evt.preventDefault()
-
 
     if (!fullName.value.trim() || !email.value.trim()) {
         displayMessage("error", "Full name and email are required!")
         return
     }
-
     if (!avatar.files.length) {
-        displayMessage("error", "Please upload an avatar!")
-        return
+        displayMessage("error", "There is no avatar file selected")
     }
+    // Check if user wants to update the password
+    // const isPasswordUpdate = oldPassword.value.trim() || newPassword.value.trim()
+    // if (isPasswordUpdate) {
+    //     if (!oldPassword.value.trim() || !newPassword.value.trim()) {
+    //         displayMessage("error", "Both passwords are required for password change!")
+    //         return
+    //     }
+    //     if (!updateValidateInput(oldPassword.value, newPassword.value)) {
+    //         return
+    //     }
+    // }
 
     const formdata = new FormData();
     formdata.append("avatar", avatar.files[0])
     formdata.append("fullName", fullName.value)
     formdata.append("email", email.value)
+    // formdata.append("oldPassword", oldPassword.value)
+    // formdata.append("newPassword", newPassword.value)
 
     try {
         const response = await fetch("/api/v1/users/update-account", {
@@ -43,6 +57,7 @@ UpdateUserProfile.addEventListener("submit", async (evt) => {
             localStorage.setItem("avatar", result.data.avatar)
             localStorage.setItem("userFullname", result.data.fullName)
             localStorage.setItem("email", result.data.email)
+
         } else {
             displayMessage("error", result.message)
         }
@@ -50,6 +65,7 @@ UpdateUserProfile.addEventListener("submit", async (evt) => {
         displayMessage("error", "An unexpected error occurred! Please try again.")
         console.error("Patch error:", error)
     }
+
 })
 
 avatar.addEventListener("change", function (event) {
@@ -70,14 +86,24 @@ avatar.addEventListener("change", function (event) {
     }
 })
 
+// click cancel button 
 const cancelButton = document.querySelector("#cancelBtn")
 cancelButton.addEventListener("click", () => {
     window.location.href = "/"
 })
 
+// when use update the details and reload 
 document.addEventListener("DOMContentLoaded", (evt) => {
     const newSrc = localStorage.getItem("avatar") || "./assets/images/avatar/person_circle.svg"
     avatarPreview.src = newSrc
     fullName.value = localStorage.getItem("userFullname") || ""
     email.value = localStorage.getItem("email") || ""
 })
+
+// show password function
+// const showPassWordBtn = document.querySelectorAll("#showPassword")
+// showPassWordBtn.forEach((btn) => {
+//     const password = btn.previousElementSibling
+//     showPassword(btn, password)
+// })
+

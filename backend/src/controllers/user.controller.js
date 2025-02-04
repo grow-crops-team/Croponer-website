@@ -196,48 +196,50 @@ const changeCurrentPassword = asyncHandler(async (req, res) => {
 })
 
 const updateAccountDetails = asyncHandler(async (req, res) => {
-    const { fullName, email } = req.body;
+    const { fullName, email, oldPassword, newPassword } = req.body;
 
     if (!fullName || !email) {
-        throw new ApiError(400, "All fields are required")
-    }
-    const updatedData =
-    {
-        fullName,
-        email,
-    }
-   
-    let avatarUrl
-    if (req.file) {
-        const avatarLocalPath = req.file.path
-        const avatar = await uploadOnCloudinary(avatarLocalPath)
-        // console.log("response from cloudinary :", avatar.secure_url, avatar.url)
-        
-        if (!avatar) {
-            throw new ApiError(400, "Failed to upload avatar")
-        }
-        avatarUrl = avatar.secure_url
+        throw new ApiError(400, "Full name and email are required");
     }
 
-    if (avatarUrl) {
+    const updatedData = { fullName, email };
+    let avatarUrl;
+
+    // Handle avatar upload if provided
+    if (req.file) {
+        const avatarLocalPath = req.file.path;
+        const avatar = await uploadOnCloudinary(avatarLocalPath);
+        if (!avatar) {
+            throw new ApiError(400, "Failed to upload avatar");
+        }
+        avatarUrl = avatar.secure_url;
         updatedData.avatar = avatarUrl;
     }
 
-    const user = await User.findByIdAndUpdate(
+    const user = await User.findById(req.user._id);
+    if (!user) {
+        throw new ApiError(404, "User not found");
+    }
+
+    // Handle password change if provided
+    if (oldPassword && newPassword) {
+        const isPasswordCorrect = await user.isPasswordCorrect(oldPassword);
+        if (!isPasswordCorrect) {
+            throw new ApiError(400, "Invalid old password");
+        }
+        user.password = newPassword;
+        await user.save({ validateBeforeSave: false });
+    }
+
+    // Update user details
+    const updatedUser = await User.findByIdAndUpdate(
         req.user._id,
         { $set: updatedData },
         { new: true }
-    ).select("-password")
-    // console.log(user)
-    return res
-        .status(200)
-        .json(new ApiResponse(
-            200,
-            user,
-            "Account details updated successfully"
-        ))
+    ).select("-password");
 
-})
+    return res.status(200).json(new ApiResponse(200, updatedUser, "Account details updated successfully"));
+});
 
 const uploadFiles = asyncHandler(async (req, res) => {
 
