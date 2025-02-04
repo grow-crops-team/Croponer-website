@@ -30,10 +30,10 @@ if (userLogin) {
 
                     displayMessage("success", result.message)
 
-                    localStorage.setItem("isLoggedIn", true)
-                    localStorage.setItem("userFullname", result.data.user.fullName)
-                    localStorage.setItem("email", result.data.user.email )
-                    localStorage.setItem("accessToken", result.data.accessToken)
+                    sessionStorage.setItem("isLoggedIn", true)
+                    sessionStorage.setItem("userFullname", result.data.user.fullName)
+                    sessionStorage.setItem("email", result.data.user.email )
+                    sessionStorage.setItem("accessToken", result.data.accessToken)
 
                     setTimeout(() => {
                         window.location.href = "/"
@@ -69,9 +69,11 @@ async function UserLogout() {
         });
         const result = await response.json()
         if (result.statuscode === 200) {
-            alert(result.message)
+            displayMessage("success", result.message)
+            sessionStorage.clear()
             window.location.href = "/"
         } else {
+            displayMessage("error", result.message)
             console.error("Logout failed:", result.message)
         }
     } catch (error) {

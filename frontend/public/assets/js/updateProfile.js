@@ -44,7 +44,7 @@ UpdateUserProfile.addEventListener("submit", async (evt) => {
             method: "PATCH",
             body: formdata,
             headers: {
-                Authorization: `Bearer ${localStorage.getItem("accessToken")}`
+                Authorization: `Bearer ${sessionStorage.getItem("accessToken")}`
             }
         });
 
@@ -54,9 +54,9 @@ UpdateUserProfile.addEventListener("submit", async (evt) => {
 
         if (result.statuscode === 200) {
             displayMessage("success", result.message)
-            localStorage.setItem("avatar", result.data.avatar)
-            localStorage.setItem("userFullname", result.data.fullName)
-            localStorage.setItem("email", result.data.email)
+            sessionStorage.setItem("avatar", result.data.avatar)
+            sessionStorage.setItem("userFullname", result.data.fullName)
+            sessionStorage.setItem("email", result.data.email)
 
         } else {
             displayMessage("error", result.message)
@@ -89,15 +89,17 @@ avatar.addEventListener("change", function (event) {
 // click cancel button 
 const cancelButton = document.querySelector("#cancelBtn")
 cancelButton.addEventListener("click", () => {
+    UpdateUserProfile.reset()
     window.location.href = "/"
 })
 
+
 // when use update the details and reload 
 document.addEventListener("DOMContentLoaded", (evt) => {
-    const newSrc = localStorage.getItem("avatar") || "./assets/images/avatar/person_circle.svg"
+    const newSrc = sessionStorage.getItem("avatar") || "./assets/images/avatar/person_circle.svg"
     avatarPreview.src = newSrc
-    fullName.value = localStorage.getItem("userFullname") || ""
-    email.value = localStorage.getItem("email") || ""
+    fullName.value = sessionStorage.getItem("userFullname") || ""
+    email.value = sessionStorage.getItem("email") || ""
 })
 
 // show password function

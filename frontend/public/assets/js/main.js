@@ -64,9 +64,9 @@ openLoginDropdown()
 
 // ------- when the user logged in ---
 document.addEventListener("DOMContentLoaded", () => {
-    const isLoggedIn = localStorage.getItem("isLoggedIn") === "true"
-    const username = localStorage.getItem("userFullname") || ""
-    const avatarUrl = localStorage.getItem("avatar") || "../images/avatar/person_circle.svg"
+    const isLoggedIn = sessionStorage.getItem("isLoggedIn") === "true"
+    const username = sessionStorage.getItem("userFullname") || ""
+    const avatarUrl = sessionStorage.getItem("avatar") || "../images/avatar/person_circle.svg"
     const userAvatar = document.querySelector(".userAvatar")
     const userName = document.querySelector(".userName")
     const loginOptionDesktop = document.querySelector("#loginOptionDesktop")
@@ -125,8 +125,6 @@ const logoutBtn = document.querySelector(".logout")
 if (logoutBtn) {
     logoutBtn.addEventListener("click", (evt) => {
         UserLogout()
-        localStorage.setItem("isLoggedIn", false)
-        localStorage.setItem("userFullname", "")
     })
 }
 
