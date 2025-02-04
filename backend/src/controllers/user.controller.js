@@ -239,7 +239,6 @@ const updateAccountDetails = asyncHandler(async (req, res) => {
 
 })
 
-
 const uploadFiles = asyncHandler(async (req, res) => {
 
     if (!req.files || req.files.length === 0) {
