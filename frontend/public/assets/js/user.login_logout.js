@@ -1,4 +1,4 @@
-import { loginValidateInput, showPassword, displayMessage } from './utils.js'
+import { loginValidateInput, showPassword, displayMessage, showLoader, hideLoader } from './utils.js'
 
 const userLogin = document.querySelector("#loginForm")
 const username = document.querySelector("#username")
@@ -14,6 +14,7 @@ if (userLogin) {
                 password: formdata.get("password").trim()
             }
             // console.log(data)
+            showLoader()
 
             try {
                 const response = await fetch("/api/v1/users/login", {
@@ -32,12 +33,12 @@ if (userLogin) {
 
                     sessionStorage.setItem("isLoggedIn", true)
                     sessionStorage.setItem("userFullname", result.data.user.fullName)
-                    sessionStorage.setItem("email", result.data.user.email )
+                    sessionStorage.setItem("email", result.data.user.email)
                     sessionStorage.setItem("accessToken", result.data.accessToken)
 
                     setTimeout(() => {
                         window.location.href = "/"
-                    }, 3000)
+                    }, 2000)
                 }
                 else {
                     displayMessage("error", result.message)
@@ -45,6 +46,8 @@ if (userLogin) {
             } catch (error) {
                 displayMessage("error", "An unexpected error occurred! Please try again.")
                 console.error("Fetch error:", error)
+            } finally {
+                hideLoader()
             }
 
         }
@@ -56,9 +59,9 @@ const showPassWordBtn = document.querySelector("#showPassword")
 // console.log( showPassWordBtn, password)
 showPassword(showPassWordBtn, password)
 
-
 // logout function
 async function UserLogout() {
+    showLoader()
     try {
         const response = await fetch("/api/v1/users/logout", {
             method: "POST",
@@ -78,6 +81,8 @@ async function UserLogout() {
         }
     } catch (error) {
         console.error("Logout error:", error)
+    } finally {
+        hideLoader()
     }
 }
 

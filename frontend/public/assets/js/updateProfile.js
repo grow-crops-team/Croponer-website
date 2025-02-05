@@ -1,4 +1,4 @@
-import { displayMessage } from './utils.js'
+import { displayMessage,showLoader,hideLoader } from './utils.js'
 
 const UpdateUserProfile = document.querySelector("#UpdateUserProfile")
 const avatar = document.querySelector("#avatar")
@@ -38,7 +38,7 @@ UpdateUserProfile.addEventListener("submit", async (evt) => {
     formdata.append("email", email.value)
     // formdata.append("oldPassword", oldPassword.value)
     // formdata.append("newPassword", newPassword.value)
-
+showLoader()
     try {
         const response = await fetch("/api/v1/users/update-account", {
             method: "PATCH",
@@ -64,6 +64,8 @@ UpdateUserProfile.addEventListener("submit", async (evt) => {
     } catch (error) {
         displayMessage("error", "An unexpected error occurred! Please try again.")
         console.error("Patch error:", error)
+    }finally{
+        hideLoader()
     }
 
 })

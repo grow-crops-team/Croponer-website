@@ -201,4 +201,21 @@ function displayMessage(type, message) {
     }
 }
 
-export { loginValidateInput, showPassword, signupValidateInput, displayMessage }
+// function for Loader 
+
+function showLoader() {
+    const loader = document.querySelector("#loader")
+    if (loader) {
+        loader.classList.add("show")
+    }
+}
+
+function hideLoader() {
+    const loader = document.querySelector("#loader")
+    if (loader) {
+        loader.classList.remove("show")
+    }
+}
+
+
+export { loginValidateInput, showPassword, signupValidateInput, displayMessage, hideLoader, showLoader }

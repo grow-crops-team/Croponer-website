@@ -133,7 +133,7 @@
         </div>
 
         <!-- search bar for large screen -->
-        <div id="searchBar" class=" searchOption relative hidden lg:block">
+        <div id="searchBar" class="searchOption relative hidden lg:block">
           <input
             class="ml-2 w-56 h-10 bg-transparent text-gray-300 border border-gray-500 rounded-md py-1 px-3 focus:border-blue-500 focus:outline-none caret-blue-500 select-text transition duration-200 ease-in-out"
             type="text"
@@ -271,7 +271,10 @@
 
       <div>
         <p class="text-center align-middle p-6 text-sm text-gray-400">
-          &copy; 2025 Croponer. All rights reserved. Created by <a href="https://amarnath404.web.app" target="_blank">Amarnath Bera</a>
+          &copy; 2025 Croponer. All rights reserved. Created by
+          <a href="https://amarnath404.web.app" target="_blank"
+            >Amarnath Bera</a
+          >
         </p>
       </div>
     </footer>
@@ -282,24 +285,34 @@
       class="absolute hidden z-10 top-14 right-10 lg:right-0"
     >
       <div
-        class="bg-[#a5c7e2f5] w-48 h-64  flex flex-col items-center space-y-3 py-5 rounded-md text-lg"
+        class="bg-[#a5c7e2f5] w-48 h-64 flex flex-col items-center space-y-3 py-5 rounded-md text-lg"
       >
-        <div  class="avatar w-20 h-20 rounded-full"></div>
+        <div class="avatar w-20 h-20 rounded-full"></div>
         <p
-          class=" userName border-b-2 border-transparent hover:border-b-2 hover:border-b-blue-700"
+          class="userName border-b-2 border-transparent hover:border-b-2 hover:border-b-blue-700"
         >
           <a href="/user-profile" target="_blank">Username</a>
         </p>
         <p
           class="border-b-2 border-transparent hover:border-b-2 hover:border-b-blue-700"
         >
-          <a href="/edit-profile" >Update profile</a>
+          <a href="/edit-profile">Update profile</a>
         </p>
         <p
           class="logout border-b-2 border-transparent hover:border-b-2 hover:border-b-blue-700"
         >
-          <a href="/logout" >logout</a>
+          <a href="/logout">logout</a>
         </p>
+      </div>
+    </div>
+
+    <!-- loader -->
+
+    <div id="loader" class="">
+      <div class="spinner">
+        <svg viewBox="25 25 50 50">
+          <circle cx="50" cy="50" r="20"></circle>
+        </svg>
       </div>
     </div>
 

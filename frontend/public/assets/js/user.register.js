@@ -1,4 +1,4 @@
-import { signupValidateInput, showPassword, displayMessage } from './utils.js'
+import { signupValidateInput, showPassword, displayMessage,showLoader,hideLoader } from './utils.js'
 
 const userRegister = document.querySelector("#signupForm")
 
@@ -20,7 +20,7 @@ userRegister.addEventListener("submit", async (evt) => {
             password: formdata.get("password").trim()
         }
         // console.log(data)
-
+showLoader()
         try {
             const response = await fetch("/api/v1/users/register", {
                 method: "POST", 
@@ -49,6 +49,8 @@ userRegister.addEventListener("submit", async (evt) => {
         } catch (error) {
             displayMessage("error", "An unexpected error occurred! Please try again.")
             console.error("Fetch error:", error)
+        }finally{
+            hideLoader()
         }
 
 

@@ -1,4 +1,5 @@
 import { UserLogout } from "./user.login_logout.js"
+import {showLoader, hideLoader} from "./utils.js"
 
 // ---------- Menu bar----------------------------
 function openMenu() {
@@ -128,4 +129,8 @@ if (logoutBtn) {
     })
 }
 
+// loader element
 
+
+window.addEventListener("beforeunload", showLoader)
+window.addEventListener("load", hideLoader)
