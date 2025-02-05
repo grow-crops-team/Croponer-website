@@ -5,7 +5,6 @@ import uploadOnCloudinary from "../utils/cloudinary.js"
 import ApiResponse from "../utils/ApiResponse.js"
 import jwt from "jsonwebtoken"
 import mongoose from "mongoose"
-import { log } from "console"
 
 const generateAccessAndRefreshTokens = async (userId) => {
     try {
@@ -68,9 +67,7 @@ const loginUser = asyncHandler(async (req, res) => {
         throw new ApiError(400, "username is required")
     }
 
-    const user = await User.findOne({
-        $or: [{ email }, { username }],
-    })
+    const user = await User.findOne({username})
 
     if (!user) {
         throw new ApiError(404, "User does not exist!! \n Click on Register to continue");
@@ -83,6 +80,8 @@ const loginUser = asyncHandler(async (req, res) => {
     const { refreshToken, accessToken } = await generateAccessAndRefreshTokens(
         user._id
     )
+    // console.log(refreshToken, accessToken)
+    
 
     const loggedInUser = await User.findById(user._id).select(
         "-password -refreshToken"
@@ -90,8 +89,9 @@ const loginUser = asyncHandler(async (req, res) => {
 
     const options = {
         httpOnly: true,
-        secure: process.env.NODE_ENV === "production",
-    }
+        secure: true,
+    } 
+     // secure: process.env.NODE_ENV === "production",
 
     return res
         .status(200)
@@ -125,7 +125,7 @@ const logoutUser = asyncHandler(async (req, res) => {
 
     const options = {
         httpOnly: true,
-        secure: process.env.NODE_ENV === "production",
+        secure: true,
     }
 
     return res
@@ -239,7 +239,7 @@ const updateAccountDetails = asyncHandler(async (req, res) => {
     ).select("-password");
 
     return res.status(200).json(new ApiResponse(200, updatedUser, "Account details updated successfully"));
-});
+})
 
 const uploadFiles = asyncHandler(async (req, res) => {
 

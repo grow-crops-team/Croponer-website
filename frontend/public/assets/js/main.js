@@ -1,5 +1,5 @@
 import { UserLogout } from "./user.login_logout.js"
-import {showLoader, hideLoader} from "./utils.js"
+import { showLoader, hideLoader } from "./utils.js"
 
 // ---------- Menu bar----------------------------
 function openMenu() {
@@ -64,10 +64,11 @@ openLoginDropdown()
 
 
 // ------- when the user logged in ---
+
 document.addEventListener("DOMContentLoaded", () => {
     const isLoggedIn = sessionStorage.getItem("isLoggedIn") === "true"
     const username = sessionStorage.getItem("userFullname") || ""
-    const avatarUrl = localStorage.getItem("avatar") || "../images/avatar/person_circle.svg"
+    const avatarUrl = sessionStorage.getItem("avatar") || "../images/avatar/person_circle.svg"
     const userAvatar = document.querySelector(".userAvatar")
     const userName = document.querySelector(".userName")
     const loginOptionDesktop = document.querySelector("#loginOptionDesktop")
@@ -77,13 +78,8 @@ document.addEventListener("DOMContentLoaded", () => {
     const searchBar = document.querySelector(".searchOption")
     const avatars = document.querySelectorAll(".avatar")
 
-    // console.log(isLoggedIn, username, userAvatar, userName, loginOptionDesktop, loginOptionMobile, userProfileModal)
-
-    // Ensure elements exist before modifying them
     if (userAvatar && userName && loginOptionDesktop && loginOptionMobile && userProfileModal && searchBar && avatars) {
         if (isLoggedIn) {
-            // console.log("User is logged in.")
-
             userAvatar.classList.remove("hidden")
             userName.textContent = username
             loginOptionDesktop.classList.remove("lg:block")
@@ -93,14 +89,7 @@ document.addEventListener("DOMContentLoaded", () => {
             avatars.forEach(avatar => {
                 avatar.style.backgroundImage = `url(${avatarUrl})`
             })
-
-console.log(sessionStorage.getItem("accessToken"));
-
-
-
         } else {
-            // console.log("User is logged out.")
-
             userAvatar.classList.add("hidden")
             userName.textContent = ""
             loginOptionDesktop.classList.add("lg:block")
@@ -124,13 +113,9 @@ console.log(sessionStorage.getItem("accessToken"));
 
 // ------------- when user logged out ------------
 const logoutBtn = document.querySelector(".logout")
-
-
 if (logoutBtn) {
     logoutBtn.addEventListener("click", (evt) => {
         UserLogout()
-        console.log("User logged out.")
-        
     })
 }
 

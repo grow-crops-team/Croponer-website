@@ -26,7 +26,9 @@ if (userLogin) {
                     body: JSON.stringify(data)
                 })
                 const result = await response.json()
-                console.log("Login Data frontend:", result)
+
+                // console.log("Login Data frontend:", result)
+
                 if (result.statuscode === 200) {
 
                     displayMessage("success", result.message)
@@ -34,7 +36,9 @@ if (userLogin) {
                     sessionStorage.setItem("isLoggedIn", true)
                     sessionStorage.setItem("userFullname", result.data.user.fullName)
                     sessionStorage.setItem("email", result.data.user.email)
+                    sessionStorage.setItem("avatar", result.data.user.avatar || "")
                     sessionStorage.setItem("accessToken", result.data.accessToken)
+
 
                     setTimeout(() => {
                         window.location.href = "/"
@@ -60,7 +64,7 @@ showPassword(showPassWordBtn, password)
 
 // logout function
 async function UserLogout() {
-    showLoader()
+    showLoader() 
     try {
         const response = await fetch("/api/v1/users/logout", {
             method: "POST",
@@ -68,20 +72,24 @@ async function UserLogout() {
             headers: {
                 "Content-Type": "application/json"
             }
-        })
+        });
 
-        const data = await response.json() 
-
+        const data = await response.json();
         if (response.ok) {
-            displayMessage("success", data.message)
+            displayMessage("success", data.message);
             sessionStorage.clear();
-            window.location.href = "/login"
+
+           
+            setTimeout(() => {
+                window.location.href = "/";
+            }, 1000)
+
         } else {
-            displayMessage("error", data.message)
+            displayMessage("error", data.message);
         }
     } catch (error) {
-        console.error("Logout error:", error)
-        alert("An error occurred. Please check your connection.")
+        console.error("Logout error:", error);
+        displayMessage("error", "An error occurred. Please check your connection.");
     } finally {
         hideLoader()
     }
