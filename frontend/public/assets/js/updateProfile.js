@@ -54,7 +54,9 @@ showLoader()
 
         if (result.statuscode === 200) {
             displayMessage("success", result.message)
-            sessionStorage.setItem("avatar", result.data.avatar)
+
+            localStorage.setItem("avatar", result.data.avatar)
+
             sessionStorage.setItem("userFullname", result.data.fullName)
             sessionStorage.setItem("email", result.data.email)
 
@@ -98,7 +100,9 @@ cancelButton.addEventListener("click", () => {
 
 // when use update the details and reload 
 document.addEventListener("DOMContentLoaded", (evt) => {
-    const newSrc = sessionStorage.getItem("avatar") || "./assets/images/avatar/person_circle.svg"
+
+    const newSrc = localStorage.getItem("avatar") || "./assets/images/avatar/person_circle.svg"
+    
     avatarPreview.src = newSrc
     fullName.value = sessionStorage.getItem("userFullname") || ""
     email.value = sessionStorage.getItem("email") || ""

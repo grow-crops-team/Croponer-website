@@ -26,7 +26,7 @@ if (userLogin) {
                     body: JSON.stringify(data)
                 })
                 const result = await response.json()
-                // console.log("Login Data frontend:", result)
+                console.log("Login Data frontend:", result)
                 if (result.statuscode === 200) {
 
                     displayMessage("success", result.message)
@@ -56,7 +56,6 @@ if (userLogin) {
 
 // Show password function
 const showPassWordBtn = document.querySelector("#showPassword")
-// console.log( showPassWordBtn, password)
 showPassword(showPassWordBtn, password)
 
 // logout function
@@ -65,22 +64,24 @@ async function UserLogout() {
     try {
         const response = await fetch("/api/v1/users/logout", {
             method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
             credentials: "include",
-        });
-        const result = await response.json()
-        if (result.statuscode === 200) {
-            displayMessage("success", result.message)
-            sessionStorage.clear()
-            window.location.href = "/"
+            headers: {
+                "Content-Type": "application/json"
+            }
+        })
+
+        const data = await response.json() 
+
+        if (response.ok) {
+            displayMessage("success", data.message)
+            sessionStorage.clear();
+            window.location.href = "/login"
         } else {
-            displayMessage("error", result.message)
-            console.error("Logout failed:", result.message)
+            displayMessage("error", data.message)
         }
     } catch (error) {
         console.error("Logout error:", error)
+        alert("An error occurred. Please check your connection.")
     } finally {
         hideLoader()
     }

@@ -39,7 +39,7 @@ showLoader()
                 displayMessage("success", result.message)
                 setTimeout(() => {
                     window.location.href = "/"
-                }, 5000)
+                }, 3000)
 
             }
             else {

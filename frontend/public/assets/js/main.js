@@ -67,7 +67,7 @@ openLoginDropdown()
 document.addEventListener("DOMContentLoaded", () => {
     const isLoggedIn = sessionStorage.getItem("isLoggedIn") === "true"
     const username = sessionStorage.getItem("userFullname") || ""
-    const avatarUrl = sessionStorage.getItem("avatar") || "../images/avatar/person_circle.svg"
+    const avatarUrl = localStorage.getItem("avatar") || "../images/avatar/person_circle.svg"
     const userAvatar = document.querySelector(".userAvatar")
     const userName = document.querySelector(".userName")
     const loginOptionDesktop = document.querySelector("#loginOptionDesktop")
@@ -94,6 +94,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 avatar.style.backgroundImage = `url(${avatarUrl})`
             })
 
+console.log(sessionStorage.getItem("accessToken"));
 
 
 
@@ -123,14 +124,45 @@ document.addEventListener("DOMContentLoaded", () => {
 
 // ------------- when user logged out ------------
 const logoutBtn = document.querySelector(".logout")
+
+
 if (logoutBtn) {
     logoutBtn.addEventListener("click", (evt) => {
         UserLogout()
+        console.log("User logged out.")
+        
     })
 }
 
-// loader element
+async function fetchWithAuth(url, options = {}) {
+    let token = sessionStorage.getItem("accessToken")
 
+    // Attach Authorization header
+    options.headers = {
+        ...options.headers,
+        "Authorization": `Bearer ${token}`
+    };
 
-window.addEventListener("beforeunload", showLoader)
-window.addEventListener("load", hideLoader)
+    let response = await fetch(url, options);
+
+    // If accessToken is expired, refresh it
+    if (response.status === 401) {
+        const refreshResponse = await fetch("/api/v1/users/refresh-token", {
+            method: "POST",
+            credentials: "include"
+        });
+
+        const refreshData = await refreshResponse.json();
+
+        if (refreshData.accessToken) {
+            sessionStorage.setItem("accessToken", refreshData.accessToken);
+            options.headers["Authorization"] = `Bearer ${refreshData.accessToken}`;
+            response = await fetch(url, options); // Retry request
+        } else {
+            sessionStorage.clear();
+            window.location.href = "/login";
+        }
+    }
+
+    return response.json();
+}
