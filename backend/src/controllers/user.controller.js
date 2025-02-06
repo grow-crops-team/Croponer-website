@@ -5,6 +5,8 @@ import uploadOnCloudinary from "../utils/cloudinary.js"
 import ApiResponse from "../utils/ApiResponse.js"
 import jwt from "jsonwebtoken"
 import mongoose from "mongoose"
+import crypto from "crypto"
+import sendEmail from "../utils/sendmail.js"
 
 const generateAccessAndRefreshTokens = async (userId) => {
     try {
@@ -67,7 +69,7 @@ const loginUser = asyncHandler(async (req, res) => {
         throw new ApiError(400, "username is required")
     }
 
-    const user = await User.findOne({username})
+    const user = await User.findOne({ username })
 
     if (!user) {
         throw new ApiError(404, "User does not exist!! \n Click on Register to continue");
@@ -81,7 +83,7 @@ const loginUser = asyncHandler(async (req, res) => {
         user._id
     )
     // console.log(refreshToken, accessToken)
-    
+
 
     const loggedInUser = await User.findById(user._id).select(
         "-password -refreshToken"
@@ -90,8 +92,8 @@ const loginUser = asyncHandler(async (req, res) => {
     const options = {
         httpOnly: true,
         secure: true,
-    } 
-     // secure: process.env.NODE_ENV === "production",
+    }
+    // secure: process.env.NODE_ENV === "production",
 
     return res
         .status(200)
@@ -278,6 +280,62 @@ const uploadFiles = asyncHandler(async (req, res) => {
         )
 })
 
+const forgotPassword = async (req, res) => {
+    try {
+        const { email } = req.body
+        // Check if the user exists
+        const user = await User.findOne({ email })
+        if (!user) {
+            return res.status(404).json({ message: "User not found" })
+        }
+
+        // Generate a reset token
+        const resetToken = crypto.randomBytes(32).toString("hex")
+        const tokenExpiry = Date.now() + 10 * 60 * 1000; // Token valid for 10 minutes
+
+        // Store token and expiry in user database
+        user.resetPasswordToken = resetToken;
+        user.resetPasswordExpires = tokenExpiry
+        await user.save()
+
+        // Send reset link via email
+        const resetURL = `${process.env.FRONTEND_URL}/reset-password/${resetToken}`;
+        await sendEmail(user.email, "Password Reset Request",
+            `Click the link to reset your password: ${resetURL}`
+        );
+
+        res.status(200).json({ message: "Password reset link sent to email" })
+    } catch (error) {
+        res.status(500).json({ message: "Server error", error })
+    }
+}
+
+const resetPassword = async (req, res) => {
+    try {
+        const { token } = req.params;
+        const { newPassword } = req.body;
+
+        // Find user by token
+        const user = await User.findOne({
+            resetPasswordToken: token,
+            resetPasswordExpires: { $gt: Date.now() }, // Ensure token is not expired
+        });
+
+        if (!user) {
+            return res.status(400).json({ message: "Invalid or expired token" });
+        }
+
+        // Hash the new password (assuming bcrypt is used)
+        user.password = await bcrypt.hash(newPassword, 10);
+        user.resetPasswordToken = undefined; // Remove reset token
+        user.resetPasswordExpires = undefined;
+        await user.save();
+
+        res.status(200).json({ message: "Password reset successful" });
+    } catch (error) {
+        res.status(500).json({ message: "Server error", error });
+    }
+};
 
 
 export {
@@ -287,6 +345,9 @@ export {
     refreshAccessToken,
     changeCurrentPassword,
     updateAccountDetails,
-    uploadFiles
+    uploadFiles,
+    forgotPassword,
+    resetPassword
+
 
 }
