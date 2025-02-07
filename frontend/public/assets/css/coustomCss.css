@@ -5,7 +5,12 @@
     background-repeat: no-repeat;
 }
 
-
+.hero-section h1{
+font-family: 'Amaranth', sans-serif;
+}
+.hero-section p{
+  font-family: "Amarante", sans-serif;
+}
 
 #displayError {
     position: fixed;
