@@ -1,21 +1,33 @@
-document.getElementById("forgotPasswordForm").addEventListener("submit", async function (event) {
-    event.preventDefault();
+import {displayMessage,} from './utils.js'
 
-    const email = document.getElementById("email").value;
-    const messageBox = document.getElementById("message");
+const sendEmail = document.querySelector(".sendEmail")  
+const cancelBtn = document.querySelector("#cancelBtn")
+
+sendEmail.addEventListener("submit", async (evt) => {
+    evt.preventDefault()
+
+    const email = document.getElementById("email").value
 
     try {
         const response = await fetch("/api/v1/auth/forgot-password", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ email }),
-        });
+        })
 
-        const result = await response.json();
-        messageBox.textContent = result.message;
-        messageBox.style.color = response.ok ? "green" : "red";
+        const result = await response.json()
+        if (result.statuscode === 200) {
+            displayMessage("success", result.message)
+        } else {
+            displayMessage("error", result.message)
+        }
     } catch (error) {
-        messageBox.textContent = "Something went wrong! Try again.";
-        messageBox.style.color = "red";
+        displayMessage("error", "Something went wrong! Try again.")
+        console.error("Something went wrong! Try again.", error)
     }
-});
+})
+
+// cancel button
+cancelBtn.addEventListener("click", () => {
+    window.location.href = "/"
+})

@@ -4,7 +4,7 @@ function showPassword(showPassWordBtn, password) {
         showPassWordBtn.addEventListener("click", (evt) => {
             const type = password.getAttribute("type") === "password" ? "text" : "password";
             password.setAttribute("type", type)
-        
+
             evt.target.classList.toggle("bi-eye-slash-fill")
             evt.target.classList.toggle("bi-eye-fill")
         })
@@ -152,14 +152,48 @@ const loginValidateInput = (username, password) => {
     return isValid
 }
 
+const resetPasswordValidateInput = (newPassword, confirmPassword) => {
+    let isValid = true
+    const newPasswordValue = newPassword.value.trim()
+    const confirmPasswordValue = confirmPassword.value.trim()
+    //------------for password--------------
+
+    if (newPasswordValue.length < 8) {
+        setError(newPassword, "* password must be atleast 8 character")
+        isValid = false
+    }
+
+    else if (!/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@.#$!%*?&^]).{8,}$/.test(newPasswordValue)) {
+        setError(oldPassword, "* Password must contain atleast one uppercase, one lowercase, one number and one special character")
+        isValid = false
+    }
+    else {
+        setSuccess(newPassword)
+    }
+
+    //------------for confirm password--------------
+    if (confirmPasswordValue.length < 8) {
+        setError(confirmPassword, "* password must be atleast 8 character")
+        isValid = false
+    }
+    else if (confirmPasswordValue !== newPasswordValue) {
+        setError(confirmPassword, "Password does not match")
+        isValid = false
+    }
+    else {
+        setSuccess(confirmPassword)
+    }
+    return isValid
+}
+
 // const updateValidateInput = ( oldPassword, newPassword) => {
 //     let isValid = true;
 //     const oldPasswordValue = oldPassword.value.trim()
 //     const newPasswordValue = newPassword.value.trim()
-   
-   
+
+
 //     //------------for password--------------
-    
+
 //     if (oldPasswordValue.length < 8) {
 //         setError(oldPassword, "* password must be atleast 8 character")
 //         isValid = false
@@ -218,4 +252,4 @@ function hideLoader() {
 }
 
 
-export { loginValidateInput, showPassword, signupValidateInput, displayMessage, hideLoader, showLoader }
+export { loginValidateInput, showPassword, signupValidateInput, displayMessage, hideLoader, showLoader, resetPasswordValidateInput }

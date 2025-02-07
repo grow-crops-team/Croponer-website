@@ -7,14 +7,14 @@ const sendEmail = async (to, subject, text) => {
             user: process.env.EMAIL_USER,
             pass: process.env.EMAIL_PASS,
         },
-    });
+    })
 
     await transporter.sendMail({
         from: process.env.EMAIL_USER,
         to,
         subject,
         text,
-    });
-};
+    })
+}
 
-export default sendEmail;
+export default sendEmail

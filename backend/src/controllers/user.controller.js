@@ -7,6 +7,7 @@ import jwt from "jsonwebtoken"
 import mongoose from "mongoose"
 import crypto from "crypto"
 import sendEmail from "../utils/sendmail.js"
+import bcrypt from "bcrypt"
 
 const generateAccessAndRefreshTokens = async (userId) => {
     try {
@@ -286,12 +287,12 @@ const forgotPassword = async (req, res) => {
         // Check if the user exists
         const user = await User.findOne({ email })
         if (!user) {
-            return res.status(404).json({ message: "User not found" })
+            throw new ApiError(404, "User not found")
         }
 
         // Generate a reset token
         const resetToken = crypto.randomBytes(32).toString("hex")
-        const tokenExpiry = Date.now() + 10 * 60 * 1000; // Token valid for 10 minutes
+        const tokenExpiry = Date.now() + 5 * 60 * 1000 // Token valid for 10 minutes
 
         // Store token and expiry in user database
         user.resetPasswordToken = resetToken;
@@ -302,11 +303,20 @@ const forgotPassword = async (req, res) => {
         const resetURL = `${process.env.FRONTEND_URL}/reset-password/${resetToken}`;
         await sendEmail(user.email, "Password Reset Request",
             `Click the link to reset your password: ${resetURL}`
-        );
+        )
 
-        res.status(200).json({ message: "Password reset link sent to email" })
+        return res
+        .status(200)
+        .json(
+            new ApiResponse(
+                200,
+                {},
+                "Password reset link sent to your email!! Please check your email"
+            )
+        )
+       
     } catch (error) {
-        res.status(500).json({ message: "Server error", error })
+       return res.status(500).json(new ApiResponse(500, {}, "Server error", error))
     }
 }
 
@@ -318,24 +328,23 @@ const resetPassword = async (req, res) => {
         // Find user by token
         const user = await User.findOne({
             resetPasswordToken: token,
-            resetPasswordExpires: { $gt: Date.now() }, // Ensure token is not expired
-        });
+            resetPasswordExpires: { $gt: Date.now() }, 
+        })
 
         if (!user) {
-            return res.status(400).json({ message: "Invalid or expired token" });
+            throw new ApiError(400, "Invalid or expired token")
         }
+        user.password = newPassword
+        user.resetPasswordToken = undefined
+        user.resetPasswordExpires = undefined
+        await user.save({ validateBeforeSave: false })
+      
 
-        // Hash the new password (assuming bcrypt is used)
-        user.password = await bcrypt.hash(newPassword, 10);
-        user.resetPasswordToken = undefined; // Remove reset token
-        user.resetPasswordExpires = undefined;
-        await user.save();
-
-        res.status(200).json({ message: "Password reset successful" });
+        res.status(200).json(new ApiResponse(200, {}, "Password reset successful!! Please login with your new password"))
     } catch (error) {
-        res.status(500).json({ message: "Server error", error });
+        res.status(500).json(new ApiResponse(500, {}, "Server error", error))
     }
-};
+}
 
 
 export {
