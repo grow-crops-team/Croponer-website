@@ -79,6 +79,28 @@ router.route("/research")
         // console.log(req.url)
     })
 
+    router.route("/forgot-password")
+    .get((req, res) => {
+        res.sendFile(path.join(staticPath, "forget.password.html"), (err) => {
+            if (err) {
+                res.status(500).send("Error loading forget.password.html")
+            }
+        })
+        // console.log(req.url)
+    })
+    
+    // router.route("/reset-password")
+    // .get((req, res) => {
+    //     res.sendFile(path.join(staticPath, "reset.password.html"), (err) => {
+    //         if (err) {
+    //             res.status(500).send("Error loading reset.password.html")
+    //         }
+    //     })
+    //     // console.log(req.url)
+    // })
+    
+
+
 
 router.use((req, res, next) => {
     res.status(404).sendFile(path.join(staticPath, "404.html"), (err) => {

@@ -17,10 +17,10 @@ resetPassword.addEventListener("submit", async (evt) => {
     const newPasswordValue = newPassword.value
 
     try {
-        const response = await fetch(`/api/v1/auth/reset-password/${token}`, {
+        const response = await fetch(`/api/v1/users/reset-password/${token}`, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ newPasswordValue })
+            body: JSON.stringify({ newPassword: newPasswordValue }),
         })
 
         const result = await response.json()
@@ -34,7 +34,7 @@ resetPassword.addEventListener("submit", async (evt) => {
         }
     } catch (error) {
         displayMessage("error", "Something went wrong! Try again.")
-        console.error("Something went wrong! Try again.", error)
+        console.log("Something went wrong! Try again.", error)
     } finally {
         hideLoader()
     }

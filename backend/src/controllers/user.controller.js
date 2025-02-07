@@ -281,31 +281,22 @@ const uploadFiles = asyncHandler(async (req, res) => {
         )
 })
 
-const forgotPassword = async (req, res) => {
-    try {
-        const { email } = req.body
-        // Check if the user exists
-        const user = await User.findOne({ email })
-        if (!user) {
-            throw new ApiError(404, "User not found")
-        }
+const forgotPassword = asyncHandler(async (req, res) => {
 
-        // Generate a reset token
-        const resetToken = crypto.randomBytes(32).toString("hex")
-        const tokenExpiry = Date.now() + 5 * 60 * 1000 // Token valid for 10 minutes
+    const { email } = req.body
+    // Check if the user exists
+    const user = await User.findOne({ email })
+    if (!user) {
+        throw new ApiError(400, "User not found")
+    }
 
-        // Store token and expiry in user database
-        user.resetPasswordToken = resetToken;
-        user.resetPasswordExpires = tokenExpiry
-        await user.save()
+    const resetToken = jwt.sign({ userId: user._id }, process.env.RESET_PASSWORD_SECRET, { expiresIn: "5m" })
+    const resetURL = `${process.env.FRONTEND_URL}/reset.password.html?token=${resetToken}`
+    await sendEmail(user.email, "Password Reset Request",
+        `Click the link to reset your password: ${resetURL}`
+    )
 
-        // Send reset link via email
-        const resetURL = `${process.env.FRONTEND_URL}/reset-password/${resetToken}`;
-        await sendEmail(user.email, "Password Reset Request",
-            `Click the link to reset your password: ${resetURL}`
-        )
-
-        return res
+    return res
         .status(200)
         .json(
             new ApiResponse(
@@ -314,37 +305,28 @@ const forgotPassword = async (req, res) => {
                 "Password reset link sent to your email!! Please check your email"
             )
         )
-       
-    } catch (error) {
-       return res.status(500).json(new ApiResponse(500, {}, "Server error", error))
+})
+
+const resetPassword = asyncHandler(async (req, res) => {
+
+    const { token } = req.params;
+    const { newPassword } = req.body;
+
+   const decode = jwt.verify(token, process.env.RESET_PASSWORD_SECRET)
+   const user = await User.findById(decode.userId)
+
+    if (!user) {
+        throw new ApiError(400, "Invalid or expired token")
     }
-}
+    user.password = newPassword
+    user.resetPasswordToken = undefined
+    user.resetPasswordExpires = undefined
+    await user.save({ validateBeforeSave: false })
 
-const resetPassword = async (req, res) => {
-    try {
-        const { token } = req.params;
-        const { newPassword } = req.body;
 
-        // Find user by token
-        const user = await User.findOne({
-            resetPasswordToken: token,
-            resetPasswordExpires: { $gt: Date.now() }, 
-        })
+    res.status(200).json(new ApiResponse(200, {}, "Password reset successful!! Please login with your new password"))
 
-        if (!user) {
-            throw new ApiError(400, "Invalid or expired token")
-        }
-        user.password = newPassword
-        user.resetPasswordToken = undefined
-        user.resetPasswordExpires = undefined
-        await user.save({ validateBeforeSave: false })
-      
-
-        res.status(200).json(new ApiResponse(200, {}, "Password reset successful!! Please login with your new password"))
-    } catch (error) {
-        res.status(500).json(new ApiResponse(500, {}, "Server error", error))
-    }
-}
+})
 
 
 export {

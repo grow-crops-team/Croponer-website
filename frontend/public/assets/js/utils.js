@@ -2,9 +2,9 @@
 function showPassword(showPassWordBtn, password) {
     if (showPassWordBtn && password) {
         showPassWordBtn.addEventListener("click", (evt) => {
-            const type = password.getAttribute("type") === "password" ? "text" : "password";
+            const type = password.getAttribute("type") === "password" ? "text" : "password"
             password.setAttribute("type", type)
-
+    
             evt.target.classList.toggle("bi-eye-slash-fill")
             evt.target.classList.toggle("bi-eye-fill")
         })

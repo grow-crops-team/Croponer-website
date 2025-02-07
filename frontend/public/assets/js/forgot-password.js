@@ -9,7 +9,7 @@ sendEmail.addEventListener("submit", async (evt) => {
     const email = document.getElementById("email").value
 
     try {
-        const response = await fetch("/api/v1/auth/forgot-password", {
+        const response = await fetch("/api/v1/users/forgot-password", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ email }),
@@ -23,7 +23,7 @@ sendEmail.addEventListener("submit", async (evt) => {
         }
     } catch (error) {
         displayMessage("error", "Something went wrong! Try again.")
-        console.error("Something went wrong! Try again.", error)
+        console.log("server error:", error)
     }
 })
 
