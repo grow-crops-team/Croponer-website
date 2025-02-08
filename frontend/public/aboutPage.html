@@ -23,11 +23,11 @@
   <body>
     <!------------------------------------- Header------------------------->
 
-    <header class="bg-[#080A53] w-full select-none sticky top-0 z-20">
+    <header class="bg-[#080A53] w-full select-none sticky top-0 z-20 ">
       <nav
         aria-label="Main Navigation"
         id="navbar"
-        class="w-full h-14 flex items-center justify-between px-5 lg:px-12 z-10"
+        class="w-full h-14 flex items-center justify-between px-5 lg:px-12 z-10 text-lg"
       >
         <!-- logo -->
         <div class="logo">
@@ -44,9 +44,9 @@
           class="bg-[#080A53] h-screen w-56 top-[56px] right-[-224px] transition-all duration-500 delay-200 ease-in-out fixed rounded-bl-md z-20 lg:static lg:right-0 lg:block lg:z-0 lg:bg-transparent lg:h-auto lg:w-auto lg:top-auto lg:transition-none lg:delay-0 lg:ease-none lg:rounded-none lg:ml-10"
         >
           <ul
-            class="text-gray-300 p-4 ml-6 pl-5 text-base space-y-3 lg:space-y-0 lg:flex lg:space-x-6 lg:p-0"
+            class="text-gray-300 p-4 ml-6 pl-5 text-lg lg:text-xl space-y-3 lg:space-y-0 lg:flex lg:space-x-6 lg:p-0"
           >
-            <li class="hover:cursor-pointer hover:text-gray-100 select-none">
+            <li class="hover:cursor-pointer hover:text-gray-100 select-none text-lg">
               <a href="/about" target="_self">About</a>
             </li>
             <li class="hover:cursor-pointer hover:text-gray-100 select-none">
@@ -184,38 +184,38 @@
       <!-- Content Section for small device  -->
       <section class="lg:hidden px-5 mt-5">
         <div class="relative">
-          <p class="font-[Amarante] px-20 my-5">
+          <p class="font-[Amarante] px-8 my-5 relative">
             <i
-              class="fa-solid fa-quote-left text-lg text-gray-700 absolute top-0 left-14"
+              class="fa-solid fa-quote-left text-lg text-gray-700 absolute -top-1 left-0 "
             ></i>
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Illo
-            eveniet necessitatibus reprehenderit accusamus voluptates culpa?
-            Laudantium natus accusamus placeat repellendus!
+            Farming meets intelligence—Croponer brings AI-driven insights to every farmer, from seed to storage. Grow smarter, harvest better, and thrive sustainably with us. Together, let’s shape the future of agriculture.
             <i
-              class="fa-solid fa-quote-right text-lg text-gray-700 absolute left-43"
+              class="fa-solid fa-quote-right text-lg text-gray-700 absolute ml-2"
             ></i>
           </p>
 
           <img
-            class="max-w-96"
+            class="max-w-50"
             src="./assets/images/aboutPage/polina-rytova-1dGMs4hhcVA-unsplash.jpg"
-            alt=""
+            alt="image"
+            loading="lazy"
           />
-          <div class="absolute top-30 right-1">
+          <div class="absolute top-40 right-1">
             <img
-              class="w-20 h-20 rounded-full border"
+              class="w-10 h-10 rounded-full border"
               src="./assets/images/avatar/person_circle.svg"
-              alt=""
+              alt="image"
+              loading="lazy"
             />
-            <p>Buddhadev Sasmal, ceo</p>
+            <p>Buddhadev Sasmal,</p> <span>CEO</span>
             <p>PHD, M.tech(CSE)</p>
           </div>
         </div>
       </section>
-
-      <section class="hidden lg:block px-5 mt-5">
+      <!-- Content Section for large screen device -->
+      <section class="hidden lg:block px-5 mt-8">
         <div class="flex justify-center items-center gap-30">
-          <div class="">
+          <div>
             <img
               class="w-[500px]"
               src="./assets/images/aboutPage/polina-rytova-1dGMs4hhcVA-unsplash.jpg"
@@ -227,11 +227,9 @@
               <i
                 class="fa-solid fa-quote-left text-lg text-gray-700 absolute -top-1 -left-5"
               ></i>
-              Lorem, ipsum dolor sit amet consectetur adipisicing elit. Illo
-              eveniet necessitatibus reprehenderit accusamus voluptates culpa?
-              Laudantium natus accusamus placeat repellendus!
+              Farming meets intelligence—Croponer brings AI-driven insights to every farmer, from seed to storage. Grow smarter, harvest better, and thrive sustainably with us. Together, let’s shape the future of agriculture.
               <i
-                class="fa-solid fa-quote-right text-lg text-gray-700 absolute bottom-2 right-25"
+                class="fa-solid fa-quote-right text-lg text-gray-700 absolute bottom-2 "
               ></i>
             </p>
             <div class="relative">
@@ -248,15 +246,62 @@
           </div>
         </div>
       </section>
+<!-- vision -->
+      <section class="px-5 mt-20">
+        <div class="flex flex-col lg:flex-row justify-center items-center  lg:gap-26 ">
+          <div class="lg:w-[500px] px-2 ">
+            <p class="font-[Amarante] my-5 text-lg lg:text-xl">
+              <span class="block text-2xl lg:text-3xl font-semibold font-[Amaranth]"
+                >Our Vision</span
+              >
+              To revolutionize agriculture by making smart, AI-powered farming
+              accessible to every farmer. We envision a future where data-driven
+              farming leads to higher yields, reduced losses, and a more
+              sustainable agricultural ecosystem.
+            </p>
+          </div>
+          <div>
+            <img
+              class="lg:w-[500px]"
+              src="./assets/images/aboutPage/peter-hammer-ggQy5lGtwb0-unsplash.jpg"
+              alt="image"
+              loading="lazy"
+            />
+          </div>
+        </div>
+      </section>
+
+      <!-- mission -->
+      <section class="px-5 mt-20">
+        <div class="flex flex-col lg:flex-row justify-center items-center  lg:gap-26" > 
+          <div>
+            <img
+              class="lg:w-[500px]"
+              src="./assets/images/aboutPage/photographycourse-Ezluwj5C5ZE-unsplash.jpg"
+              alt="image"
+              loading="lazy"
+            />
+          </div>
+          <div class="lg:w-[500px] px-2">
+            <p class="font-[Amarante] my-5 text-lg lg:text-xl">
+              <span class="block text-2xl lg:text-3xl font-semibold font-[Amaranth]"
+                >Our Mission</span
+              >
+              Empowering farmers with intelligent, data-driven insights from seed sowing to storage. Through deep learning and machine learning, we provide precise, localized, and actionable farming guidance to enhance productivity, sustainability, and profitability
+            </p>
+          </div>
+          
+        </div>
+      </section>
     </main>
 
     <footer class="bg-[#0b1d40] select-none mt-40">
       <div
-        class="flex flex-col lg:flex-row lg:space-x-2 lg:space-y-0 lg:justify-center mx-5 mt-10 lg:pt-8 lg:pb-4 px-5 pt-10 pb-14 space-y-16 text-gray-400 border-b-[1px] border-[#ffffffa7]"
+        class="flex flex-col lg:flex-row lg:space-x-2 lg:space-y-0 lg:justify-center mx-5 mt-10 lg:pt-8 lg:pb-4 px-5 pt-10 pb-14 space-y-16 text-gray-400 border-b-[1px] border-[#ffffffa7] "
       >
         <div class="lg:h-60 lg:w-56 lg:mr-24 text-pretty">
-          <p class="text-lg font-semibold text-gray-300 mb-2">Contact</p>
-          <ul class="text-sm space-y-3">
+          <p class="text-xl font-semibold text-gray-300 mb-2">Contact</p>
+          <ul class=" space-y-3">
             <li>
               Address:
               <address>Egra, East Midnapore, West Bengal, 721329</address>
@@ -274,46 +319,46 @@
               ></a>
               <a target="_blank"><i class="bi bi-twitter-x text-black"></i></a>
               <a target="_blank"
-                ><i class="fa-brands fa-linkedin text-blue-700"></i
+                ><i class="fa-brands fa-facebook text-blue-700"></i
               ></a>
             </li>
           </ul>
         </div>
 
         <div class="lg:h-60 w-60 text-pretty">
-          <p class="text-lg font-semibold text-gray-300 mb-2">Quick Links</p>
-          <ul class="text-sm space-y-2">
-            <li><a href="/about">About Us</a></li>
-            <li><a href="/work">our Works</a></li>
-            <li><a href="/team">Our Team</a></li>
-            <li><a href="/articles"></a>Read Article</li>
+          <p class="text-xl font-semibold text-gray-300 mb-2">Quick Links</p>
+          <ul class=" space-y-2 ">
+            <li class="hover:text-gray-100"><a href="/about">About Us</a></li>
+            <li class="hover:text-gray-100"><a href="/work">our Works</a></li>
+            <li class="hover:text-gray-100"><a href="/team">Our Team</a></li>
+            <li class="hover:text-gray-100"><a href="/articles">Read Article</a></li>
           </ul>
         </div>
 
         <div class="lg:h-60 w-60 text-pretty">
-          <p class="text-lg font-semibold text-gray-300 mb-2">Help/Support</p>
-          <ul class="text-sm space-y-3">
-            <li><a href="/contact">Contact Us</a></li>
-            <li><a href="/help">help</a></li>
-            <li><a href="/support">Support</a></li>
-            <li><a href="/terms">Terms & Condition</a></li>
+          <p class="text-xl font-semibold text-gray-300 mb-2">Help/Support</p>
+          <ul class=" space-y-3">
+            <li class="hover:text-gray-100"><a href="/contact">Contact Us</a></li>
+            <li class="hover:text-gray-100"><a href="/help">help</a></li>
+            <li class="hover:text-gray-100"><a href="/support">Support</a></li>
+            <li class="hover:text-gray-100"><a href="/terms">Terms & Condition</a></li>
           </ul>
         </div>
 
         <div class="lg:h-60 w-60 text-pretty">
-          <p class="text-lg font-semibold text-gray-300 mb-2">Community</p>
-          <ul class="text-sm space-y-3">
-            <li><a href="/team">Join our Community</a></li>
-            <li><a href="/gallery">Gallery</a></li>
-            <li><a href="/blog">Our Blogs</a></li>
-            <li><a href="/events">Special Events</a></li>
+          <p class="text-xl font-semibold text-gray-300 mb-2">Community</p>
+          <ul class="space-y-3">
+            <li class="hover:text-gray-100"><a href="/team">Join our Community</a></li>
+            <li class="hover:text-gray-100"><a href="/gallery">Gallery</a></li>
+            <li class="hover:text-gray-100"><a href="/blog">Our Blogs</a></li>
+            <li class="hover:text-gray-100"><a href="/events">Special Events</a></li>
           </ul>
         </div>
 
         <div class="w-60">
           <div>
-            <p class="text-lg font-semibold text-gray-300">Write a review</p>
-            <p><a href="/review">feedback</a></p>
+            <p class="text-xl font-semibold text-gray-300">Write a review</p>
+            <p class="hover:text-gray-100"><a href="/review">feedback</a></p>
           </div>
         </div>
       </div>
@@ -321,14 +366,15 @@
       <!-- footer last -->
 
       <div>
-        <p class="text-center align-middle p-6 text-sm text-gray-400">
+        <p class="text-center align-middle p-6  text-gray-300">
           &copy; 2025 Croponer. All rights reserved. Created by
-          <a href="https://amarnath404.web.app" target="_blank"
+          <a class="hover:text-blue-500" href="https://amarnath404.web.app" target="_blank"
             >Amarnath Bera</a
           >
         </p>
       </div>
     </footer>
+
 
     <script type="module" src="./assets/js/main.js"></script>
   </body>
