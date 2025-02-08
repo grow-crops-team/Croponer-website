@@ -163,72 +163,92 @@
       </nav>
     </header>
 
-    <!-- Hero Section -->
-    <section class="relative text-center text-white">
-      <img
-        src="https://source.unsplash.com/1600x600/?farm,crops"
-        class="w-full h-64 object-cover"
-      />
-      <div
-        class="absolute inset-0 flex flex-col justify-center items-center bg-black bg-opacity-50"
-      >
-        <h1 class="text-4xl font-bold">We are Grow-Crop</h1>
-        <p class="text-lg">
-          From farming and processing to innovative products; we’re passionate
-          about Crops.
-        </p>
-      </div>
-    </section>
+    <!------------------------------------- Main Content------------------------->
+    <main>
+      <!-- Hero Section -->
+      <section class="hero-section text-white px-4 lg:px-5">
+        <div
+          class="mx-auto max-w-7xl px-10 lg:px-30 lg:py-24 py-20 text-pretty"
+        >
+          <h1 class="text-4xl lg:text-5xl mt-6 lg:mt-7">We are Croponer,</h1>
+          <p class="text-lg">Cultivating Innovation in Agriculture</p>
+          <p class="text-lg text-wrap">From sustainable farming practices to</p>
+          <p>cutting-edge agricultural technology,</p>
+          <p>
+            we're passionate about transforming
+            <a class="font-bold text-[20px]">3P</a>
+          </p>
+        </div>
+      </section>
 
-    <!-- Content Section -->
-    <section class="p-8 grid md:grid-cols-2 gap-6">
-      <img
-        src="https://source.unsplash.com/600x400/?wheat,harvest"
-        class="rounded-lg shadow-md"
-      />
-      <div>
-        <p class="text-xl font-semibold">
-          From farming and processing to innovative products; we’re passionate
-          about Crops.
-        </p>
-        <div class="flex items-center mt-4">
+      <!-- Content Section for small device  -->
+      <section class="lg:hidden px-5 mt-5">
+        <div class="relative">
+          <p class="font-[Amarante] px-20 my-5">
+            <i
+              class="fa-solid fa-quote-left text-lg text-gray-700 absolute top-0 left-14"
+            ></i>
+            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Illo
+            eveniet necessitatibus reprehenderit accusamus voluptates culpa?
+            Laudantium natus accusamus placeat repellendus!
+            <i
+              class="fa-solid fa-quote-right text-lg text-gray-700 absolute left-43"
+            ></i>
+          </p>
+
           <img
-            src="https://source.unsplash.com/50x50/?man,portrait"
-            class="rounded-full"
+            class="max-w-96"
+            src="./assets/images/aboutPage/polina-rytova-1dGMs4hhcVA-unsplash.jpg"
+            alt=""
           />
-          <div class="ml-3">
-            <p class="font-bold">Tom Rider, CEO</p>
-            <p class="text-sm">PhD, M.Tech</p>
+          <div class="absolute top-30 right-1">
+            <img
+              class="w-20 h-20 rounded-full border"
+              src="./assets/images/avatar/person_circle.svg"
+              alt=""
+            />
+            <p>Buddhadev Sasmal, ceo</p>
+            <p>PHD, M.tech(CSE)</p>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
 
-    <!-- Vision & Goal Section -->
-    <section class="p-8 grid md:grid-cols-2 gap-6 bg-gray-200">
-      <div>
-        <h2 class="text-2xl font-bold">Our Vision</h2>
-        <p>
-          From farming and processing to innovative products; we’re passionate
-          about Crops.
-        </p>
-        <img
-          src="https://source.unsplash.com/600x400/?rice,fields"
-          class="rounded-lg shadow-md mt-4"
-        />
-      </div>
-      <div>
-        <h2 class="text-2xl font-bold">Our Goal</h2>
-        <p>
-          From farming and processing to innovative products; we’re passionate
-          about Crops.
-        </p>
-        <img
-          src="https://source.unsplash.com/600x400/?vegetable,farm"
-          class="rounded-lg shadow-md mt-4"
-        />
-      </div>
-    </section>
+      <section class="hidden lg:block px-5 mt-5">
+        <div class="flex justify-center items-center gap-30">
+          <div class="">
+            <img
+              class="w-[500px]"
+              src="./assets/images/aboutPage/polina-rytova-1dGMs4hhcVA-unsplash.jpg"
+              alt=""
+            />
+          </div>
+          <div class="w-[500px] px-4">
+            <p class="font-[Amarante] my-5 relative">
+              <i
+                class="fa-solid fa-quote-left text-lg text-gray-700 absolute -top-1 -left-5"
+              ></i>
+              Lorem, ipsum dolor sit amet consectetur adipisicing elit. Illo
+              eveniet necessitatibus reprehenderit accusamus voluptates culpa?
+              Laudantium natus accusamus placeat repellendus!
+              <i
+                class="fa-solid fa-quote-right text-lg text-gray-700 absolute bottom-2 right-25"
+              ></i>
+            </p>
+            <div class="relative">
+              <img
+                class="w-20 h-20 rounded-full border"
+                src="./assets/images/avatar/person_circle.svg"
+                alt=""
+              />
+              <div class="absolute top-5 left-22">
+                <p>Buddhadev Sasmal, ceo</p>
+                <p>PHD, M.tech(CSE)</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
 
     <footer class="bg-[#0b1d40] select-none mt-40">
       <div
@@ -310,6 +330,6 @@
       </div>
     </footer>
 
-  
+    <script type="module" src="./assets/js/main.js"></script>
   </body>
 </html>
