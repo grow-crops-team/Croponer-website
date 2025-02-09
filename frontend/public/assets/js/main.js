@@ -1,6 +1,40 @@
 import { UserLogout } from "./user.login_logout.js"
 import { showLoader, hideLoader } from "./utils.js"
 
+
+// --------- animated on scroll(Aos)----
+AOS.init({
+    duration: 1000,
+    easing: 'ease-in-sine',
+    delay: 100,
+  });
+// --------- swiper slider----
+const swiper = new Swiper('.swiper', {
+    loop: true,
+    autoplay: {
+        delay: 5000,
+        disableOnInteraction: false,
+    },
+    speed: 1000,
+    pagination: {
+        el: '.swiper-pagination',
+        clickable: true,
+    },
+    effect: 'fade',
+    fadeEffect: {
+        crossFade: true,
+    },
+    allowTouchMove: true,
+    on: {
+        click: function() {
+            this.autoplay.stop(); 
+        }
+    }
+    
+});
+
+
+
 // ---------- Menu bar----------------------------
 function openMenu() {
     const menuBar = document.querySelector("#menuBar")
@@ -151,3 +185,7 @@ async function fetchWithAuth(url, options = {}) {
 
     return response.json();
 }
+
+
+
+//  

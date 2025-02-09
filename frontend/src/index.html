@@ -16,6 +16,9 @@
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
     />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+
     <link rel="stylesheet" href="../public/assets/css/style.css" />
     <link rel="stylesheet" href="../public/assets/css/coustomCss.css" />
   </head>
@@ -192,6 +195,13 @@
           <span class="text-yellow-400">p</span>otato) excellence.
         </p>
       </div>
+
+      <section class="relative text-center">
+        <div >
+          <h1 data-aos="zoom-in" class="  text-center text-6xl lg:text-6xl text-[#f00]  mx-4 mt-10 font-black font-[Bevan] ">Code the <span class="text-[#4fa490]">Crop</span> , Reap the <span class="text-[#32bfff]">Future </span> </h1>
+        </div>
+      </section>
+
     </main>
 
     <!------------------------------------- Footer ------------------------->
@@ -313,7 +323,15 @@
     <div id="loader" class="hidden">
       <div class="spinner"></div>
   </div>
-  
+  <script>
+    
+AOS.init({
+  duration: 1000, // Animation duration (1s)
+  easing: "ease-in-out", // Smooth easing
+  once: true, // Animation runs only once
+});
+
+  </script>
 
     <script src="script.js"></script>
   </body>

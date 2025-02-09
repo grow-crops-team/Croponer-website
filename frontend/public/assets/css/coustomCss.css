@@ -1,3 +1,7 @@
+.swiper-horizontal>.swiper-pagination-bullets, .swiper-pagination-bullets.swiper-pagination-horizontal, .swiper-pagination-custom, .swiper-pagination-fraction{
+  bottom: var(--swiper-pagination-bottom, -6px);
+}
+
 .avatar {
     background-image: url('../images/avatar/person_circle.svg');
     background-size: cover;
@@ -9,14 +13,6 @@
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-}
-
-
-.hero-section h1{
-font-family: 'Amaranth', sans-serif;
-}
-.hero-section p{
-  font-family: "Amarante", sans-serif;
 }
 
 #displayError {

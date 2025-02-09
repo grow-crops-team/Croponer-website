@@ -48,7 +48,7 @@ router.route("/login")
         // console.log(req.url)
     })
 
-    router.route("/edit-profile")
+router.route("/edit-profile")
     .get((req, res) => {
         res.sendFile(path.join(staticPath, "userUpdateProfile.html"), (err) => {
             if (err) {
@@ -68,6 +68,15 @@ router.route("/about")
         // console.log(req.url)
     })
 
+router.route("/blog")
+    .get((req, res) => {
+        res.sendFile(path.join(staticPath, "blog_page.html"), (err) => {
+            if (err) {
+                res.status(500).send("Error loading blog_page.html")
+            }
+        })
+        // console.log(req.url)
+    })
 
 router.route("/research")
     .get((req, res) => {
@@ -79,7 +88,7 @@ router.route("/research")
         // console.log(req.url)
     })
 
-    router.route("/forgot-password")
+router.route("/forgot-password")
     .get((req, res) => {
         res.sendFile(path.join(staticPath, "forget.password.html"), (err) => {
             if (err) {
@@ -88,18 +97,6 @@ router.route("/research")
         })
         // console.log(req.url)
     })
-    
-    // router.route("/reset-password")
-    // .get((req, res) => {
-    //     res.sendFile(path.join(staticPath, "reset.password.html"), (err) => {
-    //         if (err) {
-    //             res.status(500).send("Error loading reset.password.html")
-    //         }
-    //     })
-    //     // console.log(req.url)
-    // })
-    
-
 
 
 router.use((req, res, next) => {

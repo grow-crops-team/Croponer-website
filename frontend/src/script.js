@@ -1,10 +1,5 @@
 
-
 // ------------------------------------- Menu bar-------------------------------------
-
-
-
-
 const menuBar = document.querySelector("#menuBar")
 const menu = document.querySelector("#menu")
 
@@ -73,3 +68,5 @@ if (userProfile) {
 }
 }
 openUserProfileModal()
+
+

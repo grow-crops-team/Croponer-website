@@ -5,6 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <title>Croponer</title>
+
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/swiper/swiper-bundle.min.css"
+    />
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
@@ -16,11 +23,25 @@
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
     />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css"
+      integrity="sha512-1cK78a1o+ht2JcaW6g8OXYwqpev9+6GqOkz9xmBN9iUUhIndKtxwILGWYOSibOKjLsEdjyjZvYDq/cZwNeak0w=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"
+      integrity="sha512-A7AYk1fGKX6S2SsHywmPkrnzTZHrgiVT7GcQkLGDe2ev0aWb8zejytzS8wjo7PGEXKqJOrjQ4oORtnimIRZBtw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+
     <link rel="stylesheet" href="./assets/css/style.css?v=1.0" />
     <link rel="stylesheet" href="./assets/css/coustomCss.css?v=1.0" />
   </head>
 
-  <body>
+  <body class="bg-gray-200">
     <!------------------------------------- Header------------------------->
 
     <header class="bg-[#080A53] w-full select-none sticky top-0 z-20">
@@ -166,67 +187,274 @@
     </header>
 
     <!------------------------------------- Hero Section ------------------------->
-    <main class="w-full h-screen relative">
-      <picture>
-        <source
-          media="(min-width: 1024px)"
-          srcset="
-            https://images.unsplash.com/photo-1498408040764-ab6eb772a145?q=80&w=2072
-          "
-        />
-        <img
-          src="./assets/images/hero/iPhone SE - 1(index page).png"
-          alt="Background Image"
-          class="w-full h-screen object-cover"
-        />
-      </picture>
+    <main class="w-full h-full relative">
+      <!-- Picture element -->
+      <div class="relative w-full h-screen overflow-hidden">
+        <picture class="picture-element">
+          <source
+            media="(min-width: 1024px)"
+            srcset="
+              https://images.unsplash.com/photo-1498408040764-ab6eb772a145?q=80&w=2072
+            "
+          />
+          <img
+            src="./assets/images/hero/iPhone SE - 1(index page).png"
+            alt="Background Image"
+            class="w-full h-full object-cover"
+          />
+        </picture>
+        <div
+          class="absolute inset-x-0 bottom-0 h-12 bg-gradient-to-t from-gray-200 to-transparent"
+        ></div>
+      </div>
+
       <!-- hero text -->
       <section>
-        <h1 class=" absolute inset-0 text-center text-4xl lg:text-6xl text-[#FFFF] lg:text-black mx-4 mt-10 font-black font-[Gabriela]  ">Code the <span class="text-[#4fa490]">Crop</span> , Reap the <span class="text-[#32bfff]">Future </span> </h1>
         <div
-          class="hero-section z-10 absolute inset-0 text-center text-white lg:text-black mt-48 mx-4"
+          class="hero-section h-40 z-10 absolute inset-0 text-center text-white lg:text-black mt-10 mx-4 font-[Amarante]"
         >
-          <h1 class="text-4xl lg:text-5xl">It's 3ps' Thing</h1>
+          <h1 class="text-5xl lg:text-6xl font-[Amaranth]">
+            It's <a href="#3p" class="hover:text-blue-400"> 3ps'</a> Thing
+          </h1>
           <p class="text-lg lg:text-2xl text-wrap my-1">
             From Cultivation to conservation, we redefine farming through
             innovation;
           </p>
 
           <p class="text-lg lg:text-2xl text-wrap">
-            we are deeply committed to 3<span>p</span> (<span
-              class="text-green-400"
-              >p</span
-            >addy <span class="text-stone-800 lg:text-stone-400">p</span>eanut
-            <span class="text-yellow-400">p</span>otato) excellence.
+            we are deeply committed to
+            <a href="#3p" class="hover:text-blue-400"> 3ps'</a> excellence.
           </p>
         </div>
       </section>
 
-     
+      <!-- tagline -->
+      <section class="relative flex items-center justify-center">
+        <h1
+          data-aos="zoom-in"
+          class="absolute -top-15 lg:-top-10 text-center text-4xl lg:text-6xl text-[#fd8637] mx-4 font-black font-[Bevan] font-stretch-ultra-expanded"
+        >
+          Code the <span class="text-[#41aa4e]">Crop</span> , Reap the
+          <span class="text-[#32bfff]">Future </span>
+        </h1>
+      </section>
+
+      <!-- welcome message -->
+      <section data-aos="fade" class="mt-20 mx-10 lg:mx-40 text-center">
+        <div class="swiper">
+          <div class="swiper-wrapper">
+            <div id="text-slide-1" class="swiper-slide">
+              <h1
+                class="text-3xl lg:text-5xl my-2 font-[Amaranth] font-semibold"
+              >
+                Welcome to Croponer
+              </h1>
+              <p
+                class="text-pretty lg:px-60 text-justify mx-auto my-3 text-xl lg:text-2xl font-[Amarante]"
+              >
+                At Croponer, we believe in empowering farmers with advanced
+                technology and deep learning insights to help you make smarter,
+                more informed decisions. Whether you're preparing your soil,
+                sowing seeds, monitoring crop health, or planning your harvest,
+                we provide expert guidance at every step.
+              </p>
+            </div>
+            <div id="text-slide-2" class="swiper-slide">
+              <h1
+                class="text-3xl lg:text-5xl my-2 font-[Amaranth] font-semibold"
+              >
+                Why Us ?
+              </h1>
+              <div
+                class="text-pretty lg:px-60 text-left mx-auto my-3 text-xl lg:text-2xl font-[Amarante]"
+              >
+                <ul class="list-disc space-y-2">
+                  <li>
+                    Get real-time farming insights tailored to your crops and
+                    location.
+                  </li>
+                  <li>
+                    Leverage AI-powered analytics to predict and prevent crop
+                    diseases.
+                  </li>
+                  <li>
+                    Maximize your yield with scientifically backed strategies
+                    and modern techniques.
+                  </li>
+                  <li>
+                    Data-Driven Farming Decisions: Optimize irrigation,
+                    fertilization, and pest control based on scientific
+                    analysis.
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="swiper-pagination"></div>
+        </div>
+      </section>
+
+      <!-- what is 3p -->
+      <section
+        data-aos="fade"
+        data-aos-duration="800"
+        class="mt-20 mx-10 lg:mx-40 text-center"
+      >
+        <div>
+          <h1 class="text-3xl lg:text-5xl my-2 font-[Amaranth] font-semibold">
+            What is 3p ?
+          </h1>
+          <p
+            class="text-pretty lg:px-60 text-left mx-auto my-3 text-xl lg:text-2xl font-[Amarante]"
+          >
+            At Croponer, we focus on 3P – Paddy, Peanut, and Potato—three vital
+            crops that form the backbone of agriculture. These crops play a
+            crucial role in food security and economic stability, yet farmers
+            often face challenges like unpredictable weather, pests, and soil
+            degradation. Our AI-powered insights help farmers optimize every
+            stage of cultivation, ensuring higher yields, better quality, and
+            sustainable growth.
+          </p>
+        </div>
+      </section>
+
+      <!-- description of 3p -->
+      <section class="px-5 mt-5">
+        <!-- paddy -->
+        <div
+          class="flex flex-col lg:flex-row justify-center lg:mt-5 items-center lg:gap-20"
+        >
+          <div data-aos="fade-right" class="lg:w-[500px] px-2">
+            <div class="font-[Amarante] mt-5 text-lg lg:text-xl">
+              <span
+                class="block text-2xl lg:text-3xl my-3 font-semibold font-[Amaranth]"
+                >Paddy</span
+              >
+              <p class="lg:text-justify">
+                Rice feeds over half the world, making its cultivation vital.
+                However, it demands precise water management, disease control,
+                and nutrient optimization. Croponer’s AI-driven insights help
+                farmers monitor soil moisture, prevent pest outbreaks, and
+                optimize harvesting, reducing losses and boosting grain quality.
+                Our smart solutions also promote sustainable practices like
+                water efficiency and climate-resilient farming for long-term
+                productivity.
+              </p>
+            </div>
+          </div>
+          <div data-aos="fade-left" class="mt-5">
+            <img
+              class="lg:w-[500px]"
+              src="./assets/images/hero/paddy.jpg"
+              alt="paddy Image"
+              loading="lazy"
+            />
+          </div>
+        </div>
+        <!-- peanut -->
+        <div
+          class="flex flex-col lg:flex-row justify-center lg:my-10 items-center lg:gap-20"
+        >
+          <div data-aos="fade-right" class="lg:w-[500px] px-2">
+            <div class="font-[Amarante] mt-5 text-lg lg:text-xl">
+              <span
+                class="block text-2xl lg:text-3xl my-3 font-semibold font-[Amaranth]"
+                >Peanut</span
+              >
+              <p class="text-justify">
+                Peanuts are a valuable cash crop, but success relies on healthy
+                soil, controlled irrigation, and pest resistance. Croponer’s
+                machine learning tools analyze soil conditions, detect diseases
+                early, and guide optimal sowing and fertilization. By reducing
+                resource wastage and enhancing soil fertility, we help farmers
+                increase yields and profits while ensuring sustainability.
+              </p>
+            </div>
+          </div>
+          <div data-aos="fade-left" class="mt-5">
+            <img
+              class="lg:w-[500px]"
+              src="./assets/images/hero/peanuts-1735672.jpg"
+              alt="peanut Image"
+              loading="lazy"
+            />
+          </div>
+        </div>
+        <!-- potato -->
+        <div
+          class="flex flex-col lg:flex-row justify-center items-center lg:gap-20"
+        >
+          <div data-aos="fade-right" class="lg:w-[500px] px-2">
+            <div class="font-[Amarante] mt-5 text-lg lg:text-xl">
+              <span
+                class="block text-2xl lg:text-3xl my-3 font-semibold font-[Amaranth]"
+                >Potato</span
+              >
+              <p class="text-justify">
+                Potatoes are widely consumed but prone to temperature shifts,
+                soil imbalances, and fungal infections. Croponer’s AI solutions
+                offer early disease detection, climate-smart irrigation, and
+                real-time nutrient recommendations, ensuring high-quality,
+                disease-resistant harvests. Our guidance also helps prevent
+                storage losses, making potato farming more predictable and
+                profitable.
+              </p>
+            </div>
+          </div>
+          <div data-aos="fade-left" class="mt-5">
+            <img
+              class="lg:w-[500px]"
+              src="./assets/images/hero/potato.jpg"
+              alt="potato image"
+              loading="lazy"
+            />
+          </div>
+        </div>
+        <!-- join us text -->
+        <div
+          data-aos="fade"
+          data-aos-duration="800"
+          class="mt-10 mx-10 lg:mx-40 text-center"
+        >
+          <p
+            class="text-pretty lg:px-60 text-left mx-auto my-3 text-lg lg:text-2xl font-[Amarante]"
+          >
+            At Croponer, we believe that technology and tradition should work
+            hand in hand to create a sustainable and prosperous future for
+            farmers. With 3P farming, we are empowering farmers to grow smarter,
+            harvest better, and secure their livelihoods with confidence.
+
+            <span class="font-bold block mt-5"
+              >Join us in revolutionizing agriculture with AI-powered
+              farming!</span
+            >
+          </p>
+        </div>
+      </section>
     </main>
 
     <!------------------------------------- Footer ------------------------->
-    <footer class="bg-[#0b1d40] select-none mt-40">
+    <footer class="bg-[#0b1d40] select-none mt-20">
       <div
         class="flex flex-col lg:flex-row lg:space-x-2 lg:space-y-0 lg:justify-center mx-5 mt-10 lg:pt-8 lg:pb-4 px-5 pt-10 pb-14 space-y-16 text-gray-400 border-b-[1px] border-[#ffffffa7]"
       >
         <div class="lg:h-60 lg:w-56 lg:mr-24 text-pretty">
-          <p class="text-xl font-semibold text-gray-300 mb-2">Contact</p>
+          <p class="text-xl font-semibold text-gray-300 mb-2">Contact Us</p>
           <ul class="space-y-3">
             <li>
               Address:
-              <address>Egra, East Midnapore, West Bengal, 721329</address>
+              <p>Egra, East Midnapore, West Bengal, 721329</p>
             </li>
             <li>
               Email:
-              <a href="mailto:growcropsteam@gmail.com"
+              <a class="hover:text-gray-100" href="mailto:growcropsteam@gmail.com"
                 >growcropsteam@gmail.com</a
               >
             </li>
             <li>Follow us on:</li>
             <li class="space-x-5 mt-1 ml-3 text-lg">
-              <a href=" https://wa.me/919800068420" target="_blank"
-                ><i class="bi bi-whatsapp text-green-600"></i
+              <a class="hover:text-green-700" href=" https://wa.me/919800068420" target="_blank"
+                ><i class="bi bi-whatsapp text-green-500"></i
               ></a>
               <a target="_blank"><i class="bi bi-twitter-x text-black"></i></a>
               <a target="_blank"

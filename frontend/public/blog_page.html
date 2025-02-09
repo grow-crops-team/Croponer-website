@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Croponer-blog</title>
+
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/swiper/swiper-bundle.min.css"
+    />
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+      integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css"
+      integrity="sha512-1cK78a1o+ht2JcaW6g8OXYwqpev9+6GqOkz9xmBN9iUUhIndKtxwILGWYOSibOKjLsEdjyjZvYDq/cZwNeak0w=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"
+      integrity="sha512-A7AYk1fGKX6S2SsHywmPkrnzTZHrgiVT7GcQkLGDe2ev0aWb8zejytzS8wjo7PGEXKqJOrjQ4oORtnimIRZBtw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+
+    <link rel="stylesheet" href="./assets/css/style.css?v=1.0" />
+    <link rel="stylesheet" href="./assets/css/coustomCss.css?v=1.0" />
+  </head>
+
+  <body class="bg-gray-200">
+    <!------------------------------------- Header------------------------->
+
+    <header class="bg-[#080A53] w-full select-none sticky top-0 z-20">
+      <nav
+        aria-label="Main Navigation"
+        id="navbar"
+        class="w-full h-14 flex items-center justify-between px-5 lg:px-12 z-10 text-lg"
+      >
+        <!-- logo -->
+        <div class="logo">
+          <img
+            class="w-full h-full select-none"
+            src="#"
+            alt="croponer logo"
+            loading="lazy"
+          />
+        </div>
+        <!-- menu bar -->
+        <div
+          id="menu"
+          class="bg-[#080A53] h-screen w-56 top-[56px] right-[-224px] transition-all duration-500 delay-200 ease-in-out fixed rounded-bl-md z-20 lg:static lg:right-0 lg:block lg:z-0 lg:bg-transparent lg:h-auto lg:w-auto lg:top-auto lg:transition-none lg:delay-0 lg:ease-none lg:rounded-none lg:ml-10"
+        >
+          <ul
+            class="text-gray-300 p-4 ml-6 pl-5 text-lg lg:text-xl space-y-3 lg:space-y-0 lg:flex lg:space-x-6 lg:p-0"
+          >
+            <li
+              class="hover:cursor-pointer hover:text-gray-100 select-none text-lg"
+            >
+              <a href="/about" target="_self">About</a>
+            </li>
+            <li class="hover:cursor-pointer hover:text-gray-100 select-none">
+              <a id="service" href="/blog" target="_self"> Blog </a>
+            </li>
+            <li class="hover:cursor-pointer hover:text-gray-100 select-none">
+              <a href="/research" target="_self">Research</a>
+            </li>
+            <li>
+              <!-- login for mobile screen -->
+              <div id="loginOptionMobile" class="relative lg:hidden">
+                <div id="loginDropDown" class="cursor-pointer">
+                  <p
+                    id="userProfile"
+                    class="hover:cursor-pointer text-gray-300 hover:text-white"
+                  >
+                    Login/signup
+                  </p>
+                </div>
+                <div
+                  id="loginDropDownMenu"
+                  class="absolute hidden z-10 top-[40px] text-center px-5 pb-3 bg-[#05063a] rounded-b-md"
+                >
+                  <a id="login" href="/login" target="_self">
+                    <p
+                      id="logintext"
+                      class="text-lg text-gray-300 border-b-[3px] border-transparent cursor-pointer hover:border-b-[3px] hover:border-[#4072d5] select-none"
+                    >
+                      login
+                    </p>
+                  </a>
+                  <a id="signup" href="/register" target="_self">
+                    <p
+                      class="text-lg text-gray-300 border-b-[3px] border-transparent cursor-pointer hover:border-b-[3px] hover:border-[#4072d5] select-none"
+                    >
+                      signup
+                    </p>
+                  </a>
+                </div>
+              </div>
+            </li>
+            <li>
+              <!-- search bar -->
+              <div class="lg:hidden">
+                <i
+                  id="searchBar"
+                  class="bi bi-search cursor-pointer text-lg text-gray-300"
+                ></i>
+              </div>
+            </li>
+          </ul>
+        </div>
+
+        <!--login DropDown for large screen  -->
+        <div id="loginOptionDesktop" class="relative hidden lg:block lg:ml-96">
+          <div id="loginDropDown" class="cursor-pointer">
+            <p
+              id="userProfile"
+              class="hover:cursor-pointer text-gray-300 hover:text-white"
+            >
+              Login/signup
+            </p>
+          </div>
+          <div
+            id="loginDropDownMenu"
+            class="absolute hidden z-10 top-[40px] text-center px-5 pb-3 bg-[#05063a] rounded-b-md"
+          >
+            <a id="login" href="/login" target="_self">
+              <p
+                id="logintext"
+                class="text-lg text-gray-300 border-b-[3px] border-transparent cursor-pointer hover:border-b-[3px] hover:border-[#4072d5] select-none"
+              >
+                login
+              </p>
+            </a>
+            <a id="signup" href="/register" target="_self">
+              <p
+                class="text-lg text-gray-300 border-b-[3px] border-transparent cursor-pointer hover:border-b-[3px] hover:border-[#4072d5] select-none"
+              >
+                signup
+              </p>
+            </a>
+          </div>
+        </div>
+
+        <!-- search bar for large screen -->
+        <div id="searchBar" class="searchOption relative hidden lg:block">
+          <input
+            class="ml-2 w-56 h-10 bg-transparent text-gray-300 border border-gray-500 rounded-md py-1 px-3 focus:border-blue-500 focus:outline-none caret-blue-500 select-text transition duration-200 ease-in-out"
+            type="text"
+            name="search"
+            placeholder="Search"
+          />
+          <i
+            class="bi bi-search text-lg border text-gray-300 border-gray-500 rounded-md py-[6px] px-3 cursor-pointer active:border-blue-500"
+          ></i>
+        </div>
+        <!-- user profile -->
+        <div class="userAvatar hidden ml-24 lg:ml-0">
+          <div
+            id="smallAvatar"
+            class="avatar rounded-full w-8 h-8 lg:w-10 lg:h-10 cursor-pointer"
+            role="button"
+            aria-label="user profile"
+          ></div>
+        </div>
+        <!------------ Menu Bar icon for Small Device----------->
+        <div class="lg:hidden">
+          <i
+            id="menuBar"
+            class="bi bi-list text-3xl cursor-pointer text-gray-300"
+          ></i>
+        </div>
+      </nav>
+    </header>
+
+    <!-- Main Featured Blog -->
+    <section class="container mx-auto px-6 py-12">
+      <div class="bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition">
+        <img
+          src="https://source.unsplash.com/800x400/?farm,nature"
+          alt="Main Blog Image"
+          class="w-full h-64 object-cover rounded"
+        />
+        <h2 class="text-3xl font-bold mt-6">
+          Revolutionizing Agriculture with AI
+        </h2>
+        <p class="text-gray-600 mt-4">
+          Discover how artificial intelligence is transforming farming,
+          improving yields, and making agriculture more sustainable for the
+          future.
+        </p>
+        <a href="#" class="text-green-600 font-bold mt-4 inline-block"
+          >Read More →</a
+        >
+      </div>
+    </section>
+
+    <!-- Blog Section -->
+    <section class="container mx-auto px-6 pb-12">
+      <div class="grid md:grid-cols-3 gap-6">
+        <!-- Blog Card 1 -->
+        <div
+          class="bg-white p-4 rounded-lg shadow-md hover:shadow-lg transition"
+        >
+          <img
+            src="https://source.unsplash.com/400x250/?farm,agriculture"
+            alt="Blog Image"
+            class="w-full h-48 object-cover rounded"
+          />
+          <h2 class="text-xl font-semibold mt-4">
+            Sustainable Farming Practices
+          </h2>
+          <p class="text-gray-600 mt-2">
+            Learn how modern techniques can enhance productivity...
+          </p>
+          <a href="#" class="text-green-600 font-bold mt-3 block"
+            >Read More →</a
+          >
+        </div>
+
+        <!-- Blog Card 2 -->
+        <div
+          class="bg-white p-4 rounded-lg shadow-md hover:shadow-lg transition"
+        >
+          <img
+            src="https://source.unsplash.com/400x250/?crops,farming"
+            alt="Blog Image"
+            class="w-full h-48 object-cover rounded"
+          />
+          <h2 class="text-xl font-semibold mt-4">
+            How AI is Transforming Agriculture
+          </h2>
+          <p class="text-gray-600 mt-2">
+            Discover how deep learning is optimizing yield...
+          </p>
+          <a href="#" class="text-green-600 font-bold mt-3 block"
+            >Read More →</a
+          >
+        </div>
+
+        <!-- Blog Card 3 -->
+        <div
+          class="bg-white p-4 rounded-lg shadow-md hover:shadow-lg transition"
+        >
+          <img
+            src="https://source.unsplash.com/400x250/?harvest,technology"
+            alt="Blog Image"
+            class="w-full h-48 object-cover rounded"
+          />
+          <h2 class="text-xl font-semibold mt-4">Best Irrigation Techniques</h2>
+          <p class="text-gray-600 mt-2">
+            Effective water management strategies for your farm...
+          </p>
+          <a href="#" class="text-green-600 font-bold mt-3 block"
+            >Read More →</a
+          >
+        </div>
+      </div>
+
+      
+    </section>
+
+
+    <!-- Footer -->
+    <footer class="bg-[#0b1d40] select-none mt-20">
+      <div
+        class="flex flex-col lg:flex-row lg:space-x-2 lg:space-y-0 lg:justify-center mx-5 mt-10 lg:pt-8 lg:pb-4 px-5 pt-10 pb-14 space-y-16 text-gray-400 border-b-[1px] border-[#ffffffa7]"
+      >
+        <div class="lg:h-60 lg:w-56 lg:mr-24 text-pretty">
+          <p class="text-xl font-semibold text-gray-300 mb-2">Contact Us</p>
+          <ul class="space-y-3">
+            <li>
+              Address:
+              <p>Egra, East Midnapore, West Bengal, 721329</p>
+            </li>
+            <li>
+              Email:
+              <a
+                class="hover:text-gray-100"
+                href="mailto:growcropsteam@gmail.com"
+                >growcropsteam@gmail.com</a
+              >
+            </li>
+            <li>Follow us on:</li>
+            <li class="space-x-5 mt-1 ml-3 text-lg">
+              <a
+                class="hover:text-green-700"
+                href=" https://wa.me/919800068420"
+                target="_blank"
+                ><i class="bi bi-whatsapp text-green-500"></i
+              ></a>
+              <a target="_blank"><i class="bi bi-twitter-x text-black"></i></a>
+              <a target="_blank"
+                ><i class="fa-brands fa-facebook text-blue-700"></i
+              ></a>
+            </li>
+          </ul>
+        </div>
+
+        <div class="lg:h-60 w-60 text-pretty">
+          <p class="text-xl font-semibold text-gray-300 mb-2">Quick Links</p>
+          <ul class="space-y-2">
+            <li class="hover:text-gray-100"><a href="/about">About Us</a></li>
+            <li class="hover:text-gray-100"><a href="/work">our Works</a></li>
+            <li class="hover:text-gray-100"><a href="/team">Our Team</a></li>
+            <li class="hover:text-gray-100">
+              <a href="/articles">Read Article</a>
+            </li>
+          </ul>
+        </div>
+
+        <div class="lg:h-60 w-60 text-pretty">
+          <p class="text-xl font-semibold text-gray-300 mb-2">Help/Support</p>
+          <ul class="space-y-3">
+            <li class="hover:text-gray-100">
+              <a href="/contact">Contact Us</a>
+            </li>
+            <li class="hover:text-gray-100"><a href="/help">help</a></li>
+            <li class="hover:text-gray-100"><a href="/support">Support</a></li>
+            <li class="hover:text-gray-100">
+              <a href="/terms">Terms & Condition</a>
+            </li>
+          </ul>
+        </div>
+
+        <div class="lg:h-60 w-60 text-pretty">
+          <p class="text-xl font-semibold text-gray-300 mb-2">Community</p>
+          <ul class="space-y-3">
+            <li class="hover:text-gray-100">
+              <a href="/team">Join our Community</a>
+            </li>
+            <li class="hover:text-gray-100"><a href="/gallery">Gallery</a></li>
+            <li class="hover:text-gray-100"><a href="/blog">Our Blogs</a></li>
+            <li class="hover:text-gray-100">
+              <a href="/events">Special Events</a>
+            </li>
+          </ul>
+        </div>
+
+        <div class="w-60">
+          <div>
+            <p class="text-xl font-semibold text-gray-300">Write a review</p>
+            <p class="hover:text-gray-100"><a href="/review">feedback</a></p>
+          </div>
+        </div>
+      </div>
+
+      <!-- footer last -->
+
+      <div>
+        <p class="text-center align-middle p-6 text-gray-300">
+          &copy; 2025 Croponer. All rights reserved. Created by
+          <a
+            class="hover:text-blue-500"
+            href="https://amarnath404.web.app"
+            target="_blank"
+            >Amarnath Bera</a
+          >
+        </p>
+      </div>
+    </footer>
+  </body>
+</html>

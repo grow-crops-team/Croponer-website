@@ -1,62 +1,66 @@
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="../public/assets/css/style.css">
+    <title>Croponer Blog</title>
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
-    <header class="bg-blue-900 w-full select-none">
-        <nav class="w-full h-14 flex items-center justify-between px-5 lg:px-10">
-          <!-- Logo -->
-          <div class="logo">
-            <img src="#" alt="Croponer Logo" class="w-28 h-auto" loading="lazy" />
-          </div>
-      
-          <!-- Menu -->
-          <div class="hidden lg:flex space-x-6 text-gray-300">
-            <a href="/about" class="hover:text-gray-100">About</a>
-            <a href="/blog" class="hover:text-gray-100">Blog</a>
-            <a href="/research" class="hover:text-gray-100">Research</a>
-          </div>
-      
-          <!-- Login Dropdown -->
-          <div class="relative hidden lg:block">
-            <button id="loginDropDown" class="text-gray-300 hover:text-white">
-              Login/Signup
-            </button>
-            <div id="loginDropDownMenu" class="absolute hidden bg-[#05063a] p-3 rounded-md top-12 w-32">
-              <a href="/login" class="block text-gray-300 hover:text-white">Login</a>
-              <a href="/signup" class="block text-gray-300 hover:text-white">Signup</a>
+<body class="bg-gray-100">
+    
+    <!-- Hero Section -->
+    <header class="bg-green-700 text-white py-12 text-center">
+        <h1 class="text-4xl font-bold">Welcome to Croponer Blog</h1>
+        <p class="mt-2 text-lg">Stay updated with the latest farming insights & tips! 🌱</p>
+    </header>
+    
+    <!-- Main Featured Blog -->
+    <section class="container mx-auto px-6 py-12">
+        <div class="bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition">
+            <img src="https://source.unsplash.com/800x400/?farm,nature" alt="Main Blog Image" class="w-full h-64 object-cover rounded">
+            <h2 class="text-3xl font-bold mt-6">Revolutionizing Agriculture with AI</h2>
+            <p class="text-gray-600 mt-4">Discover how artificial intelligence is transforming farming, improving yields, and making agriculture more sustainable for the future.</p>
+            <a href="#" class="text-green-600 font-bold mt-4 inline-block">Read More →</a>
+        </div>
+    </section>
+    
+    <!-- Blog Section -->
+    <section class="container mx-auto px-6 pb-12">
+        <div class="grid md:grid-cols-3 gap-6">
+            <!-- Blog Card 1 -->
+            <div class="bg-white p-4 rounded-lg shadow-md hover:shadow-lg transition">
+                <img src="https://source.unsplash.com/400x250/?farm,agriculture" alt="Blog Image" class="w-full h-48 object-cover rounded">
+                <h2 class="text-xl font-semibold mt-4">Sustainable Farming Practices</h2>
+                <p class="text-gray-600 mt-2">Learn how modern techniques can enhance productivity...</p>
+                <a href="#" class="text-green-600 font-bold mt-3 block">Read More →</a>
             </div>
-          </div>
-      
-          <!-- Search Box -->
-          <div class="relative hidden lg:block">
-            <input class="w-56 h-10 bg-transparent border border-gray-500 rounded-md px-3 text-gray-300 focus:border-blue-500 focus:outline-none transition duration-200 ease-in-out" type="text" placeholder="Search">
-            <i class="bi bi-search text-lg absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-300 cursor-pointer"></i>
-          </div>
-      
-          <!-- Mobile Menu Icon -->
-          <button id="menuBar" class="lg:hidden">
-            <i class="bi bi-list text-3xl text-gray-300"></i>
-          </button>
-        </nav>
-      </header>
-      
-      <!-- Hero Section -->
-      <picture>
-        <source media="(min-width: 1024px)" srcset="https://images.unsplash.com/photo-1498408040764-ab6eb772a145?q=80&w=2072">
-        <img src="../public/assets/images/hero/iPhone SE - 1(index page).png" alt="Background Image" class="w-full h-screen object-cover">
-      </picture>
-      
+
+            <!-- Blog Card 2 -->
+            <div class="bg-white p-4 rounded-lg shadow-md hover:shadow-lg transition">
+                <img src="https://source.unsplash.com/400x250/?crops,farming" alt="Blog Image" class="w-full h-48 object-cover rounded">
+                <h2 class="text-xl font-semibold mt-4">How AI is Transforming Agriculture</h2>
+                <p class="text-gray-600 mt-2">Discover how deep learning is optimizing yield...</p>
+                <a href="#" class="text-green-600 font-bold mt-3 block">Read More →</a>
+            </div>
+            
+            <!-- Blog Card 3 -->
+            <div class="bg-white p-4 rounded-lg shadow-md hover:shadow-lg transition">
+                <img src="https://source.unsplash.com/400x250/?harvest,technology" alt="Blog Image" class="w-full h-48 object-cover rounded">
+                <h2 class="text-xl font-semibold mt-4">Best Irrigation Techniques</h2>
+                <p class="text-gray-600 mt-2">Effective water management strategies for your farm...</p>
+                <a href="#" class="text-green-600 font-bold mt-3 block">Read More →</a>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Pagination -->
+    <div class="flex justify-center mt-6 pb-12">
+        <button class="px-4 py-2 bg-gray-300 text-gray-700 rounded-l hover:bg-gray-400">← Prev</button>
+        <button class="px-4 py-2 bg-gray-300 text-gray-700 mx-1">1</button>
+        <button class="px-4 py-2 bg-gray-300 text-gray-700 mx-1">2</button>
+        <button class="px-4 py-2 bg-gray-300 text-gray-700 mx-1">3</button>
+        <button class="px-4 py-2 bg-gray-300 text-gray-700 rounded-r hover:bg-gray-400">Next →</button>
+    </div>
+    
 </body>
 </html>
-
-
-
-
-
