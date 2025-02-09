@@ -268,7 +268,7 @@
               <div
                 class="text-pretty lg:px-60 text-left mx-auto my-3 text-xl lg:text-2xl font-[Amarante]"
               >
-                <ul class="list-disc space-y-2">
+                <ul class="list-disc space-y-2 text-pretty">
                   <li>
                     Get real-time farming insights tailored to your crops and
                     location.
@@ -305,7 +305,7 @@
             What is 3p ?
           </h1>
           <p
-            class="text-pretty lg:px-60 text-left mx-auto my-3 text-xl lg:text-2xl font-[Amarante]"
+            class="text-pretty lg:px-60  text-justify mx-auto my-3 text-xl lg:text-2xl font-[Amarante]"
           >
             At Croponer, we focus on 3P – Paddy, Peanut, and Potato—three vital
             crops that form the backbone of agriculture. These crops play a
@@ -330,7 +330,7 @@
                 class="block text-2xl lg:text-3xl my-3 font-semibold font-[Amaranth]"
                 >Paddy</span
               >
-              <p class="lg:text-justify">
+              <p class="text-justify">
                 Rice feeds over half the world, making its cultivation vital.
                 However, it demands precise water management, disease control,
                 and nutrient optimization. Croponer’s AI-driven insights help
@@ -411,13 +411,9 @@
           </div>
         </div>
         <!-- join us text -->
-        <div
-          data-aos="fade"
-          data-aos-duration="800"
-          class="mt-10 mx-10 lg:mx-40 text-center"
-        >
+        <div data-aos="fade" class="mt-10 mx-10 lg:mx-40 text-center">
           <p
-            class="text-pretty lg:px-60 text-left mx-auto my-3 text-lg lg:text-2xl font-[Amarante]"
+            class="text-pretty text-justify lg:px-60  mx-auto my-3 text-lg lg:text-2xl font-[Amarante]"
           >
             At Croponer, we believe that technology and tradition should work
             hand in hand to create a sustainable and prosperous future for
@@ -447,13 +443,18 @@
             </li>
             <li>
               Email:
-              <a class="hover:text-gray-100" href="mailto:growcropsteam@gmail.com"
+              <a
+                class="hover:text-gray-100"
+                href="mailto:growcropsteam@gmail.com"
                 >growcropsteam@gmail.com</a
               >
             </li>
             <li>Follow us on:</li>
             <li class="space-x-5 mt-1 ml-3 text-lg">
-              <a class="hover:text-green-700" href=" https://wa.me/919800068420" target="_blank"
+              <a
+                class="hover:text-green-700"
+                href=" https://wa.me/919800068420"
+                target="_blank"
                 ><i class="bi bi-whatsapp text-green-500"></i
               ></a>
               <a target="_blank"><i class="bi bi-twitter-x text-black"></i></a>
@@ -570,6 +571,39 @@
         </svg>
       </div>
     </div>
+
+    <script>
+      // --------- animated on scroll(Aos)----
+      AOS.init({
+        duration: 1000,
+        easing: "ease-in-sine",
+        delay: 100,
+      });
+
+      // --------- swiper slider----
+      const swiper = new Swiper(".swiper", {
+        loop: true,
+        autoplay: {
+          delay: 5000,
+          disableOnInteraction: false,
+        },
+        speed: 1000,
+        pagination: {
+          el: ".swiper-pagination",
+          clickable: true,
+        },
+        effect: "fade",
+        fadeEffect: {
+          crossFade: true,
+        },
+        allowTouchMove: true,
+        on: {
+          click: function () {
+            this.autoplay.stop();
+          },
+        },
+      });
+    </script>
 
     <script type="module" src="./assets/js/main.js"></script>
   </body>
