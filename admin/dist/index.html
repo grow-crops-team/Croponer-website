@@ -1,177 +1,108 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Admin Dashboard</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Croponer Admin Dashboard</title>
+    <meta
+      content="width=device-width, initial-scale=1.0, shrink-to-fit=no"
+      name="viewport"
+    />
 
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Fonts and icons -->
+    <script src="assets/js/plugin/webfont/webfont.min.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+      integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+   
 
-    <link rel="stylesheet" href="./assets/css/style.css" />
+    <!-- CSS Files -->
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="assets/css/plugins.min.css" />
+    <link rel="stylesheet" href="assets/css/kaiadmin.min.css" />
   </head>
-
-  <body class="bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-gray-100">
-    <!DOCTYPE html>
-    <html lang="en">
-      <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Tailwind Navbar</title>
-        <script src="https://cdn.tailwindcss.com"></script>
-      </head>
-
-      <body
-        class="bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-gray-100"
-      ></body>
-
+  <body>
+    <div class="wrapper">
       <!-- Sidebar -->
-      <div class="w-64 bg-gray-800 text-white h-screen">
-        <div class="p-4 flex justify-between items-center bg-gray-900">
-          <a href="index.html" class="logo">
-            <img
-              src="assets/img/kaiadmin/logo_light.svg"
-              alt="navbar brand"
-              class="h-5"
-            />
-          </a>
-          <div class="flex space-x-2">
-            <button class="p-2 bg-gray-700 rounded">
-              <i class="gg-menu-right"></i>
-            </button>
-            <button class="p-2 bg-gray-700 rounded">
-              <i class="gg-menu-left"></i>
+      <div class="sidebar" data-background-color="dark">
+        <div class="sidebar-logo">
+          <!-- Logo Header -->
+          <div class="logo-header" data-background-color="dark">
+            <a href="index.html" class="logo">
+              <img
+                src=""
+                alt="Croponer logo"
+                class="navbar-brand"
+                height="20"
+              />
+            </a>
+            <div class="nav-toggle">
+              <button class="btn btn-toggle toggle-sidebar">
+                <i class="gg-menu-right"></i>
+              </button>
+              <button class="btn btn-toggle sidenav-toggler">
+                <i class="gg-menu-left"></i>
+              </button>
+            </div>
+            <button class="topbar-toggler more">
+              <i class="gg-more-vertical-alt"></i>
             </button>
           </div>
-          <button class="p-2 bg-gray-700 rounded">
-            <i class="gg-more-vertical-alt"></i>
-          </button>
+          <!-- End Logo Header -->
         </div>
+        <div class="sidebar-wrapper scrollbar scrollbar-inner">
+          <div class="sidebar-content">
+            <ul class="nav nav-secondary">
+              <li class="nav-item active">
+                <a
+                  data-bs-toggle="collapse"
+                  href="#dashboard"
+                  class="collapsed"
+                  aria-expanded="false"
+                >
+                  <i class="fas fa-home"></i>
+                  <p>Dashboard</p>
+                </a>
+              </li>
 
-        <div class="overflow-y-auto h-full">
-          <ul class="space-y-2 p-4">
-            <li class="bg-gray-700 p-2 rounded">
-              <a href="#dashboard" class="flex items-center">
-                <i class="fas fa-home mr-3"></i>
-                <span>Dashboard</span>
-              </a>
-              <ul class="hidden pl-8">
-                <li>
-                  <a
-                    href="../demo1/index.html"
-                    class="block py-2 hover:text-blue-400"
-                    >Dashboard 1</a
-                  >
-                </li>
-              </ul>
-            </li>
-
-            <li class="text-gray-400 uppercase mt-4">Components</li>
-
-            <li>
-              <a
-                href="#base"
-                class="flex items-center p-2 hover:bg-gray-700 rounded"
-              >
-                <i class="fas fa-layer-group mr-3"></i>
-                <span>Base</span>
-              </a>
-              <ul class="hidden pl-8">
-                <li>
-                  <a
-                    href="components/avatars.html"
-                    class="block py-2 hover:text-blue-400"
-                    >Avatars</a
-                  >
-                </li>
-                <li>
-                  <a
-                    href="components/buttons.html"
-                    class="block py-2 hover:text-blue-400"
-                    >Buttons</a
-                  >
-                </li>
-                <li>
-                  <a
-                    href="components/gridsystem.html"
-                    class="block py-2 hover:text-blue-400"
-                    >Grid System</a
-                  >
-                </li>
-              </ul>
-            </li>
-
-            <li>
-              <a
-                href="#tables"
-                class="flex items-center p-2 hover:bg-gray-700 rounded"
-              >
-                <i class="fas fa-table mr-3"></i>
-                <span>Tables</span>
-              </a>
-              <ul class="hidden pl-8">
-                <li>
-                  <a
-                    href="tables/tables.html"
-                    class="block py-2 hover:text-blue-400"
-                    >Basic Table</a
-                  >
-                </li>
-                <li>
-                  <a
-                    href="tables/datatables.html"
-                    class="block py-2 hover:text-blue-400"
-                    >Datatables</a
-                  >
-                </li>
-              </ul>
-            </li>
-
-            <li>
-              <a
-                href="#maps"
-                class="flex items-center p-2 hover:bg-gray-700 rounded"
-              >
-                <i class="fas fa-map-marker-alt mr-3"></i>
-                <span>Maps</span>
-              </a>
-              <ul class="hidden pl-8">
-                <li>
-                  <a
-                    href="maps/googlemaps.html"
-                    class="block py-2 hover:text-blue-400"
-                    >Google Maps</a
-                  >
-                </li>
-                <li>
-                  <a
-                    href="maps/jsvectormap.html"
-                    class="block py-2 hover:text-blue-400"
-                    >Jsvectormap</a
-                  >
-                </li>
-              </ul>
-            </li>
-
-            <li>
-              <a
-                href="widgets.html"
-                class="flex items-center p-2 hover:bg-gray-700 rounded"
-              >
-                <i class="fas fa-desktop mr-3"></i>
-                <span>Widgets</span>
-              </a>
-            </li>
-
-            <li>
-              <a
-                href="../../documentation/index.html"
-                class="flex items-center p-2 hover:bg-gray-700 rounded"
-              >
-                <i class="fas fa-file mr-3"></i>
-                <span>Documentation</span>
-              </a>
-            </li>
-          </ul>
+              <li class="nav-item">
+                <a data-bs-toggle="collapse" href="#base">
+                  <i class="fas fa-user"></i>
+                  <p>User Panel</p>
+                  <span class="caret"></span>
+                </a>
+                <div class="collapse" id="base">
+                  <ul class="nav nav-collapse">
+                    <li>
+                      <a href="components/avatars.html">
+                        <span class="sub-item">Manage User</span>
+                      </a>
+                    </li>
+                    <li>
+                      <a href="components/buttons.html">
+                        <span class="sub-item">User Data</span>
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+              </li>
+              <li class="nav-item">
+                <a data-bs-toggle="collapse" href="#sidebarLayouts">
+                  <i class="fa-solid fa-list-check"></i>
+                  <p>Tasks Panel</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a data-bs-toggle="collapse" href="#forms">
+                  <i class="fas fa-pen-square"></i>
+                  <p>Admin Panel</p>
+                </a>
+              </li>
+            </ul>
+          </div>
         </div>
       </div>
       <!-- End Sidebar -->
@@ -180,340 +111,200 @@
         <div class="main-header">
           <div class="main-header-logo">
             <!-- Logo Header -->
-            <div class="logo-header bg-gray-800">
+            <div class="logo-header" data-background-color="dark">
               <a href="index.html" class="logo">
                 <img
-                  src="assets/img/kaiadmin/logo_light.svg"
-                  alt="navbar brand"
-                  class="h-5"
+                  src="#"
+                  alt="Croponer logo"
+                  class="navbar-brand"
+                  height="20"
                 />
               </a>
-              <div class="nav-toggle flex space-x-2">
-                <button class="p-2 bg-gray-700 text-white rounded">
+              <div class="nav-toggle">
+                <button class="btn btn-toggle toggle-sidebar">
                   <i class="gg-menu-right"></i>
                 </button>
-                <button class="p-2 bg-gray-700 text-white rounded">
+                <button class="btn btn-toggle sidenav-toggler">
                   <i class="gg-menu-left"></i>
                 </button>
               </div>
-              <button class="p-2 bg-gray-700 text-white rounded">
+              <button class="topbar-toggler more">
                 <i class="gg-more-vertical-alt"></i>
               </button>
             </div>
             <!-- End Logo Header -->
           </div>
           <!-- Navbar Header -->
-          <nav class="bg-transparent border-b">
-            <div class="container mx-auto px-4">
-              <nav class="hidden lg:flex p-0">
-                <div
-                  class="flex items-center border rounded-lg overflow-hidden"
-                >
-                  <button
-                    type="submit"
-                    class="px-3 py-2 bg-gray-200 text-gray-600"
-                  >
-                    <i class="fa fa-search"></i>
-                  </button>
+          <nav
+            class="navbar navbar-header navbar-header-transparent navbar-expand-lg border-bottom"
+          >
+            <div class="container-fluid">
+              <nav
+                class="navbar navbar-header-left navbar-expand-lg navbar-form nav-search p-0 d-none d-lg-flex"
+              >
+                <div class="input-group">
+                  <div class="input-group-prepend">
+                    <button type="submit" class="btn btn-search pe-1">
+                      <i class="fa fa-search search-icon"></i>
+                    </button>
+                  </div>
                   <input
                     type="text"
                     placeholder="Search ..."
-                    class="px-4 py-2 w-full focus:outline-none"
+                    class="form-control"
                   />
                 </div>
               </nav>
-              <ul class="flex ml-auto items-center">
-                <li class="relative flex lg:hidden">
+
+              <ul class="navbar-nav topbar-nav ms-md-auto align-items-center">
+                <li
+                  class="nav-item topbar-icon dropdown hidden-caret d-flex d-lg-none"
+                >
                   <a
-                    class="p-2 text-gray-600 dark:text-gray-400"
+                    class="nav-link dropdown-toggle"
+                    data-bs-toggle="dropdown"
                     href="#"
                     role="button"
+                    aria-expanded="false"
+                    aria-haspopup="true"
                   >
                     <i class="fa fa-search"></i>
                   </a>
-                  <ul
-                    class="absolute right-0 mt-2 w-64 bg-white dark:bg-gray-800 shadow-lg rounded-lg hidden"
-                  >
-                    <form class="p-2">
-                      <div
-                        class="flex items-center border rounded-lg overflow-hidden"
-                      >
+                  <ul class="dropdown-menu dropdown-search animated fadeIn">
+                    <form class="navbar-left navbar-form nav-search">
+                      <div class="input-group">
                         <input
                           type="text"
                           placeholder="Search ..."
-                          class="px-4 py-2 w-full focus:outline-none"
+                          class="form-control"
                         />
                       </div>
                     </form>
                   </ul>
                 </li>
-                <li class="relative">
-                  <a
-                    class="p-2 text-gray-600 dark:text-gray-400"
-                    href="#"
-                    role="button"
-                  >
-                    <i class="fa fa-envelope"></i>
-                  </a>
-                  <ul
-                    class="absolute right-0 mt-2 w-64 bg-white dark:bg-gray-800 shadow-lg rounded-lg hidden"
-                  >
-                    <li>
-                      <div
-                        class="p-4 border-b flex justify-between items-center"
-                      >
-                        Messages
-                        <a href="#" class="text-sm text-blue-500"
-                          >Mark all as read</a
-                        >
-                      </div>
-                    </li>
-                    <li>
-                      <div class="overflow-y-auto max-h-60">
-                        <div class="space-y-4 p-4">
-                          <a href="#" class="flex space-x-3 items-center">
-                            <img
-                              src="assets/img/jm_denis.jpg"
-                              alt="Profile"
-                              class="w-10 h-10 rounded-full"
-                            />
-                            <div>
-                              <span class="font-bold">Jimmy Denis</span>
-                              <p class="text-sm text-gray-500">How are you?</p>
-                              <span class="text-xs text-gray-400"
-                                >5 minutes ago</span
-                              >
-                            </div>
-                          </a>
-                          <a href="#" class="flex space-x-3 items-center">
-                            <img
-                              src="assets/img/chadengle.jpg"
-                              alt="Profile"
-                              class="w-10 h-10 rounded-full"
-                            />
-                            <div>
-                              <span class="font-bold">Chad</span>
-                              <p class="text-sm text-gray-500">Ok, Thanks!</p>
-                              <span class="text-xs text-gray-400"
-                                >12 minutes ago</span
-                              >
-                            </div>
-                          </a>
-                        </div>
-                      </div>
-                    </li>
-                    <li>
-                      <a class="block p-4 text-center text-blue-500" href="#"
-                        >See all messages<i class="fa fa-angle-right ml-2"></i
-                      ></a>
-                    </li>
-                  </ul>
-                </li>
 
-                <li class="relative">
+                <li class="nav-item topbar-icon dropdown hidden-caret">
                   <a
-                    class="p-2 text-gray-600 dark:text-gray-400"
+                    class="nav-link"
+                    data-bs-toggle="dropdown"
                     href="#"
-                    role="button"
-                  >
-                    <i class="fa fa-bell"></i>
-                    <span
-                      class="absolute top-0 right-0 bg-red-500 text-white text-xs px-1 rounded-full"
-                      >4</span
-                    >
-                  </a>
-                  <ul
-                    class="absolute right-0 mt-2 w-64 bg-white dark:bg-gray-800 shadow-lg rounded-lg hidden"
-                  >
-                    <li>
-                      <div class="p-4 border-b">
-                        You have 4 new notifications
-                      </div>
-                    </li>
-                    <li>
-                      <div class="overflow-y-auto max-h-60">
-                        <div class="space-y-4 p-4">
-                          <a href="#" class="flex space-x-3 items-center">
-                            <div
-                              class="bg-blue-500 text-white p-2 rounded-full"
-                            >
-                              <i class="fa fa-user-plus"></i>
-                            </div>
-                            <div>
-                              <p class="text-sm">New user registered</p>
-                              <span class="text-xs text-gray-400"
-                                >5 minutes ago</span
-                              >
-                            </div>
-                          </a>
-                          <a href="#" class="flex space-x-3 items-center">
-                            <div
-                              class="bg-green-500 text-white p-2 rounded-full"
-                            >
-                              <i class="fa fa-comment"></i>
-                            </div>
-                            <div>
-                              <p class="text-sm">Rahmad commented on Admin</p>
-                              <span class="text-xs text-gray-400"
-                                >12 minutes ago</span
-                              >
-                            </div>
-                          </a>
-                        </div>
-                      </div>
-                    </li>
-                    <li>
-                      <a class="block p-4 text-center text-blue-500" href="#"
-                        >See all notifications<i
-                          class="fa fa-angle-right ml-2"
-                        ></i
-                      ></a>
-                    </li>
-                  </ul>
-                </li>
-                <li class="relative">
-                  <a
-                    class="p-2 text-gray-600 dark:text-gray-400"
-                    href="#"
-                    role="button"
+                    aria-expanded="false"
                   >
                     <i class="fas fa-layer-group"></i>
                   </a>
-                  <div
-                    class="absolute right-0 mt-2 w-64 bg-white dark:bg-gray-800 shadow-lg rounded-lg hidden"
-                  >
-                    <div class="p-4 border-b">
-                      <span class="font-bold">Quick Actions</span>
-                      <span class="text-sm text-gray-500">Shortcuts</span>
+                  <div class="dropdown-menu quick-actions animated fadeIn">
+                    <div class="quick-actions-header">
+                      <span class="title mb-1">Quick Actions</span>
+                      <span class="subtitle op-7">Shortcuts</span>
                     </div>
-                    <div
-                      class="overflow-y-auto max-h-60 p-4 grid grid-cols-3 gap-4"
-                    >
-                      <a
-                        href="#"
-                        class="flex flex-col items-center space-y-2 text-gray-600 hover:text-blue-500"
-                      >
-                        <div class="bg-red-500 text-white p-3 rounded-full">
-                          <i class="far fa-calendar-alt"></i>
-                        </div>
-                        <span class="text-xs">Calendar</span>
-                      </a>
-                      <a
-                        href="#"
-                        class="flex flex-col items-center space-y-2 text-gray-600 hover:text-blue-500"
-                      >
-                        <div class="bg-yellow-500 text-white p-3 rounded-full">
-                          <i class="fas fa-map"></i>
-                        </div>
-                        <span class="text-xs">Maps</span>
-                      </a>
-                      <a
-                        href="#"
-                        class="flex flex-col items-center space-y-2 text-gray-600 hover:text-blue-500"
-                      >
-                        <div class="bg-blue-500 text-white p-3 rounded-full">
-                          <i class="fas fa-file-excel"></i>
-                        </div>
-                        <span class="text-xs">Reports</span>
-                      </a>
-                      <a
-                        href="#"
-                        class="flex flex-col items-center space-y-2 text-gray-600 hover:text-blue-500"
-                      >
-                        <div class="bg-green-500 text-white p-3 rounded-full">
-                          <i class="fas fa-envelope"></i>
-                        </div>
-                        <span class="text-xs">Emails</span>
-                      </a>
-                      <a
-                        href="#"
-                        class="flex flex-col items-center space-y-2 text-gray-600 hover:text-blue-500"
-                      >
-                        <div class="bg-indigo-500 text-white p-3 rounded-full">
-                          <i class="fas fa-file-invoice-dollar"></i>
-                        </div>
-                        <span class="text-xs">Invoice</span>
-                      </a>
-                      <a
-                        href="#"
-                        class="flex flex-col items-center space-y-2 text-gray-600 hover:text-blue-500"
-                      >
-                        <div class="bg-gray-500 text-white p-3 rounded-full">
-                          <i class="fas fa-credit-card"></i>
-                        </div>
-                        <span class="text-xs">Payments</span>
-                      </a>
-                    </div>
-                  </div>
-                </li>
-                <li class="relative">
-                  <a
-                    class="flex items-center space-x-2 p-2 text-gray-600 dark:text-gray-400"
-                    href="#"
-                    role="button"
-                  >
-                    <div class="w-8 h-8 rounded-full overflow-hidden">
-                      <img src="assets/img/profile.jpg" alt="Profile" />
-                    </div>
-                    <span class="text-sm">
-                      <span class="text-gray-500">Hi,</span>
-                      <span class="font-bold">Hizrian</span>
-                    </span>
-                  </a>
-                  <ul
-                    class="absolute right-0 mt-2 w-48 bg-white dark:bg-gray-800 shadow-lg rounded-lg hidden"
-                  >
-                    <div class="p-4 border-b">
-                      <div class="flex items-center space-x-3">
-                        <div class="w-12 h-12 rounded-full overflow-hidden">
-                          <img src="assets/img/profile.jpg" alt="Profile" />
-                        </div>
-                        <div>
-                          <h4 class="font-bold">Hizrian</h4>
-                          <p class="text-sm text-gray-500">hello@example.com</p>
-                          <a href="profile.html" class="text-blue-500 text-xs"
-                            >View Profile</a
-                          >
+                    <div class="quick-actions-scroll scrollbar-outer">
+                      <div class="quick-actions-items">
+                        <div class="row m-0">
+                          <a class="col-6 col-md-4 p-0" href="#">
+                            <div class="quick-actions-item">
+                              <div class="avatar-item bg-danger rounded-circle">
+                                <i class="far fa-calendar-alt"></i>
+                              </div>
+                              <span class="text">Calendar</span>
+                            </div>
+                          </a>
+                          <a class="col-6 col-md-4 p-0" href="#">
+                            <div class="quick-actions-item">
+                              <div
+                                class="avatar-item bg-warning rounded-circle"
+                              >
+                                <i class="fas fa-map"></i>
+                              </div>
+                              <span class="text">Maps</span>
+                            </div>
+                          </a>
+                          <a class="col-6 col-md-4 p-0" href="#">
+                            <div class="quick-actions-item">
+                              <div class="avatar-item bg-info rounded-circle">
+                                <i class="fas fa-file-excel"></i>
+                              </div>
+                              <span class="text">Reports</span>
+                            </div>
+                          </a>
+                          <a class="col-6 col-md-4 p-0" href="#">
+                            <div class="quick-actions-item">
+                              <div
+                                class="avatar-item bg-success rounded-circle"
+                              >
+                                <i class="fas fa-envelope"></i>
+                              </div>
+                              <span class="text">Emails</span>
+                            </div>
+                          </a>
+                          <a class="col-6 col-md-4 p-0" href="#">
+                            <div class="quick-actions-item">
+                              <div
+                                class="avatar-item bg-primary rounded-circle"
+                              >
+                                <i class="fas fa-file-invoice-dollar"></i>
+                              </div>
+                              <span class="text">Invoice</span>
+                            </div>
+                          </a>
+                          <a class="col-6 col-md-4 p-0" href="#">
+                            <div class="quick-actions-item">
+                              <div
+                                class="avatar-item bg-secondary rounded-circle"
+                              >
+                                <i class="fas fa-credit-card"></i>
+                              </div>
+                              <span class="text">Payments</span>
+                            </div>
+                          </a>
                         </div>
                       </div>
                     </div>
-                    <li>
-                      <a
-                        class="block px-4 py-2 text-gray-600 hover:bg-gray-100 dark:hover:bg-gray-700"
-                        href="#"
-                        >My Profile</a
-                      >
-                    </li>
-                    <li>
-                      <a
-                        class="block px-4 py-2 text-gray-600 hover:bg-gray-100 dark:hover:bg-gray-700"
-                        href="#"
-                        >My Balance</a
-                      >
-                    </li>
-                    <li>
-                      <a
-                        class="block px-4 py-2 text-gray-600 hover:bg-gray-100 dark:hover:bg-gray-700"
-                        href="#"
-                        >Inbox</a
-                      >
-                    </li>
-                    <div class="border-t"></div>
-                    <li>
-                      <a
-                        class="block px-4 py-2 text-gray-600 hover:bg-gray-100 dark:hover:bg-gray-700"
-                        href="#"
-                        >Account Setting</a
-                      >
-                    </li>
-                    <div class="border-t"></div>
-                    <li>
-                      <a
-                        class="block px-4 py-2 text-red-500 hover:bg-gray-100 dark:hover:bg-gray-700"
-                        href="#"
-                        >Logout</a
-                      >
-                    </li>
+                  </div>
+                </li>
+
+                <li class="nav-item topbar-user dropdown hidden-caret">
+                  <a
+                    class="dropdown-toggle profile-pic"
+                    data-bs-toggle="dropdown"
+                    href="#"
+                    aria-expanded="false"
+                  >
+                    <div class="avatar-sm">
+                      <img
+                        src="#"
+                        alt="..."
+                        class="avatar-img rounded-circle"
+                      />
+                    </div>
+                    <span class="profile-username">
+                      <span class="op-7">Hi,</span>
+                      <span class="fw-bold">Admin</span>
+                    </span>
+                  </a>
+                  <ul class="dropdown-menu dropdown-user animated fadeIn">
+                    <div class="dropdown-user-scroll scrollbar-outer">
+                      <li>
+                        <div class="user-box">
+                          <div class="avatar-lg">
+                            <img
+                              src="assets/img/profile.jpg"
+                              alt="image profile"
+                              class="avatar-img rounded"
+                            />
+                          </div>
+                          <div class="u-text">
+                            <h4>Hizrian</h4>
+                          </div>
+                        </div>
+                      </li>
+                      <li>
+                        <div class="dropdown-divider"></div>
+
+                        <a class="dropdown-item" href="#">Account Setting</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="#">Logout</a>
+                      </li>
+                    </div>
                   </ul>
                 </li>
               </ul>
@@ -521,202 +312,17 @@
           </nav>
           <!-- End Navbar -->
         </div>
-
-        <div class="container mx-auto">
-          <div class="py-4">
-            <div
-              class="flex flex-col md:flex-row justify-between items-start md:items-center"
-            >
-              <div>
-                <h3 class="font-bold text-xl mb-2">Dashboard</h3>
-                <h6 class="text-gray-500 text-sm">
-                  Free Tailwind CSS Admin Dashboard
-                </h6>
-              </div>
-              <div class="flex space-x-2">
-                <a
-                  href="#"
-                  class="px-4 py-2 bg-gray-200 text-gray-700 rounded-lg"
-                  >Manage</a
-                >
-                <a href="#" class="px-4 py-2 bg-blue-600 text-white rounded-lg"
-                  >Add Customer</a
-                >
-              </div>
-            </div>
-            <div
-              class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 mt-6"
-            >
-              <div class="bg-white shadow-md rounded-lg p-4 flex items-center">
-                <div class="text-blue-600 text-3xl">
-                  <i class="fas fa-users"></i>
-                </div>
-                <div class="ml-4">
-                  <p class="text-gray-500 text-sm">Visitors</p>
-                  <h4 class="text-lg font-bold">1,294</h4>
-                </div>
-              </div>
-              <div class="bg-white shadow-md rounded-lg p-4 flex items-center">
-                <div class="text-green-600 text-3xl">
-                  <i class="fas fa-user-check"></i>
-                </div>
-                <div class="ml-4">
-                  <p class="text-gray-500 text-sm">Subscribers</p>
-                  <h4 class="text-lg font-bold">1,303</h4>
-                </div>
-              </div>
-              <div class="bg-white shadow-md rounded-lg p-4 flex items-center">
-                <div class="text-yellow-600 text-3xl">
-                  <i class="fas fa-luggage-cart"></i>
-                </div>
-                <div class="ml-4">
-                  <p class="text-gray-500 text-sm">Sales</p>
-                  <h4 class="text-lg font-bold">$1,345</h4>
-                </div>
-              </div>
-              <div class="bg-white shadow-md rounded-lg p-4 flex items-center">
-                <div class="text-gray-600 text-3xl">
-                  <i class="far fa-check-circle"></i>
-                </div>
-                <div class="ml-4">
-                  <p class="text-gray-500 text-sm">Orders</p>
-                  <h4 class="text-lg font-bold">576</h4>
-                </div>
-              </div>
-            </div>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-6">
-              <div class="md:col-span-2 bg-white shadow-md rounded-lg p-4">
-                <div class="flex justify-between items-center mb-4">
-                  <h4 class="text-lg font-bold">User Statistics</h4>
-                  <div class="space-x-2">
-                    <a
-                      href="#"
-                      class="px-3 py-1 bg-green-500 text-white rounded-lg text-sm"
-                      >Export</a
-                    >
-                    <a
-                      href="#"
-                      class="px-3 py-1 bg-blue-500 text-white rounded-lg text-sm"
-                      >Print</a
-                    >
-                  </div>
-                </div>
-                <div class="h-72">
-                  <canvas id="statisticsChart"></canvas>
-                </div>
-              </div>
-              <div class="bg-blue-600 text-white shadow-md rounded-lg p-4">
-                <div class="flex justify-between items-center">
-                  <h4 class="text-lg font-bold">Daily Sales</h4>
-                  <button class="px-3 py-1 bg-blue-400 rounded-lg text-sm">
-                    Export
-                  </button>
-                </div>
-                <p class="text-sm">March 25 - April 02</p>
-                <h1 class="text-3xl font-bold mt-4">$4,578.58</h1>
-                <div class="h-40 mt-4">
-                  <canvas id="dailySalesChart"></canvas>
-                </div>
-              </div>
-            </div>
-            <div class="bg-white shadow-md rounded-lg p-4 mt-6">
-              <h4 class="text-lg font-bold">Users Geolocation</h4>
-              <p class="text-gray-500 text-sm">
-                Map of the distribution of users around the world
-              </p>
-              <div class="grid grid-cols-1 md:grid-cols-2 mt-4 gap-4">
-                <div class="overflow-x-auto">
-                  <table class="w-full text-sm text-left text-gray-500">
-                    <tbody>
-                      <tr class="border-b">
-                        <td>
-                          <img src="assets/img/flags/id.png" class="w-6" />
-                        </td>
-                        <td>Indonesia</td>
-                        <td class="text-right">2,320</td>
-                        <td class="text-right">42.18%</td>
-                      </tr>
-                      <tr class="border-b">
-                        <td>
-                          <img src="assets/img/flags/us.png" class="w-6" />
-                        </td>
-                        <td>USA</td>
-                        <td class="text-right">240</td>
-                        <td class="text-right">4.36%</td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </div>
-                <div class="h-60">
-                  <div id="world-map"></div>
-                </div>
-              </div>
-            </div>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-6">
-              <div class="bg-white shadow-md rounded-lg p-4">
-                <h4 class="text-lg font-bold">New Customers</h4>
-                <div class="space-y-4 mt-4">
-                  <div class="flex items-center">
-                    <img
-                      src="assets/img/jm_denis.jpg"
-                      class="w-10 h-10 rounded-full"
-                    />
-                    <div class="ml-3">
-                      <h5 class="font-bold">Jimmy Denis</h5>
-                      <p class="text-sm text-gray-500">Graphic Designer</p>
-                    </div>
-                  </div>
-                  <div class="flex items-center">
-                    <div
-                      class="w-10 h-10 bg-gray-300 rounded-full flex items-center justify-center"
-                    >
-                      CF
-                    </div>
-                    <div class="ml-3">
-                      <h5 class="font-bold">Chandra Felix</h5>
-                      <p class="text-sm text-gray-500">Sales Promotion</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="md:col-span-2 bg-white shadow-md rounded-lg p-4">
-                <h4 class="text-lg font-bold">Transaction History</h4>
-                <div class="overflow-x-auto mt-4">
-                  <table class="w-full text-sm text-left text-gray-500">
-                    <thead class="bg-gray-100 text-gray-700">
-                      <tr>
-                        <th class="px-4 py-2">Payment Number</th>
-                        <th class="px-4 py-2 text-right">Date & Time</th>
-                        <th class="px-4 py-2 text-right">Amount</th>
-                        <th class="px-4 py-2 text-right">Status</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr class="border-b">
-                        <td class="px-4 py-2 flex items-center">
-                          <button
-                            class="bg-green-500 text-white px-2 py-1 rounded-full text-xs mr-2"
-                          >
-                            <i class="fa fa-check"></i>
-                          </button>
-                          Payment from #10231
-                        </td>
-                        <td class="px-4 py-2 text-right">
-                          Mar 19, 2020, 2.45pm
-                        </td>
-                        <td class="px-4 py-2 text-right">$250.00</td>
-                        <td class="px-4 py-2 text-right text-green-500">
-                          Completed
-                        </td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
       </div>
-    </html>
+    </div>
+    <!--   Core JS Files   -->
+    <script src="assets/js/core/jquery-3.7.1.min.js"></script>
+    <script src="assets/js/core/popper.min.js"></script>
+    <script src="assets/js/core/bootstrap.min.js"></script>
+    <!-- jQuery Scrollbar -->
+    <script src="assets/js/plugin/jquery-scrollbar/jquery.scrollbar.min.js"></script>
+
+    <!-- Kaiadmin JS -->
+    <script src="assets/js/kaiadmin.min.js"></script>
+
   </body>
 </html>
