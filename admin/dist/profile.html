@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profile</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100">
+
+    <div class="flex h-screen">
+        <!-- Sidebar -->
+        <div class="w-64 bg-gray-800 text-white p-5">
+            <h2 class="text-2xl font-bold mb-6">Admin Panel</h2>
+            <ul>
+                <li class="mb-4"><a href="index.html" class="block py-2 px-3 hover:bg-gray-700 rounded">Dashboard</a></li>
+                <li class="mb-4"><a href="profile.html" class="block py-2 px-3 bg-gray-700 rounded">User Profile</a></li>
+                <li class="mb-4"><a href="settings.html" class="block py-2 px-3 hover:bg-gray-700 rounded">Settings</a></li>
+            </ul>
+        </div>
+
+        <!-- Main Content -->
+        <div class="flex-1 p-6">
+            <h1 class="text-3xl font-semibold mb-6">User Profile</h1>
+
+            <div class="bg-white p-6 shadow-md rounded-lg max-w-lg">
+                <div class="text-center mb-4">
+                    <img class="w-24 h-24 rounded-full mx-auto" src="https://via.placeholder.com/100" alt="Profile">
+                </div>
+                <h2 class="text-xl font-bold text-center">John Doe</h2>
+                <p class="text-gray-600 text-center">Administrator</p>
+
+                <div class="mt-4">
+                    <p><strong>Email:</strong> john.doe@example.com</p>
+                    <p><strong>Phone:</strong> +123 456 7890</p>
+                    <p><strong>Location:</strong> New York, USA</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
