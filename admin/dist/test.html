@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Panel Table</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 p-6">
+    <div class="container mx-auto">
+        <h2 class="text-2xl font-semibold mb-4">User Management</h2>
+
+        <!-- Search Bar -->
+        <div class="mb-4 flex justify-between items-center">
+            <input id="searchInput" type="text" placeholder="Search users..." class="px-4 py-2 border rounded-md w-64">
+        </div>
+
+        <!-- Table -->
+        <div class="overflow-x-auto bg-white shadow-md rounded-lg">
+            <table class="w-full border-collapse">
+                <!-- Table Head -->
+                <thead>
+                    <tr class="bg-gray-800 text-white text-left">
+                        <th class="py-3 px-4">ID</th>
+                        <th class="py-3 px-4">Name</th>
+                        <th class="py-3 px-4">Email</th>
+                        <th class="py-3 px-4">Role</th>
+                        <th class="py-3 px-4">Status</th>
+                        <th class="py-3 px-4 text-center">Actions</th>
+                    </tr>
+                </thead>
+
+                <!-- Table Body -->
+                <tbody id="userTable">
+                    <tr class="border-b hover:bg-gray-100 transition">
+                        <td class="py-3 px-4">1</td>
+                        <td class="py-3 px-4">John Doe</td>
+                        <td class="py-3 px-4">john@example.com</td>
+                        <td class="py-3 px-4">Admin</td>
+                        <td class="py-3 px-4">
+                            <span class="bg-green-200 text-green-700 px-3 py-1 rounded-full text-sm">Active</span>
+                        </td>
+                        <td class="py-3 px-4 text-center">
+                            <button class="text-blue-500 hover:underline mx-1">Edit</button>
+                            <button class="text-red-500 hover:underline mx-1">Delete</button>
+                        </td>
+                    </tr>
+                    <tr class="border-b hover:bg-gray-100 transition">
+                        <td class="py-3 px-4">2</td>
+                        <td class="py-3 px-4">Jane Smith</td>
+                        <td class="py-3 px-4">jane@example.com</td>
+                        <td class="py-3 px-4">User</td>
+                        <td class="py-3 px-4">
+                            <span class="bg-yellow-200 text-yellow-700 px-3 py-1 rounded-full text-sm">Pending</span>
+                        </td>
+                        <td class="py-3 px-4 text-center">
+                            <button class="text-blue-500 hover:underline mx-1">Edit</button>
+                            <button class="text-red-500 hover:underline mx-1">Delete</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- JavaScript for Search Functionality -->
+    <script>
+        document.getElementById("searchInput").addEventListener("keyup", function () {
+            let filter = this.value.toLowerCase();
+            let rows = document.querySelectorAll("#userTable tr");
+
+            rows.forEach(row => {
+                let text = row.textContent.toLowerCase();
+                row.style.display = text.includes(filter) ? "" : "none";
+            });
+        });
+    </script>
+</body>
+</html>

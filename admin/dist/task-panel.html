@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Croponer-Admin-panel</title>
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+      integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+    />
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/alpinejs@3.14.8/dist/cdn.min.js"
+    ></script>
+
+    <link rel="stylesheet" href="./assets/css/style.css?v=1.0" />
+    <link rel="stylesheet" href="./assets/css/coustomCss.css?v=1.0" />
+  </head>
+
+  <body class="bg-[#040c2a] select-none">
+    <div x-data="{ open: true }" class="flex h-screen">
+      <!-- Sidebar -->
+      <div
+        :class="open ? 'w-64' : 'w-14 '"
+        class="bg-[#151a2b] text-white h-full transition-all duration-300 ease-in-out flex flex-col relative"
+      >
+        <!-- Sidebar Header -->
+        <div class="flex items-center justify-between p-4">
+          <img
+            :class="open ? 'opacity-100' : 'opacity-0 w-0 h-0 hidden'"
+            src="#"
+            alt="Croponer Logo"
+            class="w-14 h-10 transition-all duration-300"
+          />
+          <button
+            @click="open = !open"
+            class="p-2 focus:outline-none hover:bg-gray-700 transition"
+          >
+            <i class="fa-solid fa-bars"></i>
+          </button>
+        </div>
+
+        <!-- Sidebar Menu -->
+        <nav class="flex flex-col space-y-2 mt-4 text-lg relative">
+          <a
+            href="#dashboard"
+            class="group flex items-center px-5 py-3 hover:bg-gray-700 transition relative"
+          >
+            <i class="fa-solid fa-house-chimney"></i>
+            <span
+              class="absolute left-14 opacity-0 transition-opacity duration-300"
+              :class="open ? 'opacity-100 delay-100' : 'opacity-0'"
+            >
+              Dashboard
+            </span>
+          </a>
+          <a
+            href="/manage-users"
+            class="group flex items-center px-5 py-3 hover:bg-gray-700 transition relative"
+          >
+            <i class="fa-solid fa-user"></i>
+            <span
+              class="absolute left-14 opacity-0 transition-opacity duration-300"
+              :class="open ? 'opacity-100 delay-100' : 'opacity-0'"
+            >
+              Manage Users
+            </span>
+          </a>
+          <a
+            href="task-panel"
+            class="group flex items-center px-5 py-3 hover:bg-gray-700 transition relative"
+          >
+            <i class="fa-solid fa-list-check"></i>
+            <span
+              class="absolute left-14 opacity-0 transition-opacity duration-300"
+              :class="open ? 'opacity-100 delay-100' : 'opacity-0'"
+            >
+              Task Panel
+            </span>
+          </a>
+          <a
+            href="/admin-panel"
+            class="group flex items-center px-5 py-3 hover:bg-gray-700 transition relative"
+          >
+            <i class="fa-solid fa-user-gear"></i>
+            <span
+              class="absolute left-14 opacity-0 transition-opacity duration-300"
+              :class="open ? 'opacity-100 delay-100' : 'opacity-0'"
+            >
+              Admin Panel
+            </span>
+          </a>
+        </nav>
+      </div>
+
+      <!-- Main Content (Navbar + Page Content) -->
+      <div
+        id="Main-Content"
+        class="flex-1 transition-all duration-300 ease-in-out overflow-y-auto"
+      >
+        <!-- Navbar -->
+        <nav id="navbar" class="bg-[#423d85] w-full h-17 py-3 px-4 lg:px-6">
+          <ul class="flex justify-between items-center text-xl text-gray-100">
+            <li class="text-lg"></li>
+            <li class="flex items-center space-x-2 text-base">
+              <div class="flex items-center space-x-2 cursor-pointer">
+                <img
+                  class="border rounded-full w-10 h-10"
+                  src="./assets/images/person_circle.svg"
+                  alt=""
+                />
+                <p>Hi Admin</p>
+              </div>
+            </li>
+          </ul>
+        </nav>
+
+        <!-- Page Content -->
+        <div>
+          <!-- page header -->
+          <div class="px-4 sm:px-6 lg:px-8">
+            <p class="text-center text-2xl lg:text-2xl text-white p-5">
+            Task-panel
+            </p>
+            
+          </div>
+
+          <!-- Task Table -->
+          <div
+            class="overflow-x-auto bg-slate-400 rounded-lg  mt-10 mx-5 lg:mx-10 shadow-md"
+          >
+            <p class="text-2xl font-semibold my-2 ml-4  text-[#04043b]">
+              Task Panel
+            </p>
+            <table class="w-full border-collapse bg-slate-300 rounded-lg shadow-md">
+              <!-- Table Head -->
+              <thead
+                class="bg-gradient-to-r from-gray-500 to-gray-700 text-white"
+              >
+                <tr>
+                  <th class="py-4 px-6 text-left">Task ID</th>
+                  <th class="py-4 px-6 text-left">Task Name</th>
+                  <th class="py-4 px-6 text-left">Assigned To</th>
+                  <th class="py-4 px-6 text-left">Status</th>
+                  <th class="py-4 px-6 text-left">Due Date</th>
+                </tr>
+              </thead>
+
+              <!-- Table Body -->
+              <tbody class="divide-y divide-gray-300">
+                <tr class=" hover:bg-[#4d4d4d33] transition">
+                  <td class="py-4 px-6 font-medium text-gray-900">001</td>
+                  <td class="py-4 px-6 text-gray-800">Database Optimization</td>
+                  <td class="py-4 px-6 text-gray-800">John Doe</td>
+                  <td class="py-4 px-6">
+                    <span
+                      class="px-3 py-1 rounded-full bg-green-200 text-green-700 text-sm"
+                      >Completed</span
+                    >
+                  </td>
+                  <td class="py-4 px-6 text-gray-800">March 10, 2025</td>
+                </tr>
+              
+              </tbody>
+            </table>
+          </div>
+
+      
+        </div>
+
+
+        <footer class="bg-[#3c3779] select-none mt-20 fixed bottom-0 w-full">
+          <div>
+            <p class="text-center align-middle p-6 text-gray-300">
+              &copy; 2025 Croponer. All rights reserved. Created by
+              <a
+                class="hover:text-blue-500"
+                href="https://amarnath404.web.app"
+                target="_blank"
+                >Amarnath Bera</a
+              >
+            </p>
+          </div>
+        </footer>
+      </div>
+      <!-- page content end here -->
+    </div>
+
+    
+  </body>
+</html>
