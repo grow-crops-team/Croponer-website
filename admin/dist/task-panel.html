@@ -129,37 +129,44 @@
           <!-- page header -->
           <div class="px-4 sm:px-6 lg:px-8">
             <p class="text-center text-2xl lg:text-2xl text-white p-5">
-            Task-panel
+              Task-panel
             </p>
-            
           </div>
 
           <!-- Task Table -->
           <div
-            class="overflow-x-auto bg-slate-400 rounded-lg  mt-10 mx-5 lg:mx-10 shadow-md"
+            class="overflow-x-auto bg-slate-400 rounded-lg mt-10 mx-5 lg:mx-10 shadow-md"
           >
-            <p class="text-2xl font-semibold my-2 ml-4  text-[#04043b]">
+          <div class="flex justify-between items-center my-2">
+            <p class="text-2xl font-semibold  ml-4 text-[#04043b]">
               Task Panel
             </p>
-            <table class="w-full border-collapse bg-slate-300 rounded-lg shadow-md">
+            <button id="taskModalBtn" class="bg-blue-600 text-white px-2 py-1 rounded-lg mx-5">Add task</button>
+          </div>
+            <table
+              class="task-table w-full border-collapse bg-slate-300 rounded-lg shadow-md"
+            >
               <!-- Table Head -->
               <thead
                 class="bg-gradient-to-r from-gray-500 to-gray-700 text-white"
               >
                 <tr>
-                  <th class="py-4 px-6 text-left">Task ID</th>
-                  <th class="py-4 px-6 text-left">Task Name</th>
+                  <th class="py-4 px-6 text-left">Title</th>
+                  <th class="py-4 px-6 text-left">Description</th>
                   <th class="py-4 px-6 text-left">Assigned To</th>
                   <th class="py-4 px-6 text-left">Status</th>
+                  <th class="py-4 px-6 text-left">Priority</th>
                   <th class="py-4 px-6 text-left">Due Date</th>
+                  <th class="py-4 px-6 text-left">Actions</th>
                 </tr>
               </thead>
 
               <!-- Table Body -->
               <tbody class="divide-y divide-gray-300">
-                <tr class=" hover:bg-[#4d4d4d33] transition">
+                <tr class="hover:bg-[#4d4d4d33] transition">
                   <td class="py-4 px-6 font-medium text-gray-900">001</td>
                   <td class="py-4 px-6 text-gray-800">Database Optimization</td>
+                  <td class="py-4 px-6 text-gray-800">John Doe</td>
                   <td class="py-4 px-6 text-gray-800">John Doe</td>
                   <td class="py-4 px-6">
                     <span
@@ -168,15 +175,31 @@
                     >
                   </td>
                   <td class="py-4 px-6 text-gray-800">March 10, 2025</td>
+                  <td class="py-3 px-6">
+                    <button
+                      onclick="updateTask('${task._id}', 'in-progress')"
+                      class="bg-blue-500 hover:bg-blue-600 text-white px-3 py-1 rounded-md"
+                    >
+                      Start
+                    </button>
+                    <button
+                      onclick="updateTask('${task._id}', 'completed')"
+                      class="bg-green-500 hover:bg-green-600 text-white px-3 py-1 rounded-md"
+                    >
+                      Complete
+                    </button>
+                    <button
+                      onclick="deleteTask('${task._id}')"
+                      class="bg-red-500 hover:bg-red-600 text-white px-3 py-1 rounded-md"
+                    >
+                      Delete
+                    </button>
+                  </td>
                 </tr>
-              
               </tbody>
             </table>
           </div>
-
-      
         </div>
-
 
         <footer class="bg-[#3c3779] select-none mt-20 fixed bottom-0 w-full">
           <div>
@@ -195,6 +218,102 @@
       <!-- page content end here -->
     </div>
 
-    
+    <!-- Add task Modal -->
+    <div id="taskModal" class="hidden">
+      <div
+        class="fixed inset-0 flex items-center justify-center bg-[#000000e8]"
+      >
+        <div class="bg-slate-400 rounded-xl shadow-xl w-full max-w-md p-6">
+          <h3 class="text-2xl font-semibold mb-4">Add New Task</h3>
+
+          <form id="taskForm">
+            <div class="mb-4">
+              <label class="block text-lg">Task title</label>
+              <input
+                type="text"
+                id="taskTitle"
+                class="w-full px-3 py-2 border rounded-lg outline-none"
+                required
+              />
+            </div>
+            <div class="mb-4">
+              <label class="block text-lg">Task description</label>
+              <input
+                type="text"
+                id="taskDescription"
+                class="w-full px-3 py-2 border rounded-lg outline-none"
+                required
+              />
+            </div>
+            <div class="mb-4">
+              <label class="block text-lg">Assigned To</label>
+              <input
+                type="text"
+                id="taskAssignedTo"
+                class="w-full px-3 py-2 border rounded-lg outline-none"
+                required
+              />
+            </div>
+            <div class="mb-4">
+              <label class="block text-lg">Status</label>
+              <select
+                id="taskStatus"
+                class="w-full px-3 py-2 border rounded-lg outline-none"
+                required
+              >
+                <option value="Pending">Pending</option>
+                <option value="In Progress">In Progress</option>
+                <option value="Completed">Completed</option>
+              </select>
+            </div>
+            <div class="mb-4">
+              <label class="block text-lg">Due Date</label>
+              <input
+                type="date"
+                id="taskDueDate"
+                class="w-full px-3 py-2 border rounded-lg outline-none"
+                required
+              />
+            </div>
+            <div class="mb-4">
+              <label class="block text-lg">Priority</label>
+              <select
+                id="taskPriority"
+                class="w-full px-3 py-2 border rounded-lg outline-none"
+                required
+              >
+                <option value="Low">Low</option>
+                <option value="Medium">Medium</option>
+                <option value="High">High</option>
+              </select>
+            </div>
+            <div class="flex justify-end">
+              <button
+                type="button"
+                id="cancelButton"
+                class="px-4 py-2 bg-gray-100 rounded mr-2 hover:bg-gray-200"
+              >
+                Cancel
+              </button>
+              <button
+                type="submit"
+                class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700"
+              >
+                Save
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <!-- display message -->
+    <div id="displayError" class="hidden">
+      <div id="displayErrorContent">
+        <p id="message"></p>
+      </div>
+    </div>
+
+    <!-- <script type="module" src="./assets/js/task.js"></script> -->
   </body>
 </html>

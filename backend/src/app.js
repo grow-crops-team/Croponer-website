@@ -27,7 +27,6 @@ import adminStaticRoutes from './routes/admin.static.routes.js'
 app.use("/admin", adminStaticRoutes)
 app.use("/api/v1/admin", adminRoutes)
 app.use("/api/v1/users", userRoutes)
-
 app.use("/", staticRoutes)
 
 

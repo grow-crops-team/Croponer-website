@@ -3,77 +3,98 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>User Panel Table</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Task Management</title>
+    <script defer src="scripts.js"></script>
+   <link rel="stylesheet" href="./assets/css/style.css">
 </head>
-<body class="bg-gray-100 p-6">
-    <div class="container mx-auto">
-        <h2 class="text-2xl font-semibold mb-4">User Management</h2>
+<body>
+    <h2>Task Management</h2>
 
-        <!-- Search Bar -->
-        <div class="mb-4 flex justify-between items-center">
-            <input id="searchInput" type="text" placeholder="Search users..." class="px-4 py-2 border rounded-md w-64">
+    <div id="taskModal" class="">
+        <div
+          class="fixed inset-0 flex items-center justify-center bg-[#000000e8]"
+        >
+          <div class="bg-slate-400 rounded-xl shadow-xl w-full max-w-md p-6">
+            <h3 class="text-2xl font-semibold mb-4">Add New Task</h3>
+            <form id="taskForm">
+              <div class="mb-4">
+                <label class="block text-lg">Task title</label>
+                <input
+                  type="text"
+                  id="taskName"
+                  class="w-full px-3 py-2 border rounded-lg outline-none"
+                  required
+                />
+              </div>
+              <div class="mb-4">
+                <label class="block text-lg">Task description</label>
+                <input
+                  type="text"
+                  id="taskName"
+                  class="w-full px-3 py-2 border rounded-lg outline-none"
+                  required
+                />
+              </div>
+              <div class="mb-4">
+                <label class="block text-lg">Assigned To</label>
+                <input
+                  type="text"
+                  id="taskName"
+                  class="w-full px-3 py-2 border rounded-lg outline-none"
+                  required
+                />
+              </div>
+              <div class="mb-4">
+                <label class="block text-lg">Status</label>
+                <select
+                  id="taskStatus"
+                  class="w-full px-3 py-2 border rounded-lg outline-none"
+                  required
+                >
+                  <option value="Pending">Pending</option>
+                  <option value="In Progress">In Progress</option>
+                  <option value="Completed">Completed</option>
+                </select>
+              </div>
+              <div class="mb-4">
+                <label class="block text-lg">Due Date</label>
+                <input
+                  type="date"
+                  id="taskDueDate"
+                  class="w-full px-3 py-2 border rounded-lg outline-none"
+                  required
+                />
+              </div>
+              <div class="mb-4">
+                <label class="block text-lg">Priority</label>
+                <select
+                  id="taskPriority"
+                  class="w-full px-3 py-2 border rounded-lg outline-none"
+                  required
+                >
+                  <option value="Low">Low</option>
+                  <option value="Medium">Medium</option>
+                  <option value="High">High</option>
+                </select>
+              </div>
+              <div class="flex justify-end">
+                <button
+                  type="button"
+                  id="cancelButton"
+                  class="px-4 py-2 bg-gray-100  rounded mr-2 hover:bg-gray-200"
+                >
+                  Cancel
+                </button>
+                <button
+                  type="submit"
+                  class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700"
+                >
+                  Save
+                </button>
+              </div>
+            </form>
+          </div>
         </div>
-
-        <!-- Table -->
-        <div class="overflow-x-auto bg-white shadow-md rounded-lg">
-            <table class="w-full border-collapse">
-                <!-- Table Head -->
-                <thead>
-                    <tr class="bg-gray-800 text-white text-left">
-                        <th class="py-3 px-4">ID</th>
-                        <th class="py-3 px-4">Name</th>
-                        <th class="py-3 px-4">Email</th>
-                        <th class="py-3 px-4">Role</th>
-                        <th class="py-3 px-4">Status</th>
-                        <th class="py-3 px-4 text-center">Actions</th>
-                    </tr>
-                </thead>
-
-                <!-- Table Body -->
-                <tbody id="userTable">
-                    <tr class="border-b hover:bg-gray-100 transition">
-                        <td class="py-3 px-4">1</td>
-                        <td class="py-3 px-4">John Doe</td>
-                        <td class="py-3 px-4">john@example.com</td>
-                        <td class="py-3 px-4">Admin</td>
-                        <td class="py-3 px-4">
-                            <span class="bg-green-200 text-green-700 px-3 py-1 rounded-full text-sm">Active</span>
-                        </td>
-                        <td class="py-3 px-4 text-center">
-                            <button class="text-blue-500 hover:underline mx-1">Edit</button>
-                            <button class="text-red-500 hover:underline mx-1">Delete</button>
-                        </td>
-                    </tr>
-                    <tr class="border-b hover:bg-gray-100 transition">
-                        <td class="py-3 px-4">2</td>
-                        <td class="py-3 px-4">Jane Smith</td>
-                        <td class="py-3 px-4">jane@example.com</td>
-                        <td class="py-3 px-4">User</td>
-                        <td class="py-3 px-4">
-                            <span class="bg-yellow-200 text-yellow-700 px-3 py-1 rounded-full text-sm">Pending</span>
-                        </td>
-                        <td class="py-3 px-4 text-center">
-                            <button class="text-blue-500 hover:underline mx-1">Edit</button>
-                            <button class="text-red-500 hover:underline mx-1">Delete</button>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-    </div>
-
-    <!-- JavaScript for Search Functionality -->
-    <script>
-        document.getElementById("searchInput").addEventListener("keyup", function () {
-            let filter = this.value.toLowerCase();
-            let rows = document.querySelectorAll("#userTable tr");
-
-            rows.forEach(row => {
-                let text = row.textContent.toLowerCase();
-                row.style.display = text.includes(filter) ? "" : "none";
-            });
-        });
-    </script>
+      </div>
 </body>
 </html>
