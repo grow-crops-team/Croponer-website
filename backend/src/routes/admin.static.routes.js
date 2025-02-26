@@ -8,13 +8,11 @@ const __dirname = path.dirname(__filename)
 const router = Router()
 const staticPath = path.join(__dirname, "../../../admin/dist")
 
-console.log("Admin Static Path:", staticPath) // Debugging line
 
-// Serve static files (CSS, JS, images)
 router.use(express.static(staticPath))
 router.use("/assets", express.static(path.join(staticPath, "assets")))
 
-// Load Admin Dashboard at `/admin`
+
 router.get("/", (req, res) => { 
     res.sendFile(path.join(staticPath, "index.html"), (err) => {
         if (err) {
@@ -23,7 +21,7 @@ router.get("/", (req, res) => {
     })
 })
 
-// Other Admin Pages
+
 router.get("/manage-users", (req, res) => {
     res.sendFile(path.join(staticPath, "manage-user.html"), (err) => {
         if (err) {
@@ -48,9 +46,9 @@ router.get("/admin-panel", (req, res) => {
     })
 })
 
-// Handle 404 Errors for Admin Pages
+
 router.use((req, res, next) => {
-    if (req.originalUrl.startsWith("/api")) return next();  // Let API routes pass
+    if (req.originalUrl.startsWith("/api")) return next();  
     res.status(404).sendFile(path.join(staticPath, "404.html"), (err) => {
         if (err) {
             res.status(500).send("Error loading 404.html");

@@ -20,13 +20,14 @@ app.use(cookieParser())
 //Importing Routes
 import userRoutes from './routes/user.routes.js'
 import staticRoutes from './routes/static.routes.js'
-// import adminRoutes from "./routes/admin.routes.js"
+import adminRoutes from "./routes/admin.routes.js"
 import adminStaticRoutes from './routes/admin.static.routes.js'
 
 //Routes Declaration
-// app.use("/api/v1/admin", adminRoutes)
-app.use("/api/v1/users", userRoutes)
 app.use("/admin", adminStaticRoutes)
+app.use("/api/v1/admin", adminRoutes)
+app.use("/api/v1/users", userRoutes)
+
 app.use("/", staticRoutes)
 
 
