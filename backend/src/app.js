@@ -14,15 +14,22 @@ app.use(cors({
 app.use(express.json({limit:"100kb"}))
 app.use(express.urlencoded({extended:true, limit:"100kb"}))
 app.use(express.static("public"))
+app.use(express.static("dist"))
 app.use(cookieParser())
 
 //Importing Routes
 import userRoutes from './routes/user.routes.js'
 import staticRoutes from './routes/static.routes.js'
+// import adminRoutes from "./routes/admin.routes.js"
+import adminStaticRoutes from './routes/admin.static.routes.js'
 
 //Routes Declaration
+// app.use("/api/v1/admin", adminRoutes)
 app.use("/api/v1/users", userRoutes)
+app.use("/admin", adminStaticRoutes)
 app.use("/", staticRoutes)
+
+
 
 //Error Handler
 app.use(errorHandler)

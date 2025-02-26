@@ -105,6 +105,7 @@ router.use((req, res, next) => {
             res.status(500).send("Error loading 404.html");
         }
     });
+    console.log(req.url)
 });
 
 
