@@ -112,10 +112,11 @@
           <ul class="flex justify-between items-center text-xl text-gray-100">
             <li class="text-lg"></li>
             <li class="flex items-center space-x-2 text-base">
-              <div class="flex items-center space-x-2 cursor-pointer">
+              <p class="px-3 py-1 rounded-2xl text-lg bg-blue-600">login</p>
+              <div class="flex items-center space-x-2 cursor-pointer hidden">
                 <img
-                  class="border rounded-full w-10 h-10"
-                  src="./assets/images/person_circle.svg"
+                  class="border border-blue-600 rounded-full w-10 h-10"
+                  src="./assets/images/icons8-admin-48.png"
                   alt=""
                 />
                 <p>Hi Admin</p>
@@ -186,30 +187,37 @@
 
           <!-- Task Table -->
           <div
-            class="overflow-x-auto bg-slate-400 rounded-lg  mt-10 mx-5 lg:mx-10 shadow-md"
+            class="overflow-x-auto bg-slate-400 rounded-lg mt-10 mx-5 lg:mx-10 shadow-md"
           >
-            <p class="text-2xl font-semibold my-2 ml-4  text-[#04043b]">
+          <div class="flex justify-between items-center my-2">
+            <p class="text-2xl font-semibold  ml-4 text-[#04043b]">
               Task Panel
             </p>
-            <table class="w-full border-collapse bg-slate-300 rounded-lg shadow-md">
+          
+          </div>
+            <table
+              class="task-table w-full border-collapse bg-slate-300 rounded-lg shadow-md"
+            >
               <!-- Table Head -->
               <thead
                 class="bg-gradient-to-r from-gray-500 to-gray-700 text-white"
               >
                 <tr>
-                  <th class="py-4 px-6 text-left">Task ID</th>
-                  <th class="py-4 px-6 text-left">Task Name</th>
+                  <th class="py-4 px-6 text-left">Title</th>
+                  <th class="py-4 px-6 text-left">Description</th>
                   <th class="py-4 px-6 text-left">Assigned To</th>
                   <th class="py-4 px-6 text-left">Status</th>
+                  <th class="py-4 px-6 text-left">Priority</th>
                   <th class="py-4 px-6 text-left">Due Date</th>
                 </tr>
               </thead>
 
               <!-- Table Body -->
               <tbody class="divide-y divide-gray-300">
-                <tr class=" hover:bg-[#4d4d4d33] transition">
+                <tr class="hover:bg-[#4d4d4d33] transition">
                   <td class="py-4 px-6 font-medium text-gray-900">001</td>
                   <td class="py-4 px-6 text-gray-800">Database Optimization</td>
+                  <td class="py-4 px-6 text-gray-800">John Doe</td>
                   <td class="py-4 px-6 text-gray-800">John Doe</td>
                   <td class="py-4 px-6">
                     <span
@@ -218,8 +226,9 @@
                     >
                   </td>
                   <td class="py-4 px-6 text-gray-800">March 10, 2025</td>
+                  
+                  </td>
                 </tr>
-              
               </tbody>
             </table>
           </div>

@@ -1,5 +1,5 @@
 import { displayMessage } from "./utils.js"
-const openModalBtn = document.querySelector("#openModalBtn")
+const openModalBtn = document.querySelector("#taskModalBtn")
 const taskModal = document.querySelector("#taskModal")
 const closeModalBtn = document.querySelector("#cancelButton")
 
@@ -49,6 +49,9 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 });
 
+closeModalBtn.addEventListener("click", (evt)=>{
+    taskModal.classList.add("hidden")
+})
 
 
 
@@ -87,8 +90,51 @@ async function loadTasks() {
         });
 
     } catch (error) {
-        console.error("Error:", error);
+        console.error("Fetch Error:", error);
         tableBody.innerHTML = "<tr><td colspan='6' class='py-4 px-6 text-center text-red-500'>Failed to load tasks</td></tr>";
+    }
+}
+
+async function updateTask(taskId, status) {
+    try {
+        const response = await fetch(`/api/v1/admin/tasks/${taskId}`, {
+            method: "PUT",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ status })
+        });
+
+        const result = await response.json();
+
+        if (response.ok) {
+            displayMessage("success", result.message);
+            loadTasks(); 
+        } else {
+            displayMessage("error", result.message);
+        }
+    } catch (error) {
+        console.error("Error:", error);
+        displayMessage("error", "Failed to update task");
+    }
+}
+
+
+async function deleteTask(taskId) {
+    if (!confirm("Are you sure you want to delete this task?")) return;
+
+    try {
+        const response = await fetch(`/api/v1/admin/tasks/${taskId}`, { method: "DELETE" });
+
+        const result = await response.json();
+
+        if (response.ok) {
+            displayMessage("success", result.message);
+            document.querySelector(`#task-${taskId}`).remove()
+        } else {
+           displayMessage("error", result.message);
+        }
+    } catch (error) {
+        console.error("Error:", error);
+       displayMessage("error", "Failed to delete task");
     }
 }
 

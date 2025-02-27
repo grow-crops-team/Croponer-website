@@ -36,6 +36,8 @@ const createTask = asyncHandler(async (req, res) => {
  */
 const getTasks = asyncHandler(async (req, res) => {
     const tasks = await Task.find().populate("assignedTo", "username email"); // Populate user details
+    
+    
     if (tasks.length === 0) throw new ApiError(404, "No tasks found");
 
     return res.status(200).json(new ApiResponse(200, tasks, "Tasks fetched successfully!"));
