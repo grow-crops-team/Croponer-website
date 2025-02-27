@@ -22,11 +22,23 @@ const createTask = asyncHandler(async (req, res) => {
         status: "pending",
         priority: priority || "medium",
         assignedTo,
-        createdBy: req.user._id, // The admin who created the task
         dueDate,
     });
 
-    return res.status(201).json(new ApiResponse(201, newTask, "Task created successfully!"));
+    const task = await Task.findById(task._id)
+
+    if (!task) {
+        throw new ApiError(500, "Failed to create task");
+    }
+
+    return res
+    .status(201)
+    .json(
+        new ApiResponse(
+            201, 
+            task, 
+            "Task created successfully!"
+        ));
 });
 
 /**
@@ -35,13 +47,20 @@ const createTask = asyncHandler(async (req, res) => {
  * @access Admin
  */
 const getTasks = asyncHandler(async (req, res) => {
-    const tasks = await Task.find().populate("assignedTo", "username email"); // Populate user details
-    
-    
-    if (tasks.length === 0) throw new ApiError(404, "No tasks found");
+    const tasks = await Task.find()
+    if (tasks.length === 0){
+        throw new ApiError(404, "No tasks found");
+    } 
 
-    return res.status(200).json(new ApiResponse(200, tasks, "Tasks fetched successfully!"));
-});
+    return res
+    .status(200)
+    .json(
+        new ApiResponse(
+            200, 
+            tasks, 
+            "Tasks fetched successfully!"
+        ))
+})
 
 /**
  * @desc Update a task (status, details)

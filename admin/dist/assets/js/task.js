@@ -17,7 +17,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const title = document.querySelector("#taskTitle").value.trim();
         const description = document.querySelector("#taskDescription").value.trim();
         const assignedTo = document.querySelector("#taskAssignedTo").value.trim();
-        const priority = document.querySelector("#taskPriority").value;
+        const priority = document.querySelector("#taskPriority").value.toLowerCase();
         const dueDate = document.querySelector("#taskDueDate").value;
 
         if (!title || !description || !assignedTo) {
@@ -62,6 +62,8 @@ async function loadTasks() {
     try {
         const response = await fetch("/api/v1/admin/tasks");
         const tasks = await response.json();
+        console.log(tasks);
+        
 
         if (!response.ok) {
             tableBody.innerHTML = `<tr><td colspan='6' class='py-4 px-6 text-center text-red-500'>${tasks.message}</td></tr>`;
@@ -70,7 +72,7 @@ async function loadTasks() {
 
         tableBody.innerHTML = ""; // Clear table before inserting new data
 
-        tasks.forEach(task => {
+        tasks.data.forEach(task => {
             const row = document.createElement("tr");
             row.id = `task-${task._id}`;
 

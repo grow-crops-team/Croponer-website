@@ -26,7 +26,8 @@ const generateAccessAndRefreshTokens = async (userId) => {
 
 const adminLogin = asyncHandler(async (req, res) => {
     const { email, username, password } = req.body
-    if (!username || !email) {
+    
+    if (!username && !email) {
         throw new ApiError(400, "Either username or email is required")
     }
 

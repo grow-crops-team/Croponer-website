@@ -11,7 +11,7 @@ async function fetchUser() {
     try {
         const response = await fetch("/api/v1/admin/users")
         const users = await response.json()
-        // console.log(user)
+        // console.log(users)
 
 
         if (users.statuscode === 200) {
@@ -21,7 +21,7 @@ async function fetchUser() {
            
             tableData.innerHTML = ""
 
-            users.forEach((user, i) => {
+           users.data.forEach((user, i) => {
                 const row = document.createElement("tr")
                 row.classList.add("hover:bg-[#4d4d4d33]", "transition-all")
                 if (i % 2 === 0) {

@@ -1,7 +1,10 @@
+
 //--------------------- Toggle Eye Button-----------------
 function showPassword(showPassWordBtn, password) {
     if (showPassWordBtn && password) {
         showPassWordBtn.addEventListener("click", (evt) => {
+            console.log("clicked");
+            
             const type = password.getAttribute("type") === "password" ? "text" : "password"
             password.setAttribute("type", type)
     
@@ -18,9 +21,12 @@ function displayMessage(type, message) {
     if (displayError && messageElement) {
         messageElement.textContent = message;
         displayError.classList.remove("hidden");
+        setTimeout(() => {
+            displayError.classList.add("hidden");
+        }, 5000);
     } else {
         console.error("Message elements not found!");
-        displayError.classList.add("hidden");
+        
     }
 }
 

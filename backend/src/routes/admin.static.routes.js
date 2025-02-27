@@ -46,6 +46,15 @@ router.get("/admin-panel", (req, res) => {
     })
 })
 
+router.get("/register-admin", (req, res) => {
+    res.sendFile(path.join(staticPath, "admin-register.html"), (err) => {
+        if (err) {
+            res.status(500).send("Error loading admin-register.html")
+        }
+    })
+})
+
+
 
 router.use((req, res, next) => {
     if (req.originalUrl.startsWith("/api")) return next();  

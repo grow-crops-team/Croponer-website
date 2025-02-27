@@ -112,8 +112,8 @@
           <ul class="flex justify-between items-center text-xl text-gray-100">
             <li class="text-lg"></li>
             <li class="flex items-center space-x-2 text-base">
-              <p class="px-3 py-1 rounded-2xl text-lg bg-blue-600">login</p>
-              <div class="hidden">
+              <p id="adminLogin" class="px-3 py-1 rounded-2xl text-lg bg-blue-600 cursor-pointer hover:bg-blue-700">login</p>
+              <div id="adminProfile" class="hidden">
               <div class="flex items-center space-x-2 cursor-pointer">
                 <img
                   class="border border-blue-600 rounded-full w-10 h-10"
@@ -279,7 +279,6 @@
                     />
                   </td>
                 </tr>
-                
               </tbody>
             </table>
           </div>
@@ -312,7 +311,7 @@
 
     <!-- loader -->
 
-    <div id="loader" class="">
+    <div id="loader" class="hidden">
       <div class="spinner">
         <svg viewBox="25 25 50 50">
           <circle cx="50" cy="50" r="20"></circle>
@@ -320,19 +319,20 @@
       </div>
     </div>
 
+    <!-- Login Modal -->
     <div id="loginModal" class="hidden">
       <div
         class="fixed inset-0 flex items-center justify-center bg-[#090738cf]"
       >
       <div id="login-form" class=" text-center border-2 border-[#529ce7] rounded-lg py-14 px-5">
         <p class="text-white text-2xl">Login portal</p>
-        <form action="loginForm" id="loginForm" class="loginForm mt-8 lg:mt-9">
+        <form action="loginForm" id="adminLoginForm" class="loginForm mt-8 lg:mt-9">
           <div class="userName relative">
             <input
-              id="username"
+              id="identifier"
               type="text"
-              name="username"
-              placeholder="Username"
+              name="identifier"
+              placeholder="Username / Email"
               required
               class="border-b-2 border-[#529ce7] w-[300px] px-1 text-[17px] text-[#ffffff] placeholder:text-[#ffffff] focus:outline-none bg-transparent caret-[#ffffff] select-text"
             /><span
@@ -360,7 +360,7 @@
           </div>
           <button
             type="button"
-            id="cancelbtn"
+            id="cancelBtn"
             class="mt-7 lg:mt-11 rounded-md w-20  bg-gray-300 h-11 text-lg font-semibold hover:bg-gray-400  cursor-pointer"
           >
             Cancel
@@ -379,5 +379,6 @@
 
 
     <script type="module" src="./assets/js/user-data.js"></script>
+    <script type="module" src="./assets/js/admin-login.js"></script>
   </body>
 </html>

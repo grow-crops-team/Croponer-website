@@ -24,13 +24,7 @@ const taskSchema = new mongoose.Schema(
       default: "medium",
     },
     assignedTo: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "Admin", // Reference to the User model (Admin assigning the task)
-      required: true,
-    },
-    createdBy: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "Admin", // The admin who created the task
+      type:String,
       required: true,
     },
     dueDate: {
