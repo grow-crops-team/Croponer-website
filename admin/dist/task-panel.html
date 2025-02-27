@@ -219,6 +219,93 @@
     </div>
 
     <!-- Add task Modal -->
+    <div id="editTaskModal" class="hidden">
+      <div
+        class="fixed inset-0 flex items-center justify-center bg-[#000000e8]"
+      >
+        <div class="bg-slate-400 rounded-xl shadow-xl w-full max-w-md p-6">
+          <h3 class="text-2xl font-semibold mb-4">Add New Task</h3>
+
+          <form id="editTaskForm">
+            <div class="mb-4">
+              <label class="block text-lg">Task title</label>
+              <input
+                type="text"
+                id="taskTitle"
+                class="w-full px-3 py-2 border rounded-lg outline-none"
+                required
+              />
+            </div>
+            <div class="mb-4">
+              <label class="block text-lg">Task description</label>
+              <input
+                type="text"
+                id="taskDescription"
+                class="w-full px-3 py-2 border rounded-lg outline-none"
+                required
+              />
+            </div>
+            <div class="mb-4">
+              <label class="block text-lg">Assigned To</label>
+              <input
+                type="text"
+                id="taskAssignedTo"
+                class="w-full px-3 py-2 border rounded-lg outline-none"
+                required
+              />
+            </div>
+            <div class="mb-4">
+              <label class="block text-lg">Status</label>
+              <select
+                id="taskStatus"
+                class="w-full px-3 py-2 border rounded-lg outline-none"
+                required
+              >
+                <option value="Pending">Pending</option>
+                <option value="In-Progress">In-Progress</option>
+                <option value="Completed">Completed</option>
+              </select>
+            </div>
+            <div class="mb-4">
+              <label class="block text-lg">Due Date</label>
+              <input
+                type="date"
+                id="taskDueDate"
+                class="w-full px-3 py-2 border rounded-lg outline-none"
+                required
+              />
+            </div>
+            <div class="mb-4">
+              <label class="block text-lg">Priority</label>
+              <select
+                id="taskPriority"
+                class="w-full px-3 py-2 border rounded-lg outline-none"
+                required
+              >
+                <option value="Low">Low</option>
+                <option value="Medium">Medium</option>
+                <option value="High">High</option>
+              </select>
+            </div>
+            <div class="flex justify-end">
+              <button
+                type="button"
+                id="cancelButton"
+                class="px-4 py-2 bg-gray-100 rounded mr-2 hover:bg-gray-200"
+              >
+                Cancel
+              </button>
+              <button
+                type="submit"
+                class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700"
+              >
+                Save
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
     <div id="taskModal" class="hidden">
       <div
         class="fixed inset-0 flex items-center justify-center bg-[#000000e8]"
@@ -261,9 +348,9 @@
                 class="w-full px-3 py-2 border rounded-lg outline-none"
                 required
               >
-                <option value="Pending">Pending</option>
-                <option value="In Progress">In Progress</option>
-                <option value="Completed">Completed</option>
+                <option value="pending">Pending</option>
+                <option value="in-progress">In-Progress</option>
+                <option value="completed">Completed</option>
               </select>
             </div>
             <div class="mb-4">
@@ -282,9 +369,9 @@
                 class="w-full px-3 py-2 border rounded-lg outline-none"
                 required
               >
-                <option value="Low">Low</option>
-                <option value="Medium">Medium</option>
-                <option value="High">High</option>
+                <option value="low">Low</option>
+                <option value="medium">Medium</option>
+                <option value="high">High</option>
               </select>
             </div>
             <div class="flex justify-end">

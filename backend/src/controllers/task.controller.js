@@ -25,7 +25,7 @@ const createTask = asyncHandler(async (req, res) => {
         dueDate,
     });
 
-    const task = await Task.findById(task._id)
+    const task = await Task.findById(newTask._id)
 
     if (!task) {
         throw new ApiError(500, "Failed to create task");
@@ -69,7 +69,7 @@ const getTasks = asyncHandler(async (req, res) => {
  */
 const updateTask = asyncHandler(async (req, res) => {
     const { id } = req.params;
-    const { title, description, status, priority, dueDate } = req.body;
+    const { title, description,assignedTo, status, priority, dueDate } = req.body;
 
     if (!mongoose.Types.ObjectId.isValid(id)) {
         throw new ApiError(400, "Invalid task ID");
@@ -77,7 +77,16 @@ const updateTask = asyncHandler(async (req, res) => {
 
     const updatedTask = await Task.findByIdAndUpdate(
         id,
-        { title, description, status, priority, dueDate },
+        { 
+            $set: {
+                title,
+                description,
+                assignedTo,
+                status,
+                priority,
+                dueDate
+            }
+        },
         { new: true, runValidators: true }
     );
 

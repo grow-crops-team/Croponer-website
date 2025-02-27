@@ -20,7 +20,7 @@ router.route("/delete-user/:id").delete(verifyJWT, deleteUser)
 //task routes
 
 router.route("/tasks").post(createTask).get(getTasks)
-router.route("/tasks/:id").put(updateTask).delete(deleteTask)
+router.route("/update-tasks/:id").patch(updateTask).delete(deleteTask)
   
 
 

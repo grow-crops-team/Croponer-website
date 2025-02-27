@@ -17,6 +17,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const title = document.querySelector("#taskTitle").value.trim();
         const description = document.querySelector("#taskDescription").value.trim();
         const assignedTo = document.querySelector("#taskAssignedTo").value.trim();
+        const status = document.querySelector("#taskStatus").value.toLowerCase();
         const priority = document.querySelector("#taskPriority").value.toLowerCase();
         const dueDate = document.querySelector("#taskDueDate").value;
 
@@ -29,7 +30,7 @@ document.addEventListener("DOMContentLoaded", () => {
             const response = await fetch("/api/v1/admin/tasks", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ title, description, assignedTo, priority, dueDate })
+                body: JSON.stringify({ title, description, assignedTo, status,priority, dueDate })
             });
 
             const result = await response.json();
@@ -62,7 +63,9 @@ async function loadTasks() {
     try {
         const response = await fetch("/api/v1/admin/tasks");
         const tasks = await response.json();
-        console.log(tasks);
+        // console.log(tasks);
+        
+        
         
 
         if (!response.ok) {
@@ -70,22 +73,60 @@ async function loadTasks() {
             return;
         }
 
-        tableBody.innerHTML = ""; // Clear table before inserting new data
+        tableBody.innerHTML = ""; 
 
         tasks.data.forEach(task => {
             const row = document.createElement("tr");
             row.id = `task-${task._id}`;
 
+           
+            let statusColor;
+            switch (task.status.toLowerCase()) {
+                case "pending":
+                    statusColor = "bg-yellow-200 text-yellow-800";
+                    break;
+                case "in-progress":
+                    statusColor = "bg-blue-200 text-blue-800";
+                    break;
+                case "completed":
+                    statusColor = "bg-green-200 text-green-800";
+                    break;
+                default:
+                    statusColor = "bg-gray-400";
+            }
+
+            // **Apply Priority Colors**
+            let priorityColor;
+            switch (task.priority.toLowerCase()) {
+                case "low":
+                    priorityColor = "bg-green-200 text-green-800";
+                    break;
+                case "medium":
+                    priorityColor = "bg-orange-200 text-orange-800";
+                    break;
+                case "high":
+                    priorityColor = "bg-red-200 text-red-800";
+                    break;
+                default:
+                    priorityColor = "bg-gray-300";
+            }
+
             row.innerHTML = `
                 <td class="py-3 px-6 font-medium text-gray-900">${task.title}</td>
                 <td class="py-3 px-6 text-gray-800">${task.description}</td>
-                <td class="py-3 px-6 text-gray-800">${task.priority}</td>
-                <td class="py-3 px-6 text-gray-800">${task.status}</td>
+                 <td class="py-3 px-6 text-gray-800">${task.assignedTo}</td>
+                <td class="py-3 px-6 text-gray-800">
+                    <span class="px-3 py-1 rounded-full ${statusColor}">${task.status}</span>
+                </td>
+                <td class="py-3 px-6 text-gray-800">
+                    <span class="px-3 py-1 rounded ${priorityColor}">${task.priority}</span>
+                </td>
                 <td class="py-3 px-6 text-gray-800">${task.dueDate ? new Date(task.dueDate).toLocaleDateString() : "No Due Date"}</td>
-                <td class="py-3 px-6">
-                    <button onclick="updateTask('${task._id}', 'in-progress')" class="bg-blue-500 hover:bg-blue-600 text-white px-3 py-1 rounded-md">Start</button>
-                    <button onclick="updateTask('${task._id}', 'completed')" class="bg-green-500 hover:bg-green-600 text-white px-3 py-1 rounded-md">Complete</button>
-                    <button onclick="deleteTask('${task._id}')" class="bg-red-500 hover:bg-red-600 text-white px-3 py-1 rounded-md">Delete</button>
+                 <td class="py-3 px-6">
+                    <button onclick="openEditTaskModal( '${task._id}', '${task.title}', '${task.description}','${task.assignedTo}',  '${task.status}','${task.priority}', '${task.dueDate}')" 
+                        class="bg-yellow-500 hover:bg-yellow-600 text-white px-3 py-1 rounded-md">Edit</button>
+                    <button onclick="deleteTask('${task._id}')" 
+                        class="bg-red-600 hover:bg-red-700 text-white px-3 py-1 rounded-md mt-2">Delete</button>
                 </td>
             `;
             tableBody.appendChild(row);
@@ -97,48 +138,90 @@ async function loadTasks() {
     }
 }
 
-async function updateTask(taskId, status) {
+// Open Edit Task Modal and Populate Fields
+window.openEditTaskModal= async function( id,title, description, assignedTo, status, priority, dueDate) {
+   
+    taskModal.dataset.taskId = id; 
+    document.querySelector("#taskTitle").value = title;
+    document.querySelector("#taskDescription").value = description;
+    document.querySelector("#taskAssignedTo").value = assignedTo;
+    document.querySelector("#taskStatus").value = status;
+    document.querySelector("#taskPriority").value = priority;
+    document.querySelector("#taskDueDate").value = dueDate ? new Date(dueDate).toISOString().split("T")[0] : "";
+
+    document.querySelector("#editTaskModal").classList.remove("hidden");
+}
+
+
+document.querySelector("#cancelButton").addEventListener("click", () => {
+    document.querySelector("#editTaskModal").classList.add("hidden");
+});
+
+
+document.querySelector("#editTaskForm").addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const taskId = taskModal.dataset.taskId; 
+    // console.log(taskId);
+    
+    const updatedTask = {
+        title: document.querySelector("#taskTitle").value.trim(),
+        description: document.querySelector("#taskDescription").value.trim(),
+        assignedTo: document.querySelector("#taskAssignedTo").value.trim(),
+        priority: document.querySelector("#taskPriority").value.toLowerCase(),
+        status: document.querySelector("#taskStatus").value.toLowerCase(),
+        dueDate: document.querySelector("#taskDueDate").value || null
+    };
+
     try {
-        const response = await fetch(`/api/v1/admin/tasks/${taskId}`, {
-            method: "PUT",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ status })
+        const response = await fetch(`/api/v1/admin/update-tasks/${taskId}`, {
+            method: "PATCH",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(updatedTask)
         });
 
         const result = await response.json();
+console.log("update result : ",result);
 
         if (response.ok) {
             displayMessage("success", result.message);
-            loadTasks(); 
+            document.querySelector("#editTaskModal").classList.add("hidden");
+            loadTasks(); // Refresh the table
+            
         } else {
             displayMessage("error", result.message);
         }
     } catch (error) {
         console.error("Error:", error);
-        displayMessage("error", "Failed to update task");
+        displayMessage("error", "Failed to update task.");
     }
-}
+});
 
 
-async function deleteTask(taskId) {
+window.deleteTask = async function (taskId) {
     if (!confirm("Are you sure you want to delete this task?")) return;
 
     try {
-        const response = await fetch(`/api/v1/admin/tasks/${taskId}`, { method: "DELETE" });
+        const response = await fetch(`/api/v1/admin/update-tasks/${taskId}`, { 
+            method: "DELETE",
+        });
 
         const result = await response.json();
+        // console.log("Delete Response:", result); 
 
         if (response.ok) {
             displayMessage("success", result.message);
-            document.querySelector(`#task-${taskId}`).remove()
+            document.querySelector(`#task-${taskId}`).remove();
         } else {
-           displayMessage("error", result.message);
+            displayMessage("error", result.message);
         }
     } catch (error) {
         console.error("Error:", error);
-       displayMessage("error", "Failed to delete task");
+        displayMessage("error", "Failed to delete task");
     }
-}
+};
+
 
 
 
