@@ -11,10 +11,12 @@ async function fetchUser() {
     try {
         const response = await fetch("/api/v1/admin/users")
         const users = await response.json()
-        // console.log(users)
+        console.log(users)
 
 
         if (users.statuscode === 200) {
+
+          
 
             tableData.innerHTML = `<tr><td colspan='6' class='py-4 px-6 text-center text-red-500'>${users.message}</td></tr>`
 
@@ -57,3 +59,4 @@ async function fetchUser() {
     }
 }
 
+console.log(localStorage.getItem("username"));

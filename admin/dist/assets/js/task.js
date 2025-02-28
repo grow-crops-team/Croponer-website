@@ -2,6 +2,7 @@ import { displayMessage } from "./utils.js"
 const openModalBtn = document.querySelector("#taskModalBtn")
 const taskModal = document.querySelector("#taskModal")
 const closeModalBtn = document.querySelector("#cancelButton")
+const editTaskModal = document.querySelector("#editTaskModal")
 
 openModalBtn.addEventListener("click", (evt)=>{
     taskModal.classList.remove("hidden")
@@ -22,7 +23,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const dueDate = document.querySelector("#taskDueDate").value;
 
         if (!title || !description || !assignedTo) {
-            alert("Title, description, and assigned admin are required!");
+            displayMessage("error","Title, description, and assigned admin are required!");
             return;
         }
 
@@ -71,8 +72,8 @@ async function loadTasks() {
         if (!response.ok) {
             tableBody.innerHTML = `<tr><td colspan='6' class='py-4 px-6 text-center text-red-500'>${tasks.message}</td></tr>`;
             return;
+            
         }
-
         tableBody.innerHTML = ""; 
 
         tasks.data.forEach(task => {
@@ -142,12 +143,12 @@ async function loadTasks() {
 window.openEditTaskModal= async function( id,title, description, assignedTo, status, priority, dueDate) {
    
     taskModal.dataset.taskId = id; 
-    document.querySelector("#taskTitle").value = title;
-    document.querySelector("#taskDescription").value = description;
-    document.querySelector("#taskAssignedTo").value = assignedTo;
-    document.querySelector("#taskStatus").value = status;
-    document.querySelector("#taskPriority").value = priority;
-    document.querySelector("#taskDueDate").value = dueDate ? new Date(dueDate).toISOString().split("T")[0] : "";
+    document.querySelector("#editTaskTitle").value = title;
+    document.querySelector("#editTaskDescription").value = description;
+    document.querySelector("#editTaskAssignedTo").value = assignedTo;
+    document.querySelector("#editTaskStatus").value = status;
+    document.querySelector("#editTaskPriority").value = priority;
+    document.querySelector("#editTaskDueDate").value = dueDate ? new Date(dueDate).toISOString().split("T")[0] : "";
 
     document.querySelector("#editTaskModal").classList.remove("hidden");
 }
@@ -164,12 +165,12 @@ document.querySelector("#editTaskForm").addEventListener("submit", async (e) => 
     // console.log(taskId);
     
     const updatedTask = {
-        title: document.querySelector("#taskTitle").value.trim(),
-        description: document.querySelector("#taskDescription").value.trim(),
-        assignedTo: document.querySelector("#taskAssignedTo").value.trim(),
-        priority: document.querySelector("#taskPriority").value.toLowerCase(),
-        status: document.querySelector("#taskStatus").value.toLowerCase(),
-        dueDate: document.querySelector("#taskDueDate").value || null
+        title: document.querySelector("#editTaskTitle").value.trim(),
+        description: document.querySelector("#editTaskDescription").value.trim(),
+        assignedTo: document.querySelector("#editTaskAssignedTo").value.trim(),
+        status: document.querySelector("#editTaskStatus").value.toLowerCase(),
+        priority: document.querySelector("#editTaskPriority").value.toLowerCase(),
+        dueDate: document.querySelector("#editTaskDueDate").value || null
     };
 
     try {
