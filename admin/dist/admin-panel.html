@@ -112,13 +112,32 @@
           <ul class="flex justify-between items-center text-xl text-gray-100">
             <li class="text-lg"></li>
             <li class="flex items-center space-x-2 text-base">
-              <div class="flex items-center space-x-2 cursor-pointer">
-                <img
-                  class="border rounded-full w-10 h-10"
-                  src="./assets/images/person_circle.svg"
-                  alt=""
-                />
-                <p>Hi Admin</p>
+              <p
+                id="adminLogin"
+                class="px-3 py-1 rounded-2xl text-lg bg-blue-600 cursor-pointer hover:bg-blue-700 "
+              >
+                login
+              </p>
+              <div id="adminProfile" class="hidden">
+                <div class="flex items-center space-x-2 cursor-pointer text-lg relative">
+                  <img
+                    class="border border-blue-600 rounded-full w-10 h-10"
+                    src="./assets/images/icons8-admin-48.png"
+                    alt=""
+                  />
+                  <p class="border-b-2 border-transparent hover:border-b-2 hover:border-b-blue-700">Hi <span class="">Admin</span></p>
+                </div>
+                <!-- Profile modal -->
+                <div
+                  id="adminProfileModal"
+                  class="absolute z-10 top-14 right-10 bg-[#100979] text-white px-2 p-1 rounded-lg hidden"
+                >
+                  <p
+                    class="logout border-b-2 border-transparent hover:border-b-2 hover:border-b-blue-700 cursor-pointer "
+                  >
+                    Logout
+                  </p>
+                </div>
               </div>
             </li>
           </ul>

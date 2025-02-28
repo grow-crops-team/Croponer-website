@@ -1,5 +1,5 @@
 import { Router } from "express"
-import {adminLogin,registerAdmin, getAdmin, updateAdmin, getUser,createUser,deleteUser } from "../controllers/admin.controller.js"
+import {adminLogin,registerAdmin,logoutAdmin,refreshAccessToken, getAdmin, updateAdmin, getUser,createUser,deleteUser } from "../controllers/admin.controller.js"
 import {createTask,getTasks,updateTask,deleteTask} from '../controllers/task.controller.js'
 
 import { verifyJWT } from "../middlewares/auth.middleware.js"
@@ -8,6 +8,8 @@ const router = Router()
 // admin control routes
 router.route("/register-admin").post(registerAdmin)
 router.route("/admin-login").post(adminLogin)
+router.route("/admin-logout").post(verifyJWT, logoutAdmin)
+router.route("/refresh-token").post(refreshAccessToken)
 router.route("/update-admin").patch(verifyJWT,updateAdmin)
 router.route("/get-admin").get(verifyJWT,getAdmin)
 

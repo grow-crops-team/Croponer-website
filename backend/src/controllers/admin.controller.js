@@ -117,6 +117,74 @@ const registerAdmin = asyncHandler(async (req, res) => {
             ))
 })
 
+const logoutAdmin = asyncHandler(async (req, res) => {
+    await Admin.findByIdAndUpdate(
+        req.user._id,
+        {
+            $unset: {
+                refreshToken: 1,
+            },
+        },
+        {
+            new: true,
+        }
+    )
+
+    const options = {
+        httpOnly: true,
+        secure: true,
+    }
+
+    return res
+        .status(200)
+        .clearCookie("accessToken", options)
+        .clearCookie("refreshToken", options)
+        .json(new ApiResponse(200, {}, "Logged out successfully !"))
+})
+
+const refreshAccessToken = asyncHandler(async (req, res) => {
+    const incomingRefreshToken =
+        req.cookies.refreshToken || req.body.refreshToken
+    if (!incomingRefreshToken) {
+        throw new ApiError(401, "unauthorize request ")
+    }
+    try {
+        const decodedToken = jwt.verify(
+            incomingRefreshToken,
+            process.env.REFRESH_TOKEN_SECRET
+        );
+
+        const admin = await Admin.findById(decodedToken?._id)
+        if (!admin) {
+            throw new ApiError(401, "Invalid refresh token")
+        }
+        if (incomingRefreshToken !== admin?.refreshToken) {
+            throw new ApiError(401, "Refresh token is expired")
+        }
+
+        const options = {
+            httpOnly: true,
+            secure: true,
+        }
+        const { accessToken, newRefreshToken } = await generateAccessAndRefreshTokens(
+            admin._id
+        )
+
+        return res
+            .status(200)
+            .cookie("accessToken", accessToken, options)
+            .cookie("refreshToken", newRefreshToken, options)
+            .json(
+                new ApiResponse(200, {
+                    accessToken,
+                    refreshToken: newRefreshToken,
+                })
+            )
+    } catch (error) {
+        throw new ApiError(401, error?.message, "Invalid Refresh token")
+
+    }
+})
 
 const getAdmin = asyncHandler(async (req, res) => {
     const admins = await Admin.find()
@@ -214,13 +282,5 @@ const deleteUser = asyncHandler(async (req, res, next) => {
 });
 
 
-
-
-
-
-
-
-
-
-export { adminLogin, registerAdmin, getAdmin, updateAdmin, getUser, createUser, deleteUser }
+export { adminLogin, registerAdmin, logoutAdmin, refreshAccessToken, getAdmin, updateAdmin, getUser, createUser, deleteUser }
 

@@ -112,13 +112,32 @@
           <ul class="flex justify-between items-center text-xl text-gray-100">
             <li class="text-lg"></li>
             <li class="flex items-center space-x-2 text-base">
-              <div class="flex items-center space-x-2 cursor-pointer">
-                <img
-                  class="border rounded-full w-10 h-10"
-                  src="./assets/images/person_circle.svg"
-                  alt=""
-                />
-                <p>Hi Admin</p>
+              <p
+                id="adminLogin"
+                class="px-3 py-1 rounded-2xl text-lg bg-blue-600 cursor-pointer hover:bg-blue-700 "
+              >
+                login
+              </p>
+              <div id="adminProfile" class="hidden">
+                <div class="flex items-center space-x-2 cursor-pointer text-lg relative">
+                  <img
+                    class="border border-blue-600 rounded-full w-10 h-10"
+                    src="./assets/images/icons8-admin-48.png"
+                    alt=""
+                  />
+                  <p class="border-b-2 border-transparent hover:border-b-2 hover:border-b-blue-700">Hi <span class="">Admin</span></p>
+                </div>
+                <!-- Profile modal -->
+                <div
+                  id="adminProfileModal"
+                  class="absolute z-10 top-14 right-10 bg-[#100979] text-white px-2 p-1 rounded-lg hidden"
+                >
+                  <p
+                    class="logout border-b-2 border-transparent hover:border-b-2 hover:border-b-blue-700 cursor-pointer "
+                  >
+                    Logout
+                  </p>
+                </div>
               </div>
             </li>
           </ul>
@@ -218,7 +237,72 @@
       </div>
     </div>
 
+     <!-- Login Modal -->
+     <div id="loginModal" class="hidden">
+      <div
+        class="fixed inset-0 flex items-center justify-center bg-[#090738cf]"
+      >
+        <div
+          id="login-form"
+          class="text-center border-2 border-[#529ce7] rounded-lg py-14 px-5"
+        >
+          <p class="text-white text-2xl">Login portal</p>
+          <form
+            action="loginForm"
+            id="adminLoginForm"
+            class="loginForm mt-8 lg:mt-9"
+          >
+            <div class="userName relative">
+              <input
+                id="identifier"
+                type="text"
+                name="identifier"
+                placeholder="Username / Email"
+                required
+                class="border-b-2 border-[#529ce7] w-[300px] px-1 text-[17px] text-[#ffffff] placeholder:text-[#ffffff] focus:outline-none bg-transparent caret-[#ffffff] select-text"
+              /><span
+                id="userNameError"
+                class="error absolute text-[13px] font-medium text-red-800 left-7 lg:left-3 top-[26px]"
+              ></span>
+            </div>
 
+            <div class="password relative">
+              <input
+                id="password"
+                type="password"
+                name="password"
+                placeholder="Password"
+                required
+                class="border-b-2 border-[#529ce7] w-[300px] px-1 mt-10 text-[17px] text-[#ffffff] placeholder:text-[#ffffff] focus:outline-none bg-transparent caret-[#ffffff]"
+              /><span
+                id="passwordError"
+                class="error absolute text-[13px] font-medium text-red-800 left-7 lg:left-3 top-[66px]"
+              ></span>
+              <i
+                id="showPassword"
+                class="bi bi-eye-slash-fill text-lg text-[#ffffff] absolute lg:right-5 right-9 top-10 cursor-pointer"
+              ></i>
+            </div>
+            <button
+              type="button"
+              id="cancelBtn"
+              class="mt-7 lg:mt-11 rounded-md w-20 bg-gray-300 h-11 text-lg font-semibold hover:bg-gray-400 cursor-pointer"
+            >
+              Cancel
+            </button>
+            <button
+              type="submit"
+              id="loginSubmitbtn"
+              class="mt-7 lg:mt-11 ml-5 rounded-md w-20 bg-blue-600 h-11 text-lg font-semibold hover:bg-blue-700 text-[#e7eaff] cursor-pointer"
+            >
+              Login
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+
+<script type="module" src="./assets/js/admin-login.js"></script>
     <script type="module" src="./assets/js/user-data.js"></script>
   </body>
 </html>

@@ -74,6 +74,10 @@ async function loadTasks() {
             return;
             
         }
+        window.dataStore = {
+            task: []
+        }
+        window.dataStore.task = tasks.data;
         tableBody.innerHTML = ""; 
 
         tasks.data.forEach(task => {
