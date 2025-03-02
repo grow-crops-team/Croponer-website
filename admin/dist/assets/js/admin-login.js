@@ -6,7 +6,7 @@ const adminLoginBtn = document.querySelector("#adminLogin");
 const adminProfile = document.querySelector("#adminProfile");
 const adminProfileModal = document.querySelector("#adminProfileModal");
 const cancelBtn = document.querySelector("#cancelBtn");
-const adminLogoutBtn = document.querySelector("#adminLogoutBtn");
+const adminLogoutBtn = document.querySelector(".logout");
 const adminProfileName = document.querySelector("#adminProfile p span")
 const adminLoginForm = document.querySelector("#adminLoginForm");
 
@@ -36,18 +36,19 @@ adminLoginForm.addEventListener("submit", async (evt) => {
         });
 
         const result = await response.json();
-        // console.log(result);
+        console.log(result);
 
         if (response.ok) {
             displayMessage("success", result.message);
             sessionStorage.setItem("adminLoggedIn", true);
             sessionStorage.setItem("accessToken", result.data.accessToken);
-            sessionStorage.setItem("adminUsername", result.data.user.username)
-            sessionStorage.setItem("role", result.data.user.role)
+            sessionStorage.setItem("adminUsername", result.data.admin.username)
+            sessionStorage.setItem("role", result.data.admin.role)
             setTimeout(() => {
-            // window.location.href = "/admin";
-            }, 3000);
+            window.location.href = "/admin";
             loginModal.classList.add("hidden");
+            }, 3000);
+           
         } else {
             console.log("Login Error:", result.message);
             displayMessage("error", result.message);
@@ -59,7 +60,7 @@ adminLoginForm.addEventListener("submit", async (evt) => {
 });
 
 async function adminLogout() {
-    
+  
     try {
         const response = await fetch("/api/v1/admin/admin-logout", {
             method: "POST",
@@ -87,6 +88,7 @@ async function adminLogout() {
         displayMessage("error", "An error occurred. Please check your connection.");
     }
 }
+
 
 cancelBtn.addEventListener("click", () => {
     loginModal.classList.add("hidden");

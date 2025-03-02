@@ -7,13 +7,13 @@ import ApiResponse from "../utils/ApiResponse.js"
 import jwt from "jsonwebtoken"
 import mongoose from "mongoose"
 
-const generateAccessAndRefreshTokens = async (userId) => {
+const generateAccessAndRefreshTokens = async (adminId) => {
     try {
-        const user = await Admin.findById(userId)
-        const accessToken = user.generateAccessToken()
-        const refreshToken = user.generateRefreshToken()
-        user.refreshToken = refreshToken;
-        await user.save({ validateBeforeSave: false })
+        const admin = await Admin.findById(adminId)
+        const accessToken = admin.generateAccessToken()
+        const refreshToken = admin.generateRefreshToken()
+        admin.refreshToken = refreshToken;
+        await admin.save({ validateBeforeSave: false })
 
         return { accessToken, refreshToken }
     } catch (error) {
@@ -31,24 +31,24 @@ const adminLogin = asyncHandler(async (req, res) => {
         throw new ApiError(400, "Either username or email is required")
     }
 
-    const user = await Admin.findOne({
+    const admin = await Admin.findOne({
         $or: [{ username }, { email }],
     })
 
-    if (!user) {
+    if (!admin) {
         throw new ApiError(404, "User does not exist!! \n Contact Your Admin");
     }
-    const isPasswordValid = await user.isPasswordCorrect(password)
+    const isPasswordValid = await admin.isPasswordCorrect(password)
 
     if (!isPasswordValid) {
         throw new ApiError(401, "Invalid user credentials !! \n Contact Your Admin")
     }
     const { refreshToken, accessToken } = await generateAccessAndRefreshTokens(
-        user._id
+        admin._id
     )
     // console.log(refreshToken, accessToken)
 
-    const loggedInAdmin = await Admin.findById(user._id).select(
+    const loggedInAdmin = await Admin.findById(admin._id).select(
         "-password -refreshToken"
     )
 
@@ -66,7 +66,7 @@ const adminLogin = asyncHandler(async (req, res) => {
             new ApiResponse(
                 200,
                 {
-                    user: loggedInAdmin,
+                    admin: loggedInAdmin,
                     accessToken,
                     refreshToken,
                 },
@@ -93,7 +93,7 @@ const registerAdmin = asyncHandler(async (req, res) => {
         throw new ApiError(409, "Your are  already registered !")
     }
 
-    const user = await Admin.create({
+    const admin = await Admin.create({
         username: username.toLowerCase(),
         email,
         password,
@@ -101,11 +101,11 @@ const registerAdmin = asyncHandler(async (req, res) => {
 
     // console.log("\nUser Details->", user);
 
-    const createdAdmin = await Admin.findById(user._id).select(
+    const createdAdmin = await Admin.findById(admin._id).select(
         "-password -refreshToken"
     );
     if (!createdAdmin) {
-        throw new ApiError(500, "Internal server error: registering the user")
+        throw new ApiError(500, "Internal server error: registering the Admin")
     }
     return res
         .status(201)
@@ -119,7 +119,7 @@ const registerAdmin = asyncHandler(async (req, res) => {
 
 const logoutAdmin = asyncHandler(async (req, res) => {
     await Admin.findByIdAndUpdate(
-        req.user._id,
+        req.admin._id,
         {
             $unset: {
                 refreshToken: 1,
@@ -208,14 +208,14 @@ const updateAdmin = asyncHandler(async (req, res) => {
 
     const updatedData = { username, email,role };
 
-    const user = await Admin.findById(req.user._id);
-    if (!user) {
+    const admin = await Admin.findById(req.admin._id);
+    if (!admin) {
         throw new ApiError(404, "Admin not found");
     }
 
-    // Update user details
+    // Update admin details
     const updatedAdmin = await Admin.findByIdAndUpdate(
-        req.user._id,
+        req.admin._id,
         { $set: updatedData },
         { new: true }
     ).select("-password");
@@ -224,7 +224,7 @@ const updateAdmin = asyncHandler(async (req, res) => {
 })
 
 
-//user Functions
+//User Functions
 const getUser = asyncHandler(async (req, res, next) => {
     const users = await User.find();
 
@@ -244,13 +244,13 @@ const createUser = asyncHandler(async (req, res, next) => {
         throw new ApiError(400, "All fields are required");
     }
 
-    // Check if user already exists
+    // Check if admin already exists
     const existingUser = await User.findOne({ email });
     if (existingUser) {
         throw new ApiError(409, "User with this email already exists");
     }
 
-    // Create new user
+    // Create new admin
     const newUser = await User.create({
         username,
         fullName,

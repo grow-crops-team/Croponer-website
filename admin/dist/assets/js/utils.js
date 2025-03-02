@@ -3,7 +3,7 @@
 function showPassword(showPassWordBtn, password) {
     if (showPassWordBtn && password) {
         showPassWordBtn.addEventListener("click", (evt) => {
-            console.log("clicked");
+            // console.log("clicked");
             
             const type = password.getAttribute("type") === "password" ? "text" : "password"
             password.setAttribute("type", type)
