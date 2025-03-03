@@ -112,30 +112,19 @@
           <ul class="flex justify-between items-center text-xl text-gray-100">
             <li class="text-lg"></li>
             <li class="flex items-center space-x-2 text-base">
-              <p
-                id="adminLogin"
-                class="px-3 py-1 rounded-2xl text-lg bg-blue-600 cursor-pointer hover:bg-blue-700 "
-              >
-                login
-              </p>
-              <div id="adminProfile" class="hidden">
-                <div class="flex items-center space-x-2 cursor-pointer text-lg relative">
+              <div id="adminProfile" class="">
+                <div
+                  class="flex items-center space-x-2 cursor-pointer text-lg relative"
+                >
                   <img
                     class="border border-blue-600 rounded-full w-10 h-10"
                     src="./assets/images/icons8-admin-48.png"
                     alt=""
                   />
-                  <p class="border-b-2 border-transparent hover:border-b-2 hover:border-b-blue-700">Hi <span class="">Admin</span></p>
-                </div>
-                <!-- Profile modal -->
-                <div
-                  id="adminProfileModal"
-                  class="absolute z-10 top-14 right-10 bg-[#100979] text-white px-2 p-1 rounded-lg hidden"
-                >
                   <p
-                    class="logout border-b-2 border-transparent hover:border-b-2 hover:border-b-blue-700 cursor-pointer "
+                    class="border-b-2 border-transparent hover:border-b-2 hover:border-b-blue-700"
                   >
-                    Logout
+                    Hi <span class="">Admin</span>
                   </p>
                 </div>
               </div>
@@ -150,85 +139,44 @@
             <p class="text-center text-2xl lg:text-2xl text-white p-5">
               Welcome to Croponer-Admin-panel
             </p>
-            <div
-              class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 px-4 sm:px-6 lg:px-8 mt-5"
-            >
-              <div
-                class="bg-slate-300 rounded-lg shadow-md p-4 flex items-center"
-              >
-                <i
-                  class="fa-solid fa-users text-2xl bg-blue-500 p-3 rounded-lg text-white"
-                ></i>
-                <div class="ml-3">
-                  <p class="text-gray-600">Visitors</p>
-                  <p class="text-xl font-semibold">1000</p>
-                </div>
-              </div>
-
-              <div
-                class="bg-slate-300 rounded-lg shadow-md p-4 flex items-center"
-              >
-                <i
-                  class="fa-solid fa-users text-2xl bg-green-500 p-3 rounded-lg text-white"
-                ></i>
-                <div class="ml-3">
-                  <p class="text-gray-600">Total Users</p>
-                  <p class="text-xl font-semibold">1000</p>
-                </div>
-              </div>
-
-              <div
-                class="bg-slate-300 rounded-lg shadow-md p-4 flex items-center"
-              >
-                <i
-                  class="fa-solid fa-cart-shopping text-2xl bg-purple-500 p-3 rounded-lg text-white"
-                ></i>
-                <div class="ml-3">
-                  <p class="text-gray-600">Orders</p>
-                  <p class="text-xl font-semibold">1000</p>
-                </div>
-              </div>
-
-              <div
-                class="bg-slate-300 rounded-lg shadow-md p-4 flex items-center"
-              >
-                <i
-                  class="fa-solid fa-users-gear text-2xl bg-blue-400 p-3 rounded-lg text-white"
-                ></i>
-                <div class="ml-3">
-                  <p class="text-gray-600">Admin</p>
-                  <p class="text-xl font-semibold">1000</p>
-                </div>
-              </div>
-            </div>
           </div>
 
-          <!-- Task Table -->
+          <!-- Admin Table -->
           <div
-            class="overflow-x-auto bg-slate-400 rounded-lg  mt-10 mx-5 lg:mx-10 shadow-md"
+            class="overflow-x-auto bg-slate-400 rounded-lg mt-10 mx-5 lg:mx-10 shadow-md"
           >
-            <p class="text-2xl font-semibold my-2 ml-4  text-[#04043b]">
-              Task Panel
-            </p>
-            <table class="w-full border-collapse bg-slate-300 rounded-lg shadow-md">
+            <div class="flex justify-between items-center my-2">
+              <p class="text-2xl font-semibold ml-4 text-[#04043b]">
+                Current Admins
+              </p>
+              <button
+                id="addAdminModalBtn"
+                class="bg-orange-600 hover:bg-orange-500 text-white px-2 py-2 rounded-lg mx-5"
+              >
+                Add Admin
+              </button>
+            </div>
+
+            <table
+              class="task-table w-full border-collapse bg-slate-300 rounded-lg shadow-md"
+            >
               <!-- Table Head -->
               <thead
                 class="bg-gradient-to-r from-gray-500 to-gray-700 text-white"
               >
                 <tr>
-                  <th class="py-4 px-6 text-left">Task ID</th>
-                  <th class="py-4 px-6 text-left">Task Name</th>
-                  <th class="py-4 px-6 text-left">Assigned To</th>
-                  <th class="py-4 px-6 text-left">Status</th>
-                  <th class="py-4 px-6 text-left">Due Date</th>
+                  <th class="py-4 px-6 text-left">Name</th>
+                  <th class="py-4 px-6 text-left">Email</th>
+                  <th class="py-4 px-6 text-left">Username</th>
+                  <th class="py-4 px-6 text-left">Role</th>
+                  <th class="py-4 px-6 text-left">Action</th>
                 </tr>
               </thead>
 
               <!-- Table Body -->
               <tbody class="divide-y divide-gray-300">
-                <tr class=" hover:bg-[#4d4d4d33] transition">
-                  <td class="py-4 px-6 font-medium text-gray-900">001</td>
-                  <td class="py-4 px-6 text-gray-800">Database Optimization</td>
+                <tr class="hover:bg-[#4d4d4d33] transition">
+                  <td class="py-4 px-6 text-gray-800">John Doe</td>
                   <td class="py-4 px-6 text-gray-800">John Doe</td>
                   <td class="py-4 px-6">
                     <span
@@ -237,53 +185,46 @@
                     >
                   </td>
                   <td class="py-4 px-6 text-gray-800">March 10, 2025</td>
-                </tr>
-              
-              </tbody>
-            </table>
-          </div>
-
-          <!-- User Table -->
-          <div
-            class="overflow-x-auto bg-slate-400 rounded-lg  mt-10 mx-5 lg:mx-10 shadow-md"
-          >
-            <p class="text-2xl font-semibold my-2 ml-4 text-[#04043b]">
-              Users Panel
-            </p>
-            <table class="w-full border-collapse bg-slate-300 rounded-lg shadow-md">
-              <!-- Table Head -->
-              <thead
-                class="bg-gradient-to-r from-gray-500 to-gray-700 text-white"
-              >
-                <tr>
-                  <th class="py-4 px-6 text-left">Username</th>
-                  <th class="py-4 px-6 text-left">Name</th>
-                  <th class="py-4 px-6 text-left">Email</th>
-                  <th class="py-4 px-6 text-left">Avatar</th>
-                </tr>
-              </thead>
-
-              <!-- Table Body -->
-              <tbody class="divide-y divide-gray-300">
-                <tr class=" hover:bg-[#4d4d4d33]  transition">
-                  <td class="py-4 px-6 font-medium text-gray-900">john_doe</td>
-                  <td class="py-4 px-6 text-gray-800">John Doe</td>
-                  <td class="py-4 px-6 text-gray-800">john@example.com</td>
-                  <td class="py-4 px-6">
-                    <img
-                      src="avatar.jpg"
-                      class="w-12 h-12 rounded-full border border-gray-400 shadow-md"
-                    />
+                  <td class="py-3 px-6">
+                    <button
+                      onclick="updateTask('${task._id}', 'in-progress')"
+                      class="bg-blue-500 hover:bg-blue-600 text-white px-3 py-1 rounded-md"
+                    >
+                      Start
+                    </button>
+                    <button
+                      onclick="updateTask('${task._id}', 'completed')"
+                      class="bg-green-500 hover:bg-green-600 text-white px-3 py-1 rounded-md"
+                    >
+                      Complete
+                    </button>
+                    <button
+                      onclick="deleteTask('${task._id}')"
+                      class="bg-red-500 hover:bg-red-600 text-white px-3 py-1 rounded-md"
+                    >
+                      Delete
+                    </button>
                   </td>
                 </tr>
-                
               </tbody>
             </table>
           </div>
         </div>
 
 
-        <footer class="bg-[#3c3779] select-none mt-20">
+        <div class="mt-10 ml-20">
+          <button
+          id="addAdminModalBtn"
+          class="cursor-pointer bg-orange-600 hover:bg-orange-500 text-white px-2 py-2 rounded-lg mx-5"
+        >
+           Add Blog page
+        </button>
+        </div>
+
+
+
+
+        <footer class="bg-[#3c3779] w-full fixed bottom-0 select-none mt-20">
           <div>
             <p class="text-center align-middle p-6 text-gray-300">
               &copy; 2025 Croponer. All rights reserved. Created by
@@ -300,6 +241,112 @@
       <!-- page content end here -->
     </div>
 
-    
+    <!-- update Admin Modal -->
+    <div id="editTaskModal" class="hidden">
+      <div
+        class="fixed inset-0 flex items-center justify-center bg-[#000000e8]"
+      >
+        <div class="w-full max-w-md bg-gray-400 rounded-lg shadow-md p-6">
+          <h2 class="text-2xl font-semibold text-center">Update Admins</h2>
+          <form id="adminRegister" class="adminRegister mt-4">
+            <div>
+              <label class="block text-sm font-medium">Username</label>
+              <input
+                type="text"
+                id="username"
+                name="username"
+                class="w-full px-4 py-2 mt-2 border rounded-lg focus:outline-none focus:ring focus:ring-blue-300"
+              />
+            </div>
+            <div>
+              <label class="block text-sm font-medium">Fullname</label>
+              <input
+                type="text"
+                id="fullName"
+                name="fullName"
+                class="w-full px-4 py-2 mt-2 border rounded-lg focus:outline-none focus:ring focus:ring-blue-300"
+              />
+            </div>
+            <div class="mt-4">
+              <label class="block text-sm font-medium">Email Address</label>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                placeholder="example@email.com"
+                class="w-full px-4 py-2 mt-2 border rounded-lg focus:outline-none focus:ring focus:ring-blue-300"
+              />
+            </div>
+
+            <div class="my-4">
+              <label class="block text-sm font-medium">Role</label>
+              <select
+                name="role"
+                id="adminRole"
+                class="w-full px-3 py-2 border rounded-lg outline-none"
+              >
+                <option value="admin">Admin</option>
+                <option value="super-admin">Super Admin</option>
+              </select>
+            </div>
+
+            <div class="flex justify-end">
+              <button
+                type="button"
+                id="cancelButton"
+                class="px-4 py-2 bg-gray-100 rounded mr-2 hover:bg-gray-200"
+              >
+                Cancel
+              </button>
+              <button
+                type="submit"
+                class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700"
+              >
+                Save
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <!-- Admin verification -->
+    <div id="auth" class="hidden">
+      <div
+        class="fixed inset-0 flex flex-col items-center justify-center bg-[#000000e8]"
+      >
+        <video class="w-50" autoplay loop>
+          <source
+            src="./assets/images/Animation - 1740915184181.webm"
+            type="video/mp4"
+          />
+        </video>
+
+        <h1 class="text-white text-4xl">Hello</h1>
+        <p class="text-white text-2xl">Please Login</p>
+        <p class="text-white text-2xl">Or</p>
+        <p class="text-white text-2xl">Contact with your Administrator</p>
+      </div>
+    </div>
+
+    <div id="wrking-modal" class="hidden">
+      <div
+        class="fixed inset-0 flex flex-col items-center justify-center bg-[#000000e8]"
+      >
+        <video  autoplay loop>
+          <source
+            src="./assets/images/Animation - 1740934258557.webm"
+            type="video/mp4"
+          />
+        </video>
+       
+
+        <h1 class="text-white text-4xl">Hello Admin </h1>
+        <p class="text-white text-2xl">Please wait a while </p>
+        <p class="text-white text-2xl">Working is still progressing.....</p>
+      </div>
+    </div>
+
+    <script type="module" src="./assets/js/admin.js"></script>
   </body>
 </html>

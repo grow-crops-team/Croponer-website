@@ -76,9 +76,9 @@ const adminLogin = asyncHandler(async (req, res) => {
 })
 
 const registerAdmin = asyncHandler(async (req, res) => {
-    const { username, email, password } = req.body
+    const { username, fullName, email, password } = req.body
     if (
-        [username, email, password].some((allFields) => {
+        [username, fullName, email, password].some((allFields) => {
             return allFields?.trim() === "";
         })
     ) {
@@ -95,6 +95,7 @@ const registerAdmin = asyncHandler(async (req, res) => {
 
     const admin = await Admin.create({
         username: username.toLowerCase(),
+        fullName: fullName,
         email,
         password,
     })
