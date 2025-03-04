@@ -3,8 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-    <title>Croponer-blog</title>
+    <title>Croponer - Agricultural Blog</title>
 
     <link
       rel="stylesheet"
@@ -41,9 +40,8 @@
     <link rel="stylesheet" href="./assets/css/coustomCss.css?v=1.0" />
   </head>
 
-  <body class="bg-gray-200">
+  <body class="bg-gray-50 font-sans">
     <!------------------------------------- Header------------------------->
-
     <header class="bg-[#080A53] w-full select-none sticky top-0 z-20">
       <nav
         aria-label="Main Navigation"
@@ -186,95 +184,446 @@
       </nav>
     </header>
 
-    <!-- Main Featured Blog -->
-    <section class="container mx-auto px-6 py-12">
-      <div class="bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition">
-        <img
-          src="https://source.unsplash.com/800x400/?farm,nature"
-          alt="Main Blog Image"
-          class="w-full h-64 object-cover rounded"
-        />
-        <h2 class="text-3xl font-bold mt-6">
-          Revolutionizing Agriculture with AI
-        </h2>
-        <p class="text-gray-600 mt-4">
-          Discover how artificial intelligence is transforming farming,
-          improving yields, and making agriculture more sustainable for the
-          future.
+    <!-- Page Header -->
+    <header
+      class="bg-gradient-to-r from-green-600 to-green-800 text-white py-12"
+    >
+      <div class="container mx-auto px-4">
+        <h1 class="text-4xl font-bold">Agricultural Insights</h1>
+        <p class="mt-2 text-lg text-green-100">
+          Latest blogs, articles, and updates from our agricultural experts
         </p>
-        <a href="#" class="text-green-600 font-bold mt-4 inline-block"
-          >Read More →</a
-        >
       </div>
-    </section>
+    </header>
 
-    <!-- Blog Section -->
-    <section class="container mx-auto px-6 pb-12">
-      <div class="grid md:grid-cols-3 gap-6">
+    <!-- Blog Categories -->
+    <div class="container mx-auto px-4 py-6">
+      <div class="flex flex-wrap gap-2 justify-center">
+        <button
+          class="bg-green-600 text-white px-4 py-2 rounded-full text-sm font-medium hover:bg-green-700"
+        >
+          All Topics
+        </button>
+        <button
+          class="bg-gray-200 text-gray-700 px-4 py-2 rounded-full text-sm font-medium hover:bg-gray-300"
+        >
+          Crop Diseases
+        </button>
+        <button
+          class="bg-gray-200 text-gray-700 px-4 py-2 rounded-full text-sm font-medium hover:bg-gray-300"
+        >
+          AI in Agriculture
+        </button>
+        <button
+          class="bg-gray-200 text-gray-700 px-4 py-2 rounded-full text-sm font-medium hover:bg-gray-300"
+        >
+          Farming Tips
+        </button>
+        <button
+          class="bg-gray-200 text-gray-700 px-4 py-2 rounded-full text-sm font-medium hover:bg-gray-300"
+        >
+          Soil Health
+        </button>
+        <button
+          class="bg-gray-200 text-gray-700 px-4 py-2 rounded-full text-sm font-medium hover:bg-gray-300"
+        >
+          Sustainable Farming
+        </button>
+      </div>
+    </div>
+
+    <!-- Search Bar -->
+    <div class="container mx-auto px-4 py-4">
+      <div class="relative max-w-xl mx-auto">
+        <input
+          type="text"
+          placeholder="Search articles..."
+          class="w-full border border-gray-300 rounded-lg py-3 px-4 focus:outline-none focus:ring-2 focus:ring-green-500"
+        />
+        <button
+          class="absolute right-2 top-1/2 transform -translate-y-1/2 bg-green-600 text-white p-2 rounded-lg hover:bg-green-700"
+        >
+          <i class="fas fa-search"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- Featured Blog -->
+    <div class="container mx-auto px-4 py-8">
+      <div class="bg-white rounded-xl shadow-lg overflow-hidden">
+        <div class="md:flex">
+          <div class="md:w-1/2">
+            <img
+              src="/api/placeholder/800/600"
+              alt="Featured blog image"
+              class="h-full w-full object-cover"
+            />
+          </div>
+          <div class="md:w-1/2 p-8">
+            <div class="text-green-600 font-semibold mb-2">FEATURED POST</div>
+            <h2 class="text-3xl font-bold mb-4">
+              How AI is Revolutionizing Disease Detection in Crops
+            </h2>
+            <div class="flex items-center mb-4">
+              <img
+                src="/api/placeholder/64/64"
+                alt="Author"
+                class="w-10 h-10 rounded-full mr-4"
+              />
+              <div>
+                <div class="font-medium">Dr. Sarah Johnson</div>
+                <div class="text-gray-500 text-sm">
+                  June 15, 2023 · 8 min read
+                </div>
+              </div>
+            </div>
+            <p class="text-gray-600 mb-6">
+              The integration of artificial intelligence in agriculture has
+              transformed how farmers identify and combat crop diseases. Early
+              detection through image processing algorithms has shown to
+              increase crop yields by up to 30% in test fields...
+            </p>
+            <a
+              href="#"
+              class="inline-block bg-green-600 hover:bg-green-700 text-white font-medium px-6 py-3 rounded-lg transition duration-300"
+              >Read Full Article</a
+            >
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Blog Grid -->
+    <div class="container mx-auto px-4 py-12">
+      <h2 class="text-2xl font-bold mb-8">Latest Articles</h2>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         <!-- Blog Card 1 -->
         <div
-          class="bg-white p-4 rounded-lg shadow-md hover:shadow-lg transition"
+          class="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition duration-300"
         >
           <img
-            src="https://source.unsplash.com/400x250/?farm,agriculture"
-            alt="Blog Image"
-            class="w-full h-48 object-cover rounded"
+            src="/api/placeholder/400/250"
+            alt="Blog image"
+            class="w-full h-48 object-cover"
           />
-          <h2 class="text-xl font-semibold mt-4">
-            Sustainable Farming Practices
-          </h2>
-          <p class="text-gray-600 mt-2">
-            Learn how modern techniques can enhance productivity...
-          </p>
-          <a href="#" class="text-green-600 font-bold mt-3 block"
-            >Read More →</a
-          >
+          <div class="p-6">
+            <div class="text-green-600 text-sm font-medium mb-1">
+              CROP DISEASES
+            </div>
+            <h3 class="text-xl font-bold mb-2">
+              Identifying and Treating Common Rice Diseases
+            </h3>
+            <p class="text-gray-600 mb-4">
+              Learn how to spot early signs of bacterial leaf blight, rice
+              blast, and other common rice diseases before they spread to your
+              entire crop.
+            </p>
+            <div class="flex items-center justify-between">
+              <div class="flex items-center">
+                <img
+                  src="/api/placeholder/64/64"
+                  alt="Author"
+                  class="w-8 h-8 rounded-full mr-2"
+                />
+                <span class="text-sm text-gray-500">Raj Patel</span>
+              </div>
+              <span class="text-sm text-gray-500">May 28, 2023</span>
+            </div>
+          </div>
         </div>
 
         <!-- Blog Card 2 -->
         <div
-          class="bg-white p-4 rounded-lg shadow-md hover:shadow-lg transition"
+          class="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition duration-300"
         >
           <img
-            src="https://source.unsplash.com/400x250/?crops,farming"
-            alt="Blog Image"
-            class="w-full h-48 object-cover rounded"
+            src="/api/placeholder/400/250"
+            alt="Blog image"
+            class="w-full h-48 object-cover"
           />
-          <h2 class="text-xl font-semibold mt-4">
-            How AI is Transforming Agriculture
-          </h2>
-          <p class="text-gray-600 mt-2">
-            Discover how deep learning is optimizing yield...
-          </p>
-          <a href="#" class="text-green-600 font-bold mt-3 block"
-            >Read More →</a
-          >
+          <div class="p-6">
+            <div class="text-green-600 text-sm font-medium mb-1">
+              FARMING TIPS
+            </div>
+            <h3 class="text-xl font-bold mb-2">
+              Best Practices for Sustainable Wheat Cultivation
+            </h3>
+            <p class="text-gray-600 mb-4">
+              Discover eco-friendly techniques that can help you maximize wheat
+              production while minimizing environmental impact.
+            </p>
+            <div class="flex items-center justify-between">
+              <div class="flex items-center">
+                <img
+                  src="/api/placeholder/64/64"
+                  alt="Author"
+                  class="w-8 h-8 rounded-full mr-2"
+                />
+                <span class="text-sm text-gray-500">Maria Zhang</span>
+              </div>
+              <span class="text-sm text-gray-500">May 17, 2023</span>
+            </div>
+          </div>
         </div>
 
         <!-- Blog Card 3 -->
         <div
-          class="bg-white p-4 rounded-lg shadow-md hover:shadow-lg transition"
+          class="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition duration-300"
         >
           <img
-            src="https://source.unsplash.com/400x250/?harvest,technology"
-            alt="Blog Image"
-            class="w-full h-48 object-cover rounded"
+            src="/api/placeholder/400/250"
+            alt="Blog image"
+            class="w-full h-48 object-cover"
           />
-          <h2 class="text-xl font-semibold mt-4">Best Irrigation Techniques</h2>
-          <p class="text-gray-600 mt-2">
-            Effective water management strategies for your farm...
-          </p>
-          <a href="#" class="text-green-600 font-bold mt-3 block"
-            >Read More →</a
-          >
+          <div class="p-6">
+            <div class="text-green-600 text-sm font-medium mb-1">
+              AI IN AGRICULTURE
+            </div>
+            <h3 class="text-xl font-bold mb-2">
+              Using Drone Imagery for Early Pest Detection
+            </h3>
+            <p class="text-gray-600 mb-4">
+              How combining drone technology with AI image processing can help
+              identify pest infestations weeks before they become visible to the
+              human eye.
+            </p>
+            <div class="flex items-center justify-between">
+              <div class="flex items-center">
+                <img
+                  src="/api/placeholder/64/64"
+                  alt="Author"
+                  class="w-8 h-8 rounded-full mr-2"
+                />
+                <span class="text-sm text-gray-500">Thomas Chen</span>
+              </div>
+              <span class="text-sm text-gray-500">Apr 30, 2023</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Blog Card 4 -->
+        <div
+          class="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition duration-300"
+        >
+          <img
+            src="/api/placeholder/400/250"
+            alt="Blog image"
+            class="w-full h-48 object-cover"
+          />
+          <div class="p-6">
+            <div class="text-green-600 text-sm font-medium mb-1">
+              SOIL HEALTH
+            </div>
+            <h3 class="text-xl font-bold mb-2">
+              Understanding and Improving Your Soil Composition
+            </h3>
+            <p class="text-gray-600 mb-4">
+              The key to successful farming lies beneath your feet. Learn how to
+              analyze and enhance your soil for optimal growth.
+            </p>
+            <div class="flex items-center justify-between">
+              <div class="flex items-center">
+                <img
+                  src="/api/placeholder/64/64"
+                  alt="Author"
+                  class="w-8 h-8 rounded-full mr-2"
+                />
+                <span class="text-sm text-gray-500">Elena Kowalski</span>
+              </div>
+              <span class="text-sm text-gray-500">Apr 22, 2023</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Blog Card 5 -->
+        <div
+          class="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition duration-300"
+        >
+          <img
+            src="/api/placeholder/400/250"
+            alt="Blog image"
+            class="w-full h-48 object-cover"
+          />
+          <div class="p-6">
+            <div class="text-green-600 text-sm font-medium mb-1">
+              SUSTAINABLE FARMING
+            </div>
+            <h3 class="text-xl font-bold mb-2">
+              Water Conservation Techniques for Modern Farming
+            </h3>
+            <p class="text-gray-600 mb-4">
+              As water becomes increasingly scarce, these innovative irrigation
+              methods can help you maintain crop yields while reducing water
+              usage.
+            </p>
+            <div class="flex items-center justify-between">
+              <div class="flex items-center">
+                <img
+                  src="/api/placeholder/64/64"
+                  alt="Author"
+                  class="w-8 h-8 rounded-full mr-2"
+                />
+                <span class="text-sm text-gray-500">David Okonkwo</span>
+              </div>
+              <span class="text-sm text-gray-500">Apr 15, 2023</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Blog Card 6 -->
+        <div
+          class="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition duration-300"
+        >
+          <img
+            src="/api/placeholder/400/250"
+            alt="Blog image"
+            class="w-full h-48 object-cover"
+          />
+          <div class="p-6">
+            <div class="text-green-600 text-sm font-medium mb-1">
+              CROP DISEASES
+            </div>
+            <h3 class="text-xl font-bold mb-2">
+              Fighting Tomato Blight: Prevention and Treatment
+            </h3>
+            <p class="text-gray-600 mb-4">
+              Tomato blight can devastate your crop in days. Learn the warning
+              signs and how to protect your tomatoes from this common disease.
+            </p>
+            <div class="flex items-center justify-between">
+              <div class="flex items-center">
+                <img
+                  src="/api/placeholder/64/64"
+                  alt="Author"
+                  class="w-8 h-8 rounded-full mr-2"
+                />
+                <span class="text-sm text-gray-500">Aisha Mohammed</span>
+              </div>
+              <span class="text-sm text-gray-500">Apr 8, 2023</span>
+            </div>
+          </div>
         </div>
       </div>
 
-      
+      <!-- Pagination -->
+      <div class="flex justify-center mt-12">
+        <div class="inline-flex rounded-md shadow">
+          <a
+            href="#"
+            class="px-4 py-2 text-sm font-medium text-green-600 bg-white border border-gray-300 rounded-l-md hover:bg-gray-100"
+            >Previous</a
+          >
+          <a
+            href="#"
+            class="px-4 py-2 text-sm font-medium text-white bg-green-600 border border-green-600"
+            >1</a
+          >
+          <a
+            href="#"
+            class="px-4 py-2 text-sm font-medium text-green-600 bg-white border border-gray-300 hover:bg-gray-100"
+            >2</a
+          >
+          <a
+            href="#"
+            class="px-4 py-2 text-sm font-medium text-green-600 bg-white border border-gray-300 hover:bg-gray-100"
+            >3</a
+          >
+          <a
+            href="#"
+            class="px-4 py-2 text-sm font-medium text-green-600 bg-white border border-gray-300 hover:bg-gray-100"
+            >4</a
+          >
+          <a
+            href="#"
+            class="px-4 py-2 text-sm font-medium text-green-600 bg-white border border-gray-300 rounded-r-md hover:bg-gray-100"
+            >Next</a
+          >
+        </div>
+      </div>
+    </div>
+
+    <!-- Newsletter -->
+    <section class="bg-green-700 text-white py-12">
+      <div class="container mx-auto px-4 text-center">
+        <h2 class="text-3xl font-bold mb-4">Stay Updated</h2>
+        <p class="mb-6 max-w-2xl mx-auto">
+          Subscribe to our newsletter to receive the latest agricultural
+          insights, tips, and research updates directly to your inbox.
+        </p>
+        <div class="max-w-md mx-auto flex">
+          <input
+            type="email"
+            placeholder="Your email address"
+            class="flex-grow px-4 py-3 rounded-l-lg focus:outline-none text-gray-800"
+          />
+          <button
+            class="bg-green-900 hover:bg-green-800 px-6 py-3 rounded-r-lg font-medium transition duration-300"
+          >
+            Subscribe
+          </button>
+        </div>
+      </div>
     </section>
 
-
     <!-- Footer -->
+    <!-- <footer class="bg-gray-800 text-white py-12">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="text-xl font-bold mb-4">Croponer</h3>
+                    <p class="text-gray-400">Empowering farmers with AI-driven solutions for better crop management and disease detection.</p>
+                    <div class="flex space-x-4 mt-4">
+                        <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Quick Links</h3>
+                    <ul class="space-y-2">
+                        <li><a href="/" class="text-gray-400 hover:text-white">Home</a></li>
+                        <li><a href="/services" class="text-gray-400 hover:text-white">Services</a></li>
+                        <li><a href="/blog" class="text-gray-400 hover:text-white">Blog</a></li>
+                        <li><a href="/research" class="text-gray-400 hover:text-white">Research</a></li>
+                        <li><a href="/contact" class="text-gray-400 hover:text-white">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Resources</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white">Crop Disease Database</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Weather Forecasts</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Farming Guides</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">AI Tools</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Contact Us</h3>
+                    <ul class="space-y-2 text-gray-400">
+                        <li class="flex items-start">
+                            <i class="fas fa-map-marker-alt mt-1 mr-3"></i>
+                            <span>123 Agriculture Way, Tech Valley, 10001</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-phone mr-3"></i>
+                            <span>+1 234 567 8900</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-envelope mr-3"></i>
+                            <span>info@croponer.com</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-gray-700 mt-8 pt-8 text-center text-gray-400">
+                <p>&copy; 2023 Croponer. All rights reserved.</p>
+            </div>
+        </div>
+    </footer> -->
+
+    <!------------------------------------- Footer ------------------------->
     <footer class="bg-[#0b1d40] select-none mt-20">
       <div
         class="flex flex-col lg:flex-row lg:space-x-2 lg:space-y-0 lg:justify-center mx-5 mt-10 lg:pt-8 lg:pb-4 px-5 pt-10 pb-14 space-y-16 text-gray-400 border-b-[1px] border-[#ffffffa7]"

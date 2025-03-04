@@ -1,0 +1,847 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Agricultural Research | Croponer</title>
+
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.0/font/bootstrap-icons.css"
+    />
+    <link rel="stylesheet" href="./assets/css/style.css" />
+  </head>
+
+  <body class="bg-gray-50 ">
+     <!------------------------------------- Header------------------------->
+
+     <header class="bg-[#080A53] w-full select-none sticky top-0 z-20">
+        <nav
+          aria-label="Main Navigation"
+          id="navbar"
+          class="w-full h-14 flex items-center justify-between px-5 lg:px-12 z-10 text-lg"
+        >
+          <!-- logo -->
+          <div class="logo">
+            <img
+              class="w-full h-full select-none"
+              src="#"
+              alt="croponer logo"
+              loading="lazy"
+            />
+          </div>
+          <!-- menu bar -->
+          <div
+            id="menu"
+            class="bg-[#080A53] h-screen w-56 top-[56px] right-[-224px] transition-all duration-500 delay-200 ease-in-out fixed rounded-bl-md z-20 lg:static lg:right-0 lg:block lg:z-0 lg:bg-transparent lg:h-auto lg:w-auto lg:top-auto lg:transition-none lg:delay-0 lg:ease-none lg:rounded-none lg:ml-10"
+          >
+            <ul
+              class="text-gray-300 p-4 ml-6 pl-5 text-lg lg:text-xl space-y-3 lg:space-y-0 lg:flex lg:space-x-6 lg:p-0"
+            >
+              <li
+                class="hover:cursor-pointer hover:text-gray-100 select-none text-lg"
+              >
+                <a href="/about" target="_self">About</a>
+              </li>
+              <li class="hover:cursor-pointer hover:text-gray-100 select-none">
+                <a id="service" href="/blog" target="_self"> Blog </a>
+              </li>
+              <li class="hover:cursor-pointer hover:text-gray-100 select-none">
+                <a href="/research" target="_self">Research</a>
+              </li>
+              <li>
+                <!-- login for mobile screen -->
+                <div id="loginOptionMobile" class="relative lg:hidden">
+                  <div id="loginDropDown" class="cursor-pointer">
+                    <p
+                      id="userProfile"
+                      class="hover:cursor-pointer text-gray-300 hover:text-white"
+                    >
+                      Login/signup
+                    </p>
+                  </div>
+                  <div
+                    id="loginDropDownMenu"
+                    class="absolute hidden z-10 top-[40px] text-center px-5 pb-3 bg-[#05063a] rounded-b-md"
+                  >
+                    <a id="login" href="/login" target="_self">
+                      <p
+                        id="logintext"
+                        class="text-lg text-gray-300 border-b-[3px] border-transparent cursor-pointer hover:border-b-[3px] hover:border-[#4072d5] select-none"
+                      >
+                        login
+                      </p>
+                    </a>
+                    <a id="signup" href="/register" target="_self">
+                      <p
+                        class="text-lg text-gray-300 border-b-[3px] border-transparent cursor-pointer hover:border-b-[3px] hover:border-[#4072d5] select-none"
+                      >
+                        signup
+                      </p>
+                    </a>
+                  </div>
+                </div>
+              </li>
+              <li>
+                <!-- search bar -->
+                <div class="lg:hidden">
+                  <i
+                    id="searchBar"
+                    class="bi bi-search cursor-pointer text-lg text-gray-300"
+                  ></i>
+                </div>
+              </li>
+            </ul>
+          </div>
+  
+          <!--login DropDown for large screen  -->
+          <div id="loginOptionDesktop" class="relative hidden lg:block lg:ml-96">
+            <div id="loginDropDown" class="cursor-pointer">
+              <p
+                id="userProfile"
+                class="hover:cursor-pointer text-gray-300 hover:text-white"
+              >
+                Login/signup
+              </p>
+            </div>
+            <div
+              id="loginDropDownMenu"
+              class="absolute hidden z-10 top-[40px] text-center px-5 pb-3 bg-[#05063a] rounded-b-md"
+            >
+              <a id="login" href="/login" target="_self">
+                <p
+                  id="logintext"
+                  class="text-lg text-gray-300 border-b-[3px] border-transparent cursor-pointer hover:border-b-[3px] hover:border-[#4072d5] select-none"
+                >
+                  login
+                </p>
+              </a>
+              <a id="signup" href="/register" target="_self">
+                <p
+                  class="text-lg text-gray-300 border-b-[3px] border-transparent cursor-pointer hover:border-b-[3px] hover:border-[#4072d5] select-none"
+                >
+                  signup
+                </p>
+              </a>
+            </div>
+          </div>
+  
+          <!-- search bar for large screen -->
+          <div id="searchBar" class="searchOption relative hidden lg:block">
+            <input
+              class="ml-2 w-56 h-10 bg-transparent text-gray-300 border border-gray-500 rounded-md py-1 px-3 focus:border-blue-500 focus:outline-none caret-blue-500 select-text transition duration-200 ease-in-out"
+              type="text"
+              name="search"
+              placeholder="Search"
+            />
+            <i
+              class="bi bi-search text-lg border text-gray-300 border-gray-500 rounded-md py-[6px] px-3 cursor-pointer active:border-blue-500"
+            ></i>
+          </div>
+          <!-- user profile -->
+          <div class="userAvatar hidden ml-24 lg:ml-0">
+            <div
+              id="smallAvatar"
+              class="avatar rounded-full w-8 h-8 lg:w-10 lg:h-10 cursor-pointer"
+              role="button"
+              aria-label="user profile"
+            ></div>
+          </div>
+          <!------------ Menu Bar icon for Small Device----------->
+          <div class="lg:hidden">
+            <i
+              id="menuBar"
+              class="bi bi-list text-3xl cursor-pointer text-gray-300"
+            ></i>
+          </div>
+        </nav>
+      </header>
+
+    <main>
+      <!-- Hero Section -->
+      <div
+        class="bg-gradient-to-r from-blue-700 to-indigo-800 text-white py-24"
+      >
+        <div class="container mx-auto px-4 text-center">
+          <h1 class="text-4xl md:text-5xl font-bold mb-6">
+            Agricultural AI Research
+          </h1>
+          <p class="text-xl md:text-2xl mb-8 max-w-3xl mx-auto">
+            Pioneering breakthrough technologies to revolutionize farming
+            through artificial intelligence and computer vision
+          </p>
+          <div class="flex flex-wrap justify-center gap-4">
+            <a
+              href="#research-areas"
+              class="bg-white text-indigo-800 px-6 py-3 rounded-lg font-semibold hover:bg-gray-100 transition"
+            >
+              Explore Research
+            </a>
+            <a
+              href="#publications"
+              class="bg-transparent border-2 border-white text-white px-6 py-3 rounded-lg font-semibold hover:bg-white/10 transition"
+            >
+              View Publications
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Research Overview -->
+      <div class="container mx-auto px-4 py-16">
+        <div class="max-w-4xl mx-auto">
+          <div class="text-center mb-12">
+            <h2 class="text-3xl font-bold text-gray-800 mb-4">
+              Leading the Future of Agriculture
+            </h2>
+            <p class="text-lg text-gray-600">
+              At Croponer Research Labs, our team of agricultural scientists, AI
+              researchers, and computer vision experts work together to solve
+              the most pressing challenges facing farmers today.
+            </p>
+          </div>
+
+          <div class="bg-white p-8 rounded-lg shadow-lg">
+            <div class="flex flex-col md:flex-row items-center">
+              <div class="md:w-1/2 md:pr-8 mb-6 md:mb-0">
+                <h3 class="text-2xl font-bold text-gray-800 mb-4">
+                  Our Research Mission
+                </h3>
+                <p class="text-gray-600 mb-4">
+                  We're on a mission to make advanced agricultural technology
+                  accessible to all farmers, regardless of farm size or
+                  technical expertise. Through our innovations in AI and machine
+                  learning, we aim to:
+                </p>
+                <ul class="list-disc pl-6 text-gray-600 space-y-2">
+                  <li>Improve early detection of crop diseases and pests</li>
+                  <li>Optimize resource utilization in farming</li>
+                  <li>
+                    Increase crop yields while reducing environmental impact
+                  </li>
+                  <li>Democratize access to agricultural AI technologies</li>
+                  <li>
+                    Build resilient farming systems against climate change
+                  </li>
+                </ul>
+              </div>
+              <div class="md:w-1/2">
+                <img
+                  src="./assets/images/research/ai-lab.jpg"
+                  alt="Croponer Research Lab"
+                  class="rounded-lg w-full h-auto shadow"
+                
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Research Areas -->
+      <div id="research-areas" class="bg-gray-100 py-16">
+        <div class="container mx-auto px-4">
+          <h2 class="text-3xl font-bold text-center text-gray-800 mb-12">
+            Key Research Areas
+          </h2>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <!-- Research Area 1 -->
+            <div
+              class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition duration-300"
+            >
+              <div class="h-48 bg-green-50 flex items-center justify-center">
+                <img
+                  src="./assets/images/research/disease-detection.jpg"
+                  alt="Disease Detection"
+                  class="w-full h-full object-cover"
+                 
+                />
+              </div>
+              <div class="p-6">
+                <h3 class="text-xl font-semibold text-gray-800 mb-3">
+                  Plant Disease Detection
+                </h3>
+                <p class="text-gray-600 mb-4">
+                  Our computer vision algorithms can identify over 50 different
+                  crop diseases with 95% accuracy from a single smartphone
+                  image, enabling early intervention.
+                </p>
+                <div class="flex items-center text-sm text-indigo-600">
+                  <span class="font-semibold">Technologies:</span>
+                  <span class="ml-2 px-2 py-1 bg-indigo-50 rounded"
+                    >Computer Vision</span
+                  >
+                  <span class="ml-2 px-2 py-1 bg-indigo-50 rounded">CNN</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Research Area 2 -->
+            <div
+              class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition duration-300"
+            >
+              <div class="h-48 bg-blue-50 flex items-center justify-center">
+                <img
+                  src="./assets/images/research/yield-prediction.jpg"
+                  alt="Yield Prediction"
+                  class="w-full h-full object-cover"
+                  
+                />
+              </div>
+              <div class="p-6">
+                <h3 class="text-xl font-semibold text-gray-800 mb-3">
+                  Crop Yield Prediction
+                </h3>
+                <p class="text-gray-600 mb-4">
+                  Combining satellite imagery, weather data, and historical
+                  yield information to predict harvest outcomes with
+                  unprecedented accuracy.
+                </p>
+                <div class="flex items-center text-sm text-indigo-600">
+                  <span class="font-semibold">Technologies:</span>
+                  <span class="ml-2 px-2 py-1 bg-indigo-50 rounded">ML</span>
+                  <span class="ml-2 px-2 py-1 bg-indigo-50 rounded"
+                    >Time Series</span
+                  >
+                </div>
+              </div>
+            </div>
+
+            <!-- Research Area 3 -->
+            <div
+              class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition duration-300"
+            >
+              <div class="h-48 bg-yellow-50 flex items-center justify-center">
+                <img
+                  src="./assets/images/research/soil-analysis.jpg"
+                  alt="Soil Analysis"
+                  class="w-full h-full object-cover"
+                 
+                />
+              </div>
+              <div class="p-6">
+                <h3 class="text-xl font-semibold text-gray-800 mb-3">
+                  Intelligent Soil Analysis
+                </h3>
+                <p class="text-gray-600 mb-4">
+                  Developing low-cost sensors and image-based techniques to
+                  analyze soil health and nutrient content without expensive
+                  laboratory testing.
+                </p>
+                <div class="flex items-center text-sm text-indigo-600">
+                  <span class="font-semibold">Technologies:</span>
+                  <span class="ml-2 px-2 py-1 bg-indigo-50 rounded">IoT</span>
+                  <span class="ml-2 px-2 py-1 bg-indigo-50 rounded"
+                    >Spectral Imaging</span
+                  >
+                </div>
+              </div>
+            </div>
+
+            <!-- Research Area 4 -->
+            <div
+              class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition duration-300"
+            >
+              <div class="h-48 bg-red-50 flex items-center justify-center">
+                <img
+                  src="./assets/images/research/drought-resistant.jpg"
+                  alt="Drought Resistant Farming"
+                  class="w-full h-full object-cover"
+                 
+                />
+              </div>
+              <div class="p-6">
+                <h3 class="text-xl font-semibold text-gray-800 mb-3">
+                  Climate-Resilient Farming
+                </h3>
+                <p class="text-gray-600 mb-4">
+                  Researching AI-driven strategies to help farmers adapt to
+                  climate change and extreme weather events through predictive
+                  modeling.
+                </p>
+                <div class="flex items-center text-sm text-indigo-600">
+                  <span class="font-semibold">Technologies:</span>
+                  <span class="ml-2 px-2 py-1 bg-indigo-50 rounded"
+                    >Predictive Models</span
+                  >
+                  <span class="ml-2 px-2 py-1 bg-indigo-50 rounded"
+                    >Climate Data</span
+                  >
+                </div>
+              </div>
+            </div>
+
+            <!-- Research Area 5 -->
+            <div
+              class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition duration-300"
+            >
+              <div class="h-48 bg-purple-50 flex items-center justify-center">
+                <img
+                  src="./assets/images/research/smart-irrigation.jpg"
+                  alt="Smart Irrigation"
+                  class="w-full h-full object-cover"
+                  
+                />
+              </div>
+              <div class="p-6">
+                <h3 class="text-xl font-semibold text-gray-800 mb-3">
+                  Smart Water Management
+                </h3>
+                <p class="text-gray-600 mb-4">
+                  Creating AI systems that optimize irrigation schedules based
+                  on crop type, growth stage, soil moisture, and weather
+                  forecasts.
+                </p>
+                <div class="flex items-center text-sm text-indigo-600">
+                  <span class="font-semibold">Technologies:</span>
+                  <span class="ml-2 px-2 py-1 bg-indigo-50 rounded"
+                    >IoT Sensors</span
+                  >
+                  <span class="ml-2 px-2 py-1 bg-indigo-50 rounded"
+                    >Optimization</span
+                  >
+                </div>
+              </div>
+            </div>
+
+            <!-- Research Area 6 -->
+            <div
+              class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition duration-300"
+            >
+              <div class="h-48 bg-green-50 flex items-center justify-center">
+                <img
+                  src="./assets/images/research/mobile-tech.jpg"
+                  alt="Mobile Technology"
+                  class="w-full h-full object-cover"
+                  
+                />
+              </div>
+              <div class="p-6">
+                <h3 class="text-xl font-semibold text-gray-800 mb-3">
+                  Mobile AI for Rural Farmers
+                </h3>
+                <p class="text-gray-600 mb-4">
+                  Developing lightweight AI models that can run on low-end
+                  smartphones, making technology accessible to farmers in remote
+                  areas.
+                </p>
+                <div class="flex items-center text-sm text-indigo-600">
+                  <span class="font-semibold">Technologies:</span>
+                  <span class="ml-2 px-2 py-1 bg-indigo-50 rounded"
+                    >Model Compression</span
+                  >
+                  <span class="ml-2 px-2 py-1 bg-indigo-50 rounded"
+                    >Edge AI</span
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Research Impact -->
+      <div class="container mx-auto px-4 py-16">
+        <div class="max-w-4xl mx-auto">
+          <h2 class="text-3xl font-bold text-center text-gray-800 mb-12">
+            Research Impact
+          </h2>
+
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+            <!-- Impact Stat 1 -->
+            <div class="bg-white rounded-lg shadow p-6 text-center">
+              <div class="text-4xl font-bold text-green-600 mb-2">95%</div>
+              <div class="text-xl font-semibold text-gray-700 mb-2">
+                Disease Detection Accuracy
+              </div>
+              <p class="text-gray-600">
+                In field testing across diverse crop types and conditions
+              </p>
+            </div>
+
+            <!-- Impact Stat 2 -->
+            <div class="bg-white rounded-lg shadow p-6 text-center">
+              <div class="text-4xl font-bold text-green-600 mb-2">30%</div>
+              <div class="text-xl font-semibold text-gray-700 mb-2">
+                Water Usage Reduction
+              </div>
+              <p class="text-gray-600">
+                Using our smart irrigation technology in pilot farms
+              </p>
+            </div>
+
+            <!-- Impact Stat 3 -->
+            <div class="bg-white rounded-lg shadow p-6 text-center">
+              <div class="text-4xl font-bold text-green-600 mb-2">25,000+</div>
+              <div class="text-xl font-semibold text-gray-700 mb-2">
+                Farmers Supported
+              </div>
+              <p class="text-gray-600">
+                Through our research initiatives and technology deployments
+              </p>
+            </div>
+          </div>
+
+          <div class="bg-indigo-50 p-8 rounded-lg">
+            <h3 class="text-2xl font-bold text-gray-800 mb-4">
+              Our Commitment to Farmers
+            </h3>
+            <p class="text-gray-700 mb-6">
+              Every technology we develop is tested in real-world farming
+              conditions across India. We collaborate directly with small and
+              medium-scale farmers to ensure our solutions address practical
+              challenges and are usable by everyone, regardless of technical
+              background.
+            </p>
+            <div class="flex flex-col md:flex-row gap-6">
+              <img
+                src="./assets/images/research/farmer-training.jpg"
+                alt="Farmer Training"
+                class="rounded-lg w-full md:w-1/2 h-auto"
+               
+              />
+              <img
+                src="./assets/images/research/field-testing.jpg"
+                alt="Field Testing"
+                class="rounded-lg w-full md:w-1/2 h-auto"
+
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Research Team -->
+      <div class="bg-gray-100 py-16">
+        <div class="container mx-auto px-4">
+          <h2 class="text-3xl font-bold text-center text-gray-800 mb-12">
+            Our Research Team
+          </h2>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+            <!-- Team Member 1 -->
+            <div
+              class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition duration-300"
+            >
+              <img
+                src="./assets/images/team/dr-sharma.jpg"
+                alt="Dr. Aarav Sharma"
+                class="w-full h-56 object-cover object-center"
+               
+              />
+              <div class="p-6">
+                <h3 class="text-xl font-semibold text-gray-800 mb-1">
+                  Dr. Aarav Sharma
+                </h3>
+                <p class="text-indigo-600 text-sm mb-3">
+                  Research Director, Computer Vision
+                </p>
+                <p class="text-gray-600 mb-4">
+                  Previously at IIT Delhi, Dr. Sharma specializes in computer
+                  vision and has published over 30 papers on agricultural
+                  applications of AI.
+                </p>
+                <div class="flex space-x-3 text-gray-400">
+                  <a href="#" class="hover:text-indigo-600"
+                    ><i class="bi bi-linkedin"></i
+                  ></a>
+                  <a href="#" class="hover:text-indigo-600"
+                    ><i class="bi bi-google"></i
+                  ></a>
+                  <a href="#" class="hover:text-indigo-600"
+                    ><i class="bi bi-github"></i
+                  ></a>
+                </div>
+              </div>
+            </div>
+
+            <!-- Team Member 2 -->
+            <div
+              class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition duration-300"
+            >
+              <img
+                src="./assets/images/team/dr-patel.jpg"
+                alt="Dr. Priya Patel"
+                class="w-full h-56 object-cover object-center"
+                
+              />
+              <div class="p-6">
+                <h3 class="text-xl font-semibold text-gray-800 mb-1">
+                  Dr. Priya Patel
+                </h3>
+                <p class="text-indigo-600 text-sm mb-3">
+                  Lead Scientist, Plant Pathology
+                </p>
+                <p class="text-gray-600 mb-4">
+                  With 15 years of experience in plant diseases, Dr. Patel
+                  bridges the gap between agricultural science and AI
+                  applications.
+                </p>
+                <div class="flex space-x-3 text-gray-400">
+                  <a href="#" class="hover:text-indigo-600"
+                    ><i class="bi bi-linkedin"></i
+                  ></a>
+                  <a href="#" class="hover:text-indigo-600"
+                    ><i class="bi bi-google"></i
+                  ></a>
+                  <a href="#" class="hover:text-indigo-600"
+                    ><i class="bi bi-twitter"></i
+                  ></a>
+                </div>
+              </div>
+            </div>
+
+            <!-- Team Member 3 -->
+            <div
+              class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition duration-300"
+            >
+              <img
+                src="./assets/images/team/prof-nair.jpg"
+                alt="Prof. Rajiv Nair"
+                class="w-full h-56 object-cover object-center"
+                
+              />
+              <div class="p-6">
+                <h3 class="text-xl font-semibold text-gray-800 mb-1">
+                  Prof. Rajiv Nair
+                </h3>
+                <p class="text-indigo-600 text-sm mb-3">Head of ML Research</p>
+                <p class="text-gray-600 mb-4">
+                  A pioneer in applying machine learning to agricultural
+                  problems, Prof. Nair focuses on creating efficient models for
+                  resource-constrained environments.
+                </p>
+                <div class="flex space-x-3 text-gray-400">
+                  <a href="#" class="hover:text-indigo-600"
+                    ><i class="bi bi-linkedin"></i
+                  ></a>
+                  <a href="#" class="hover:text-indigo-600"
+                    ><i class="bi bi-google"></i
+                  ></a>
+                  <a href="#" class="hover:text-indigo-600"
+                    ><i class="bi bi-medium"></i
+                  ></a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="text-center mt-10">
+            <a
+              href="/about/team"
+              class="inline-block bg-indigo-600 text-white px-6 py-2 rounded-lg font-semibold hover:bg-indigo-700 transition"
+            >
+              View Full Research Team
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Publications -->
+      <div id="publications" class="container mx-auto px-4 py-16">
+        <div class="max-w-4xl mx-auto">
+          <h2 class="text-3xl font-bold text-center text-gray-800 mb-12">
+            Research Publications
+          </h2>
+
+          <div class="space-y-6">
+            <!-- Publication 1 -->
+            <div
+              class="bg-white p-6 rounded-lg shadow hover:shadow-md transition"
+            >
+              <div class="flex flex-col md:flex-row md:items-start">
+                <div class="md:flex-grow">
+                  <h3 class="text-xl font-semibold text-gray-800 mb-2">
+                    Early Detection of Tomato Leaf Disease Using
+                    Mobile-Optimized Convolutional Neural Networks
+                  </h3>
+                  <p class="text-gray-600 mb-3">
+                    <span class="font-medium">Authors:</span> Sharma, A., Patel,
+                    P., Nair, R., et al.
+                  </p>
+                  <p class="text-gray-600 mb-3">
+                    <span class="font-medium">Published in:</span> International
+                    Journal of Agricultural AI (2024)
+                  </p>
+                  <p class="text-gray-600 mb-4">
+                    This paper presents a novel lightweight CNN architecture
+                    optimized for mobile devices that can identify 7 common
+                    tomato leaf diseases with 94.8% accuracy while requiring
+                    minimal computational resources.
+                  </p>
+                  <div class="flex flex-wrap gap-2 mb-4">
+                    <span
+                      class="px-2 py-1 bg-green-100 text-green-800 text-xs rounded"
+                      >CNN</span
+                    >
+                    <span
+                      class="px-2 py-1 bg-green-100 text-green-800 text-xs rounded"
+                      >Mobile AI</span
+                    >
+                    <span
+                      class="px-2 py-1 bg-green-100 text-green-800 text-xs rounded"
+                      >Tomato Disease</span
+                    >
+                  </div>
+                </div>
+                <div class="flex mt-4 md:mt-0">
+                  <a
+                    href="#"
+                    class="px-4 py-2 bg-indigo-50 text-indigo-600 rounded hover:bg-indigo-100 transition"
+                  >
+                    <i class="bi bi-file-earmark-pdf"></i> PDF
+                  </a>
+                  <a
+                    href="#"
+                    class="ml-2 px-4 py-2 bg-indigo-50 text-indigo-600 rounded hover:bg-indigo-100 transition"
+                  >
+                    <i class="bi bi-github"></i> Code
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <!-- Publication 2 -->
+            <div
+              class="bg-white p-6 rounded-lg shadow hover:shadow-md transition"
+            >
+              <div class="flex flex-col md:flex-row md:items-start">
+                <div class="md:flex-grow">
+                  <h3 class="text-xl font-semibold text-gray-800 mb-2">
+                    Predictive Modeling for Rice Yield Estimation Using
+                    Multi-source Data and Ensemble Learning
+                  </h3>
+                  <p class="text-gray-600 mb-3">
+                    <span class="font-medium">Authors:</span> Nair, R., Kumar,
+                    S., Patel, P.
+                  </p>
+                  <p class="text-gray-600 mb-3">
+                    <span class="font-medium">Published in:</span> Agricultural
+                    Data Science Journal (2023)
+                  </p>
+                  <p class="text-gray-600 mb-4">
+                    This research combines satellite imagery, weather data, and
+                    soil parameters through an ensemble learning approach to
+                    predict rice yields with 87% accuracy, providing farmers
+                    with early yield estimates.
+                  </p>
+                  <div class="flex flex-wrap gap-2 mb-4">
+                    <span
+                      class="px-2 py-1 bg-green-100 text-green-800 text-xs rounded"
+                      >Ensemble Learning</span
+                    >
+                    <span
+                      class="px-2 py-1 bg-green-100 text-green-800 text-xs rounded"
+                      >Yield Prediction/research_page.html</span
+                    >
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+     <!------------------------------------- Footer ------------------------->
+     <footer class="bg-[#0b1d40] select-none mt-20">
+        <div
+          class="flex flex-col lg:flex-row lg:space-x-2 lg:space-y-0 lg:justify-center mx-5 mt-10 lg:pt-8 lg:pb-4 px-5 pt-10 pb-14 space-y-16 text-gray-400 border-b-[1px] border-[#ffffffa7]"
+        >
+          <div class="lg:h-60 lg:w-56 lg:mr-24 text-pretty">
+            <p class="text-xl font-semibold text-gray-300 mb-2">Contact Us</p>
+            <ul class="space-y-3">
+              <li>
+                Address:
+                <p>Egra, East Midnapore, West Bengal, 721329</p>
+              </li>
+              <li>
+                Email:
+                <a
+                  class="hover:text-gray-100"
+                  href="mailto:growcropsteam@gmail.com"
+                  >growcropsteam@gmail.com</a
+                >
+              </li>
+              <li>Follow us on:</li>
+              <li class="space-x-5 mt-1 ml-3 text-lg">
+                <a
+                  class="hover:text-green-700"
+                  href=" https://wa.me/919800068420"
+                  target="_blank"
+                  ><i class="bi bi-whatsapp text-green-500"></i
+                ></a>
+                <a target="_blank"><i class="bi bi-twitter-x text-black"></i></a>
+                <a target="_blank"
+                  ><i class="fa-brands fa-facebook text-blue-700"></i
+                ></a>
+              </li>
+            </ul>
+          </div>
+  
+          <div class="lg:h-60 w-60 text-pretty">
+            <p class="text-xl font-semibold text-gray-300 mb-2">Quick Links</p>
+            <ul class="space-y-2">
+              <li class="hover:text-gray-100"><a href="/about">About Us</a></li>
+              <li class="hover:text-gray-100"><a href="/work">our Works</a></li>
+              <li class="hover:text-gray-100"><a href="/team">Our Team</a></li>
+              <li class="hover:text-gray-100">
+                <a href="/articles">Read Article</a>
+              </li>
+            </ul>
+          </div>
+  
+          <div class="lg:h-60 w-60 text-pretty">
+            <p class="text-xl font-semibold text-gray-300 mb-2">Help/Support</p>
+            <ul class="space-y-3">
+              <li class="hover:text-gray-100">
+                <a href="/contact">Contact Us</a>
+              </li>
+              <li class="hover:text-gray-100"><a href="/help">help</a></li>
+              <li class="hover:text-gray-100"><a href="/support">Support</a></li>
+              <li class="hover:text-gray-100">
+                <a href="/terms">Terms & Condition</a>
+              </li>
+            </ul>
+          </div>
+  
+          <div class="lg:h-60 w-60 text-pretty">
+            <p class="text-xl font-semibold text-gray-300 mb-2">Community</p>
+            <ul class="space-y-3">
+              <li class="hover:text-gray-100">
+                <a href="/team">Join our Community</a>
+              </li>
+              <li class="hover:text-gray-100"><a href="/gallery">Gallery</a></li>
+              <li class="hover:text-gray-100"><a href="/blog">Our Blogs</a></li>
+              <li class="hover:text-gray-100">
+                <a href="/events">Special Events</a>
+              </li>
+            </ul>
+          </div>
+  
+          <div class="w-60">
+            <div>
+              <p class="text-xl font-semibold text-gray-300">Write a review</p>
+              <p class="hover:text-gray-100"><a href="/review">feedback</a></p>
+            </div>
+          </div>
+        </div>
+  
+        <!-- footer last -->
+  
+        <div>
+          <p class="text-center align-middle p-6 text-gray-300">
+            &copy; 2025 Croponer. All rights reserved. Created by
+            <a
+              class="hover:text-blue-500"
+              href="https://amarnath404.web.app"
+              target="_blank"
+              >Amarnath Bera</a
+            >
+          </p>
+        </div>
+      </footer>
+
+  </body>
+</html>
