@@ -260,157 +260,9 @@
               Address Information
             </h2>
             <div class="mt-6 grid grid-cols-1 sm:grid-cols-2 gap-6">
-              <!-- Country (Fixed as India) -->
-              <div class="form-group">
-                <label class="block text-sm font-medium text-gray-700 mb-1"
-                  >Country *</label
-                >
-                <div class="relative">
-                  <div
-                    class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-indigo-400"
-                  >
-                    <i class="bi bi-flag-fill"></i>
-                  </div>
-                  <input
-                    id="country"
-                    type="text"
-                    value="India"
-                    class="pl-10 w-full h-12 rounded-xl bg-indigo-50 border border-indigo-100 cursor-not-allowed text-gray-700 outline-none"
-                    readonly
-                  />
-                  <input type="hidden" name="country" value="India" />
-                </div>
-              </div>
 
-              <!-- State Dropdown -->
-              <div class="form-group">
-                <label
-                  for="state"
-                  class="block text-sm font-medium text-gray-700 mb-1"
-                  >State *</label
-                >
-                <div class="relative group">
-                  <div
-                    class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-indigo-400 group-focus-within:text-indigo-600 transition-colors"
-                  >
-                    <i class="bi bi-geo-alt-fill"></i>
-                  </div>
-                  <select
-                    id="state"
-                    name="state"
-                    class="pl-10 w-full h-12 rounded-xl border border-gray-300 focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500 transition-all appearance-none text-gray-700 bg-white/70 outline-none"
-                    required
-                  >
-                    <option value="" disabled selected>
-                      Select your state
-                    </option>
-                    <!-- State options remain the same -->
-                  </select>
-                  <div
-                    class="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none text-indigo-400"
-                  >
-                    <i class="bi bi-chevron-down"></i>
-                  </div>
-                </div>
-                <span id="stateError" class="text-sm text-red-500 mt-1 hidden"
-                  >Please select your state</span
-                >
-              </div>
-
-              <!-- Other address fields with consistent styling -->
-              <!-- District Dropdown -->
-              <div class="form-group">
-                <label
-                  for="district"
-                  class="block text-sm font-medium text-gray-700 mb-1"
-                  >District *</label
-                >
-                <div class="relative group">
-                  <div
-                    class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-indigo-400 group-focus-within:text-indigo-600 transition-colors"
-                  >
-                    <i class="bi bi-map-fill"></i>
-                  </div>
-                  <select
-                    id="district"
-                    name="district"
-                    class="pl-10 w-full h-12 rounded-xl border border-gray-300 focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500 transition-all appearance-none bg-white/70 text-gray-700 outline-none"
-                    required
-                  >
-                    <option value="" disabled selected>
-                      Select your district
-                    </option>
-                  </select>
-                  <div
-                    class="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none text-indigo-400"
-                  >
-                    <i class="bi bi-chevron-down"></i>
-                  </div>
-                </div>
-                <span
-                  id="districtError"
-                  class="text-sm text-red-500 mt-1 hidden"
-                  >Please select your district</span
-                >
-              </div>
-
-              <!-- Village -->
-              <div class="form-group">
-                <label
-                  for="village"
-                  class="block text-sm font-medium text-gray-700 mb-1"
-                  >Village/Town *</label
-                >
-                <div class="relative group">
-                  <div
-                    class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-indigo-400 group-focus-within:text-indigo-600 transition-colors"
-                  >
-                    <i class="bi bi-house-fill"></i>
-                  </div>
-                  <input
-                    id="village"
-                    type="text"
-                    name="village"
-                    placeholder="Enter your village or town"
-                    class="pl-10 w-full h-12 rounded-xl border border-gray-300 focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500 transition-all bg-white/70 outline-none"
-                    required
-                  />
-                </div>
-                <span id="villageError" class="text-sm text-red-500 mt-1 hidden"
-                  >Please enter your village/town</span
-                >
-              </div>
-
-              <!-- PIN Code -->
-              <div class="form-group">
-                <label
-                  for="pincode"
-                  class="block text-sm font-medium text-gray-700 mb-1"
-                  >PIN Code *</label
-                >
-                <div class="relative group">
-                  <div
-                    class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-indigo-400 group-focus-within:text-indigo-600 transition-colors"
-                  >
-                    <i class="bi bi-mailbox2"></i>
-                  </div>
-                  <input
-                    id="pincode"
-                    type="text"
-                    name="pincode"
-                    placeholder="Enter your PIN code"
-                    pattern="[0-9]{6}"
-                    class="pl-10 w-full h-12 rounded-xl border border-gray-300 focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500 transition-all bg-white/70 outline-none"
-                    required
-                  />
-                </div>
-                <span id="pincodeError" class="text-sm text-red-500 mt-1 hidden"
-                  >Please enter a valid 6-digit PIN code</span
-                >
-              </div>
-
-              <!-- Street Address -->
-              <div class="form-group sm:col-span-2">
+               <!-- Street Address -->
+               <div class="form-group sm:col-span-2">
                 <label
                   for="streetAddress"
                   class="block text-sm font-medium text-gray-700 mb-1"
@@ -436,6 +288,156 @@
                   >Please enter your street address</span
                 >
               </div>
+
+                 <!-- Village -->
+                 <div class="form-group">
+                  <label
+                    for="village"
+                    class="block text-sm font-medium text-gray-700 mb-1"
+                    >Village/Town *</label
+                  >
+                  <div class="relative group">
+                    <div
+                      class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-indigo-400 group-focus-within:text-indigo-600 transition-colors"
+                    >
+                      <i class="bi bi-house-fill"></i>
+                    </div>
+                    <input
+                      id="village"
+                      type="text"
+                      name="village"
+                      placeholder="Enter your village or town"
+                      class="pl-10 w-full h-12 rounded-xl border border-gray-300 focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500 transition-all bg-white/70 outline-none"
+                      required
+                    />
+                  </div>
+                  <span id="villageError" class="text-sm text-red-500 mt-1 hidden"
+                    >Please enter your village/town</span
+                  >
+                </div>
+
+                 <!-- PIN Code -->
+                 <div class="form-group">
+                  <label
+                    for="pincode"
+                    class="block text-sm font-medium text-gray-700 mb-1"
+                    >PIN Code *</label
+                  >
+                  <div class="relative group">
+                    <div
+                      class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-indigo-400 group-focus-within:text-indigo-600 transition-colors"
+                    >
+                      <i class="bi bi-mailbox2"></i>
+                    </div>
+                    <input
+                      id="pincode"
+                      type="text"
+                      name="pincode"
+                      placeholder="Enter your PIN code"
+                      pattern="[0-9]{6}"
+                      class="pl-10 w-full h-12 rounded-xl border border-gray-300 focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500 transition-all bg-white/70 outline-none"
+                      required
+                    />
+                  </div>
+                  <span id="pincodeError" class="text-sm text-red-500 mt-1 hidden"
+                    >Please enter a valid 6-digit PIN code</span
+                  >
+                </div>
+
+              
+               <!-- District Dropdown -->
+               <div class="form-group">
+                <label
+                  for="district"
+                  class="block text-sm font-medium text-gray-700 mb-1"
+                  >District *</label
+                >
+                <div class="relative group">
+                  <div
+                    class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-indigo-400 group-focus-within:text-indigo-600 transition-colors"
+                  >
+                    <i class="bi bi-map-fill"></i>
+                  </div>
+                  <select
+                    id="district"
+                    name="district"
+                    class="pl-10 w-full h-12 rounded-xl border border-gray-300 focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500 transition-all appearance-none bg-white/70 text-gray-700 outline-none"
+                    required
+                  >
+                    <option id="select-district" value="" disabled selected>
+                      Select your district
+                    </option>
+                  </select>
+                  <div
+                    class="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none text-indigo-400"
+                  >
+                    <i class="bi bi-chevron-down"></i>
+                  </div>
+                </div>
+                <span
+                  id="districtError"
+                  class="text-sm text-red-500 mt-1 hidden"
+                  >Please select your district</span
+                >
+              </div>
+
+               <!-- State Dropdown -->
+               <div class="form-group">
+                <label
+                  for="state"
+                  class="block text-sm font-medium text-gray-700 mb-1"
+                  >State *</label
+                >
+                <div class="relative group">
+                  <div
+                    class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-indigo-400 group-focus-within:text-indigo-600 transition-colors"
+                  >
+                    <i class="bi bi-geo-alt-fill"></i>
+                  </div>
+                  <select
+                    id="state"
+                    name="state"
+                    class="pl-10 w-full h-12 rounded-xl border border-gray-300 focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500 transition-all appearance-none text-gray-700 bg-white/70 outline-none"
+                    required
+                  >
+                    <option id="select-state" value="" disabled selected>
+                      Select your state
+                    </option>
+                    <!-- State options remain the same -->
+                  </select>
+                  <div
+                    class="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none text-indigo-400"
+                  >
+                    <i class="bi bi-chevron-down"></i>
+                  </div>
+                </div>
+                <span id="stateError" class="text-sm text-red-500 mt-1 hidden"
+                  >Please select your state</span
+                >
+              </div>
+
+              <!-- Country (Fixed as India) -->
+              <div class="form-group">
+                <label class="block text-sm font-medium text-gray-700 mb-1"
+                  >Country *</label
+                >
+                <div class="relative">
+                  <div
+                    class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-indigo-400"
+                  >
+                    <i class="bi bi-flag-fill"></i>
+                  </div>
+                  <input
+                    id="country"
+                    type="text"
+                    value="India"
+                    class="pl-10 w-full h-12 rounded-xl bg-indigo-50 border border-indigo-100 cursor-not-allowed text-gray-700 outline-none"
+                    readonly
+                  />
+                  <input type="hidden" name="country" value="India" />
+                </div>
+              </div>
+             
             </div>
           </div>
 
