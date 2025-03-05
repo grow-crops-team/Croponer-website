@@ -34,6 +34,7 @@ if (userLogin) {
                     displayMessage("success", result.message)
 
                     sessionStorage.setItem("isLoggedIn", true)
+                    sessionStorage.setItem("userID", result.data.user._id)
                     sessionStorage.setItem("userFullname", result.data.user.fullName)
                     sessionStorage.setItem("email", result.data.user.email)
                     sessionStorage.setItem("avatar", result.data.user.avatar || "")

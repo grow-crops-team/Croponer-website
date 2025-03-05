@@ -8,7 +8,8 @@ import {
     updateAccountDetails,
     uploadFiles,
     forgotPassword,
-    resetPassword
+    resetPassword,
+    getUserProfile
   
 } from "../controllers/user.controller.js"
 import { upload, uploadMultiple } from "../middlewares/multer.middleware.js"
@@ -26,6 +27,7 @@ router.route("/logout").post(verifyJWT, logoutUser)
 router.route("/refresh-token").post(refreshAccessToken)
 router.route("/change-password").post(verifyJWT, changeCurrentPassword)
 router.route("/update-account").patch(verifyJWT, upload, updateAccountDetails)
+router.route("/get-profile").get(verifyJWT, getUserProfile)
 router.route("/upload-files").post(verifyJWT, uploadMultiple, uploadFiles)
 router.post("/forgot-password", forgotPassword)
 router.post("/reset-password/:token", resetPassword)

@@ -335,6 +335,19 @@ const resetPassword = asyncHandler(async (req, res) => {
 
 })
 
+const getUserProfile = asyncHandler(async (req, res) => {
+    
+    const userProfile = await UserProfile.findOne({ user: req.user._id });
+
+    if (!userProfile) {
+        throw new ApiError(404, "User profile not found");
+    }
+
+    return res
+        .status(200)
+        .json(new ApiResponse(200, userProfile, "User profile fetched successfully!"));
+});
+
 
 export {
     registerUser,
@@ -345,7 +358,8 @@ export {
     updateAccountDetails,
     uploadFiles,
     forgotPassword,
-    resetPassword
+    resetPassword,
+    getUserProfile
 
 
 }
