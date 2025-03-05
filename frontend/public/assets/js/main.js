@@ -45,10 +45,7 @@ function openLoginDropdown() {
                 // console.log("open");
                 loginDropDownMenus[index].classList.toggle("hidden")
             })
-            dropDown.addEventListener("mouseover", (evt) => {
-                // console.log("open");
-                loginDropDownMenus[index].classList.remove("hidden")
-            })
+           
         })
 
         document.addEventListener("click", (evt) => {

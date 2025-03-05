@@ -19,186 +19,291 @@
     <link rel="stylesheet" href="./assets/css/coustomCss.css?v=1.0" />
   </head>
 
-  <body class="bg-gradient-to-r from-[#2580B3] to-[#afaa7ac2] select-none">
+  <body class="bg-[radial-gradient(ellipse_at_top,#214283,#0c2e59_80%)] min-h-screen select-none">
     <!--------- main container----- -->
     <div
-      id="outer-Container"
-      class="mx-auto mt-8 lg:mt-10 rounded-lg bg-gradient-to-bl lg:bg-gradient-to-tl from-[#afaa7ac2] to-[#10367d] w-[400px] lg:w-[755px] p-4 lg:p-0 lg:pb-9 flex flex-col lg:flex-row"
+    id="outer-Container"
+    class="mx-auto mt-8 rounded-xl shadow-2xl overflow-hidden w-[400px] lg:w-[850px] flex flex-col lg:flex-row bg-[#f8faff]  "
+  >
+    <!-- Mobile heading -->
+    <div class="lg:hidden mt-2 px-6 ">
+      <p class="text-[#080b3e] text-center text-2xl font-semibold mb-2">
+        welcome to
+        <img
+          src=""
+          alt="croponer logo"
+          class="h-5 w-5 mx-auto mt-3 mb-5 inline lg:hidden"
+        />
+      </p>
+    </div>
+
+    <!-- Left side panel with illustration -->
+    <div
+      class="hidden lg:block basis-1/2 bg-gradient-to-br from-[#1a4f9e] to-[#072256] text-white relative"
     >
-      <div class="lg:hidden mt-2">
-        <p class="text-[#080b3e] text-center lg:text-3xl text-2xl mb-4">
-          welcome to
-          <img
-            src=""
-            alt="croponer logo"
-            class="h-5 w-5 mx-auto mt-3 mb-5 inline lg:hidden"
-          />
-        </p>
-      </div>
-
-      <!-- right text for large Screen -->
-      <div class="hidden lg:block basis-1/2 mt-10 border-r border-r-blue-950">
-        <div class="py-44">
-          <img
-            src=""
-            alt="croponer"
-            class="w-28 mx-auto mt-3 mb-5 hidden lg:block"
-          />
-          <p class="text-2xl text-[#100f43] text-center">
-            Welcome to our website
-          </p>
-          <p class="text-[17px] text-[#100f43] text-center">
-            Please login us for more information
-          </p>
-        </div>
-      </div>
-
-      <!-------- Main Form ------------>
+      <!-- Decorative circles -->
+      <div
+        class="absolute w-64 h-64 bg-blue-400/10 rounded-full -top-20 -left-20"
+      ></div>
+      <div
+        class="absolute w-72 h-72 bg-blue-300/10 rounded-full -bottom-20 -right-10"
+      ></div>
 
       <div
-        id="signup-form"
-        class="lg:basis-1/2 lg:px-2 lg:mt-8 lg:p-1 text-center"
+        class="relative z-10 py-20 px-10 flex flex-col items-center justify-center h-full"
       >
-        <h1 class="text-2xl text-[#100f43] lg:text-3xl font-semibold lg:mb-9">
-          SignUp with
+        <img
+          src=""
+          alt="croponer"
+          class="w-32 mx-auto mb-8 hidden lg:block"
+        />
+        <h2 class="text-3xl font-bold text-white text-center mb-4">
+          Welcome to our platform
+        </h2>
+        <p class="text-lg text-blue-100 text-center mb-8">
+          Please sign up to access all our features and services
+        </p>
+
+        <!-- Features list -->
+        <div class="space-y-4 mt-4">
+          <div class="flex items-center space-x-3">
+            <div class="bg-blue-500/20 p-2 rounded-full">
+              <i class="fa-solid fa-leaf text-blue-200"></i>
+            </div>
+            <p class="text-blue-100">Access crop management tools</p>
+          </div>
+          <div class="flex items-center space-x-3">
+            <div class="bg-blue-500/20 p-2 rounded-full">
+              <i class="fa-solid fa-seedling text-blue-200"></i>
+            </div>
+            <p class="text-blue-100">Get personalized recommendations</p>
+          </div>
+          <div class="flex items-center space-x-3">
+            <div class="bg-blue-500/20 p-2 rounded-full">
+              <i class="fa-solid fa-users text-blue-200"></i>
+            </div>
+            <p class="text-blue-100">Join our farming community</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-------- Main Form ------------>
+    <div
+      id="signup-form"
+      class="lg:basis-1/2 p-6 lg:p-10 bg-gradient-to-br from-[#f8faff] via-[#eaf1fc] to-[#aac8ff] relative"
+    >
+      <!-- Decorative elements -->
+      <div
+        class="absolute top-0 right-0 w-32 h-32 bg-blue-50 rounded-full blur-3xl opacity-70"
+      ></div>
+      <div
+        class="absolute bottom-0 left-0 w-40 h-40 bg-indigo-50 rounded-full blur-3xl opacity-70"
+      ></div>
+
+      <!-- Small decorative circles -->
+      <div
+        class="absolute top-20 right-10 w-3 h-3 rounded-full bg-blue-400 opacity-40"
+      ></div>
+      <div
+        class="absolute bottom-40 left-10 w-2 h-2 rounded-full bg-indigo-500 opacity-40"
+      ></div>
+      <div
+        class="absolute top-1/2 right-4 w-1.5 h-1.5 rounded-full bg-blue-500 opacity-40"
+      ></div>
+     
+
+      <div class="relative z-10">
+        <h1
+          class="text-2xl text-[#0a2458] lg:text-3xl font-bold text-center mb-6"
+        >
+          Create an Account
+          <div
+            class="h-1 w-16 bg-gradient-to-r from-[#3b7dd4] to-[#0c4ca6] mx-auto mt-2"
+          ></div>
         </h1>
-        <div class="flex justify-evenly mt-5 lg:mt-0">
+
+        <div class="flex justify-center gap-4 mt-5">
           <a
-            class="flex gap-1 border-b-2 border-transparent hover:border-b-2 hover:border-[#00159f] hover:transition-all duration-500"
+            class="flex items-center gap-2 py-2.5 px-5 rounded-lg bg-white shadow-sm border border-gray-100 hover:border-[#00159f] hover:shadow-md transition-all duration-300"
             href="/google"
-            ><img
-              class="w-4"
+          >
+            <img
+              class="w-5"
               src="./assets/images/login_signup/Google__G__logo.svg"
               alt="Google"
             />
-            <p class="text-[17px] text-[#080b3e]">Google</p>
+            <p class="text-[16px] text-[#080b3e] font-medium">Google</p>
           </a>
           <a
-            class="flex gap-1 border-b-2 border-transparent hover:border-b-2 hover:border-[#00159f] hover:transition-all duration-500"
+            class="flex items-center gap-2 py-2.5 px-5 rounded-lg bg-white shadow-sm border border-gray-100 hover:border-[#00159f] hover:shadow-md transition-all duration-300"
             href="/apple"
-            ><img
-              class="w-4"
+          >
+            <img
+              class="w-5"
               src="./assets/images/login_signup/apple-black-logo-svgrepo-com.svg"
               alt="Apple"
             />
-            <p class="text-[17px] text-[#080b3e]">Apple</p>
+            <p class="text-[16px] text-[#080b3e] font-medium">Apple</p>
           </a>
         </div>
-        <div class="flex items-center justify-center mt-3 lg:mt-5">
-          <div class="h-[1px] w-32 bg-[#100f43b3]"></div>
-          <p class="text-[#100f43] text-[17px] mx-2">Or</p>
-          <div class="h-[1px] w-32 bg-[#100f43b6]"></div>
+
+        <div class="flex items-center justify-center mt-5">
+          <div
+            class="h-[1px] w-28 bg-gradient-to-r from-transparent via-blue-300/50 to-transparent"
+          ></div>
+          <p class="text-[#1a4f9e]/70 text-[15px] mx-3 font-medium">
+            Or with email
+          </p>
+          <div
+            class="h-[1px] w-28 bg-gradient-to-r from-transparent via-blue-300/50 to-transparent"
+          ></div>
         </div>
 
-        <!-- Login Form start from here -->
-
-        <form action="signupForm" id="signupForm" class="signupForm mt-8 lg:mt-10">
-          <div class="userName relative">
-            <i
-              class="fa-solid fa-user text-[#080b3e] absolute top-1 lg:left-7 left-8"
-            ></i>
-            <input
-              id="username"
-              type="text"
-              name="username"
-              placeholder="Username"
-              class="border-b-2 border-[#4980c4] w-[310px] px-7 text-[17px] text-[#080b3e] placeholder:text-[#080b3e] focus:outline-none bg-transparent caret-[#080b3e]"
-            /><span
+        <!-- Signup Form -->
+        <form
+          action="signupForm"
+          id="signupForm"
+          class="signupForm mt-7 max-w-md mx-auto"
+        >
+          <!-- Username field -->
+          <div class="userName relative mb-5 group">
+            <div
+              class="flex items-center bg-white border border-blue-100 group-hover:border-[#4980c4] rounded-lg overflow-hidden transition-all duration-300 shadow-sm"
+            >
+              <span class="px-3 py-3 bg-blue-50 border-r border-blue-100">
+                <i class="fa-solid fa-user text-[#1a4f9e]"></i>
+              </span>
+              <input
+                id="username"
+                type="text"
+                name="username"
+                placeholder="Username"
+                class="w-full px-3 py-3 text-[15px] text-[#080b3e] placeholder:text-[#666] focus:outline-none bg-transparent caret-[#080b3e]"
+              />
+            </div>
+            <span
               id="userNameError"
-              class="error absolute text-[13px] font-medium text-red-800 left-5 top-[26px]"
+              class="error absolute text-[13px] font-medium text-red-500 left-1 top-[48px]"
             ></span>
           </div>
 
-          <div class="fullName relative">
-            <i
-              class="fa-regular fa-user text-[#080b3e] absolute top-9 lg:left-7 left-8"
-            ></i>
-            <input
-              id="fullName"
-              type="text"
-              name="fullName"
-              placeholder="Full Name"
-              class="border-b-2 border-[#4980c4] w-[310px] px-7 mt-8 text-[17px] text-[#080b3e] placeholder:text-[#080b3e] focus:outline-none bg-transparent caret-[#080b3e]"
-            /><span
+          <!-- Full Name field -->
+          <div class="fullName relative mb-5 group">
+            <div
+              class="flex items-center bg-white border border-blue-100 group-hover:border-[#4980c4] rounded-lg overflow-hidden transition-all duration-300 shadow-sm"
+            >
+              <span class="px-3 py-3 bg-blue-50 border-r border-blue-100">
+                <i class="fa-regular fa-user text-[#1a4f9e]"></i>
+              </span>
+              <input
+                id="fullName"
+                type="text"
+                name="fullName"
+                placeholder="Full Name"
+                class="w-full px-3 py-3 text-[15px] text-[#080b3e] placeholder:text-[#666] focus:outline-none bg-transparent caret-[#080b3e]"
+              />
+            </div>
+            <span
               id="fullNameError"
-              class="error absolute text-[13px] font-medium text-[#921b1b] left-5 top-14"
+              class="error absolute text-[13px] font-medium text-[#921b1b] left-1 top-[48px]"
             ></span>
           </div>
 
-          <div class="email relative">
-            <i
-              class="fa-solid fa-envelope text-[#080b3e] absolute top-9 lg:left-7 left-8"
-            ></i>
-            <input
-              id="email"
-              type="email"
-              name="email"
-              placeholder="Email"
-              class="border-b-2 border-[#4980c4] w-[310px] px-7 mt-8 text-[17px] text-[#080b3e] placeholder:text-[#080b3e] focus:outline-none bg-transparent caret-[#080b3e]"
-            /><span
+          <!-- Email field -->
+          <div class="email relative mb-5 group">
+            <div
+              class="flex items-center bg-white border border-blue-100 group-hover:border-[#4980c4] rounded-lg overflow-hidden transition-all duration-300 shadow-sm"
+            >
+              <span class="px-3 py-3 bg-blue-50 border-r border-blue-100">
+                <i class="fa-solid fa-envelope text-[#1a4f9e]"></i>
+              </span>
+              <input
+                id="email"
+                type="email"
+                name="email"
+                placeholder="Email"
+                class="w-full px-3 py-3 text-[15px] text-[#080b3e] placeholder:text-[#666] focus:outline-none bg-transparent caret-[#080b3e]"
+              />
+            </div>
+            <span
               id="emailError"
-              class="error absolute text-[13px] font-medium text-[#921b1b] left-5 top-14"
+              class="error absolute text-[13px] font-medium text-[#921b1b] left-1 top-[48px]"
             ></span>
           </div>
 
-          <div class="password relative">
-            <i
-              class="bi bi-key-fill absolute text-[20px] text-[#080b3e] top-[30px] lg:left-7 left-8"
-            ></i>
-            <input
-              id="password"
-              type="password"
-              name="password"
-              placeholder="Password"
-              class="border-b-2 border-[#4980c4] w-[310px] px-7 mt-8 text-[17px] text-[#080b3e] placeholder:text-[#080b3e] focus:outline-none bg-transparent caret-[#080b3e]"
-            />
+          <!-- Password field -->
+          <div class="password relative mb-5 group">
+            <div
+              class="flex items-center bg-white border border-blue-100 group-hover:border-[#4980c4] rounded-lg overflow-hidden transition-all duration-300 shadow-sm"
+            >
+              <span class="px-3 py-3 bg-blue-50 border-r border-blue-100">
+                <i class="bi bi-key-fill text-[#1a4f9e]"></i>
+              </span>
+              <input
+                id="password"
+                type="password"
+                name="password"
+                placeholder="Password"
+                class="w-full px-3 py-3 text-[15px] text-[#080b3e] placeholder:text-[#666] focus:outline-none bg-transparent caret-[#080b3e]"
+              />
+              <i
+                id="showPassword"
+                class="bi bi-eye-slash-fill text-gray-500 hover:text-[#1a4f9e] px-3 cursor-pointer"
+              ></i>
+            </div>
             <span
               id="passworeError"
-              class="error absolute text-[13px] font-medium text-[#921b1b] left-5 top-14"
+              class="error absolute text-[13px] font-medium text-[#921b1b] left-1 top-[48px]"
             ></span>
-            <!-- Show Icon-->
-            <i
-              id="showPassword"
-              class="bi bi-eye-slash-fill text-[#080b3e] absolute lg:right-8 right-9 top-8 cursor-pointer"
-            ></i>
           </div>
 
-          <div class="confirmPassword relative">
-            <i
-              class="bi bi-key-fill absolute text-[20px] text-[#080b3e] top-[30px] lg:left-7 left-8"
-            ></i>
-            <input
-              id="confirmPassword"
-              type="password"
-              name="confirmPassword"
-              placeholder="Confirm Password"
-              class="border-b-2 border-[#4980c4] w-[310px] px-7 mt-8 text-[17px] text-[#080b3e] placeholder:text-[#080b3e] focus:outline-none bg-transparent caret-[#080b3e]"
-            />
+          <!-- Confirm Password field -->
+          <div class="confirmPassword relative mb-6 group">
+            <div
+              class="flex items-center bg-white border border-blue-100 group-hover:border-[#4980c4] rounded-lg overflow-hidden transition-all duration-300 shadow-sm"
+            >
+              <span class="px-3 py-3 bg-blue-50 border-r border-blue-100">
+                <i class="bi bi-key-fill text-[#1a4f9e]"></i>
+              </span>
+              <input
+                id="confirmPassword"
+                type="password"
+                name="confirmPassword"
+                placeholder="Confirm Password"
+                class="w-full px-3 py-3 text-[15px] text-[#080b3e] placeholder:text-[#666] focus:outline-none bg-transparent caret-[#080b3e]"
+              />
+            </div>
             <span
               id="confirmPasswordError"
-              class="error absolute text-[13px] font-medium text-[#921b1b] left-5 top-14"
+              class="error absolute text-[13px] font-medium text-[#921b1b] left-1 top-[48px]"
             ></span>
           </div>
 
+          <!-- Submit button -->
           <button
             id="submitBtn"
             type="submit"
-            class="mt-7 rounded-md w-56 bg-gradient-to-l from-[#81ccf7c0] to-[#0c4ca6b8] h-11 text-lg font-semibold hover:bg-gradient-to-l hover:from-[#8bcbf0d7] hover:to-[#144384da] text-[#091236] cursor-pointer"
+            class="w-full py-3.5 mt-3 rounded-lg bg-gradient-to-r from-[#3b7dd4] to-[#0c4ca6] text-white font-semibold text-lg shadow-lg shadow-blue-200/50 hover:shadow-xl hover:shadow-blue-400/70 transition-all duration-300"
           >
-            Sign Up
+            Create Account
           </button>
 
-          <p
-            class="mb-2 lg:mb-0 text-sm text-[#0a123d] mt-5 lg:mt-7 lg:text-[#0f103a]"
-          >
+          <!-- Login link -->
+          <p class="text-center text-[#0a123d] mt-6 text-sm">
             Already have an account?
-            <a id="signup" href="/login" class="hover:text-[#112265dc]"
-              >Login here</a
+            <a
+              id="signup"
+              href="/login"
+              class="text-[#1e4796] font-semibold hover:underline transition-colors"
             >
+              Login here
+            </a>
           </p>
         </form>
       </div>
     </div>
+  </div>
     <!-- display message -->
     <div id="displayError" class="hidden">
       <div id="displayErrorContent">

@@ -25,108 +25,178 @@
   >
     <!---------------- main container --------------->
     <div
-      id="outer-Container"
-      class="text-white mx-auto mt-20 lg:mt-24 rounded-lg w-[400px] lg:w-[720px] p-4 lg:p-0 lg:pb-10 flex flex-col lg:flex-row"
+    id="outer-Container"
+    class="text-white mx-auto mt-20 lg:mt-24 bg-white/10 backdrop-blur-md rounded-2xl w-[400px] lg:w-[900px] p-6 lg:p-0 shadow-xl border border-white/20 flex flex-col lg:flex-row overflow-hidden"
+  >
+    <!-- Left side with logo and background design -->
+    <div
+      class="lg:basis-1/2 lg:py-16 relative bg-gradient-to-br from-[#001247] to-[#183B8E] lg:rounded-l-2xl"
     >
-      <div class="lg:basis-1/2 lg:mt-10">
-        <img src="" alt="croponer logo" class="w-36 h-16 mx-auto my-5" />
-        <p
-          class="text-blue-950 text-center lg:text-2xl text-xl mt-[-15px] mb-4"
-        >
-          welcome to our Website
-        </p>
+      <div
+        class="absolute w-64 h-64 bg-blue-500/20 rounded-full blur-3xl -top-20 -left-20"
+      ></div>
+      <div
+        class="absolute w-64 h-64 bg-indigo-500/20 rounded-full blur-3xl -bottom-20 -right-20"
+      ></div>
+
+      <img
+        src=""
+        alt="croponer logo"
+        class="w-36 h-16 mx-auto my-5 relative z-10"
+      />
+      <p
+        class="text-blue-100 text-center lg:text-2xl text-xl font-light tracking-wide mt-2 mb-6 relative z-10"
+      >
+        Welcome to our Website
+      </p>
+
+      <!-- Decorative elements -->
+      <div class="hidden lg:flex justify-center mt-10 relative z-10">
+        <div
+          class="w-32 h-1 bg-gradient-to-r from-transparent via-blue-300 to-transparent"
+        ></div>
       </div>
-      <div id="login-form" class="lg:basis-1/2 lg:p-3 lg:mt-10 text-center">
-        <h1 class="text-2xl text-[#100f43] lg:text-3xl font-semibold lg:mb-5">
-          Login with
-        </h1>
-        <div class="flex justify-evenly mt-5 lg:p-4 lg:mt-0">
-          <a
-            class="flex gap-1 border-b-2 border-transparent hover:border-b-2 hover:border-[#00159f] hover:transition-all duration-500"
-            href="/google"
-            ><img
-              class="w-4"
-              src="./assets/images/login_signup/Google__G__logo.svg"
-              alt="Google"
-            />
-            <p class="text-[17px]">Google</p></a
-          >
-          <a
-            class="flex gap-1 border-b-2 border-transparent hover:border-b-2 hover:border-[#00159f] hover:transition-all duration-500"
-            href="/apple"
-            ><img
-              class="w-4"
-              src="./assets/images/login_signup/apple-black-logo-svgrepo-com.svg"
-              alt="Apple"
-            />
-            <p class="text-[17px]">Apple</p></a
-          >
-        </div>
+      <div
+        class="hidden lg:block text-center text-blue-200/70 text-sm mt-8 px-10 relative z-10"
+      >
+        Join our community of farmers and experts to grow better crops and
+        increase your yield
+      </div>
+    </div>
 
-        <div class="flex items-center justify-center mt-3 lg:mt-5">
-          <div class="h-[2px] w-32 bg-[#bbddff]"></div>
-          <p class="text-[#ffffff] text-[17px] mx-2">Or</p>
-          <div class="h-[2px] w-32 bg-[#bbddff]"></div>
-        </div>
+    <!-- Right side with login form -->
+    <div
+      id="login-form"
+      class="lg:basis-1/2 lg:p-10 lg:mt-0 text-center bg-white/5 backdrop-blur-sm lg:rounded-r-2xl pt-8 pb-10"
+    >
+      <h1
+        class="text-2xl text-[#080662] lg:text-3xl font-semibold lg:mb-8 relative"
+      >
+        Login to Croponer
+        <div
+          class="h-1 w-12 bg-gradient-to-r from-[#6190E8] to-[#0f238b] mx-auto mt-2"
+        ></div>
+      </h1>
 
-        <form action="loginForm" id="loginForm" class="loginForm mt-8 lg:mt-9">
-          <div class="userName relative">
+      <!-- Social login buttons with modern design -->
+      <div class="flex justify-center gap-5 mt-6 lg:mt-8">
+        <a
+          class="flex items-center gap-2 px-6 py-2.5 rounded-lg transition-all duration-300 bg-white/5 hover:bg-white/10 border border-white/10 hover:border-white/30"
+          href="/google"
+        >
+          <img
+            class="w-5 h-5"
+            src="./assets/images/login_signup/Google__G__logo.svg"
+            alt="Google"
+          />
+          <p class="text-[16px] font-medium">Google</p>
+        </a>
+        <a
+          class="flex items-center gap-2 px-6 py-2.5 rounded-lg transition-all duration-300 bg-white/5 hover:bg-white/10 border border-white/10 hover:border-white/30"
+          href="/apple"
+        >
+          <img
+            class="w-5 h-5"
+            src="./assets/images/login_signup/apple-black-logo-svgrepo-com.svg"
+            alt="Apple"
+          />
+          <p class="text-[16px] font-medium">Apple</p>
+        </a>
+      </div>
+
+      <!-- Divider with improved styling -->
+      <div class="flex items-center justify-center mt-8">
+        <div
+          class="h-[1px] w-28 bg-gradient-to-r from-transparent via-[#bbddff] to-transparent"
+        ></div>
+        <p class="text-[#ffffff] text-[16px] mx-3 font-light">
+          Or continue with
+        </p>
+        <div
+          class="h-[1px] w-28 bg-gradient-to-r from-transparent via-[#bbddff] to-transparent"
+        ></div>
+      </div>
+
+      <!-- Form with modern input styling -->
+      <form
+        action="loginForm"
+        id="loginForm"
+        class="loginForm mt-8 lg:mt-10 max-w-sm mx-auto"
+      >
+        <div class="userName relative mb-8 group">
+          <div
+            class="flex items-center bg-white/5 border border-white/10 group-hover:border-[#529ce7]/70 rounded-lg px-4 transition-all duration-300"
+          >
+            <i class="bi bi-person text-[#305a84] mr-2"></i>
             <input
               id="username"
               type="text"
               name="username"
               placeholder="Username"
-              class="border-b-2 border-[#529ce7] w-[300px] px-1 text-[17px] text-[#ffffff] placeholder:text-[#ffffff] focus:outline-none bg-transparent caret-[#ffffff] select-text"
-            /><span
-              id="userNameError"
-              class="error absolute text-[13px] font-medium text-red-800 left-7 lg:left-3 top-[26px]"
-            ></span>
+              class="w-full py-3 px-1 text-[16px] text-[#003e7b] placeholder:text-[#003e7b]/60 focus:outline-none bg-transparent caret-[#003e7b] select-text"
+            />
           </div>
+          <span
+            id="userNameError"
+            class="error absolute text-[12px] font-medium text-red-400 left-1 -bottom-5"
+          ></span>
+        </div>
 
-          <div class="password relative">
+        <div class="password relative group">
+          <div
+            class="flex items-center bg-white/5 border border-white/10 group-hover:border-[#529ce7]/70 rounded-lg px-4 transition-all duration-300"
+          >
+            <i class="bi bi-lock text-[#003e7b] mr-2"></i>
             <input
               id="password"
               type="password"
               name="password"
               placeholder="Password"
-              class="border-b-2 border-[#529ce7] w-[300px] px-1 mt-10 text-[17px] text-[#ffffff] placeholder:text-[#ffffff] focus:outline-none bg-transparent caret-[#ffffff]"
-            /><span
-              id="passwordError"
-              class="error absolute text-[13px] font-medium text-red-800 left-7 lg:left-3 top-[66px]"
-            ></span>
+              class="w-full py-3 px-1 text-[16px] text-[#003e7b] placeholder:text-[#003e7b]/60 focus:outline-none bg-transparent caret-[#003e7b]"
+            />
             <i
               id="showPassword"
-              class="bi bi-eye-slash-fill text-lg text-[#0c1657] absolute lg:right-5 right-9 top-10 cursor-pointer"
+              class="bi bi-eye-slash-fill text-lg text-[#003e7b] cursor-pointer"
             ></i>
           </div>
-          <div class="mt-2">
-            <a
-              href="/forgot-password"
-              class="text-[#ffffff] text-sm   hover:text-[#0c1657]"
-              >Forgot Password?</a
-            >
-          </div>
-          <button
-            type="submit"
-            id="loginSubmitbtn"
-            class="mt-7 lg:mt-11 rounded-md w-56 bg-gradient-to-tr from-[#6190E8] to-[#0f238b] h-11 text-lg font-semibold hover:bg-gradient-to-bl text-[#0c1657] cursor-pointer"
-          >
-            Login
-          </button>
+          <span
+            id="passwordError"
+            class="error absolute text-[12px] font-medium text-red-400 left-1 -bottom-5"
+          ></span>
+        </div>
 
-          <p class="text-sm text-white lg:text-[#ffffff] mt-5 lg:mt-7">
-            Don't have an account?
-            <a
-              id="signup"
-              href="/register"
-              target="_blank"
-              class="hover:text-black"
-              >Sign Up</a
-            >
-          </p>
-        </form>
-      </div>
+        <!-- Forgot password link -->
+        <div class="mt-3 text-center lg:text-right">
+          <a
+            href="/forgot-password"
+            class="text-[#003e7b] text-sm hover:text-[#003d7bc6] transition-colors duration-300"
+            >Forgot Password?</a
+          >
+        </div>
+
+        <!-- Login button with improved styling -->
+        <button
+          type="submit"
+          id="loginSubmitbtn"
+          class="mt-8 w-full rounded-lg bg-gradient-to-r from-[#6190E8] to-[#0f238b] py-3 text-lg font-semibold hover:shadow-lg hover:shadow-blue-900/30 transition-all duration-300 text-white cursor-pointer"
+        >
+          Login
+        </button>
+
+        <!-- Sign up link -->
+        <p class="text-sm text-white mt-6">
+          Don't have an account?
+          <a
+            id="signup"
+            href="/register"
+            target="_blank"
+            class="text-[#bbddff] hover:text-white font-medium transition-colors duration-300"
+            >Sign Up</a
+          >
+        </p>
+      </form>
     </div>
+  </div>
     <!-- Display messages -->
     <div id="displayError" class="hidden">
       <div id="displayErrorContent">
