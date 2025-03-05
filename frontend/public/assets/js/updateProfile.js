@@ -23,27 +23,23 @@ const cancelBtn = document.querySelector("#cancelBtn");
 const coverProgressBar = document.querySelector("#coverProgress");
 const avatarProgressBar = document.querySelector("#avatarProgress");
 
-// 📌 Helper Function to Show Image Preview & Handle File Validation
+
 function handleImagePreview(inputElement, previewElement, progressBarElement, maxSizeMB = 2) {
     const file = inputElement.files[0];
     if (!file) return;
 
-    // Validate file type
+
     if (!file.type.startsWith("image/")) {
         displayMessage("error", "Invalid file type. Please upload an image.");
         inputElement.value = "";
         return;
     }
-
-    // Validate file size
     const maxSizeBytes = maxSizeMB * 1024 * 1024;
     if (file.size > maxSizeBytes) {
         displayMessage("error", `File size should be less than ${maxSizeMB}MB.`);
         inputElement.value = "";
         return;
     }
-
-    // Show progress bar
     progressBarElement.classList.remove("hidden");
     const reader = new FileReader();
 
@@ -108,18 +104,20 @@ profileUpdateForm.addEventListener("submit", async (evt) => {
     formData.append("pincode", pincode.value);
     formData.append("streetAddress", streetAddress.value);
 
-    // 🖼️ Append Images Only If Selected
+
     if (coverImageInput.files[0]) formData.append("coverImage", coverImageInput.files[0]);
     if (avatarImageInput.files[0]) formData.append("avatarImage", avatarImageInput.files[0]);
 
     try {
-        // 📨 Send FormData with PATCH Request
+       
         const response = await fetch("/api/v1/users/update-account", {
             method: "PATCH",
             body: formData,
         });
 
         const result = await response.json();
+        console.log(result);
+        
         if (result.statuscode === 200) {
             displayMessage("success", result.message);
             setTimeout(() => {
@@ -157,8 +155,8 @@ document.addEventListener("DOMContentLoaded", function () {
     formInputs.forEach(input => initialValues[input.name] = input.value);
 
     function checkForChanges() {
-        let isChanged = [...formInputs].some(input => 
-            (input.type === "file" && input.files.length > 0) || 
+        let isChanged = [...formInputs].some(input =>
+            (input.type === "file" && input.files.length > 0) ||
             input.value !== initialValues[input.name]
         );
 

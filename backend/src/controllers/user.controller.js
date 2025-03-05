@@ -1,6 +1,7 @@
 import { asyncHandler } from "../utils/asyncHandler.js"
 import ApiError from "../utils/ApiError.js"
 import User from "../models/user.model.js"
+import UserProfile from "../models/user_details.mode.js"
 import uploadOnCloudinary from "../utils/cloudinary.js"
 import ApiResponse from "../utils/ApiResponse.js"
 import jwt from "jsonwebtoken"
@@ -198,50 +199,57 @@ const changeCurrentPassword = asyncHandler(async (req, res) => {
 })
 
 const updateAccountDetails = asyncHandler(async (req, res) => {
-    const { fullName, email, oldPassword, newPassword } = req.body;
+    const { fullName, phoneNumber, bio, country, state, district, village, pincode, streetAddress } = req.body;
 
-    if (!fullName || !email) {
-        throw new ApiError(400, "Full name and email are required");
+
+    if (!fullName) throw new ApiError(400, "Full name is required");
+
+    if (phoneNumber && !/^[0-9]{10}$/.test(phoneNumber)) {
+        throw new ApiError(400, "Invalid phone number format");
+    }
+    if (bio && bio.length > 250) {
+        throw new ApiError(400, "Bio cannot exceed 250 characters");
     }
 
-    const updatedData = { fullName, email };
-    let avatarUrl;
+    const address = { country, state, district, village, pincode, streetAddress };
 
-    // Handle avatar upload if provided
-    if (req.file) {
-        const avatarLocalPath = req.file.path;
-        const avatar = await uploadOnCloudinary(avatarLocalPath);
-        if (!avatar) {
-            throw new ApiError(400, "Failed to upload avatar");
+
+    let userProfiles = await UserProfile.findOne({ user: req.user._id });
+
+    if (!userProfiles) {
+
+        userProfiles = new UserProfile({ user: req.user._id });
+    }
+
+
+    userProfiles.fullName = fullName;
+    userProfiles.phoneNumber = phoneNumber;
+    userProfiles.bio = bio;
+    userProfiles.address = address;
+
+
+    if (req.files) {
+        if (req.files["avatar"]) {
+            const avatar = await uploadOnCloudinary(req.files["avatar"][0].path);
+            if (!avatar) throw new ApiError(400, "Failed to upload avatar");
+            userProfiles.avatar = avatar.secure_url;
         }
-        avatarUrl = avatar.secure_url;
-        updatedData.avatar = avatarUrl;
-    }
 
-    const user = await User.findById(req.user._id);
-    if (!user) {
-        throw new ApiError(404, "User not found");
-    }
-
-    // Handle password change if provided
-    if (oldPassword && newPassword) {
-        const isPasswordCorrect = await user.isPasswordCorrect(oldPassword);
-        if (!isPasswordCorrect) {
-            throw new ApiError(400, "Invalid old password");
+        if (req.files["coverImage"]) {
+            const coverImage = await uploadOnCloudinary(req.files["coverImage"][0].path);
+            if (!coverImage) throw new ApiError(400, "Failed to upload cover image");
+            userProfiles.coverImage = coverImage.secure_url;
         }
-        user.password = newPassword;
-        await user.save({ validateBeforeSave: false });
     }
 
-    // Update user details
-    const updatedUser = await User.findByIdAndUpdate(
-        req.user._id,
-        { $set: updatedData },
-        { new: true }
-    ).select("-password");
 
-    return res.status(200).json(new ApiResponse(200, updatedUser, "Account details updated successfully"));
-})
+    await userProfiles.save()
+
+    const userProfile = await UserProfile.findOne({ user: req.user._id })
+
+    return res.status(200).json(new ApiResponse(200, userProfile, "Profile updated successfully"));
+});
+
 
 const uploadFiles = asyncHandler(async (req, res) => {
 
@@ -311,8 +319,8 @@ const resetPassword = asyncHandler(async (req, res) => {
     const { token } = req.params;
     const { newPassword } = req.body;
 
-   const decode = jwt.verify(token, process.env.RESET_PASSWORD_SECRET)
-   const user = await User.findById(decode.userId)
+    const decode = jwt.verify(token, process.env.RESET_PASSWORD_SECRET)
+    const user = await User.findById(decode.userId)
 
     if (!user) {
         throw new ApiError(400, "Invalid or expired token")
