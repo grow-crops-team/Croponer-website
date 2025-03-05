@@ -1,419 +1,173 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Croponer-Login</title>
-
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
-      integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer"
-    />
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
-    />
-    <link rel="stylesheet" href="./assets/css/style.css?v=1.0" />
-    <link rel="stylesheet" href="./assets/css/coustomCss.css?v=1.0" />
-  </head>
-
-  <body class="bg-[radial-gradient(ellipse_at_top,#214283,#0c2e59_80%)] min-h-screen select-none">
-    
-  
-    <!--------- main container----- -->
-    <div
-      id="outer-Container"
-      class="mx-auto mt-8 rounded-xl shadow-2xl overflow-hidden w-[400px] lg:w-[850px] flex flex-col lg:flex-row bg-[#f8faff]  "
-    >
-      <!-- Mobile heading -->
-      <div class="lg:hidden mt-2 px-6 ">
-        <p class="text-[#080b3e] text-center text-2xl font-semibold mb-2">
-          welcome to
-          <img
-            src=""
-            alt="croponer logo"
-            class="h-5 w-5 mx-auto mt-3 mb-5 inline lg:hidden"
-          />
-        </p>
-      </div>
-
-      <!-- Left side panel with illustration -->
-      <div
-        class="hidden lg:block basis-1/2 bg-gradient-to-br from-[#1a4f9e] to-[#072256] text-white relative"
-      >
-        <!-- Decorative circles -->
-        <div
-          class="absolute w-64 h-64 bg-blue-400/10 rounded-full -top-20 -left-20"
-        ></div>
-        <div
-          class="absolute w-72 h-72 bg-blue-300/10 rounded-full -bottom-20 -right-10"
-        ></div>
-
-        <div
-          class="relative z-10 py-20 px-10 flex flex-col items-center justify-center h-full"
-        >
-          <img
-            src=""
-            alt="croponer"
-            class="w-32 mx-auto mb-8 hidden lg:block"
-          />
-          <h2 class="text-3xl font-bold text-white text-center mb-4">
-            Welcome to our platform
-          </h2>
-          <p class="text-lg text-blue-100 text-center mb-8">
-            Please sign up to access all our features and services
-          </p>
-
-          <!-- Features list -->
-          <div class="space-y-4 mt-4">
-            <div class="flex items-center space-x-3">
-              <div class="bg-blue-500/20 p-2 rounded-full">
-                <i class="fa-solid fa-leaf text-blue-200"></i>
-              </div>
-              <p class="text-blue-100">Access crop management tools</p>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profile</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-gray-100 font-sans">
+    <div class="container mx-auto px-4 py-8 max-w-4xl">
+        <!-- Profile Header -->
+        <div class="bg-white rounded-lg shadow-md overflow-hidden">
+            <!-- Cover Image -->
+            <div class="h-48 bg-gradient-to-r from-blue-500 to-purple-600"></div>
+            
+            <!-- Profile Info -->
+            <div class="relative px-6 py-8">
+                <!-- Avatar -->
+                <div class="absolute -top-16 left-6">
+                    <div class="h-32 w-32 rounded-full border-4 border-white bg-white shadow-md overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&auto=format&fit=crop&w=256&h=256&q=80" 
+                             alt="Profile picture" class="h-full w-full object-cover">
+                    </div>
+                </div>
+                
+                <!-- User Info -->
+                <div class="ml-36 flex items-center justify-between">
+                    <div>
+                        <h1 class="text-2xl font-bold text-gray-900">Sarah Johnson</h1>
+                        <p class="text-gray-600">UX Designer & Developer</p>
+                        <p class="text-sm text-gray-500 mt-1">San Francisco, CA</p>
+                    </div>
+                    
+                </div>
             </div>
-            <div class="flex items-center space-x-3">
-              <div class="bg-blue-500/20 p-2 rounded-full">
-                <i class="fa-solid fa-seedling text-blue-200"></i>
-              </div>
-              <p class="text-blue-100">Get personalized recommendations</p>
-            </div>
-            <div class="flex items-center space-x-3">
-              <div class="bg-blue-500/20 p-2 rounded-full">
-                <i class="fa-solid fa-users text-blue-200"></i>
-              </div>
-              <p class="text-blue-100">Join our farming community</p>
-            </div>
-          </div>
         </div>
-      </div>
-
-      <!-------- Main Form ------------>
-      <div
-        id="signup-form"
-        class="lg:basis-1/2 p-6 lg:p-10 bg-gradient-to-br from-[#f8faff] via-[#eaf1fc] to-[#aac8ff] relative"
-      >
-        <!-- Decorative elements -->
-        <div
-          class="absolute top-0 right-0 w-32 h-32 bg-blue-50 rounded-full blur-3xl opacity-70"
-        ></div>
-        <div
-          class="absolute bottom-0 left-0 w-40 h-40 bg-indigo-50 rounded-full blur-3xl opacity-70"
-        ></div>
-
-        <!-- Small decorative circles -->
-        <div
-          class="absolute top-20 right-10 w-3 h-3 rounded-full bg-blue-400 opacity-40"
-        ></div>
-        <div
-          class="absolute bottom-40 left-10 w-2 h-2 rounded-full bg-indigo-500 opacity-40"
-        ></div>
-        <div
-          class="absolute top-1/2 right-4 w-1.5 h-1.5 rounded-full bg-blue-500 opacity-40"
-        ></div>
-       
-
-        <div class="relative z-10">
-          <h1
-            class="text-2xl text-[#0a2458] lg:text-3xl font-bold text-center mb-6"
-          >
-            Create an Account
-            <div
-              class="h-1 w-16 bg-gradient-to-r from-[#3b7dd4] to-[#0c4ca6] mx-auto mt-2"
-            ></div>
-          </h1>
-
-          <div class="flex justify-center gap-4 mt-5">
-            <a
-              class="flex items-center gap-2 py-2.5 px-5 rounded-lg bg-white shadow-sm border border-gray-100 hover:border-[#00159f] hover:shadow-md transition-all duration-300"
-              href="/google"
-            >
-              <img
-                class="w-5"
-                src="./assets/images/login_signup/Google__G__logo.svg"
-                alt="Google"
-              />
-              <p class="text-[16px] text-[#080b3e] font-medium">Google</p>
-            </a>
-            <a
-              class="flex items-center gap-2 py-2.5 px-5 rounded-lg bg-white shadow-sm border border-gray-100 hover:border-[#00159f] hover:shadow-md transition-all duration-300"
-              href="/apple"
-            >
-              <img
-                class="w-5"
-                src="./assets/images/login_signup/apple-black-logo-svgrepo-com.svg"
-                alt="Apple"
-              />
-              <p class="text-[16px] text-[#080b3e] font-medium">Apple</p>
-            </a>
-          </div>
-
-          <div class="flex items-center justify-center mt-5">
-            <div
-              class="h-[1px] w-28 bg-gradient-to-r from-transparent via-blue-300/50 to-transparent"
-            ></div>
-            <p class="text-[#1a4f9e]/70 text-[15px] mx-3 font-medium">
-              Or with email
-            </p>
-            <div
-              class="h-[1px] w-28 bg-gradient-to-r from-transparent via-blue-300/50 to-transparent"
-            ></div>
-          </div>
-
-          <!-- Signup Form -->
-          <form
-            action="signupForm"
-            id="signupForm"
-            class="signupForm mt-7 max-w-md mx-auto"
-          >
-            <!-- Username field -->
-            <div class="userName relative mb-5 group">
-              <div
-                class="flex items-center bg-white border border-blue-100 group-hover:border-[#4980c4] rounded-lg overflow-hidden transition-all duration-300 shadow-sm"
-              >
-                <span class="px-3 py-3 bg-blue-50 border-r border-blue-100">
-                  <i class="fa-solid fa-user text-[#1a4f9e]"></i>
-                </span>
-                <input
-                  id="username"
-                  type="text"
-                  name="username"
-                  placeholder="Username"
-                  class="w-full px-3 py-3 text-[15px] text-[#080b3e] placeholder:text-[#666] focus:outline-none bg-transparent caret-[#080b3e]"
-                />
-              </div>
-              <span
-                id="userNameError"
-                class="error absolute text-[13px] font-medium text-red-500 left-1 top-[48px]"
-              ></span>
+        
+        <!-- Profile Content -->
+        <div class="mt-8 grid grid-cols-1 md:grid-cols-3 gap-8">
+            <!-- Left Column -->
+            <div class="md:col-span-1">
+                <!-- About Me -->
+                <div class="bg-white rounded-lg shadow-md p-6 mb-6">
+                    <h2 class="text-xl font-semibold text-gray-900 mb-4">About You</h2>
+                    <p class="text-gray-700">
+                        UX designer and front-end developer with 5+ years of experience creating intuitive and beautiful web experiences.
+                        Passionate about clean code and user-centered design principles.
+                    </p>
+                    
+                    <!-- Details -->
+                    <div class="mt-6 space-y-3">
+                        <div class="flex items-center">
+                            <svg class="h-5 w-5 text-gray-500 mr-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                            </svg>
+                            <span class="text-gray-700">DesignCo Inc.</span>
+                        </div>
+                        <div class="flex items-center">
+                            <svg class="h-5 w-5 text-gray-500 mr-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+                            </svg>
+                            <span class="text-gray-700">Stanford University</span>
+                        </div>
+                        <div class="flex items-center">
+                            <svg class="h-5 w-5 text-gray-500 mr-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+                            </svg>
+                            <span class="text-gray-700">San Francisco, CA</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Skills -->
+                <div class="bg-white rounded-lg shadow-md p-6">
+                    <h2 class="text-xl font-semibold text-gray-900 mb-4">Skills</h2>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm">UI Design</span>
+                        <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm">UX Research</span>
+                        <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm">React</span>
+                        <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm">Figma</span>
+                        <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm">JavaScript</span>
+                        <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm">CSS</span>
+                        <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm">Tailwind</span>
+                    </div>
+                </div>
             </div>
-
-            <!-- Full Name field -->
-            <div class="fullName relative mb-5 group">
-              <div
-                class="flex items-center bg-white border border-blue-100 group-hover:border-[#4980c4] rounded-lg overflow-hidden transition-all duration-300 shadow-sm"
-              >
-                <span class="px-3 py-3 bg-blue-50 border-r border-blue-100">
-                  <i class="fa-regular fa-user text-[#1a4f9e]"></i>
-                </span>
-                <input
-                  id="fullName"
-                  type="text"
-                  name="fullName"
-                  placeholder="Full Name"
-                  class="w-full px-3 py-3 text-[15px] text-[#080b3e] placeholder:text-[#666] focus:outline-none bg-transparent caret-[#080b3e]"
-                />
-              </div>
-              <span
-                id="fullNameError"
-                class="error absolute text-[13px] font-medium text-[#921b1b] left-1 top-[48px]"
-              ></span>
+            
+            <!-- Right Column -->
+            <div class="md:col-span-2">
+                <!-- Stats -->
+                <div class="bg-white rounded-lg shadow-md p-6 mb-6">
+                    <div class="grid grid-cols-3 gap-4 text-center">
+                        <div>
+                            <p class="text-2xl font-bold text-gray-900">1.2K</p>
+                            <p class="text-gray-600">Followers</p>
+                        </div>
+                        <div>
+                            <p class="text-2xl font-bold text-gray-900">86</p>
+                            <p class="text-gray-600">Projects</p>
+                        </div>
+                        <div>
+                            <p class="text-2xl font-bold text-gray-900">142</p>
+                            <p class="text-gray-600">Following</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Recent Projects -->
+                <div class="bg-white rounded-lg shadow-md p-6">
+                    <h2 class="text-xl font-semibold text-gray-900 mb-4">Recent Projects</h2>
+                    <div class="space-y-6">
+                        <!-- Project 1 -->
+                        <div class="flex items-start">
+                            <div class="h-12 w-12 rounded bg-blue-100 flex items-center justify-center mr-4">
+                                <svg class="h-6 w-6 text-blue-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                                </svg>
+                            </div>
+                            <div>
+                                <h3 class="text-lg font-medium text-gray-900">E-commerce Redesign</h3>
+                                <p class="text-gray-600 text-sm mt-1">Redesigned the checkout flow for an e-commerce platform, increasing conversion by 24%.</p>
+                                <div class="flex items-center mt-2">
+                                    <span class="text-xs text-gray-500">Mar 2, 2025</span>
+                                    <span class="mx-2 text-gray-300">•</span>
+                                    <span class="bg-green-100 text-green-800 text-xs px-2 py-0.5 rounded">Completed</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Project 2 -->
+                        <div class="flex items-start">
+                            <div class="h-12 w-12 rounded bg-purple-100 flex items-center justify-center mr-4">
+                                <svg class="h-6 w-6 text-purple-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z" />
+                                </svg>
+                            </div>
+                            <div>
+                                <h3 class="text-lg font-medium text-gray-900">Health App UI Kit</h3>
+                                <p class="text-gray-600 text-sm mt-1">Created a comprehensive UI kit for health and wellness applications.</p>
+                                <div class="flex items-center mt-2">
+                                    <span class="text-xs text-gray-500">Feb 15, 2025</span>
+                                    <span class="mx-2 text-gray-300">•</span>
+                                    <span class="bg-green-100 text-green-800 text-xs px-2 py-0.5 rounded">Completed</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Project 3 -->
+                        <div class="flex items-start">
+                            <div class="h-12 w-12 rounded bg-yellow-100 flex items-center justify-center mr-4">
+                                <svg class="h-6 w-6 text-yellow-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 3.055A9.001 9.001 0 1020.945 13H11V3.055z" />
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.488 9H15V3.512A9.025 9.025 0 0120.488 9z" />
+                                </svg>
+                            </div>
+                            <div>
+                                <h3 class="text-lg font-medium text-gray-900">Analytics Dashboard</h3>
+                                <p class="text-gray-600 text-sm mt-1">Developing a data visualization dashboard for marketing analytics.</p>
+                                <div class="flex items-center mt-2">
+                                    <span class="text-xs text-gray-500">Current</span>
+                                    <span class="mx-2 text-gray-300">•</span>
+                                    <span class="bg-blue-100 text-blue-800 text-xs px-2 py-0.5 rounded">In Progress</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-
-            <!-- Email field -->
-            <div class="email relative mb-5 group">
-              <div
-                class="flex items-center bg-white border border-blue-100 group-hover:border-[#4980c4] rounded-lg overflow-hidden transition-all duration-300 shadow-sm"
-              >
-                <span class="px-3 py-3 bg-blue-50 border-r border-blue-100">
-                  <i class="fa-solid fa-envelope text-[#1a4f9e]"></i>
-                </span>
-                <input
-                  id="email"
-                  type="email"
-                  name="email"
-                  placeholder="Email"
-                  class="w-full px-3 py-3 text-[15px] text-[#080b3e] placeholder:text-[#666] focus:outline-none bg-transparent caret-[#080b3e]"
-                />
-              </div>
-              <span
-                id="emailError"
-                class="error absolute text-[13px] font-medium text-[#921b1b] left-1 top-[48px]"
-              ></span>
-            </div>
-
-            <!-- Password field -->
-            <div class="password relative mb-5 group">
-              <div
-                class="flex items-center bg-white border border-blue-100 group-hover:border-[#4980c4] rounded-lg overflow-hidden transition-all duration-300 shadow-sm"
-              >
-                <span class="px-3 py-3 bg-blue-50 border-r border-blue-100">
-                  <i class="bi bi-key-fill text-[#1a4f9e]"></i>
-                </span>
-                <input
-                  id="password"
-                  type="password"
-                  name="password"
-                  placeholder="Password"
-                  class="w-full px-3 py-3 text-[15px] text-[#080b3e] placeholder:text-[#666] focus:outline-none bg-transparent caret-[#080b3e]"
-                />
-                <i
-                  id="showPassword"
-                  class="bi bi-eye-slash-fill text-gray-500 hover:text-[#1a4f9e] px-3 cursor-pointer"
-                ></i>
-              </div>
-              <span
-                id="passworeError"
-                class="error absolute text-[13px] font-medium text-[#921b1b] left-1 top-[48px]"
-              ></span>
-            </div>
-
-            <!-- Confirm Password field -->
-            <div class="confirmPassword relative mb-6 group">
-              <div
-                class="flex items-center bg-white border border-blue-100 group-hover:border-[#4980c4] rounded-lg overflow-hidden transition-all duration-300 shadow-sm"
-              >
-                <span class="px-3 py-3 bg-blue-50 border-r border-blue-100">
-                  <i class="bi bi-key-fill text-[#1a4f9e]"></i>
-                </span>
-                <input
-                  id="confirmPassword"
-                  type="password"
-                  name="confirmPassword"
-                  placeholder="Confirm Password"
-                  class="w-full px-3 py-3 text-[15px] text-[#080b3e] placeholder:text-[#666] focus:outline-none bg-transparent caret-[#080b3e]"
-                />
-              </div>
-              <span
-                id="confirmPasswordError"
-                class="error absolute text-[13px] font-medium text-[#921b1b] left-1 top-[48px]"
-              ></span>
-            </div>
-
-            <!-- Submit button -->
-            <button
-              id="submitBtn"
-              type="submit"
-              class="w-full py-3.5 mt-3 rounded-lg bg-gradient-to-r from-[#3b7dd4] to-[#0c4ca6] text-white font-semibold text-lg shadow-lg shadow-blue-200/50 hover:shadow-xl hover:shadow-blue-400/70 transition-all duration-300"
-            >
-              Create Account
-            </button>
-
-            <!-- Login link -->
-            <p class="text-center text-[#0a123d] mt-6 text-sm">
-              Already have an account?
-              <a
-                id="signup"
-                href="/login"
-                class="text-[#1e4796] font-semibold hover:underline transition-colors"
-              >
-                Login here
-              </a>
-            </p>
-          </form>
         </div>
-      </div>
     </div>
-    <!-- display message -->
-    <div id="displayError" class="hidden">
-      <div id="displayErrorContent">
-        <p id="message"></p>
-      </div>
-    </div>
-    <!------------- footer-------- -->
-
-    <footer class="bg-[#092050] select-none mt-40">
-      <div
-        class="flex flex-col lg:flex-row lg:space-x-2 lg:space-y-0 lg:justify-center mx-5 mt-10 lg:py-10 px-5 pt-10 pb-14 space-y-16 text-gray-400 border-b-[1px] border-[#ffffffa7]"
-      >
-        <div class="lg:h-60 lg:w-56 lg:mr-24 text-pretty">
-          <p class="text-lg font-semibold text-gray-300 mb-2">Contact</p>
-          <ul class="text-sm space-y-3">
-            <li>
-              Address:
-              <address>Egra, East Midnapore, West Bengal, 721329</address>
-            </li>
-            <li>
-              Email:
-              <a href="mailto:growcropsteam@gmail.com"
-                >growcropsteam@gmail.com</a
-              >
-            </li>
-            <li>Follow us on:</li>
-            <li class="space-x-5 mt-1 ml-3 text-lg">
-              <a href=" https://wa.me/919800068420" target="_blank"
-                ><i class="bi bi-whatsapp text-green-600"></i
-              ></a>
-              <a target="_blank"><i class="bi bi-twitter-x text-black"></i></a>
-              <a target="_blank"
-                ><i class="fa-brands fa-linkedin text-blue-700"></i
-              ></a>
-            </li>
-          </ul>
-        </div>
-
-        <div class="lg:h-60 w-60 text-pretty">
-          <p class="text-lg font-semibold text-gray-300 mb-2">Quick Links</p>
-          <ul class="text-sm space-y-2">
-            <li><a href="/about">About Us</a></li>
-            <li><a href="/work">our Works</a></li>
-            <li><a href="/work">Our Team</a></li>
-            <li><a href="/work"></a>Read Article</li>
-          </ul>
-        </div>
-
-        <div class="lg:h-60 w-60 text-pretty">
-          <p class="text-lg font-semibold text-gray-300 mb-2">Help/Support</p>
-          <ul class="text-sm space-y-3">
-            <li><a href="/contact">Contact Us</a></li>
-            <li><a href="/help">help</a></li>
-            <li><a href="/support">Support</a></li>
-            <li><a href="/terms">Terms & Condition</a></li>
-          </ul>
-        </div>
-
-        <div class="lg:h-60 w-60 text-pretty">
-          <p class="text-lg font-semibold text-gray-300 mb-2">Community</p>
-          <ul class="text-sm space-y-3">
-            <li><a href="/team">Join our Community</a></li>
-            <li><a href="/gallery">Gallery</a></li>
-            <li><a href="/blog">Our Blogs</a></li>
-            <li><a href="/events">Special Events</a></li>
-          </ul>
-        </div>
-
-        <div class="w-60">
-          <div>
-            <p class="text-lg font-semibold text-gray-300">Write a review</p>
-            <p><a href="/review">feedback</a></p>
-          </div>
-          <!-- <div class="mt-16">
-                <p class="text-lg font-semibold text-gray-300 mb-2">
-                  Download Our mobile app
-                </p>
-                <img
-                  class="inline-block h-8"
-                  src="./img/hero/app-store.png"
-                  alt=""
-                />
-                <img
-                  class="inline-block h-8"
-                  src="./img/hero/play-store.png"
-                  alt=""
-                />
-              </div> -->
-        </div>
-      </div>
-      <!-- footer last -->
-      <div>
-        <p class="text-center align-middle p-6 text-sm text-gray-400">
-          &copy; 2025 Croponer. All rights reserved.
-        </p>
-      </div>
-    </footer>
-
-    <!-- loader -->
-    <div id="loader" class="">
-      <div class="spinner">
-        <svg viewBox="25 25 50 50">
-          <circle cx="50" cy="50" r="20"></circle>
-        </svg>
-      </div>
-    </div>
-
-    <script type="module" src="./assets/js/user.register.js"></script>
-  </body>
+</body>
 </html>
