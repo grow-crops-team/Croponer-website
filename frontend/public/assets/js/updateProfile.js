@@ -10,12 +10,12 @@ const phoneNumber = document.querySelector("#phoneNumber");
 const userBio = document.querySelector("#bio");
 
 // Address Fields
-const country = document.querySelector("#country");
-const state = document.querySelector("#state");
-const district = document.querySelector("#district");
+const streetAddress = document.querySelector("#streetAddress");
 const village = document.querySelector("#village");
 const pincode = document.querySelector("#pincode");
-const streetAddress = document.querySelector("#streetAddress");
+const district = document.querySelector("#district");
+const state = document.querySelector("#state");
+const country = document.querySelector("#country");
 
 const cancelBtn = document.querySelector("#cancelBtn");
 
@@ -91,10 +91,9 @@ profileUpdateForm.addEventListener("submit", async (evt) => {
         return;
     }
 
-    // 🛠 Create FormData Object
     const formData = new FormData();
     formData.append("fullName", fullName.value);
-    formData.append("email", email.value); // Email is disabled but still included
+    formData.append("email", email.value);
     formData.append("phoneNumber", phoneNumber.value);
     formData.append("bio", userBio.value);
     formData.append("country", country.value);
@@ -103,13 +102,20 @@ profileUpdateForm.addEventListener("submit", async (evt) => {
     formData.append("village", village.value);
     formData.append("pincode", pincode.value);
     formData.append("streetAddress", streetAddress.value);
+    if (coverImageInput.files.length > 0) {
+        formData.append("coverImage", coverImageInput.files[0]);
+    }
+    if (avatarImageInput.files.length > 0) {
+        formData.append("avatar", avatarImageInput.files[0]);
+    }
 
-
-    if (coverImageInput.files[0]) formData.append("coverImage", coverImageInput.files[0]);
-    if (avatarImageInput.files[0]) formData.append("avatarImage", avatarImageInput.files[0]);
+    // ✅ Debugging Step: Log what is inside formData
+    for (let [key, value] of formData.entries()) {
+        console.log(`${key}:`, value);
+    }
 
     try {
-       
+
         const response = await fetch("/api/v1/users/update-account", {
             method: "PATCH",
             body: formData,
@@ -117,7 +123,7 @@ profileUpdateForm.addEventListener("submit", async (evt) => {
 
         const result = await response.json();
         console.log(result);
-        
+
         if (result.statuscode === 200) {
             displayMessage("success", result.message);
             setTimeout(() => {
@@ -141,7 +147,20 @@ cancelBtn.addEventListener("click", (e) => {
 
 
 document.addEventListener("DOMContentLoaded", function () {
-    // Profile Update Form & Tooltip
+
+    fullName.value = sessionStorage.getItem("userFullname")
+    email.value = sessionStorage.getItem("email")
+    phoneNumber.value = sessionStorage.getItem("phoneNumber");
+    userBio.value = sessionStorage.getItem("bio") || "";
+    streetAddress.value = sessionStorage.getItem("streetAddress");
+    village.value = sessionStorage.getItem("village");
+    pincode.value = sessionStorage.getItem("pincode")
+    const stateValue = sessionStorage.getItem("state")
+    const districtValue = sessionStorage.getItem("district")
+    state.innerHTML = `<option value="${stateValue}" selected>${stateValue}</option>`;
+    district.innerHTML = `<option value="${districtValue}" selected>${districtValue}</option>`;
+
+
     const profileUpdateForm = document.getElementById("profileUpdateForm");
     const updateProfileBtn = document.getElementById("updateProfileBtn");
 
@@ -185,10 +204,8 @@ document.addEventListener("DOMContentLoaded", function () {
     updateProfileBtn.disabled = true;
     updateProfileBtn.classList.add("opacity-50", "cursor-not-allowed");
 
-    // 📌 Address Autofill via Pincode
-    const pincode = document.getElementById("pincode");
-    const stateSelect = document.getElementById("state");
-    const districtSelect = document.getElementById("district");
+
+
 
     pincode.addEventListener("input", async function () {
         if (pincode.value.trim().length === 6) {
@@ -197,9 +214,14 @@ document.addEventListener("DOMContentLoaded", function () {
                 const data = await response.json();
 
                 if (data[0].Status === "Success") {
+
                     const postOffice = data[0].PostOffice[0];
-                    stateSelect.innerHTML = `<option value="${postOffice.State}" selected>${postOffice.State}</option>`;
-                    districtSelect.innerHTML = `<option value="${postOffice.District}" selected>${postOffice.District}</option>`;
+
+
+
+
+                    state.innerHTML = `<option value="${postOffice.State}" selected>${postOffice.State}</option>`;
+                    district.innerHTML = `<option value="${postOffice.District}" selected>${postOffice.District}</option>`;
                 } else {
                     console.error("Invalid Pincode");
                 }

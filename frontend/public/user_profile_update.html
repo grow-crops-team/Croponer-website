@@ -22,275 +22,275 @@
   <body class="bg-[#cae4f3] select-none">
     <div class="max-w-4xl mx-auto my-8 px-4">
       <div class="bg rounded-2xl shadow-xl overflow-hidden">
-        <div class="relative">
-          <!-- Cover image section with enhanced gradient overlay -->
-          <div
-            class="relative h-56 sm:h-72 bg-gradient-to-r from-indigo-600 to-violet-500"
-          >
-            <div
-              id="coverPreviewContainer"
-              class="absolute inset-0 bg-cover bg-center"
-            >
-              <img
-                id="coverPreview"
-                src="./assets/images/default-cover.jpg"
-                alt="Cover"
-                class="w-full h-full object-cover"
-              />
-            </div>
-            <div
-              class="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent"
-            ></div>
-            <label
-              for="coverImage"
-              class="absolute bottom-4 right-4 flex items-center gap-2 bg-white/20 backdrop-blur-md text-white px-4 py-2 rounded-full cursor-pointer hover:bg-white/30 transition-all border border-white/30"
-            >
-              <i class="bi bi-camera-fill"></i>
-              <span>Change Cover</span>
-            </label>
-            <input
-              type="file"
-              id="coverImage"
-              name="coverImage"
-              accept="image/*"
-              class="hidden"
-            />
-            <!-- Progress Bar for Cover Image -->
-            <div
-              class="absolute bottom-0 left-0 w-full h-1 bg-gray-200 rounded overflow-hidden"
-            >
-              <div
-                id="coverProgress"
-                class="h-full bg-green-500 transition-all hidden"
-                style="width: 0%"
-              ></div>
-            </div>
-          </div>
-
-          <!-- Avatar section with enhanced styling -->
-          <div
-            class="absolute -bottom-16 left-6 sm:left-10 ring-4 ring-white rounded-full shadow-lg"
-          >
-            <div class="relative group">
-              <img
-                id="avatarPreview"
-                src="./assets/images/avatar/person_circle.svg"
-                alt="Avatar"
-                class="w-28 h-28 sm:w-32 sm:h-32 rounded-full object-cover bg-gradient-to-br from-gray-100 to-white"
-              />
-              <label
-                for="avatar"
-                class="absolute bottom-0 right-0 bg-indigo-600 text-white p-2 rounded-full cursor-pointer hover:bg-indigo-700 transition shadow-md border-2 border-white"
-              >
-                <i class="bi bi-camera-fill"></i>
-              </label>
-              <input
-                type="file"
-                id="avatar"
-                name="avatar"
-                accept="image/*"
-                class="hidden"
-              />
-            </div>
-          </div>
-          <!-- Progress Bar for Avatar -->
-          <div class="absolute w-30 top-71 left-5 bg-gray-200 rounded mt-2">
-            <div
-              id="avatarProgress"
-              class=" h-1 bg-green-500 transition-all hidden"
-              style="width: 0%"
-            ></div>
-          </div>
-        </div>
-
-        <!-- Welcome header -->
-        <div class="pt-20 px-6 sm:px-10 pb-6 border-b border-indigo-400">
-          <h1 class="text-2xl font-bold text-gray-800">
-            Hello,
-            <span id="userName" class="text-indigo-600 username">User</span>!
-          </h1>
-          <p class="text-gray-600 mt-1">
-            Update your profile information below
-          </p>
-          <div
-            class="flex items-center gap-2 mb-8 px-4 py-2 bg-purple-50 dark:bg-purple-900/20 border-l-4 border-purple-800 dark:border-purple-500 rounded-r-md"
-          >
-            <i
-              class="bi bi-info-circle text-purple-600 dark:text-purple-900"
-            ></i>
-            <p class="text-sm text-purple-900 dark:text-purple-900">
-              Fields marked with an asterisk (*) are required
-            </p>
-          </div>
-        </div>
-
         <!-- Form content -->
         <form
           id="profileUpdateForm"
           action="/updateUserProfile"
           method="POST"
           enctype="multipart/form-data"
-          class="p-6 sm:p-10 space-y-8"
         >
-          <!-- Basic Information Section -->
-          <div>
-            <h2
-              class="text-lg font-semibold text-indigo-800 pb-2 border-b border-indigo-300 flex items-center gap-2"
+          <div class="relative">
+            <!-- Cover image section with enhanced gradient overlay -->
+            <div
+              class="relative h-56 sm:h-72 bg-gradient-to-r from-indigo-600 to-violet-500"
             >
-              <i class="bi bi-person-badge"></i>
-              Basic Information
-            </h2>
-            <div class="mt-6 grid grid-cols-1 md:grid-cols-2 gap-6">
-              <!-- Full name -->
-              <div class="form-group">
-                <label
-                  for="fullName"
-                  class="block text-sm font-medium text-gray-700 mb-1"
-                  >Full Name *</label
-                >
-                <div class="relative group">
-                  <div
-                    class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-indigo-400 group-focus-within:text-indigo-600 transition-colors"
-                  >
-                    <i class="bi bi-person-fill"></i>
-                  </div>
-                  <input
-                    id="fullName"
-                    type="text"
-                    name="fullName"
-                    placeholder="Enter your full name"
-                    class="pl-10 w-full h-12 rounded-xl border border-gray-300 focus:ring-1 focus:ring-indigo-500 focus:border-indigo-400 transition-all bg-white/70 outline-none"
-                    required
-                  />
-                </div>
+              <div
+                id="coverPreviewContainer"
+                class="absolute inset-0 bg-cover bg-center"
+              >
+                <img
+                  id="coverPreview"
+                  src="https://images.unsplash.com/photo-1579548122080-c35fd6820ecb?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                  alt="Cover"
+                  class="w-full h-full object-cover"
+                />
               </div>
+              <div
+                class="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent"
+              ></div>
 
-              <!-- Email -->
-              <div class="form-group">
-                <label
-                  for="email"
-                  class="block text-sm font-medium text-gray-700 mb-1"
-                  >Email Address *</label
-                >
-                <div class="relative group">
-                  <div
-                    class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-indigo-400 group-focus-within:text-indigo-600 transition-colors"
-                  >
-                    <i class="bi bi-envelope-fill"></i>
-                  </div>
-                  <input
-                    id="email"
-                    type="email"
-                    name="email"
-                    placeholder="your@email.com"
-                    class="pl-10 w-full h-12 rounded-xl border border-gray-300 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all bg-white/70 cursor-not-allowed"
-                    disabled
-                  />
-                </div>
+              <label
+                for="coverImage"
+                class="absolute bottom-4 right-4 flex items-center gap-2 bg-white/20 backdrop-blur-md text-white px-4 py-2 rounded-full cursor-pointer hover:bg-white/30 transition-all border border-white/30"
+              >
+                <i class="bi bi-camera-fill"></i>
+                <span>Change Cover</span>
+              </label>
+              <input
+                type="file"
+                id="coverImage"
+                name="coverImage"
+                accept="image/*"
+                class="hidden"
+              />
+              <!-- Progress Bar for Cover Image -->
+              <div
+                class="absolute bottom-0 left-0 w-full h-1 bg-gray-200 rounded overflow-hidden"
+              >
+                <div
+                  id="coverProgress"
+                  class="h-full bg-green-500 transition-all hidden"
+                  style="width: 0%"
+                ></div>
               </div>
+            </div>
 
-              <!-- Phone Number -->
-              <div class="form-group">
+            <!-- Avatar section with enhanced styling -->
+            <div
+              class="absolute -bottom-16 left-6 sm:left-10 ring-4 ring-white rounded-full shadow-lg"
+            >
+              <div class="relative group">
+                <img
+                  id="avatarPreview"
+                  src="./assets/images/avatar/default_user.jpg"
+                  alt="Avatar"
+                  class="w-28 h-28 sm:w-32 sm:h-32 rounded-full object-cover bg-gradient-to-br from-gray-100 to-white"
+                />
                 <label
-                  for="phoneNumber"
-                  class="block text-sm font-medium text-gray-700 mb-1"
-                  >Phone Number *</label
+                  for="avatar"
+                  class="absolute bottom-0 right-0 bg-indigo-600 text-white p-2 rounded-full cursor-pointer hover:bg-indigo-700 transition shadow-md border-2 border-white"
                 >
-                <div class="relative group">
-                  <div
-                    class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-indigo-400 group-focus-within:text-indigo-600 transition-colors"
-                  >
-                    <i class="bi bi-telephone-fill"></i>
-                  </div>
-                  <input
-                    id="phoneNumber"
-                    type="tel"
-                    name="phoneNumber"
-                    placeholder="Enter your phone number"
-                    pattern="[0-9]{10}"
-                    class="pl-10 w-full h-12 rounded-xl border border-gray-300 focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500 transition-all bg-white/70 outline-none"
-                    required
-                  />
-                </div>
+                  <i class="bi bi-camera-fill"></i>
+                </label>
+                <input
+                  type="file"
+                  id="avatar"
+                  name="avatar"
+                  accept="image/*"
+                  class="hidden"
+                />
               </div>
+            </div>
+            <!-- Progress Bar for Avatar -->
+            <div class="absolute w-30 top-71 left-5 bg-gray-200 rounded mt-2">
+              <div
+                id="avatarProgress"
+                class="h-1 bg-green-500 transition-all hidden"
+                style="width: 0%"
+              ></div>
             </div>
           </div>
 
-          <!-- Bio Section -->
-          <div>
-            <h2
-              class="text-lg font-semibold text-indigo-800 pb-2 border-b border-indigo-300 flex items-center gap-2"
+          <!-- Welcome header -->
+          <div class="pt-20 px-6 sm:px-10 pb-6 border-b border-indigo-400">
+            <h1 class="text-2xl font-bold text-gray-800">
+              Hello,
+              <span id="userName" class="text-indigo-600 username">User</span>!
+            </h1>
+            <p class="text-gray-600 mt-1">
+              Update your profile information below
+            </p>
+            <div
+              class="flex items-center gap-2 mb-8 px-4 py-2 bg-purple-50 dark:bg-purple-900/20 border-l-4 border-purple-800 dark:border-purple-500 rounded-r-md"
             >
-              <i class="bi bi-card-text"></i>
-              About You
-            </h2>
-            <div class="mt-6">
-              <label
-                for="bio"
-                class="block text-sm font-medium text-gray-700 mb-1"
-                >Bio</label
-              >
-              <div class="relative">
-                <textarea
-                  id="bio"
-                  name="bio"
-                  placeholder="Write something about yourself..."
-                  rows="4"
-                  class="w-full rounded-xl border border-gray-300 focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500 transition-all p-4 bg-white/70 outline-none"
-                ></textarea>
-                <div
-                  class="absolute bottom-3 right-3 px-2 py-1 bg-indigo-200 rounded-full text-xs text-indigo-600 font-medium"
-                >
-                  <span id="bioCounter">0</span>/250
-                </div>
-              </div>
-              <p class="text-xs text-gray-600 mt-1 italic">
-                Share a little about yourself, your interests, or your
-                profession
+              <i
+                class="bi bi-info-circle text-purple-600 dark:text-purple-900"
+              ></i>
+              <p class="text-sm text-purple-900 dark:text-purple-900">
+                Fields marked with an asterisk (*) are required
               </p>
             </div>
           </div>
 
-          <!-- Address Section -->
-          <div>
-            <h2
-              class="text-lg font-semibold text-indigo-800 pb-2 border-b border-indigo-300 flex items-center gap-2"
-            >
-              <i class="bi bi-geo-alt"></i>
-              Address Information
-            </h2>
-            <div class="mt-6 grid grid-cols-1 sm:grid-cols-2 gap-6">
-
-               <!-- Street Address -->
-               <div class="form-group sm:col-span-2">
-                <label
-                  for="streetAddress"
-                  class="block text-sm font-medium text-gray-700 mb-1"
-                  >Street Address
-                </label>
-                <div class="relative group">
-                  <div
-                    class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-indigo-400 group-focus-within:text-indigo-600 transition-colors"
+          <div class="p-6 sm:p-10 space-y-8">
+            <!-- Basic Information Section -->
+            <div>
+              <h2
+                class="text-lg font-semibold text-indigo-800 pb-2 border-b border-indigo-300 flex items-center gap-2"
+              >
+                <i class="bi bi-person-badge"></i>
+                Basic Information
+              </h2>
+              <div class="mt-6 grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- Full name -->
+                <div class="form-group">
+                  <label
+                    for="fullName"
+                    class="block text-sm font-medium text-gray-700 mb-1"
+                    >Full Name *</label
                   >
-                    <i class="bi bi-signpost-fill"></i>
+                  <div class="relative group">
+                    <div
+                      class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-indigo-400 group-focus-within:text-indigo-600 transition-colors"
+                    >
+                      <i class="bi bi-person-fill"></i>
+                    </div>
+                    <input
+                      id="fullName"
+                      type="text"
+                      name="fullName"
+                      placeholder="Enter your full name"
+                      class="pl-10 w-full h-12 rounded-xl border border-gray-300 focus:ring-1 focus:ring-indigo-500 focus:border-indigo-400 transition-all bg-white/70 outline-none"
+                      required
+                    />
                   </div>
-                  <input
-                    id="streetAddress"
-                    type="text"
-                    name="streetAddress"
-                    placeholder="Enter your detailed street address"
-                    class="pl-10 w-full h-12 rounded-xl border border-gray-300 focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500 transition-all bg-white/70 outline-none"
-                  />
                 </div>
-                <span
-                  id="streetAddressError"
-                  class="text-sm text-red-500 mt-1 hidden"
-                  >Please enter your street address</span
-                >
-              </div>
 
-                 <!-- Village -->
-                 <div class="form-group">
+                <!-- Email -->
+                <div class="form-group">
+                  <label
+                    for="email"
+                    class="block text-sm font-medium text-gray-700 mb-1"
+                    >Email Address *</label
+                  >
+                  <div class="relative group">
+                    <div
+                      class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-indigo-400 group-focus-within:text-indigo-600 transition-colors"
+                    >
+                      <i class="bi bi-envelope-fill"></i>
+                    </div>
+                    <input
+                      id="email"
+                      type="email"
+                      name="email"
+                      placeholder="your@email.com"
+                      class="pl-10 w-full h-12 rounded-xl border border-gray-300 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all bg-white/70 cursor-not-allowed"
+                      disabled
+                    />
+                  </div>
+                </div>
+
+                <!-- Phone Number -->
+                <div class="form-group">
+                  <label
+                    for="phoneNumber"
+                    class="block text-sm font-medium text-gray-700 mb-1"
+                    >Phone Number *</label
+                  >
+                  <div class="relative group">
+                    <div
+                      class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-indigo-400 group-focus-within:text-indigo-600 transition-colors"
+                    >
+                      <i class="bi bi-telephone-fill"></i>
+                    </div>
+                    <input
+                      id="phoneNumber"
+                      type="tel"
+                      name="phoneNumber"
+                      placeholder="Enter your phone number"
+                      pattern="[0-9]{10}"
+                      class="pl-10 w-full h-12 rounded-xl border border-gray-300 focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500 transition-all bg-white/70 outline-none"
+                      required
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Bio Section -->
+            <div>
+              <h2
+                class="text-lg font-semibold text-indigo-800 pb-2 border-b border-indigo-300 flex items-center gap-2"
+              >
+                <i class="bi bi-card-text"></i>
+                About You
+              </h2>
+              <div class="mt-6">
+                <label
+                  for="bio"
+                  class="block text-sm font-medium text-gray-700 mb-1"
+                  >Bio</label
+                >
+                <div class="relative">
+                  <textarea
+                    id="bio"
+                    name="bio"
+                    placeholder="Write something about yourself..."
+                    rows="4"
+                    class="w-full rounded-xl border border-gray-300 focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500 transition-all p-4 bg-white/70 outline-none"
+                  ></textarea>
+                  <div
+                    class="absolute bottom-3 right-3 px-2 py-1 bg-indigo-200 rounded-full text-xs text-indigo-600 font-medium"
+                  >
+                    <span id="bioCounter">0</span>/250
+                  </div>
+                </div>
+                <p class="text-xs text-gray-600 mt-1 italic">
+                  Share a little about yourself, your interests, or your
+                  profession
+                </p>
+              </div>
+            </div>
+
+            <!-- Address Section -->
+            <div>
+              <h2
+                class="text-lg font-semibold text-indigo-800 pb-2 border-b border-indigo-300 flex items-center gap-2"
+              >
+                <i class="bi bi-geo-alt"></i>
+                Address Information
+              </h2>
+              <div class="mt-6 grid grid-cols-1 sm:grid-cols-2 gap-6">
+                <!-- Street Address -->
+                <div class="form-group sm:col-span-2">
+                  <label
+                    for="streetAddress"
+                    class="block text-sm font-medium text-gray-700 mb-1"
+                    >Street Address
+                  </label>
+                  <div class="relative group">
+                    <div
+                      class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-indigo-400 group-focus-within:text-indigo-600 transition-colors"
+                    >
+                      <i class="bi bi-signpost-fill"></i>
+                    </div>
+                    <input
+                      id="streetAddress"
+                      type="text"
+                      name="streetAddress"
+                      placeholder="Enter your detailed street address"
+                      class="pl-10 w-full h-12 rounded-xl border border-gray-300 focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500 transition-all bg-white/70 outline-none"
+                    />
+                  </div>
+                  <span
+                    id="streetAddressError"
+                    class="text-sm text-red-500 mt-1 hidden"
+                    >Please enter your street address</span
+                  >
+                </div>
+
+                <!-- Village -->
+                <div class="form-group">
                   <label
                     for="village"
                     class="block text-sm font-medium text-gray-700 mb-1"
@@ -311,13 +311,15 @@
                       required
                     />
                   </div>
-                  <span id="villageError" class="text-sm text-red-500 mt-1 hidden"
+                  <span
+                    id="villageError"
+                    class="text-sm text-red-500 mt-1 hidden"
                     >Please enter your village/town</span
                   >
                 </div>
 
-                 <!-- PIN Code -->
-                 <div class="form-group">
+                <!-- PIN Code -->
+                <div class="form-group">
                   <label
                     for="pincode"
                     class="block text-sm font-medium text-gray-700 mb-1"
@@ -339,126 +341,127 @@
                       required
                     />
                   </div>
-                  <span id="pincodeError" class="text-sm text-red-500 mt-1 hidden"
+                  <span
+                    id="pincodeError"
+                    class="text-sm text-red-500 mt-1 hidden"
                     >Please enter a valid 6-digit PIN code</span
                   >
                 </div>
 
-              
-               <!-- District Dropdown -->
-               <div class="form-group">
-                <label
-                  for="district"
-                  class="block text-sm font-medium text-gray-700 mb-1"
-                  >District *</label
-                >
-                <div class="relative group">
-                  <div
-                    class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-indigo-400 group-focus-within:text-indigo-600 transition-colors"
+                <!-- District Dropdown -->
+                <div class="form-group">
+                  <label
+                    for="district"
+                    class="block text-sm font-medium text-gray-700 mb-1"
+                    >District *</label
                   >
-                    <i class="bi bi-map-fill"></i>
+                  <div class="relative group">
+                    <div
+                      class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-indigo-400 group-focus-within:text-indigo-600 transition-colors"
+                    >
+                      <i class="bi bi-map-fill"></i>
+                    </div>
+                    <select
+                      id="district"
+                      name="district"
+                      class="pl-10 w-full h-12 rounded-xl border border-gray-300 focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500 transition-all appearance-none bg-white/70 text-gray-700 outline-none"
+                      required
+                    >
+                      <option id="select-district" value="" disabled selected>
+                        Select your district
+                      </option>
+                    </select>
+                    <div
+                      class="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none text-indigo-400"
+                    >
+                      <i class="bi bi-chevron-down"></i>
+                    </div>
                   </div>
-                  <select
-                    id="district"
-                    name="district"
-                    class="pl-10 w-full h-12 rounded-xl border border-gray-300 focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500 transition-all appearance-none bg-white/70 text-gray-700 outline-none"
-                    required
+                  <span
+                    id="districtError"
+                    class="text-sm text-red-500 mt-1 hidden"
+                    >Please select your district</span
                   >
-                    <option id="select-district" value="" disabled selected>
-                      Select your district
-                    </option>
-                  </select>
-                  <div
-                    class="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none text-indigo-400"
-                  >
-                    <i class="bi bi-chevron-down"></i>
-                  </div>
                 </div>
-                <span
-                  id="districtError"
-                  class="text-sm text-red-500 mt-1 hidden"
-                  >Please select your district</span
-                >
-              </div>
 
-               <!-- State Dropdown -->
-               <div class="form-group">
-                <label
-                  for="state"
-                  class="block text-sm font-medium text-gray-700 mb-1"
-                  >State *</label
-                >
-                <div class="relative group">
-                  <div
-                    class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-indigo-400 group-focus-within:text-indigo-600 transition-colors"
+                <!-- State Dropdown -->
+                <div class="form-group">
+                  <label
+                    for="state"
+                    class="block text-sm font-medium text-gray-700 mb-1"
+                    >State *</label
                   >
-                    <i class="bi bi-geo-alt-fill"></i>
+                  <div class="relative group">
+                    <div
+                      class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-indigo-400 group-focus-within:text-indigo-600 transition-colors"
+                    >
+                      <i class="bi bi-geo-alt-fill"></i>
+                    </div>
+                    <select
+                      id="state"
+                      name="state"
+                      class="pl-10 w-full h-12 rounded-xl border border-gray-300 focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500 transition-all appearance-none text-gray-700 bg-white/70 outline-none"
+                      required
+                    >
+                      <option id="select-state" value="" disabled selected>
+                        Select your state
+                      </option>
+                      <!-- State options remain the same -->
+                    </select>
+                    <div
+                      class="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none text-indigo-400"
+                    >
+                      <i class="bi bi-chevron-down"></i>
+                    </div>
                   </div>
-                  <select
-                    id="state"
-                    name="state"
-                    class="pl-10 w-full h-12 rounded-xl border border-gray-300 focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500 transition-all appearance-none text-gray-700 bg-white/70 outline-none"
-                    required
+                  <span id="stateError" class="text-sm text-red-500 mt-1 hidden"
+                    >Please select your state</span
                   >
-                    <option id="select-state" value="" disabled selected>
-                      Select your state
-                    </option>
-                    <!-- State options remain the same -->
-                  </select>
-                  <div
-                    class="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none text-indigo-400"
-                  >
-                    <i class="bi bi-chevron-down"></i>
-                  </div>
                 </div>
-                <span id="stateError" class="text-sm text-red-500 mt-1 hidden"
-                  >Please select your state</span
-                >
-              </div>
 
-              <!-- Country (Fixed as India) -->
-              <div class="form-group">
-                <label class="block text-sm font-medium text-gray-700 mb-1"
-                  >Country *</label
-                >
-                <div class="relative">
-                  <div
-                    class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-indigo-400"
+                <!-- Country (Fixed as India) -->
+                <div class="form-group">
+                  <label class="block text-sm font-medium text-gray-700 mb-1"
+                    >Country *</label
                   >
-                    <i class="bi bi-flag-fill"></i>
+                  <div class="relative">
+                    <div
+                      class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-indigo-400"
+                    >
+                      <i class="bi bi-flag-fill"></i>
+                    </div>
+                    <input
+                      id="country"
+                      type="text"
+                      value="India"
+                      class="pl-10 w-full h-12 rounded-xl bg-indigo-50 border border-indigo-100 cursor-not-allowed text-gray-700 outline-none"
+                      readonly
+                    />
+                    <input type="hidden" name="country" value="India" />
                   </div>
-                  <input
-                    id="country"
-                    type="text"
-                    value="India"
-                    class="pl-10 w-full h-12 rounded-xl bg-indigo-50 border border-indigo-100 cursor-not-allowed text-gray-700 outline-none"
-                    readonly
-                  />
-                  <input type="hidden" name="country" value="India" />
                 </div>
               </div>
-             
             </div>
-          </div>
 
-          <!-- Form Buttons with enhanced styling -->
-          <div
-            class="flex flex-col sm:flex-row justify-end pt-6 gap-4 border-t border-indigo-300"
-          >
-            <button
-              type="button"
-              id="cancelBtn"
-              class="order-2 sm:order-1 px-6 py-3 rounded-xl border border-gray-300 bg-white text-gray-700 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 transition-all shadow-sm"
+            <!-- Form Buttons with enhanced styling -->
+            <div
+              class="flex flex-col sm:flex-row justify-end pt-6 gap-4 border-t border-indigo-300"
             >
-              Cancel
-            </button>
-            <button
-              type="submit"
-              id="updateProfileBtn"
-              class="order-1 sm:order-2 px-6 py-3 rounded-xl bg-gradient-to-r from-indigo-600 to-indigo-500 text-white hover:from-indigo-700 hover:to-indigo-600 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition-all shadow-md"
-            >
-              <i class="bi bi-check2 mr-1"></i> Update Profile
-            </button>
+              <button
+                type="button"
+                id="cancelBtn"
+                class="order-2 sm:order-1 px-6 py-3 rounded-xl border border-gray-300 bg-white text-gray-700 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 transition-all shadow-sm cursor-pointer"
+              >
+                Cancel
+              </button>
+              <button
+                type="submit"
+                id="updateProfileBtn"
+                class="order-1 sm:order-2 px-6 py-3 rounded-xl bg-gradient-to-r from-indigo-600 to-indigo-500 text-white hover:from-indigo-700 hover:to-indigo-600 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition-all shadow-md "
+              >
+                <i class="bi bi-check2 mr-1"></i> Update Profile
+              </button>
+            </div>
           </div>
         </form>
       </div>

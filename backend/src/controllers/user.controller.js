@@ -337,6 +337,7 @@ const resetPassword = asyncHandler(async (req, res) => {
 
 const getUserProfile = asyncHandler(async (req, res) => {
     
+    
     const userProfile = await UserProfile.findOne({ user: req.user._id });
 
     if (!userProfile) {

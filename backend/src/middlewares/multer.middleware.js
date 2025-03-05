@@ -17,7 +17,10 @@ const fileSizeLimit = 5 * 1024 * 1024 // 5MB
 const upload = multer({
     storage,
     limits: { fileSize: fileSizeLimit }, 
-}).single("avatar")
+}).fields([
+    { name: "avatar", maxCount: 1 },
+    { name: "coverImage", maxCount: 1 },
+])
 
 
 const uploadMultiple = multer({

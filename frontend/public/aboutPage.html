@@ -23,7 +23,7 @@
   <body>
     <!------------------------------------- Header------------------------->
 
-    <header class="bg-[#080A53] w-full select-none sticky top-0 z-20 ">
+    <header class="bg-[#000480] w-full select-none sticky top-0 z-20">
       <nav
         aria-label="Main Navigation"
         id="navbar"
@@ -41,12 +41,14 @@
         <!-- menu bar -->
         <div
           id="menu"
-          class="bg-[#080A53] h-screen w-56 top-[56px] right-[-224px] transition-all duration-500 delay-200 ease-in-out fixed rounded-bl-md z-20 lg:static lg:right-0 lg:block lg:z-0 lg:bg-transparent lg:h-auto lg:w-auto lg:top-auto lg:transition-none lg:delay-0 lg:ease-none lg:rounded-none lg:ml-10"
+          class="bg-[#000480] h-screen w-56 top-[56px] right-[-224px] transition-all duration-500 delay-200 ease-in-out fixed rounded-bl-md z-20 lg:static lg:right-0 lg:block lg:z-0 lg:bg-transparent lg:h-auto lg:w-auto lg:top-auto lg:transition-none lg:delay-0 lg:ease-none lg:rounded-none lg:ml-10"
         >
           <ul
             class="text-gray-300 p-4 ml-6 pl-5 text-lg lg:text-xl space-y-3 lg:space-y-0 lg:flex lg:space-x-6 lg:p-0"
           >
-            <li class="hover:cursor-pointer hover:text-gray-100 select-none text-lg">
+            <li
+              class="hover:cursor-pointer hover:text-gray-100 select-none text-lg"
+            >
               <a href="/about" target="_self">About</a>
             </li>
             <li class="hover:cursor-pointer hover:text-gray-100 select-none">
@@ -66,25 +68,56 @@
                     Login/signup
                   </p>
                 </div>
+
                 <div
                   id="loginDropDownMenu"
-                  class="absolute hidden z-10 top-[40px] text-center px-5 pb-3 bg-[#05063a] rounded-b-md"
+                  class="absolute hidden right-0 w-44 mt-2 origin-top-right bg-gradient-to-b from-[#090d81] to-[#05063a] rounded-lg shadow-lg transform scale-95 transition-all duration-200 border border-[#1e1f6a] overflow-hidden"
                 >
-                  <a id="login" href="/login" target="_self">
-                    <p
-                      id="logintext"
-                      class="text-lg text-gray-300 border-b-[3px] border-transparent cursor-pointer hover:border-b-[3px] hover:border-[#4072d5] select-none"
+                  <div
+                    class="h-1 bg-gradient-to-r from-blue-500 via-indigo-500 to-purple-500"
+                  ></div>
+                  <div class="py-1.5 px-2">
+                    <!-- Login option -->
+                    <a
+                      href="/login"
+                      class="flex items-center text-gray-300 hover:text-white py-2.5 px-2 rounded-md hover:bg-[#141899] transition-all duration-200"
                     >
-                      login
-                    </p>
-                  </a>
-                  <a id="signup" href="/register" target="_self">
-                    <p
-                      class="text-lg text-gray-300 border-b-[3px] border-transparent cursor-pointer hover:border-b-[3px] hover:border-[#4072d5] select-none"
+                      <svg
+                        class="w-5 h-5 mr-3"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                      >
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1"
+                        />
+                      </svg>
+                      <span>Login</span>
+                    </a>
+                    <div class="my-2 border-b border-[#2d2f78]"></div>
+                    <a
+                      href="/register"
+                      class="flex items-center text-gray-300 hover:text-white py-2.5 px-2 rounded-md hover:bg-[#141899] transition-all duration-200"
                     >
-                      signup
-                    </p>
-                  </a>
+                      <svg
+                        class="w-5 h-5 mr-3"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                      >
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z"
+                        />
+                      </svg>
+                      <span>Sign up</span>
+                    </a>
+                  </div>
                 </div>
               </div>
             </li>
@@ -110,25 +143,56 @@
               Login/signup
             </p>
           </div>
+
           <div
             id="loginDropDownMenu"
-            class="absolute hidden z-10 top-[40px] text-center px-5 pb-3 bg-[#05063a] rounded-b-md"
+            class="absolute hidden right-0 w-40 mt-2   lg:-right-8 bg-gradient-to-b from-[#090d81] to-[#05063a] rounded-lg shadow-lg transform scale-95 transition-all duration-200 border border-[#1e1f6a] overflow-hidden"
           >
-            <a id="login" href="/login" target="_self">
-              <p
-                id="logintext"
-                class="text-lg text-gray-300 border-b-[3px] border-transparent cursor-pointer hover:border-b-[3px] hover:border-[#4072d5] select-none"
+            <div
+              class="h-1 bg-gradient-to-r from-blue-500 via-indigo-500 to-purple-500"
+            ></div>
+            <div class="py-2 px-3">
+              <!-- Login option -->
+              <a
+                href="/login"
+                class="flex items-center text-gray-300 hover:text-white py-2.5 px-2 rounded-md hover:bg-[#141899] transition-all duration-200"
               >
-                login
-              </p>
-            </a>
-            <a id="signup" href="/register" target="_self">
-              <p
-                class="text-lg text-gray-300 border-b-[3px] border-transparent cursor-pointer hover:border-b-[3px] hover:border-[#4072d5] select-none"
+                <svg
+                  class="w-5 h-5 mr-3"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1"
+                  />
+                </svg>
+                <span>Login</span>
+              </a>
+              <div class="my-2 border-b border-[#2d2f78]"></div>
+              <a
+                href="/register"
+                class="flex items-center text-gray-300 hover:text-white py-2.5 px-2 rounded-md hover:bg-[#141899] transition-all duration-200"
               >
-                signup
-              </p>
-            </a>
+                <svg
+                  class="w-5 h-5 mr-3"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z"
+                  />
+                </svg>
+                <span>Sign up</span>
+              </a>
+            </div>
           </div>
         </div>
 
@@ -141,11 +205,11 @@
             placeholder="Search"
           />
           <i
-            class="bi bi-search text-lg border text-gray-300 border-gray-500 rounded-md py-[6px] px-3 cursor-pointer active:border-blue-500"
+            class="bi bi-search text-lg border text-gray-300 border-gray-500 rounded-md py-[6px] px-3 cursor-pointer hover:border-blue-500 "
           ></i>
         </div>
         <!-- user profile -->
-        <div class="userAvatar hidden ml-24 lg:ml-0">
+        <div id="userAvatar" class="userAvatar hidden ml-24 lg:ml-0">
           <div
             id="smallAvatar"
             class="avatar rounded-full w-8 h-8 lg:w-10 lg:h-10 cursor-pointer"
@@ -162,6 +226,7 @@
         </div>
       </nav>
     </header>
+
 
     <!------------------------------------- Main Content------------------------->
     <main>

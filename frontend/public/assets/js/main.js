@@ -77,11 +77,13 @@ document.addEventListener("DOMContentLoaded", () => {
     const searchBar = document.querySelector(".searchOption")
     const avatars = document.querySelectorAll(".avatar")
     // console.log( isLoggedIn, username, avatarUrl);
+    // console.log(showName,);
+    
     
 
     if (userAvatar && showName && loginOptionDesktop && loginOptionMobile && userProfileModal && searchBar && avatars) {
         if (isLoggedIn) {
-            console.log("logged in");
+            // console.log("logged in");
             
             userAvatar.classList.remove("hidden")
            showName.innerHTML = username
@@ -112,6 +114,10 @@ document.addEventListener("DOMContentLoaded", () => {
             })
         }
     }
+    // else{
+    //     console.log("something went wrong");
+        
+    // }
 })
 
 
