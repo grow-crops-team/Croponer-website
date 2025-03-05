@@ -68,7 +68,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const username = sessionStorage.getItem("userFullname") || ""
     const avatarUrl = sessionStorage.getItem("avatar") || "../images/avatar/person_circle.svg"
     const userAvatar = document.querySelector(".userAvatar")
-    const userName = document.querySelector(".userName")
+    const userName = document.querySelector("#userName")
     const loginOptionDesktop = document.querySelector("#loginOptionDesktop")
     const loginOptionMobile = document.querySelector("#loginOptionMobile")
 
@@ -79,7 +79,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (userAvatar && userName && loginOptionDesktop && loginOptionMobile && userProfileModal && searchBar && avatars) {
         if (isLoggedIn) {
             userAvatar.classList.remove("hidden")
-            userName.textContent = username
+            userName.innerHTML = username
             loginOptionDesktop.classList.remove("lg:block")
             loginOptionMobile.classList.add("hidden")
             searchBar.classList.add("ml-96")
@@ -89,7 +89,7 @@ document.addEventListener("DOMContentLoaded", () => {
             })
         } else {
             userAvatar.classList.add("hidden")
-            userName.textContent = ""
+            userName.innerHTML = "User"
             loginOptionDesktop.classList.add("lg:block")
             loginOptionMobile.classList.remove("hidden")
         }
