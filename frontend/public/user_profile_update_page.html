@@ -20,8 +20,6 @@
   </head>
 
   <body class="bg-[#cae4f3] select-none">
-
-    
     <div class="max-w-4xl mx-auto my-8 px-4">
       <div class="bg rounded-2xl shadow-xl overflow-hidden">
         <div class="relative">
@@ -57,6 +55,16 @@
               accept="image/*"
               class="hidden"
             />
+            <!-- Progress Bar for Cover Image -->
+            <div
+              class="absolute bottom-0 left-0 w-full h-1 bg-gray-200 rounded overflow-hidden"
+            >
+              <div
+                id="coverProgress"
+                class="h-full bg-green-500 transition-all hidden"
+                style="width: 0%"
+              ></div>
+            </div>
           </div>
 
           <!-- Avatar section with enhanced styling -->
@@ -84,6 +92,14 @@
                 class="hidden"
               />
             </div>
+          </div>
+          <!-- Progress Bar for Avatar -->
+          <div class="absolute w-30 top-71 left-5 bg-gray-200 rounded mt-2">
+            <div
+              id="avatarProgress"
+              class=" h-1 bg-green-500 transition-all hidden"
+              style="width: 0%"
+            ></div>
           </div>
         </div>
 
@@ -452,7 +468,6 @@
         <p id="message"></p>
       </div>
     </div>
-
 
     <script type="module" src="./assets/js/updateProfile.js"></script>
   </body>

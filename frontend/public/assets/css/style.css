@@ -601,6 +601,24 @@
   .top-10 {
     top: calc(var(--spacing) * 10);
   }
+  .top-50 {
+    top: calc(var(--spacing) * 50);
+  }
+  .top-70 {
+    top: calc(var(--spacing) * 70);
+  }
+  .top-71 {
+    top: calc(var(--spacing) * 71);
+  }
+  .top-72 {
+    top: calc(var(--spacing) * 72);
+  }
+  .top-80 {
+    top: calc(var(--spacing) * 80);
+  }
+  .top-100 {
+    top: calc(var(--spacing) * 100);
+  }
   .top-13 {
     top: calc(var(--spacing) * 13);
   }
@@ -732,6 +750,9 @@
   }
   .left-10 {
     left: calc(var(--spacing) * 10);
+  }
+  .left-20 {
+    left: calc(var(--spacing) * 20);
   }
   .left-22 {
     left: calc(var(--spacing) * 22);
@@ -1098,6 +1119,9 @@
   }
   .w-28 {
     width: calc(var(--spacing) * 28);
+  }
+  .w-30 {
+    width: calc(var(--spacing) * 30);
   }
   .w-32 {
     width: calc(var(--spacing) * 32);
@@ -1811,6 +1835,9 @@
   }
   .bg-green-100 {
     background-color: var(--color-green-100);
+  }
+  .bg-green-500 {
+    background-color: var(--color-green-500);
   }
   .bg-green-600 {
     background-color: var(--color-green-600);
@@ -2578,20 +2605,14 @@
   .text-wrap {
     text-wrap: wrap;
   }
+  .text-\[\#1a4f9e\] {
+    color: #1a4f9e;
+  }
   .text-\[\#1a4f9e\]\/70 {
     color: color-mix(in oklab, #1a4f9e 70%, transparent);
   }
-  .text-\[\#1e4796\] {
-    color: #1e4796;
-  }
   .text-\[\#003e7b\] {
     color: #003e7b;
-  }
-  .text-\[\#4fa490\] {
-    color: #4fa490;
-  }
-  .text-\[\#32bfff\] {
-    color: #32bfff;
   }
   .text-\[\#41aa4e\] {
     color: #41aa4e;
@@ -2602,11 +2623,23 @@
   .text-\[\#100f43\] {
     color: #100f43;
   }
+  .text-\[\#1e4796\] {
+    color: #1e4796;
+  }
+  .text-\[\#4fa490\] {
+    color: #4fa490;
+  }
+  .text-\[\#32bfff\] {
+    color: #32bfff;
+  }
   .text-\[\#305a84\] {
     color: #305a84;
   }
   .text-\[\#000448\] {
     color: #000448;
+  }
+  .text-\[\#921b1b\] {
+    color: #921b1b;
   }
   .text-\[\#001283\] {
     color: #001283;
@@ -2623,14 +2656,8 @@
   .text-\[\#0c1657\] {
     color: #0c1657;
   }
-  .text-\[\#1a4f9e\] {
-    color: #1a4f9e;
-  }
   .text-\[\#529ce7\] {
     color: #529ce7;
-  }
-  .text-\[\#921b1b\] {
-    color: #921b1b;
   }
   .text-\[\#747474\] {
     color: #747474;
@@ -3402,13 +3429,6 @@
       }
     }
   }
-  .hover\:text-\[\#1a4f9e\] {
-    &:hover {
-      @media (hover: hover) {
-        color: #1a4f9e;
-      }
-    }
-  }
   .hover\:text-\[\#003d7bc6\] {
     &:hover {
       @media (hover: hover) {
@@ -3420,6 +3440,13 @@
     &:hover {
       @media (hover: hover) {
         color: #0c1657;
+      }
+    }
+  }
+  .hover\:text-\[\#1a4f9e\] {
+    &:hover {
+      @media (hover: hover) {
+        color: #1a4f9e;
       }
     }
   }
