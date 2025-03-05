@@ -66,20 +66,25 @@ openLoginDropdown()
 document.addEventListener("DOMContentLoaded", () => {
     const isLoggedIn = sessionStorage.getItem("isLoggedIn") === "true"
     const username = sessionStorage.getItem("userFullname") || ""
-    const avatarUrl = sessionStorage.getItem("avatar") || "../images/avatar/person_circle.svg"
-    const userAvatar = document.querySelector(".userAvatar")
-    const userName = document.querySelector("#userName")
+    const avatarUrl = sessionStorage.getItem("avatar") || "../images/avatar/default_user.jpg"
+
+    const userAvatar = document.querySelector("#userAvatar")
+    const showName = document.querySelector("#showName")
     const loginOptionDesktop = document.querySelector("#loginOptionDesktop")
     const loginOptionMobile = document.querySelector("#loginOptionMobile")
 
     const userProfileModal = document.querySelector("#userProfileModal")
     const searchBar = document.querySelector(".searchOption")
     const avatars = document.querySelectorAll(".avatar")
+    // console.log( isLoggedIn, username, avatarUrl);
+    
 
-    if (userAvatar && userName && loginOptionDesktop && loginOptionMobile && userProfileModal && searchBar && avatars) {
+    if (userAvatar && showName && loginOptionDesktop && loginOptionMobile && userProfileModal && searchBar && avatars) {
         if (isLoggedIn) {
+            console.log("logged in");
+            
             userAvatar.classList.remove("hidden")
-            userName.innerHTML = username
+           showName.innerHTML = username
             loginOptionDesktop.classList.remove("lg:block")
             loginOptionMobile.classList.add("hidden")
             searchBar.classList.add("ml-96")
@@ -88,8 +93,10 @@ document.addEventListener("DOMContentLoaded", () => {
                 avatar.style.backgroundImage = `url(${avatarUrl})`
             })
         } else {
+            console.log("logged out");
+            
             userAvatar.classList.add("hidden")
-            userName.innerHTML = "User"
+            showName.innerHTML = "User"
             loginOptionDesktop.classList.add("lg:block")
             loginOptionMobile.classList.remove("hidden")
         }

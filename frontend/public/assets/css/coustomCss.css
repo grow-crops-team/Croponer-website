@@ -6,7 +6,7 @@
 }
 
 .avatar {
-  background-image: url("../images/avatar/person_circle.svg");
+  background-image: url("../images/avatar/default_user.jpg");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;

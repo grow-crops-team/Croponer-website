@@ -230,7 +230,7 @@
           ></i>
         </div>
         <!-- user profile -->
-        <div class="userAvatar hidden ml-24 lg:ml-0">
+        <div id="userAvatar" class="userAvatar hidden ml-24 lg:ml-0">
           <div
             id="smallAvatar"
             class="avatar rounded-full w-8 h-8 lg:w-10 lg:h-10 cursor-pointer"
@@ -593,7 +593,7 @@
     <!-- user profile  modal  after login -->
     <div
       id="userProfileModal"
-      class="absolute hidden z-10 top-14 right-10 lg:right-0"
+      class="absolute hidden h z-10 top-14 right-10 lg:right-0"
     >
       <div
         class="bg-[#a5c7e2f5] w-48 h-64 flex flex-col items-center space-y-3 py-5 rounded-md text-lg"
@@ -602,7 +602,7 @@
         <p
           class=" border-b-2 border-transparent hover:border-b-2 hover:border-b-blue-700"
         >
-          <a href="/user-profile" ><span id="Username">Username</span></a>
+          <a href="/user-profile" ><span id="showName">Username</span></a>
         </p>
         <p
           class="border-b-2 border-transparent hover:border-b-2 hover:border-b-blue-700"
