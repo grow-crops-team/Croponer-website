@@ -48,15 +48,6 @@ router.route("/login")
         // console.log(req.url)
     })
 
-router.route("/edit-profile")
-    .get((req, res) => {
-        res.sendFile(path.join(staticPath, "userUpdateProfile.html"), (err) => {
-            if (err) {
-                res.status(500).send("Error loading userUpdateProfile.html")
-            }
-        })
-        // console.log(req.url)
-    })
 
 router.route("/about")
     .get((req, res) => {
@@ -83,6 +74,26 @@ router.route("/research")
         res.sendFile(path.join(staticPath, "research.html"), (err) => {
             if (err) {
                 res.status(500).send("Error loading research.html")
+            }
+        })
+        // console.log(req.url)
+    })
+
+router.route("/user-profile")
+    .get((req, res) => {
+        res.sendFile(path.join(staticPath, "user_profile_page.html"), (err) => {
+            if (err) {
+                res.status(500).send("Error loading user_profile_page.html")
+            }
+        })
+        // console.log(req.url)
+    })
+
+router.route("/edit-profile")
+    .get((req, res) => {
+        res.sendFile(path.join(staticPath, "user_profile_update.html"), (err) => {
+            if (err) {
+                res.status(500).send("Error loading user_profile_update.html")
             }
         })
         // console.log(req.url)
