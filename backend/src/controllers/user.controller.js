@@ -2,6 +2,7 @@ import { asyncHandler } from "../utils/asyncHandler.js"
 import ApiError from "../utils/ApiError.js"
 import User from "../models/user.model.js"
 import UserProfile from "../models/user_details.mode.js"
+import File from "../models/files.model.js"
 import uploadOnCloudinary from "../utils/cloudinary.js"
 import ApiResponse from "../utils/ApiResponse.js"
 import jwt from "jsonwebtoken"
@@ -252,41 +253,55 @@ const updateAccountDetails = asyncHandler(async (req, res) => {
 
 
 const uploadFiles = asyncHandler(async (req, res) => {
+    // Debugging: Check if files are received
+    console.log("Received files:", req.files);
 
     if (!req.files || req.files.length === 0) {
-        throw new ApiError(400, "No files uploaded.")
+        throw new ApiError(400, "No files uploaded.");
     }
 
-    const images = []
+    const images = [];
 
-    for (let i = 0; i < req.files.length; i++) {
-        const localFilePath = req.files[i].path;
-        const uploadedFile = await uploadOnCloudinary(localFilePath)
-        if (!uploadedFile) {
-            throw new ApiError(500, "Error uploading file to Cloudinary.")
+    for (const file of req.files) {
+        const localFilePath = file.path;
+        
+        try {
+            const uploadedFile = await uploadOnCloudinary(localFilePath);
+            if (!uploadedFile) {
+                throw new ApiError(500, "Error uploading file to Cloudinary.");
+            }
+
+            images.push({
+                url: uploadedFile.url,
+                publicId: uploadedFile.public_id
+            });
+
+            // ✅ Optional: Remove file from local storage after successful upload
+            fs.unlinkSync(localFilePath);
+        } catch (error) {
+            console.error("Cloudinary Upload Error:", error);
+            throw new ApiError(500, "File upload failed.");
         }
-        images.push({
-            url: uploadedFile.url,
-            publicId: uploadedFile.public_id
-        })
     }
 
-    // Create a record for the uploaded images associated with the user
-    const fileRecord = await File.create({
-        user: req.user._id,
-        images: images
-    })
+    // ✅ Ensure a File record exists for the user
+    let fileRecord = await File.findOne({ user: req.user._id });
 
-    // Send response
-    return res
-        .status(200)
-        .json(
-            new ApiResponse(
-                200,
-                fileRecord,
-                "Files uploaded successfully")
-        )
-})
+    if (fileRecord) {
+        
+        fileRecord.images.push(...images);
+        await fileRecord.save();
+    } else {
+        
+        fileRecord = await File.create({
+            user: req.user._id,
+            images: images
+        });
+    }
+
+    return res.status(200).json(new ApiResponse(200, fileRecord, "Files uploaded successfully"));
+});
+
 
 const forgotPassword = asyncHandler(async (req, res) => {
 

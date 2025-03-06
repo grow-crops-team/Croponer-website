@@ -66,7 +66,7 @@ openLoginDropdown()
 document.addEventListener("DOMContentLoaded", () => {
     const isLoggedIn = sessionStorage.getItem("isLoggedIn") === "true"
     const username = sessionStorage.getItem("userFullname") || ""
-    const avatarUrl = sessionStorage.getItem("avatar") || "../images/avatar/default_user.jpg"
+    const avatarUrl = localStorage.getItem("avatar") || "../images/avatar/default_user.jpg"
 
     const userAvatar = document.querySelector("#userAvatar")
     const showName = document.querySelector("#showName")
@@ -95,7 +95,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 avatar.style.backgroundImage = `url(${avatarUrl})`
             })
         } else {
-            console.log("logged out");
+            // console.log("logged out");
             
             userAvatar.classList.add("hidden")
             showName.innerHTML = "User"

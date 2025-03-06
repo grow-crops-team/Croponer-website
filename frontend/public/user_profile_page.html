@@ -39,6 +39,17 @@
 
     <link rel="stylesheet" href="./assets/css/style.css?v=1.0" />
     <link rel="stylesheet" href="./assets/css/coustomCss.css?v=1.0" />
+    <style>
+      #fileUploadBtn:disabled {
+        cursor: not-allowed;
+        opacity: 0.5;
+    }
+    
+    #fileUploadBtn {
+        cursor: pointer;
+    }
+    
+    </style>
   </head>
   <body class="bg-gray-50">
     <!------------------------------------- Header------------------------->
@@ -166,7 +177,7 @@
 
           <div
             id="loginDropDownMenu"
-            class="absolute hidden right-0 w-40 mt-2   lg:-right-8 bg-gradient-to-b from-[#090d81] to-[#05063a] rounded-lg shadow-lg transform scale-95 transition-all duration-200 border border-[#1e1f6a] overflow-hidden"
+            class="absolute hidden right-0 w-40 mt-2 lg:-right-8 bg-gradient-to-b from-[#090d81] to-[#05063a] rounded-lg shadow-lg transform scale-95 transition-all duration-200 border border-[#1e1f6a] overflow-hidden"
           >
             <div
               class="h-1 bg-gradient-to-r from-blue-500 via-indigo-500 to-purple-500"
@@ -225,7 +236,7 @@
             placeholder="Search"
           />
           <i
-            class="bi bi-search text-lg border text-gray-300 border-gray-500 rounded-md py-[6px] px-3 cursor-pointer hover:border-blue-500 "
+            class="bi bi-search text-lg border text-gray-300 border-gray-500 rounded-md py-[6px] px-3 cursor-pointer hover:border-blue-500"
           ></i>
         </div>
         <!-- user profile -->
@@ -247,7 +258,6 @@
       </nav>
     </header>
 
-
     <main class="container mx-auto px-4 py-8 max-w-5xl font-sans">
       <!-- Profile Header -->
       <div class="relative mb-20">
@@ -255,12 +265,12 @@
         <div
           class="h-60 rounded-xl bg-gradient-to-r from-blue-600 to-purple-400 overflow-hidden"
         >
-          <img id="coverImage"
+          <img
+            id="coverImage"
             src="https://images.unsplash.com/photo-1579548122080-c35fd6820ecb?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
             class="w-full h-full object-cover opacity-60"
             alt="Profile cover"
           />
-         
         </div>
 
         <!-- Profile Photo and Basic Info -->
@@ -273,28 +283,32 @@
               <div
                 class="w-28 h-28 md:w-36 md:h-36 rounded-full border-4 border-white bg-white overflow-hidden shadow-lg"
               >
-                <img id="userProfileImage"
+                <img
+                  id="userProfileImage"
                   src="./assets/images/avatar/default_user.jpg"
                   class="w-full h-full object-cover"
                   alt="User avatar"
                 />
               </div>
-              
             </div>
 
             <!-- User Name and Location -->
             <div
               class="mt-3 md:mt-0 md:ml-5 pb-0 md:pb-3 text-center md:text-left"
             >
-              <h1 id="userName" class="text-2xl md:text-3xl font-bold text-gray-800 mb-4">
+              <h1
+                id="userName"
+                class="text-2xl md:text-3xl font-bold text-gray-800 mb-4"
+              >
                 User Name
               </h1>
-             
             </div>
           </div>
 
           <!-- Edit Profile Button -->
-          <div class="mt-4 md:mt-0 md:pb-3 absolute right-0 bottom-5 md:bottom-0">
+          <div
+            class="mt-4 md:mt-0 md:pb-3 absolute right-0 bottom-5 md:bottom-0"
+          >
             <button
               class="bg-indigo-600 text-white px-5 py-2 rounded-lg flex items-center hover:bg-indigo-500 shadow-md transition"
             >
@@ -312,7 +326,7 @@
                   d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"
                 />
               </svg>
-             <a href="/edit-profile"> Edit Profile</a>
+              <a href="/edit-profile"> Edit Profile</a>
             </button>
           </div>
         </div>
@@ -359,7 +373,7 @@
                     d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
                   />
                 </svg>
-               <span id="userEmail">user email</span>
+                <span id="userEmail">user email</span>
               </div>
 
               <div class="flex items-center">
@@ -377,7 +391,7 @@
                     d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"
                   />
                 </svg>
-               +91 <span id="userPhoneNumber" > user phone number</span>
+                +91 <span id="userPhoneNumber"> user phone number</span>
               </div>
 
               <div class="flex items-center">
@@ -426,10 +440,7 @@
 
           <!-- Personal Information -->
           <div class="bg-white rounded-xl shadow p-6 mb-6">
-            
             <div class="space-y-4">
-              
-
               <div>
                 <h3 class="text-sm font-medium text-gray-500">About</h3>
                 <p id="userBio" class="text-gray-800">
@@ -438,9 +449,6 @@
                   agricultural technologies.
                 </p>
               </div>
-
-              
-              
             </div>
           </div>
         </div>
@@ -452,44 +460,65 @@
             <div class="flex justify-between items-center mb-4">
               <h2 class="text-xl font-semibold text-gray-800">Upload Photos</h2>
             </div>
-
-            <div
-              class="border-2 border-dashed border-gray-300 rounded-lg p-8 text-center hover:border-green-500 transition-colors"
+            <form
+              action="uploadImagesForm"
+              id="uploadImagesForm"
+              enctype="multipart/form-data"
             >
-              <input
-                type="file"
-                id="file-upload"
-                class="hidden"
-                multiple
-                accept="image/*"
-              />
-              <label for="file-upload" class="cursor-pointer">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  class="mx-auto h-12 w-12 text-gray-400"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"
-                  />
-                </svg>
-                <p class="mt-2 text-sm text-gray-600">
-                  Click to upload or drag and drop
-                </p>
-                <p class="text-xs text-gray-500 mt-1">
-                  PNG, JPG, GIF up to 10MB
-                </p>
-              </label>
+              <div 
+                class="border-2 border-dashed border-gray-300 rounded-lg p-8 text-center hover:border-green-500 transition-colors"
+              >
+                <input
+                  type="file"
+                  id="file-upload"
+                  class="hidden"
+                  multiple
+                  accept="image/*"
+                />
+                <div id="previewContainer" class="grid grid-cols-4 gap-1  max-w-full mb-4"></div>
+                <label for="file-upload" class="cursor-pointer">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="mx-auto h-12 w-12 text-gray-400"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"
+                    />
+                  </svg>
+                  <p class="mt-2 text-sm text-gray-600">
+                    Click to upload or drag and drop
+                  </p>
+                  <p class="text-xs text-gray-500 mt-1">
+                    PNG, JPG, JPEG up to 5MB
+                  </p>
+                </label>
+                
+              </div>
+            </form>
+
+            <!-- Progress Bar -->
+            <div
+              class="relative w-full bg-gray-200 rounded-full h-2.5 mt-4 hidden "
+              id="progressContainer"
+            >
+              <div
+                id="progressBar"
+                class="bg-green-500 h-2.5 rounded-full"
+                style="width: 0%"
+              ></div>
             </div>
 
             <div class="mt-4">
               <button
-                class="bg-green-600 hover:bg-green-700 text-white py-2 px-4 rounded-lg transition"
+                type="submit"
+                id="fileUploadBtn"
+                class="bg-green-600 hover:bg-green-700 text-white py-2 px-4 rounded-lg transition cursor-pointer"
               >
                 Upload Photos
               </button>
@@ -500,7 +529,6 @@
           <div class="bg-white rounded-xl shadow p-6">
             <div class="flex justify-between items-center mb-4">
               <h2 class="text-xl font-semibold text-gray-800">Photo Gallery</h2>
-           
             </div>
 
             <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
@@ -731,12 +759,9 @@
                   </div>
                 </div>
               </div>
-
-              
             </div>
 
             <!-- Add More Photos Button -->
-            
           </div>
 
           <!-- Achievement Badges -->
@@ -887,7 +912,7 @@
       </div>
     </main>
 
-   <!------------------------------------- Footer ------------------------->
+    <!------------------------------------- Footer ------------------------->
     <footer class="bg-[#0b1d40] select-none mt-20">
       <div
         class="flex flex-col lg:flex-row lg:space-x-2 lg:space-y-0 lg:justify-center mx-5 mt-10 lg:pt-8 lg:pb-4 px-5 pt-10 pb-14 space-y-16 text-gray-400 border-b-[1px] border-[#ffffffa7]"
@@ -986,32 +1011,32 @@
       </div>
     </footer>
 
-     <!-- user profile  modal  after login -->
-     <div
-     id="userProfileModal"
-     class="absolute hidden h z-10 top-14 right-10 lg:right-0"
-   >
-     <div
-       class="bg-[#a5c7e2f5] w-48 h-64 flex flex-col items-center space-y-3 py-5 rounded-md text-lg"
-     >
-       <div class="avatar w-20 h-20 rounded-full"></div>
-       <p
-         class=" border-b-2 border-transparent hover:border-b-2 hover:border-b-blue-700"
-       >
-         <a href="/user-profile" ><span id="showName">Username</span></a>
-       </p>
-       <p
-         class="border-b-2 border-transparent hover:border-b-2 hover:border-b-blue-700"
-       >
-         <a href="/edit-profile">Update profile</a>
-       </p>
-       <p
-         class="logout border-b-2 border-transparent hover:border-b-2 hover:border-b-blue-700"
-       >
-         <a class="cursor-pointer">logout</a>
-       </p>
-     </div>
-   </div>
+    <!-- user profile  modal  after login -->
+    <div
+      id="userProfileModal"
+      class="absolute hidden h z-10 top-14 right-10 lg:right-0"
+    >
+      <div
+        class="bg-[#a5c7e2f5] w-48 h-64 flex flex-col items-center space-y-3 py-5 rounded-md text-lg"
+      >
+        <div class="avatar w-20 h-20 rounded-full"></div>
+        <p
+          class="border-b-2 border-transparent hover:border-b-2 hover:border-b-blue-700"
+        >
+          <a href="/user-profile"><span id="showName">Username</span></a>
+        </p>
+        <p
+          class="border-b-2 border-transparent hover:border-b-2 hover:border-b-blue-700"
+        >
+          <a href="/edit-profile">Update profile</a>
+        </p>
+        <p
+          class="logout border-b-2 border-transparent hover:border-b-2 hover:border-b-blue-700"
+        >
+          <a class="cursor-pointer">logout</a>
+        </p>
+      </div>
+    </div>
 
     <!-- Display messages -->
     <div id="displayError" class="hidden">
@@ -1020,9 +1045,7 @@
       </div>
     </div>
 
-
-   <script type="module" src="./assets/js/main.js"></script>
-   <script type="module" src="./assets/js/user_profile.js"></script>
+    <script type="module" src="./assets/js/main.js"></script>
+    <script type="module" src="./assets/js/user_profile.js"></script>
   </body>
 </html>
-
