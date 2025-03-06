@@ -3,7 +3,7 @@ import ApiError from "../utils/ApiError.js"
 import User from "../models/user.model.js"
 import UserProfile from "../models/user_details.mode.js"
 import File from "../models/files.model.js"
-import uploadOnCloudinary from "../utils/cloudinary.js"
+import {uploadOnCloudinary,deleteOnCloudinary} from "../utils/cloudinary.js"
 import ApiResponse from "../utils/ApiResponse.js"
 import jwt from "jsonwebtoken"
 import mongoose from "mongoose"
@@ -252,7 +252,7 @@ const updateAccountDetails = asyncHandler(async (req, res) => {
 })
 
 const uploadFiles = asyncHandler(async (req, res) => {
-    
+
     // console.log("Received files:", req.files);
 
     if (!req.files || req.files.length === 0) {
@@ -263,7 +263,7 @@ const uploadFiles = asyncHandler(async (req, res) => {
 
     for (const file of req.files) {
         const localFilePath = file.path;
-        
+
         try {
             const uploadedFile = await uploadOnCloudinary(localFilePath);
             if (!uploadedFile) {
@@ -281,15 +281,15 @@ const uploadFiles = asyncHandler(async (req, res) => {
         }
     }
 
-    
+
     let fileRecord = await File.findOne({ user: req.user._id });
 
     if (fileRecord) {
-        
+
         fileRecord.images.push(...images);
         await fileRecord.save();
     } else {
-        
+
         fileRecord = await File.create({
             user: req.user._id,
             images: images
@@ -347,8 +347,8 @@ const resetPassword = asyncHandler(async (req, res) => {
 })
 
 const getUserProfile = asyncHandler(async (req, res) => {
-    
-    
+
+
     const userProfile = await UserProfile.findOne({ user: req.user._id });
 
     if (!userProfile) {
@@ -370,6 +370,25 @@ const getFiles = asyncHandler(async (req, res) => {
     return res.status(200).json(new ApiResponse(200, files, "Files fetched successfully!"));
 })
 
+const deleteFile = asyncHandler(async (req, res) => {
+    const { publicId } = req.body;
+
+    if (!publicId) throw new ApiError(400, "Public ID is required.");
+    const result = await deleteOnCloudinary(publicId)
+
+    if (result.result !== "ok") {
+        throw new ApiError(500, "Failed to delete image from storage.");
+    }
+
+    await File.findOneAndUpdate(
+        { user: req.user._id },
+        { $pull: { images: { publicId } } },
+        { new: true }
+    );
+
+    res.status(200).json(new ApiResponse(200, null, "Image deleted successfully."));
+});
+
 
 
 export {
@@ -383,7 +402,8 @@ export {
     forgotPassword,
     resetPassword,
     getUserProfile,
-    getFiles
+    getFiles,
+    deleteFile
 
 
 }

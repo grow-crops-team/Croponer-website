@@ -112,13 +112,11 @@ document.addEventListener("DOMContentLoaded", async () => {
     }
 
     function renderPhotos(photos) {
-        // Clear existing content
+
         photoGallery.innerHTML = '';
 
-        // Update count
         photoCount.textContent = `${photos.length} photo${photos.length !== 1 ? 's' : ''}`;
 
-        // Toggle empty message visibility
         if (photos.length === 0) {
             emptyMessage.classList.remove('hidden');
             return;
@@ -126,7 +124,6 @@ document.addEventListener("DOMContentLoaded", async () => {
             emptyMessage.classList.add('hidden');
         }
 
-        // Create photo elements
         photos.forEach(photo => {
             const photoElement = createPhotoElement(photo);
             photoGallery.appendChild(photoElement);
@@ -135,6 +132,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     function createPhotoElement(photo) {
         const photoDiv = document.createElement('div');
         photoDiv.className = 'relative group aspect-square rounded-lg overflow-hidden shadow-md';
+        photoDiv.dataset.photoId = photo.publicId;
 
         photoDiv.innerHTML = `
             <img 
@@ -168,11 +166,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         return photoDiv;
     }
 
-
-    function viewPhoto(url) {
-        window.open(url, "_blank");
-    }
-
+    window.deletePhoto = deletePhoto;
     async function deletePhoto(publicId) {
         if (!confirm("Are you sure you want to delete this photo?")) return;
 
@@ -187,7 +181,12 @@ document.addEventListener("DOMContentLoaded", async () => {
             const result = await response.json();
             if (result.statuscode === 200) {
                 displayMessage("success", "Photo deleted successfully!");
-                document.querySelector(`[data-photo-id="${publicId}"]`).remove();
+
+                // ✅ Select the photo by dataset attribute and remove it
+                const photoElement = document.querySelector(`[data-photo-id="${publicId}"]`);
+                if (photoElement) {
+                    photoElement.remove();
+                }
             } else {
                 displayMessage("error", result.message);
             }
@@ -197,8 +196,34 @@ document.addEventListener("DOMContentLoaded", async () => {
         }
     }
 
+    window.viewPhoto = viewPhoto;
+    function viewPhoto(imageUrl) {
+        const newWindow = window.open();
+        newWindow.document.write(`
+        <html>
+            <head>
+                <title>View Image</title>
+                <style>
+                    body { margin: 0; display: flex; justify-content: center; align-items: center; height: 100vh; background: black; }
+                    img { max-width: 100%; max-height: 100vh; object-fit: contain; }
+                </style>
+            </head>
+            <body>
+                <img src="${imageUrl}" alt="Viewed Image">
+            </body>
+        </html>
+    `);
+    }
+})
 
-});
+
+
+
+
+
+
+
+
 
 
 // file upload functions

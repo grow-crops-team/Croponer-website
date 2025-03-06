@@ -949,6 +949,9 @@
   .table {
     display: table;
   }
+  .aspect-square {
+    aspect-ratio: 1 / 1;
+  }
   .h-1 {
     height: calc(var(--spacing) * 1);
   }
@@ -1345,13 +1348,6 @@
       margin-block-end: calc(calc(var(--spacing) * 16) * calc(1 - var(--tw-space-y-reverse)));
     }
   }
-  .space-x-2 {
-    :where(& > :not(:last-child)) {
-      --tw-space-x-reverse: 0;
-      margin-inline-start: calc(calc(var(--spacing) * 2) * var(--tw-space-x-reverse));
-      margin-inline-end: calc(calc(var(--spacing) * 2) * calc(1 - var(--tw-space-x-reverse)));
-    }
-  }
   .space-x-3 {
     :where(& > :not(:last-child)) {
       --tw-space-x-reverse: 0;
@@ -1723,6 +1719,12 @@
   }
   .bg-red-100 {
     background-color: var(--color-red-100);
+  }
+  .bg-red-500 {
+    background-color: var(--color-red-500);
+  }
+  .bg-red-600 {
+    background-color: var(--color-red-600);
   }
   .bg-rose-600 {
     background-color: var(--color-rose-600);
@@ -2272,26 +2274,8 @@
   .text-\[\#003e7b\] {
     color: #003e7b;
   }
-  .text-\[\#000448\] {
-    color: #000448;
-  }
-  .text-\[\#001283\] {
-    color: #001283;
-  }
-  .text-\[\#080662\] {
-    color: #080662;
-  }
   .text-\[\#080b3e\] {
     color: #080b3e;
-  }
-  .text-\[\#0a123d\] {
-    color: #0a123d;
-  }
-  .text-\[\#0a2458\] {
-    color: #0a2458;
-  }
-  .text-\[\#0c1657\] {
-    color: #0c1657;
   }
   .text-\[\#100f43\] {
     color: #100f43;
@@ -2317,8 +2301,26 @@
   .text-\[\#305a84\] {
     color: #305a84;
   }
+  .text-\[\#000448\] {
+    color: #000448;
+  }
   .text-\[\#529ce7\] {
     color: #529ce7;
+  }
+  .text-\[\#001283\] {
+    color: #001283;
+  }
+  .text-\[\#080662\] {
+    color: #080662;
+  }
+  .text-\[\#0a123d\] {
+    color: #0a123d;
+  }
+  .text-\[\#0a2458\] {
+    color: #0a2458;
+  }
+  .text-\[\#0c1657\] {
+    color: #0c1657;
   }
   .text-\[\#747474\] {
     color: #747474;
@@ -2595,6 +2597,11 @@
     transition-timing-function: var(--tw-ease, var(--default-transition-timing-function));
     transition-duration: var(--tw-duration, var(--default-transition-duration));
   }
+  .transition-transform {
+    transition-property: transform, translate, scale, rotate;
+    transition-timing-function: var(--tw-ease, var(--default-transition-timing-function));
+    transition-duration: var(--tw-duration, var(--default-transition-duration));
+  }
   .delay-200 {
     transition-delay: 200ms;
   }
@@ -2637,6 +2644,26 @@
   .group-focus-within\:text-indigo-600 {
     &:is(:where(.group):focus-within *) {
       color: var(--color-indigo-600);
+    }
+  }
+  .group-hover\:scale-105 {
+    &:is(:where(.group):hover *) {
+      @media (hover: hover) {
+        --tw-scale-x: 105%;
+        --tw-scale-y: 105%;
+        --tw-scale-z: 105%;
+        scale: var(--tw-scale-x) var(--tw-scale-y);
+      }
+    }
+  }
+  .group-hover\:scale-110 {
+    &:is(:where(.group):hover *) {
+      @media (hover: hover) {
+        --tw-scale-x: 110%;
+        --tw-scale-y: 110%;
+        --tw-scale-z: 110%;
+        scale: var(--tw-scale-x) var(--tw-scale-y);
+      }
     }
   }
   .group-hover\:border-\[\#529ce7\]\/70 {
@@ -2876,6 +2903,13 @@
       }
     }
   }
+  .hover\:bg-red-600 {
+    &:hover {
+      @media (hover: hover) {
+        background-color: var(--color-red-600);
+      }
+    }
+  }
   .hover\:bg-rose-700 {
     &:hover {
       @media (hover: hover) {
@@ -2921,6 +2955,13 @@
       }
     }
   }
+  .hover\:text-\[\#1a4f9e\] {
+    &:hover {
+      @media (hover: hover) {
+        color: #1a4f9e;
+      }
+    }
+  }
   .hover\:text-\[\#003d7bc6\] {
     &:hover {
       @media (hover: hover) {
@@ -2932,13 +2973,6 @@
     &:hover {
       @media (hover: hover) {
         color: #0c1657;
-      }
-    }
-  }
-  .hover\:text-\[\#1a4f9e\] {
-    &:hover {
-      @media (hover: hover) {
-        color: #1a4f9e;
       }
     }
   }
@@ -3174,11 +3208,6 @@
       grid-template-columns: repeat(2, minmax(0, 1fr));
     }
   }
-  .sm\:grid-cols-3 {
-    @media (width >= 40rem) {
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-    }
-  }
   .sm\:flex-row {
     @media (width >= 40rem) {
       flex-direction: row;
@@ -3282,11 +3311,6 @@
   .md\:grid-cols-4 {
     @media (width >= 48rem) {
       grid-template-columns: repeat(4, minmax(0, 1fr));
-    }
-  }
-  .md\:grid-cols-6 {
-    @media (width >= 48rem) {
-      grid-template-columns: repeat(6, minmax(0, 1fr));
     }
   }
   .md\:flex-row {
