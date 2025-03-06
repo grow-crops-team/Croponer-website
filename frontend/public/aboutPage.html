@@ -227,7 +227,6 @@
       </nav>
     </header>
 
-
     <!------------------------------------- Main Content------------------------->
     <main>
       <!-- Hero Section -->
@@ -440,6 +439,39 @@
       </div>
     </footer>
 
+    <!-- user profile  modal  after login -->
+    <div
+    id="userProfileModal"
+    class="absolute hidden h z-10 top-14 right-10 lg:right-0"
+  >
+    <div
+      class="bg-[#a5c7e2f5] w-48 h-64 flex flex-col items-center space-y-3 py-5 rounded-md text-lg"
+    >
+      <div class="avatar w-20 h-20 rounded-full"></div>
+      <p
+        class=" border-b-2 border-transparent hover:border-b-2 hover:border-b-blue-700"
+      >
+        <a href="/user-profile" ><span id="showName">Username</span></a>
+      </p>
+      <p
+        class="border-b-2 border-transparent hover:border-b-2 hover:border-b-blue-700"
+      >
+        <a href="/edit-profile">Update profile</a>
+      </p>
+      <p
+        class="logout border-b-2 border-transparent hover:border-b-2 hover:border-b-blue-700"
+      >
+        <a class="cursor-pointer">logout</a>
+      </p>
+    </div>
+  </div>
+
+    <!-- display message -->
+    <div id="displayError" class="hidden">
+      <div id="displayErrorContent">
+        <p id="message"></p>
+      </div>
+    </div>
 
     <script type="module" src="./assets/js/main.js"></script>
   </body>

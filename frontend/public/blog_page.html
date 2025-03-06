@@ -42,7 +42,7 @@
 
   <body class="bg-gray-50">
     <!------------------------------------- Header------------------------->
-    <header class="bg-[#000480] w-full select-none sticky top-0 z-20 font-normal">
+    <header class="bg-[#000480] w-full select-none sticky top-0 z-20">
       <nav
         aria-label="Main Navigation"
         id="navbar"
@@ -245,7 +245,6 @@
         </div>
       </nav>
     </header>
-
     <!-- Page Header -->
     <header
       class="bg-gradient-to-r from-green-600 to-green-800 text-white py-12 font-sans"
@@ -628,63 +627,7 @@
       </div>
     </section>
 
-    <!-- Footer -->
-    <!-- <footer class="bg-gray-800 text-white py-12">
-        <div class="container mx-auto px-4">
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
-                <div>
-                    <h3 class="text-xl font-bold mb-4">Croponer</h3>
-                    <p class="text-gray-400">Empowering farmers with AI-driven solutions for better crop management and disease detection.</p>
-                    <div class="flex space-x-4 mt-4">
-                        <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-twitter"></i></a>
-                        <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-instagram"></i></a>
-                        <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-linkedin-in"></i></a>
-                    </div>
-                </div>
-                <div>
-                    <h3 class="text-lg font-semibold mb-4">Quick Links</h3>
-                    <ul class="space-y-2">
-                        <li><a href="/" class="text-gray-400 hover:text-white">Home</a></li>
-                        <li><a href="/services" class="text-gray-400 hover:text-white">Services</a></li>
-                        <li><a href="/blog" class="text-gray-400 hover:text-white">Blog</a></li>
-                        <li><a href="/research" class="text-gray-400 hover:text-white">Research</a></li>
-                        <li><a href="/contact" class="text-gray-400 hover:text-white">Contact</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <h3 class="text-lg font-semibold mb-4">Resources</h3>
-                    <ul class="space-y-2">
-                        <li><a href="#" class="text-gray-400 hover:text-white">Crop Disease Database</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-white">Weather Forecasts</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-white">Farming Guides</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-white">AI Tools</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <h3 class="text-lg font-semibold mb-4">Contact Us</h3>
-                    <ul class="space-y-2 text-gray-400">
-                        <li class="flex items-start">
-                            <i class="fas fa-map-marker-alt mt-1 mr-3"></i>
-                            <span>123 Agriculture Way, Tech Valley, 10001</span>
-                        </li>
-                        <li class="flex items-center">
-                            <i class="fas fa-phone mr-3"></i>
-                            <span>+1 234 567 8900</span>
-                        </li>
-                        <li class="flex items-center">
-                            <i class="fas fa-envelope mr-3"></i>
-                            <span>info@croponer.com</span>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-            <div class="border-t border-gray-700 mt-8 pt-8 text-center text-gray-400">
-                <p>&copy; 2023 Croponer. All rights reserved.</p>
-            </div>
-        </div>
-    </footer> -->
-
+    
     <!------------------------------------- Footer ------------------------->
     <footer class="bg-[#0b1d40] select-none mt-20">
       <div
@@ -783,6 +726,42 @@
         </p>
       </div>
     </footer>
+
+
+
+       <!-- user profile  modal  after login -->
+       <div
+       id="userProfileModal"
+       class="absolute hidden h z-10 top-14 right-10 lg:right-0"
+     >
+       <div
+         class="bg-[#a5c7e2f5] w-48 h-64 flex flex-col items-center space-y-3 py-5 rounded-md text-lg"
+       >
+         <div class="avatar w-20 h-20 rounded-full"></div>
+         <p
+           class=" border-b-2 border-transparent hover:border-b-2 hover:border-b-blue-700"
+         >
+           <a href="/user-profile" ><span id="showName">Username</span></a>
+         </p>
+         <p
+           class="border-b-2 border-transparent hover:border-b-2 hover:border-b-blue-700"
+         >
+           <a href="/edit-profile">Update profile</a>
+         </p>
+         <p
+           class="logout border-b-2 border-transparent hover:border-b-2 hover:border-b-blue-700"
+         >
+           <a class="cursor-pointer">logout</a>
+         </p>
+       </div>
+     </div>
+
+     <!-- display message -->
+    <div id="displayError" class="hidden">
+      <div id="displayErrorContent">
+        <p id="message"></p>
+      </div>
+    </div>
 
     <script type="module" src="./assets/js/main.js"></script>
   </body>
