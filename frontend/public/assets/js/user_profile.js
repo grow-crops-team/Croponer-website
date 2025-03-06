@@ -17,9 +17,9 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     userName.innerHTML = sessionStorage.getItem("userFullname")
     userEmail.innerHTML = sessionStorage.getItem("email")
+    const userId = sessionStorage.getItem("userID");
 
     try {
-        const userId = sessionStorage.getItem("userID");
 
         if (!userId) {
             // displayMessage("error", "User not logged in.");
@@ -80,6 +80,124 @@ document.addEventListener("DOMContentLoaded", async () => {
         console.error("Profile fetch error:", error);
         displayMessage("error", "An error occurred while loading the user profile.", error);
     }
+
+
+    // get all images
+    const photoGallery = document.getElementById('photoGallery');
+    const photoCount = document.getElementById('photoCount');
+    const emptyMessage = document.getElementById('emptyGalleryMessage');
+    try {
+        const response = await fetch(`/api/v1/users/get-file/${userId}`, {
+            method: "GET",
+            credentials: "include",
+            headers: { "Content-Type": "application/json" }
+
+        })
+        const result = await response.json();
+        // console.log(result);
+        if (result.statuscode === 200) {
+
+            const images = result.data.images
+            renderPhotos(images);
+
+        }
+        else {
+            displayMessage("error", result.message);
+        }
+
+    } catch (error) {
+        console.error("Profile fetch error:", error);
+        displayMessage("error", "Unexpected error occur.", error);
+
+    }
+
+    function renderPhotos(photos) {
+        // Clear existing content
+        photoGallery.innerHTML = '';
+
+        // Update count
+        photoCount.textContent = `${photos.length} photo${photos.length !== 1 ? 's' : ''}`;
+
+        // Toggle empty message visibility
+        if (photos.length === 0) {
+            emptyMessage.classList.remove('hidden');
+            return;
+        } else {
+            emptyMessage.classList.add('hidden');
+        }
+
+        // Create photo elements
+        photos.forEach(photo => {
+            const photoElement = createPhotoElement(photo);
+            photoGallery.appendChild(photoElement);
+        });
+    }
+    function createPhotoElement(photo) {
+        const photoDiv = document.createElement('div');
+        photoDiv.className = 'relative group aspect-square rounded-lg overflow-hidden shadow-md';
+
+        photoDiv.innerHTML = `
+            <img 
+                src="${photo.url}" 
+                class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110" 
+                alt="User photo"
+                loading="lazy"
+            />
+            <div class="absolute inset-0 bg-black bg-opacity-20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center space-x-3">
+                <button 
+                    class="p-2 bg-gray-800 bg-opacity-20 rounded-full hover:bg-opacity-100 transition-all" 
+                    onclick="viewPhoto('${photo.url}')"
+                    aria-label="View photo"
+                >
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12m-3 0a3 3 0 100-6 3 3 0 000 6zM2 12s3-7 10-7 10 7 10 7-3 7-10 7S2 12 2 12z" />
+                    </svg>
+                </button>
+                <button 
+                    class="p-2 bg-red-600 bg-opacity-20 rounded-full hover:bg-opacity-100 transition-all" 
+                    onclick="deletePhoto('${photo.publicId}')"
+                    aria-label="Delete photo"
+                >
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                    </svg>
+                </button>
+            </div>
+        `;
+
+        return photoDiv;
+    }
+
+
+    function viewPhoto(url) {
+        window.open(url, "_blank");
+    }
+
+    async function deletePhoto(publicId) {
+        if (!confirm("Are you sure you want to delete this photo?")) return;
+
+        try {
+            const response = await fetch(`/api/v1/users/delete-file`, {
+                method: "DELETE",
+                credentials: "include",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ publicId })
+            });
+
+            const result = await response.json();
+            if (result.statuscode === 200) {
+                displayMessage("success", "Photo deleted successfully!");
+                document.querySelector(`[data-photo-id="${publicId}"]`).remove();
+            } else {
+                displayMessage("error", result.message);
+            }
+        } catch (error) {
+            console.error("Error deleting photo:", error);
+            displayMessage("error", "Something went wrong.");
+        }
+    }
+
+
 });
 
 
@@ -87,7 +205,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
 
 const fileUploadForm = document.querySelector("#uploadImagesForm")
-const  fileUploadInput = document.querySelector("#file-upload")
+const fileUploadInput = document.querySelector("#file-upload")
 
 const previewContainer = document.querySelector("#previewContainer")
 const progressContainer = document.querySelector("#progressContainer")
@@ -96,14 +214,14 @@ const fileUploadBtn = document.querySelector("#fileUploadBtn")
 
 const MAX_SIZE = 5 * 1024 * 1024 // 5MB
 
-fileUploadInput.addEventListener("change",  (evt)=>{
+fileUploadInput.addEventListener("change", (evt) => {
     previewContainer.innerHTML = ""
     const files = evt.target.files;
 
     let totalSize = 0;
     let validFiles = []
 
-    for(let file of files){
+    for (let file of files) {
         if (!file.type.startsWith("image/")) {
             displayMessage("error", "Invalid file type. Please upload images only.");
             return;
@@ -119,8 +237,8 @@ fileUploadInput.addEventListener("change",  (evt)=>{
         validFiles.push(file)
         previewImage(file)
 
-    }    
-} )
+    }
+})
 
 function previewImage(file) {
     const reader = new FileReader()
@@ -135,20 +253,19 @@ function previewImage(file) {
 
 
 
-fileUploadForm.addEventListener("submit", async(evt)=>{
-    evt.preventDefault()
+fileUploadForm.addEventListener("submit", async (evt) => {
+    evt.preventDefault();
 
     const files = fileUploadInput.files;
-
     if (files.length === 0) {
         displayMessage("error", "Please select files to upload.");
         return;
     }
 
-    fileUploadBtn.innerHTML = "Uploading..."
-    progressContainer.classList.remove("hidden")
-    progressBar.classList.remove("hidden")
-    progressBar.style.width = "0%"
+    fileUploadBtn.innerText = "Uploading...";
+    fileUploadBtn.disabled = true;
+    progressContainer.classList.remove("hidden");
+    progressBar.style.width = "0%";
 
     const formData = new FormData();
     for (let file of files) {
@@ -156,35 +273,41 @@ fileUploadForm.addEventListener("submit", async(evt)=>{
     }
 
     try {
-        const response= await fetch("/api/v1/users/upload-images", {
-            method: "POST",
-            body: formData
-        })
+        const xhr = new XMLHttpRequest();
+        xhr.open("POST", "/api/v1/users/upload-files", true);
 
-        const result = await response.json()
-        console.log(result);
 
-        if (result.statuscode ===200) {
-            displayMessage("success", result.message)
-            previewContainer.innerHTML = ""
-            window.location.reload()
+        xhr.upload.onprogress = function (event) {
+            if (event.lengthComputable) {
+                const percent = Math.round((event.loaded / event.total) * 100);
+                // console.log(`Uploaded: ${event.loaded} / ${event.total} bytes (${percent}%)`)
+                progressBar.style.width = percent + "%";
+                progressBar.innerText = percent + "%";
+            }
+        };
+        xhr.onload = function () {
+            if (xhr.status === 200) {
+                displayMessage("success", "Images uploaded successfully!");
+                progressBar.style.width = "100%";
+                setTimeout(() => {
+                    progressBar.classList.add("hidden");
+                    window.location.reload();
+                }, 1000);
+            } else {
+                displayMessage("error", "Upload failed.");
+            }
+        };
 
-            // localStorage.setItem
+        xhr.onerror = function () {
+            displayMessage("error", "Network error occurred.");
+        };
 
-        }
-        else{
-            displayMessage("error", result.message)
-        }
-        
+        xhr.send(formData);
     } catch (error) {
-        console.error("Error uploading files:", error);
-        
-    }finally{
-        fileUploadBtn.innerHTML = "Upload"
-        progressContainer.classList.add("hidden")
-        progressBar.classList.add("hidden")
-        progressBar.style.width = "0%"
+        console.error("Upload error:", error);
+        displayMessage("error", "Something went wrong.");
+    } finally {
+        fileUploadBtn.innerText = "Upload Photos";
+        fileUploadBtn.disabled = false;
     }
-
-
-})
+});

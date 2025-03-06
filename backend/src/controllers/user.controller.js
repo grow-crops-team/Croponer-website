@@ -249,12 +249,11 @@ const updateAccountDetails = asyncHandler(async (req, res) => {
     const userProfile = await UserProfile.findOne({ user: req.user._id })
 
     return res.status(200).json(new ApiResponse(200, userProfile, "Profile updated successfully"));
-});
-
+})
 
 const uploadFiles = asyncHandler(async (req, res) => {
-    // Debugging: Check if files are received
-    console.log("Received files:", req.files);
+    
+    // console.log("Received files:", req.files);
 
     if (!req.files || req.files.length === 0) {
         throw new ApiError(400, "No files uploaded.");
@@ -276,15 +275,13 @@ const uploadFiles = asyncHandler(async (req, res) => {
                 publicId: uploadedFile.public_id
             });
 
-            // ✅ Optional: Remove file from local storage after successful upload
-            fs.unlinkSync(localFilePath);
         } catch (error) {
             console.error("Cloudinary Upload Error:", error);
             throw new ApiError(500, "File upload failed.");
         }
     }
 
-    // ✅ Ensure a File record exists for the user
+    
     let fileRecord = await File.findOne({ user: req.user._id });
 
     if (fileRecord) {
@@ -300,8 +297,7 @@ const uploadFiles = asyncHandler(async (req, res) => {
     }
 
     return res.status(200).json(new ApiResponse(200, fileRecord, "Files uploaded successfully"));
-});
-
+})
 
 const forgotPassword = asyncHandler(async (req, res) => {
 
@@ -362,7 +358,18 @@ const getUserProfile = asyncHandler(async (req, res) => {
     return res
         .status(200)
         .json(new ApiResponse(200, userProfile, "User profile fetched successfully!"));
-});
+})
+
+const getFiles = asyncHandler(async (req, res) => {
+    const files = await File.findOne({ user: req.user._id });
+
+    if (!files || !files.images?.length) {
+        return res.status(200).json(new ApiResponse(200, [], "No files found for this user"));
+    }
+
+    return res.status(200).json(new ApiResponse(200, files, "Files fetched successfully!"));
+})
+
 
 
 export {
@@ -375,7 +382,8 @@ export {
     uploadFiles,
     forgotPassword,
     resetPassword,
-    getUserProfile
+    getUserProfile,
+    getFiles
 
 
 }
