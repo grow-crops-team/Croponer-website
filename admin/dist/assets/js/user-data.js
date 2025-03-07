@@ -122,6 +122,74 @@ async function fetchUserDetails() {
     }
 }
 
+function searchTable(inputId, tableClass) {
+    const query = document.getElementById(inputId).value.toLowerCase();
+    const rows = document.querySelectorAll(`.${tableClass} tbody tr`);
+
+    rows.forEach(row => {
+        const textContent = row.innerText.toLowerCase();
+        row.style.display = textContent.includes(query) ? "" : "none";
+    });
+}
+
+// Event listeners for both tables
+document.getElementById("searchUserTable").addEventListener("input", () => searchTable("searchUserTable", "user-registerData-table"));
+document.getElementById("searchUserProfileTable").addEventListener("input", () => searchTable("searchUserProfileTable", "user-profileData-table"));
+
+function setupPagination(tableClass, entriesSelectId, paginationId) {
+    const entriesPerPageSelect = document.getElementById(entriesSelectId);
+    const paginationContainer = document.getElementById(paginationId);
+
+    let currentPage = 1;
+    let entriesPerPage = parseInt(entriesPerPageSelect.value);
+
+    entriesPerPageSelect.addEventListener("change", function () {
+        entriesPerPage = parseInt(this.value);
+        renderTable();
+    });
+
+    function renderTable() {
+        const tableBody = document.querySelector(`.${tableClass} tbody`);
+        const rows = Array.from(tableBody.rows);
+
+        const start = (currentPage - 1) * entriesPerPage;
+        const end = start + entriesPerPage;
+
+        rows.forEach((row, index) => {
+            row.style.display = index >= start && index < end ? "" : "none";
+        });
+
+        updatePaginationControls(rows.length);
+    }
+
+    function updatePaginationControls(totalRows) {
+        const totalPages = Math.ceil(totalRows / entriesPerPage);
+        paginationContainer.innerHTML = `
+            <button onclick="changePage(-1)" ${currentPage === 1 ? "disabled" : ""}>Previous</button>
+            ${Array.from({ length: totalPages }, (_, i) => 
+                `<button onclick="goToPage(${i + 1})" ${i + 1 === currentPage ? "class='active'" : ""}>${i + 1}</button>`).join("")}
+            <button onclick="changePage(1)" ${currentPage === totalPages ? "disabled" : ""}>Next</button>
+        `;
+    }
+
+    function changePage(direction) {
+        currentPage += direction;
+        renderTable();
+    }
+
+    function goToPage(page) {
+        currentPage = page;
+        renderTable();
+    }
+
+    renderTable();
+}
+
+// Call the function for both tables
+setupPagination("user-registerData-table", "entriesUserTable", "paginationUserTable");
+setupPagination("user-profileData-table", "entriesUserProfileTable", "paginationUserProfileTable");
+
+
 window.deleteUser = deleteUser;
 async function deleteUser(userId) {
     if (!confirm("Are you sure you want to delete this user?")) return;

@@ -16,22 +16,22 @@ document.addEventListener("DOMContentLoaded", async (evt) => {
         adminAuth.classList.add("hidden");
     } else {
         adminProfileName.innerHTML = `Admin`;
-        adminAuth.classList.remove("hidden");
+        // adminAuth.classList.remove("hidden");
     }
 
     fetchAdmin();
 });
-document.addEventListener("click", (evt) => {
-    if (
-        !addBlogBtn.contains(evt.target) &&
-        !workingModalShow.contains(evt.target)
-    ) {
-        workingModalShow.classList.add("hidden");
-    }
-});
+
+
 
 addBlogBtn.addEventListener("click", (evt) => {
     workingModalShow.classList.toggle("hidden");
+});
+
+workingModalShow.addEventListener("click", (evt) => {
+   
+        workingModalShow.classList.toggle("hidden");
+    
 });
 
 async function fetchAdmin() {
