@@ -288,7 +288,6 @@ fileUploadForm.addEventListener("submit", async (evt) => {
     }
 
     fileUploadBtn.innerText = "Uploading...";
-    fileUploadBtn.disabled = true;
     progressContainer.classList.remove("hidden");
     progressBar.style.width = "0%";
 
@@ -333,6 +332,6 @@ fileUploadForm.addEventListener("submit", async (evt) => {
         displayMessage("error", "Something went wrong.");
     } finally {
         fileUploadBtn.innerText = "Upload Photos";
-        fileUploadBtn.disabled = false;
+       
     }
 });

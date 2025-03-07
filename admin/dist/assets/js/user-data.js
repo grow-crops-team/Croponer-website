@@ -67,7 +67,7 @@ async function fetchUserDetails() {
         const userProfile = await response.json()
         console.log(userProfile)
 
-        if (users.statuscode === 200) {
+        if (userProfile.statuscode === 200) {
 
          
             tableData.innerHTML = `<tr><td colspan='6' class='py-4 px-6 text-center text-red-500'>${userProfile.message}</td></tr>`
@@ -154,6 +154,8 @@ const userProfileTable = document.querySelector(".user-profileData-table")
 showDataBtn.addEventListener("click", (evt)=>{
     const isAdminLoggedIn = sessionStorage.getItem("adminLoggedIn")
     const role = sessionStorage.getItem("role")
+    console.log(role);
+    
 
     if (isAdminLoggedIn && role === "super-admin") {
         userProfileTable.classList.remove("hidden")

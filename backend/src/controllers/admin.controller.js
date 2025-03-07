@@ -225,7 +225,9 @@ const updateAdmin = asyncHandler(async (req, res) => {
 
     await admin.save();
 
-    return res.status(200).json(new ApiResponse(200, admin, "Admin updated successfully!"));
+    const updatedAdmin = await Admin.findById(id)
+
+    return res.status(200).json(new ApiResponse(200, updatedAdmin, "Admin updated successfully!"));
 });
 const deleteAdmin = asyncHandler(async (req, res, next) => {
     const { id } = req.params;

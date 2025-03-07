@@ -6,10 +6,10 @@ const adminLoginBtn = document.querySelector("#adminLogin");
 const adminProfile = document.querySelector("#adminProfile");
 const adminProfileModal = document.querySelector("#adminProfileModal");
 const cancelBtn = document.querySelector("#cancelBtn");
-const adminLogoutBtn = document.querySelector(".logout");
+const adminLogoutBtn = document.querySelector("#adminLogoutBtn");
 const adminProfileName = document.querySelector("#adminProfile p span")
 const adminLoginForm = document.querySelector("#adminLoginForm");
-
+const adminlogoutModal= document.querySelector("#adminlogoutModal")
 adminLoginBtn.addEventListener("click", () => {
     loginModal.classList.remove("hidden");
 });
@@ -36,7 +36,7 @@ adminLoginForm.addEventListener("submit", async (evt) => {
         });
 
         const result = await response.json();
-        console.log(result);
+        // console.log(result);
 
         if (response.ok) {
             displayMessage("success", result.message);
@@ -50,7 +50,7 @@ adminLoginForm.addEventListener("submit", async (evt) => {
             }, 3000);
            
         } else {
-            console.log("Login Error:", result.message);
+            // console.log("Login Error:", result.message);
             displayMessage("error", result.message);
         }
     } catch (error) {
@@ -107,13 +107,15 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 });
 
+adminlogoutModal.addEventListener("click", (evt) => {
+adminProfileModal.classList.toggle("hidden");
+})
+
 adminLogoutBtn.addEventListener("click", () => {
     adminLogout()
 })
 
-adminProfile.addEventListener("click", () => {
-    adminProfileModal.classList.toggle("hidden");
-});
+
 
 window.addEventListener("click", (evt) => {
     if (evt.target === adminProfileModal) {

@@ -1,3 +1,5 @@
+import {displayMessage} from "./utils.js"
+
 const addBlogBtn = document.querySelector("#addBlogBtn");
 
 const adminAuth = document.querySelector("#auth");
@@ -115,10 +117,10 @@ const editAdminModal =  document.getElementById("editAdminModal")
 
 window.editAdmin = function (id, fullName, email, username, role) {
     editAdminModal.dataset.AdminId = id; 
-    document.getElementById("editAdminFullName").value = fullName;
-    document.getElementById("editAdminEmail").value = email;
-    document.getElementById("editAdminUsername").value = username;
-    document.getElementById("editAdminRole").value = role;
+    document.getElementById("fullName").value = fullName;
+    document.getElementById("email").value = email;
+    document.getElementById("username").value = username;
+    document.getElementById("adminRole").value = role;
 
     editAdminModal.classList.remove("hidden");
 };
@@ -135,14 +137,14 @@ document.getElementById("editAdminForm").addEventListener("submit", async functi
 
     const adminId = editAdminModal.dataset.AdminId
     const updatedData = {
-        fullName: document.getElementById("editAdminFullName").value,
-        email: document.getElementById("editAdminEmail").value,
-        username: document.getElementById("editAdminUsername").value,
-        role: document.getElementById("editAdminRole").value
+        fullName:  document.getElementById("fullName").value ,
+        email: document.getElementById("email").value ,
+        username: document.getElementById("username").value ,
+        role:  document.getElementById("adminRole").value
     };
 
     try {
-        const response = await fetch(`/api/v1/admin/update-user/${adminId}`, {
+        const response = await fetch(`/api/v1/admin/update-admin/${adminId}`, {
             method: "PATCH",
             credentials: "include",
             headers: { "Content-Type": "application/json" },
@@ -150,8 +152,11 @@ document.getElementById("editAdminForm").addEventListener("submit", async functi
         });
 
         const result = await response.json();
+        // console.log(result);
+        
         if (result.statuscode === 200) {
-            displayMessage("success", "Admin updated successfully!");
+            displayMessage("success", result.message);
+            closeEditModal();
             window.location.reload();
         } else {
             displayMessage("error", result.message);
