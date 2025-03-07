@@ -1,4 +1,4 @@
-import { displayMessage } from './utils.js';
+import { displayMessage, hideLoader, showLoader } from './utils.js';
 
 const coverImageInput = document.querySelector("#coverImage");
 const avatarImageInput = document.querySelector("#avatar");
@@ -84,6 +84,7 @@ document.getElementById("bio").addEventListener("input", function (e) {
 
 
 profileUpdateForm.addEventListener("submit", async (evt) => {
+    showLoader()
     evt.preventDefault();
 
     if (!fullName.value || !phoneNumber.value || !country.value || !state.value || !district.value || !village.value || !pincode.value) {
@@ -135,6 +136,8 @@ profileUpdateForm.addEventListener("submit", async (evt) => {
     } catch (error) {
         console.error("Profile update error:", error);
         displayMessage("error", "Something went wrong");
+    }finally{
+        hideLoader()
     }
 });
 

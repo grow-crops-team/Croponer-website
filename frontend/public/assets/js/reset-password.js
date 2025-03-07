@@ -36,7 +36,9 @@ resetPassword.addEventListener("submit", async (evt) => {
         displayMessage("error", "Something went wrong! Try again.")
         console.log("Something went wrong! Try again.", error)
     } finally {
-        hideLoader()
+       setTimeout(() => {
+            hideLoader()
+        }, 2000)
     }
 })
 

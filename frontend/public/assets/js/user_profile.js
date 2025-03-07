@@ -1,4 +1,4 @@
-import { displayMessage } from "./utils.js";
+import { displayMessage, showLoader,hideLoader } from "./utils.js";
 
 const default_coverImage = "https://images.unsplash.com/photo-1579548122080-c35fd6820ecb?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
 
@@ -18,7 +18,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     userName.innerHTML = sessionStorage.getItem("userFullname")
     userEmail.innerHTML = sessionStorage.getItem("email")
     const userId = sessionStorage.getItem("userID");
-
+showLoader()
     try {
 
         if (!userId) {
@@ -109,6 +109,8 @@ document.addEventListener("DOMContentLoaded", async () => {
         console.error("Profile fetch error:", error);
         displayMessage("error", "Unexpected error occur.", error);
 
+    }finally{
+        hideLoader()
     }
 
     function renderPhotos(photos) {

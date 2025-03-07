@@ -230,6 +230,9 @@ function displayMessage(type, message) {
     if (displayError && messageElement) {
         messageElement.textContent = message;
         displayError.classList.remove("hidden");
+        setTimeout(() => {
+            displayError.classList.add("hidden");
+        }, 5000);
     } else {
         console.error("Message elements not found!");
     }

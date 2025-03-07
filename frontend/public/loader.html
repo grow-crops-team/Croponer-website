@@ -1,0 +1,589 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Beautiful CSS Loaders Collection</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f8f9fa;
+            color: #333;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        
+        h1 {
+            text-align: center;
+            margin-bottom: 2rem;
+            color: #2d3748;
+        }
+        
+        .loader-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .loader-card {
+            background-color: #fff;
+            border-radius: 8px;
+            padding: 2rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+        }
+        
+        .loader-title {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: #4a5568;
+        }
+        
+        .loader-container {
+            height: 150px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+        }
+
+        /* 1. Gradient Spinner */
+        .gradient-spinner {
+            width: 50px;
+            height: 50px;
+            border: 4px solid transparent;
+            border-radius: 50%;
+            border-top: 4px solid #3498db;
+            border-right: 4px solid #e74c3c;
+            border-bottom: 4px solid #f1c40f;
+            border-left: 4px solid #2ecc71;
+            animation: spin 1.5s linear infinite;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* 2. Pulsing Dots */
+        .pulsing-dots {
+            display: flex;
+            gap: 8px;
+        }
+        
+        .pulsing-dot {
+            width: 15px;
+            height: 15px;
+            border-radius: 50%;
+            background-color: #6366f1;
+            animation: pulse 1.4s ease-in-out infinite;
+        }
+        
+        .pulsing-dot:nth-child(1) { animation-delay: 0s; }
+        .pulsing-dot:nth-child(2) { animation-delay: 0.2s; }
+        .pulsing-dot:nth-child(3) { animation-delay: 0.4s; }
+        
+        @keyframes pulse {
+            0%, 100% { transform: scale(0.8); opacity: 0.5; }
+            50% { transform: scale(1.2); opacity: 1; }
+        }
+
+        /* 3. Bouncing Balls */
+        .bouncing-balls {
+            display: flex;
+            align-items: flex-end;
+            gap: 6px;
+        }
+        
+        .bouncing-ball {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: linear-gradient(145deg, #4f46e5, #9333ea);
+            animation: bounce 0.8s infinite alternate;
+        }
+        
+        .bouncing-ball:nth-child(1) { animation-delay: 0s; }
+        .bouncing-ball:nth-child(2) { animation-delay: 0.1s; }
+        .bouncing-ball:nth-child(3) { animation-delay: 0.2s; }
+        .bouncing-ball:nth-child(4) { animation-delay: 0.3s; }
+        .bouncing-ball:nth-child(5) { animation-delay: 0.4s; }
+        
+        @keyframes bounce {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(-25px); }
+        }
+
+        /* 4. Gradient Progress Bar */
+        .progress-container {
+            width: 200px;
+            height: 6px;
+            background-color: #e2e8f0;
+            border-radius: 3px;
+            overflow: hidden;
+        }
+        
+        .progress-bar {
+            height: 100%;
+            width: 100%;
+            background: linear-gradient(to right, #4f46e5, #9333ea, #4f46e5);
+            background-size: 200% 100%;
+            border-radius: 3px;
+            animation: progress 2s ease infinite;
+        }
+        
+        @keyframes progress {
+            0% { background-position: 100% 0; width: 0%; }
+            50% { width: 70%; }
+            100% { background-position: 0 0; width: 100%; }
+        }
+
+        /* 5. Typing Text Loader */
+        .typing-loader {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            animation: typing 1s linear infinite alternate;
+            position: relative;
+            margin: 0 15px;
+        }
+        
+        @keyframes typing {
+            0% { background-color: rgba(100, 100, 100, 1); box-shadow: 12px 0px 0px 0px rgba(100, 100, 100, 0.2), 24px 0px 0px 0px rgba(100, 100, 100, 0.2); }
+            25% { background-color: rgba(100, 100, 100, 0.4); box-shadow: 12px 0px 0px 0px rgba(100, 100, 100, 1), 24px 0px 0px 0px rgba(100, 100, 100, 0.2); }
+            75% { background-color: rgba(100, 100, 100, 0.4); box-shadow: 12px 0px 0px 0px rgba(100, 100, 100, 0.4), 24px 0px 0px 0px rgba(100, 100, 100, 1); }
+        }
+
+        /* 6. Circle Stacked Loader */
+        .circle-stacked-loader {
+            width: 50px;
+            height: 50px;
+            position: relative;
+        }
+        
+        .circle-stacked-loader div {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border: 4px solid transparent;
+            border-radius: 50%;
+            animation: rotate 2s linear infinite;
+        }
+        
+        .circle-stacked-loader div:nth-child(1) {
+            border-top-color: #3498db;
+        }
+        
+        .circle-stacked-loader div:nth-child(2) {
+            border-right-color: #e74c3c;
+            animation-delay: 0.5s;
+        }
+        
+        .circle-stacked-loader div:nth-child(3) {
+            border-bottom-color: #f1c40f;
+            animation-delay: 1s;
+        }
+        
+        @keyframes rotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* 7. Skeleton Loader */
+        .skeleton-loader {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        
+        .skeleton-line {
+            height: 12px;
+            background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+            background-size: 200% 100%;
+            animation: skeleton-loading 1.5s infinite;
+            border-radius: 4px;
+        }
+        
+        .skeleton-line:nth-child(1) { width: 60%; }
+        .skeleton-line:nth-child(2) { width: 100%; }
+        .skeleton-line:nth-child(3) { width: 70%; }
+        
+        @keyframes skeleton-loading {
+            0% { background-position: 100% 0; }
+            100% { background-position: -100% 0; }
+        }
+
+        /* 8. Water Wave Loader */
+        .water-wave {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            position: relative;
+            overflow: hidden;
+            border: 3px solid #4299e1;
+        }
+        
+        .water-wave::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 0;
+            width: 200%;
+            height: 200%;
+            background: rgba(66, 153, 225, 0.8);
+            border-radius: 40%;
+            animation: wave 3s linear infinite;
+        }
+        
+        @keyframes wave {
+            0% { transform: translate(-50%, -50%) rotate(0deg); }
+            100% { transform: translate(-50%, -50%) rotate(360deg); }
+        }
+
+        /* 9. Flipping Squares */
+        .flipping-squares {
+            width: 50px;
+            height: 50px;
+            position: relative;
+        }
+        
+        .flipping-squares div {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            animation: flip 2s linear infinite;
+        }
+        
+        .flipping-squares div:nth-child(1) {
+            top: 0;
+            left: 0;
+            background: #9333ea;
+            animation-delay: 0s;
+        }
+        
+        .flipping-squares div:nth-child(2) {
+            top: 0;
+            right: 0;
+            background: #4f46e5;
+            animation-delay: 0.5s;
+        }
+        
+        .flipping-squares div:nth-child(3) {
+            bottom: 0;
+            left: 0;
+            background: #8b5cf6;
+            animation-delay: 1s;
+        }
+        
+        .flipping-squares div:nth-child(4) {
+            bottom: 0;
+            right: 0;
+            background: #6366f1;
+            animation-delay: 1.5s;
+        }
+        
+        @keyframes flip {
+            0% { transform: rotateY(0deg) rotateX(0deg); }
+            25% { transform: rotateY(180deg) rotateX(0deg); }
+            50% { transform: rotateY(180deg) rotateX(180deg); }
+            75% { transform: rotateY(0deg) rotateX(180deg); }
+            100% { transform: rotateY(0deg) rotateX(0deg); }
+        }
+
+        /* 10. Circular Dots Spin */
+        .circular-dots {
+            width: 50px;
+            height: 50px;
+            position: relative;
+        }
+        
+        .circular-dots div {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background-color: #3b82f6;
+            border-radius: 50%;
+            animation: circular-spin 1.2s linear infinite;
+        }
+        
+        .circular-dots div:nth-child(1) { 
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            animation-delay: 0s;
+        }
+        
+        .circular-dots div:nth-child(2) { 
+            top: 25%;
+            right: 10%;
+            animation-delay: -0.9s;
+        }
+        
+        .circular-dots div:nth-child(3) { 
+            top: 50%;
+            right: 0;
+            transform: translateY(-50%);
+            animation-delay: -0.8s;
+        }
+        
+        .circular-dots div:nth-child(4) { 
+            bottom: 25%;
+            right: 10%;
+            animation-delay: -0.7s;
+        }
+        
+        .circular-dots div:nth-child(5) { 
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            animation-delay: -0.6s;
+        }
+        
+        .circular-dots div:nth-child(6) { 
+            bottom: 25%;
+            left: 10%;
+            animation-delay: -0.5s;
+        }
+        
+        .circular-dots div:nth-child(7) { 
+            top: 50%;
+            left: 0;
+            transform: translateY(-50%);
+            animation-delay: -0.4s;
+        }
+        
+        .circular-dots div:nth-child(8) { 
+            top: 25%;
+            left: 10%;
+            animation-delay: -0.3s;
+        }
+        
+        @keyframes circular-spin {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.2; }
+        }
+
+        /* 11. Newton's Cradle */
+        .newtons-cradle {
+            width: 80px;
+            height: 60px;
+            position: relative;
+        }
+        
+        .newtons-cradle div {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background: #5a67d8;
+            border-radius: 50%;
+            bottom: 0;
+            transform-origin: 50% -15px;
+        }
+        
+        .newtons-cradle div::before {
+            content: '';
+            position: absolute;
+            width: 2px;
+            height: 15px;
+            background: #a0aec0;
+            top: -15px;
+            left: 4px;
+        }
+        
+        .newtons-cradle div:nth-child(1) { left: 10px; animation: left-swing 1s ease-in infinite; }
+        .newtons-cradle div:nth-child(2) { left: 25px; }
+        .newtons-cradle div:nth-child(3) { left: 40px; }
+        .newtons-cradle div:nth-child(4) { left: 55px; }
+        .newtons-cradle div:nth-child(5) { left: 70px; animation: right-swing 1s ease-in infinite; }
+        
+        @keyframes left-swing {
+            0%, 100% { transform: rotate(0deg); }
+            25% { transform: rotate(-45deg); }
+            50% { transform: rotate(0deg); }
+        }
+        
+        @keyframes right-swing {
+            50%, 100% { transform: rotate(0deg); }
+            75% { transform: rotate(45deg); }
+        }
+
+        /* 12. Gooey Effect */
+        .gooey {
+            position: relative;
+            width: 80px;
+            height: 40px;
+            filter: blur(4px) contrast(10);
+        }
+        
+        .gooey div {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: #4f46e5;
+            animation: gooey 2s ease-in-out infinite;
+        }
+        
+        .gooey div:nth-child(1) { animation-delay: 0s; }
+        .gooey div:nth-child(2) { animation-delay: 0.4s; }
+        .gooey div:nth-child(3) { animation-delay: 0.8s; }
+        
+        @keyframes gooey {
+            0%, 100% { transform: translateX(0); }
+            50% { transform: translateX(60px); }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Beautiful CSS Loaders Collection</h1>
+        <div class="loader-grid">
+            <div class="loader-card">
+                <span class="loader-title">Gradient Spinner</span>
+                <div class="loader-container">
+                    <div class="gradient-spinner"></div>
+                </div>
+            </div>
+            
+            <div class="loader-card">
+                <span class="loader-title">Pulsing Dots</span>
+                <div class="loader-container">
+                    <div class="pulsing-dots">
+                        <div class="pulsing-dot"></div>
+                        <div class="pulsing-dot"></div>
+                        <div class="pulsing-dot"></div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="loader-card">
+                <span class="loader-title">Bouncing Balls</span>
+                <div class="loader-container">
+                    <div class="bouncing-balls">
+                        <div class="bouncing-ball"></div>
+                        <div class="bouncing-ball"></div>
+                        <div class="bouncing-ball"></div>
+                        <div class="bouncing-ball"></div>
+                        <div class="bouncing-ball"></div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="loader-card">
+                <span class="loader-title">Gradient Progress Bar</span>
+                <div class="loader-container">
+                    <div class="progress-container">
+                        <div class="progress-bar"></div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="loader-card">
+                <span class="loader-title">Typing Loader</span>
+                <div class="loader-container">
+                    <div class="typing-loader"></div>
+                </div>
+            </div>
+            
+            <div class="loader-card">
+                <span class="loader-title">Circle Stacked</span>
+                <div class="loader-container">
+                    <div class="circle-stacked-loader">
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="loader-card">
+                <span class="loader-title">Skeleton Loader</span>
+                <div class="loader-container">
+                    <div class="skeleton-loader">
+                        <div class="skeleton-line"></div>
+                        <div class="skeleton-line"></div>
+                        <div class="skeleton-line"></div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="loader-card">
+                <span class="loader-title">Water Wave</span>
+                <div class="loader-container">
+                    <div class="water-wave"></div>
+                </div>
+            </div>
+            
+            <div class="loader-card">
+                <span class="loader-title">Flipping Squares</span>
+                <div class="loader-container">
+                    <div class="flipping-squares">
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="loader-card">
+                <span class="loader-title">Circular Dots</span>
+                <div class="loader-container">
+                    <div class="circular-dots">
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="loader-card">
+                <span class="loader-title">Newton's Cradle</span>
+                <div class="loader-container">
+                    <div class="newtons-cradle">
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="loader-card">
+                <span class="loader-title">Gooey Effect</span>
+                <div class="loader-container">
+                    <div class="gooey">
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

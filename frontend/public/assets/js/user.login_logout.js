@@ -6,6 +6,7 @@ const password = document.querySelector("#password")
 
 if (userLogin) {
     userLogin.addEventListener("submit", async (evt) => {
+        showLoader()
         evt.preventDefault()
         if (loginValidateInput(username, password)) {
             const formdata = new FormData(evt.target)
@@ -14,7 +15,6 @@ if (userLogin) {
                 password: formdata.get("password").trim()
             }
             // console.log(data)
-            showLoader()
 
             try {
                 const response = await fetch("/api/v1/users/login", {
@@ -42,7 +42,7 @@ if (userLogin) {
 
                     setTimeout(() => {
                         window.location.href = "/"
-                    }, 2000)
+                    }, 3000)
                 }
                 else {
                     displayMessage("error", result.message)
@@ -82,7 +82,7 @@ async function UserLogout() {
            
             setTimeout(() => {
                 window.location.href = "/";
-            }, 1000)
+            }, 3000)
 
         } else {
             displayMessage("error", data.message);

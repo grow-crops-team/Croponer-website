@@ -4,6 +4,7 @@ const userRegister = document.querySelector("#signupForm")
 
 
 userRegister.addEventListener("submit", async (evt) => {
+    showLoader()
     evt.preventDefault()
     const username = document.querySelector("#username")
     const fullName = document.querySelector("#fullName")
@@ -20,7 +21,7 @@ userRegister.addEventListener("submit", async (evt) => {
             password: formdata.get("password").trim()
         }
         // console.log(data)
-showLoader()
+
         try {
             const response = await fetch("/api/v1/users/register", {
                 method: "POST", 

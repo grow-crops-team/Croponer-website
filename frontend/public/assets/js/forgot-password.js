@@ -1,11 +1,11 @@
-import {displayMessage,} from './utils.js'
+import {displayMessage, showLoader,} from './utils.js'
 
 const sendEmail = document.querySelector(".sendEmail")  
 const cancelBtn = document.querySelector("#cancelBtn")
 
 sendEmail.addEventListener("submit", async (evt) => {
     evt.preventDefault()
-
+showLoader()
     const email = document.getElementById("email").value
 
     try {
@@ -24,6 +24,10 @@ sendEmail.addEventListener("submit", async (evt) => {
     } catch (error) {
         displayMessage("error", "Something went wrong! Try again.")
         console.log("server error:", error)
+    }finally{
+        setTimeout(() => {
+            window.location.href = "/"
+        }, 2000)
     }
 })
 

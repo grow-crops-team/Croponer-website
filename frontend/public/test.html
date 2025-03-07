@@ -5,7 +5,62 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>User Profile</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="style.css">
+   
+    <link rel="stylesheet" href="./assets/css/style.css">
+    
+    <style>
+        .spinner-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+          }
+          
+          .spinner {
+            width: 60px;
+            height: 60px;
+            border: 4px solid transparent;
+            border-radius: 50%;
+            border-top: 4px solid #3498db;
+            border-right: 4px solid #e74c3c;
+            border-bottom: 4px solid #f1c40f;
+            border-left: 4px solid #2ecc71;
+            animation: spin 1.5s linear infinite;
+          }
+          
+          @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+          }
+
+
+          .dots-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            gap: 12px;
+          }
+          
+          .dot {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background-color: #3498db;
+            animation: pulse 1.4s ease-in-out infinite;
+          }
+          
+          .dot1 { animation-delay: 0s; }
+          .dot2 { animation-delay: 0.2s; }
+          .dot3 { animation-delay: 0.4s; }
+          
+          @keyframes pulse {
+            0%, 100% { transform: scale(0.8); opacity: 0.5; }
+            50% { transform: scale(1.2); opacity: 1; }
+          }
+    </style>
+
+
 </head>
 <body class="bg-gray-100 font-sans">
     <div class="container mx-auto px-4 py-8 max-w-4xl">
@@ -169,5 +224,81 @@
             </div>
         </div>
     </div>
+
+    <div class="spinner-container z-30">
+        <div class="spinner"></div>
+      </div>
+
+      <div class="dots-container">
+        <div class="dot dot1"></div>
+        <div class="dot dot2"></div>
+        <div class="dot dot3"></div>
+      </div>
+
+      <div class="bouncing-loader-container">
+        <div class="bouncing-loader">
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+        </div>
+      </div>
+
+      <style>
+        /* Add this to your existing style section */
+.bouncing-loader-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+  
+  .bouncing-loader {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .bouncing-loader > div {
+    width: 16px;
+    height: 16px;
+    margin: 0 6px;
+    border-radius: 50%;
+    background: linear-gradient(145deg, #4f46e5, #9333ea);
+    box-shadow: 0 4px 10px rgba(79, 70, 229, 0.2);
+    animation: bouncing-loader 0.6s infinite alternate;
+  }
+  
+  .bouncing-loader > div:nth-child(2) {
+    animation-delay: 0.1s;
+    background: linear-gradient(145deg, #6366f1, #8b5cf6);
+  }
+  
+  .bouncing-loader > div:nth-child(3) {
+    animation-delay: 0.2s;
+    background: linear-gradient(145deg, #818cf8, #a78bfa);
+  }
+  
+  .bouncing-loader > div:nth-child(4) {
+    animation-delay: 0.3s;
+    background: linear-gradient(145deg, #a5b4fc, #c4b5fd);
+  }
+  
+  .bouncing-loader > div:nth-child(5) {
+    animation-delay: 0.4s;
+    background: linear-gradient(145deg, #c7d2fe, #ddd6fe);
+  }
+  
+  @keyframes bouncing-loader {
+    0% {
+      transform: translateY(0);
+    }
+    100% {
+      transform: translateY(-20px);
+    }
+  }
+      </style>
+
 </body>
 </html>
