@@ -36,7 +36,6 @@ async function fetchUser() {
                         <td class="py-2 px-6 text-gray-800">${user.username}</td>
                         <td class="py-2 px-6 text-gray-800">${user.fullName}</td>
                         <td class="py-2 px-6 text-gray-800">${user.email}</td>
-                        
                     `
                 tableData.appendChild(row)
             })
@@ -65,7 +64,7 @@ async function fetchUserDetails() {
             headers: {"content-type": "application/json"}
         })
         const userProfile = await response.json()
-        console.log(userProfile)
+        // console.log(userProfile)
 
         if (userProfile.statuscode === 200) {
 
@@ -94,6 +93,7 @@ async function fetchUserDetails() {
                 const userPhone = user.phoneNumber ? user.phoneNumber : "Not provided"
 
                 row.innerHTML = `
+                        <td class="py-2 px-6 text-gray-800">${user.user}</td>
                         <td class="py-2 px-6 text-gray-800">${user.fullName}</td>
                         <td class="py-2 px-6 text-gray-800">${user.email}</td>
                         <td class="py-2 px-6 text-gray-800">${userPhone}</td>
@@ -154,7 +154,7 @@ const userProfileTable = document.querySelector(".user-profileData-table")
 showDataBtn.addEventListener("click", (evt)=>{
     const isAdminLoggedIn = sessionStorage.getItem("adminLoggedIn")
     const role = sessionStorage.getItem("role")
-    console.log(role);
+    // console.log(role);
     
 
     if (isAdminLoggedIn && role === "super-admin") {

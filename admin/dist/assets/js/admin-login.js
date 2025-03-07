@@ -115,15 +115,6 @@ adminLogoutBtn.addEventListener("click", () => {
     adminLogout()
 })
 
-
-
-window.addEventListener("click", (evt) => {
-    if (evt.target === adminProfileModal) {
-        adminProfileModal.classList.toggle("hidden");
-    }
-});
-
-
 const password = document.querySelector("#password")
 const showPasswordBtn = document.querySelector("#showPassword")
 showPassword( showPasswordBtn,password)
