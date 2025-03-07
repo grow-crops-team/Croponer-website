@@ -2,6 +2,8 @@
 import { asyncHandler } from "../utils/asyncHandler.js"
 import ApiError from "../utils/ApiError.js"
 import User from "../models/user.model.js"
+import UserProfile from "../models/user_details.model.js"
+import File from "../models/files.model.js"
 import Admin from "../models/admin.model.js"
 import ApiResponse from "../utils/ApiResponse.js"
 import jwt from "jsonwebtoken"
@@ -26,7 +28,7 @@ const generateAccessAndRefreshTokens = async (adminId) => {
 
 const adminLogin = asyncHandler(async (req, res) => {
     const { email, username, password } = req.body
-    
+
     if (!username && !email) {
         throw new ApiError(400, "Either username or email is required")
     }
@@ -201,29 +203,49 @@ const getAdmin = asyncHandler(async (req, res) => {
 
 
 const updateAdmin = asyncHandler(async (req, res) => {
-    const {  email, username, role } = req.body;
+    const { id } = req.params;
+    const { fullName, email, username, role } = req.body;
 
-    if (!username || !email) {
-        throw new ApiError(400, "Username or email are required");
+    // Validate ID
+    if (!mongoose.Types.ObjectId.isValid(id)) {
+        throw new ApiError(400, "Invalid admin ID");
     }
 
-    const updatedData = { username, email,role };
-
-    const admin = await Admin.findById(req.admin._id);
+    // Check if the admin exists
+    const admin = await Admin.findById(id);
     if (!admin) {
         throw new ApiError(404, "Admin not found");
     }
 
-    // Update admin details
-    const updatedAdmin = await Admin.findByIdAndUpdate(
-        req.admin._id,
-        { $set: updatedData },
-        { new: true }
-    ).select("-password");
+    // Update the admin fields
+    admin.fullName = fullName || admin.fullName;
+    admin.email = email || admin.email;
+    admin.username = username || admin.username;
+    admin.role = role || admin.role;
 
-    return res.status(200).json(new ApiResponse(200, updatedAdmin, "Admin details updated successfully"));
-})
+    await admin.save();
 
+    return res.status(200).json(new ApiResponse(200, admin, "Admin updated successfully!"));
+});
+const deleteAdmin = asyncHandler(async (req, res, next) => {
+    const { id } = req.params;
+
+
+    if (!mongoose.Types.ObjectId.isValid(id)) {
+        throw new ApiError(400, "Invalid user ID");
+    }
+
+
+    const deletedUser = await Admin.findByIdAndDelete(id);
+
+    if (!deletedUser) {
+        throw new ApiError(404, "Admin not found");
+    }
+
+    return res.status(200).json(
+        new ApiResponse(200, null, `Admin is deleted successfully!`)
+    );
+});
 
 //User Functions
 const getUser = asyncHandler(async (req, res, next) => {
@@ -235,6 +257,16 @@ const getUser = asyncHandler(async (req, res, next) => {
     return res
         .status(200)
         .json(new ApiResponse(200, users, "Users fetched successfully!"))
+})
+const getUserProfile = asyncHandler(async (req, res, next) => {
+    const userProfiles = await UserProfile.find();
+
+    if (userProfiles.length === 0)
+        throw new ApiError(404, "No users found")
+
+    return res
+        .status(200)
+        .json(new ApiResponse(200, userProfiles, "Users fetched successfully!"))
 })
 
 const createUser = asyncHandler(async (req, res, next) => {
@@ -267,21 +299,40 @@ const createUser = asyncHandler(async (req, res, next) => {
 const deleteUser = asyncHandler(async (req, res, next) => {
     const { id } = req.params;
 
-    // Validate ID
+
     if (!mongoose.Types.ObjectId.isValid(id)) {
         throw new ApiError(400, "Invalid user ID");
     }
 
-    // Find and delete the user
+
     const deletedUser = await User.findByIdAndDelete(id);
 
     if (!deletedUser) {
         throw new ApiError(404, "User not found");
     }
 
-    return res.status(200).json(new ApiResponse(200, null, "User deleted successfully!"));
+
+    const deletedProfile = await UserProfile.findOneAndDelete({ user: id });
+    const deleteFile = await File.findOneAndDelete({ user: id })
+
+    return res.status(200).json(
+        new ApiResponse(200, null, `User and their profile deleted successfully!`)
+    );
 });
 
 
-export { adminLogin, registerAdmin, logoutAdmin, refreshAccessToken, getAdmin, updateAdmin, getUser, createUser, deleteUser }
+
+export {
+    adminLogin,
+    registerAdmin,
+    logoutAdmin,
+    refreshAccessToken,
+    getAdmin,
+    updateAdmin,
+    getUser,
+    createUser,
+    deleteUser,
+    getUserProfile,
+    deleteAdmin
+}
 

@@ -158,7 +158,7 @@
             </div>
 
             <table
-              class="task-table w-full border-collapse bg-slate-300 rounded-lg shadow-md"
+              class="admin-table w-full border-collapse bg-slate-300 rounded-lg shadow-md"
             >
               <!-- Table Head -->
               <thead
@@ -175,54 +175,20 @@
 
               <!-- Table Body -->
               <tbody class="divide-y divide-gray-300">
-                <tr class="hover:bg-[#4d4d4d33] transition">
-                  <td class="py-4 px-6 text-gray-800">John Doe</td>
-                  <td class="py-4 px-6 text-gray-800">John Doe</td>
-                  <td class="py-4 px-6">
-                    <span
-                      class="px-3 py-1 rounded-full bg-green-200 text-green-700 text-sm"
-                      >Completed</span
-                    >
-                  </td>
-                  <td class="py-4 px-6 text-gray-800">March 10, 2025</td>
-                  <td class="py-3 px-6">
-                    <button
-                      onclick="updateTask('${task._id}', 'in-progress')"
-                      class="bg-blue-500 hover:bg-blue-600 text-white px-3 py-1 rounded-md"
-                    >
-                      Start
-                    </button>
-                    <button
-                      onclick="updateTask('${task._id}', 'completed')"
-                      class="bg-green-500 hover:bg-green-600 text-white px-3 py-1 rounded-md"
-                    >
-                      Complete
-                    </button>
-                    <button
-                      onclick="deleteTask('${task._id}')"
-                      class="bg-red-500 hover:bg-red-600 text-white px-3 py-1 rounded-md"
-                    >
-                      Delete
-                    </button>
-                  </td>
-                </tr>
+
               </tbody>
             </table>
           </div>
         </div>
 
-
         <div class="mt-10 ml-20">
           <button
-          id="addAdminModalBtn"
-          class="cursor-pointer bg-orange-600 hover:bg-orange-500 text-white px-2 py-2 rounded-lg mx-5"
-        >
-           Add Blog page
-        </button>
+            id="addBlogBtn"
+            class="cursor-pointer bg-orange-600 hover:bg-orange-500 text-white px-2 py-2 rounded-lg mx-5"
+          >
+            Add Blog page
+          </button>
         </div>
-
-
-
 
         <footer class="bg-[#3c3779] w-full fixed bottom-0 select-none mt-20">
           <div>
@@ -242,13 +208,13 @@
     </div>
 
     <!-- update Admin Modal -->
-    <div id="editTaskModal" class="hidden">
+    <div id="editAdminModal" class="hidden">
       <div
         class="fixed inset-0 flex items-center justify-center bg-[#000000e8]"
       >
         <div class="w-full max-w-md bg-gray-400 rounded-lg shadow-md p-6">
           <h2 class="text-2xl font-semibold text-center">Update Admins</h2>
-          <form id="adminRegister" class="adminRegister mt-4">
+          <form id="editAminForm" class="adminRegister mt-4">
             <div>
               <label class="block text-sm font-medium">Username</label>
               <input
@@ -329,24 +295,24 @@
       </div>
     </div>
 
-    <div id="wrking-modal" class="hidden">
+    <div id="working-modal" class="hidden">
       <div
-        class="fixed inset-0 flex flex-col items-center justify-center bg-[#000000e8]"
+        class="fixed inset-0 flex flex-col items-center justify-center bg-[#000000e8] cursor-not-allowed"
       >
-        <video  autoplay loop>
+        <video autoplay loop>
           <source
             src="./assets/images/Animation - 1740934258557.webm"
             type="video/mp4"
           />
         </video>
-       
 
-        <h1 class="text-white text-4xl">Hello Admin </h1>
-        <p class="text-white text-2xl">Please wait a while </p>
-        <p class="text-white text-2xl">Working is still progressing.....</p>
+        <h1 class="text-white text-4xl">Hello Admin</h1>
+        <p class="text-white text-2xl">Please wait a while</p>
+        <p class="text-white text-2xl">Working is still progressing..... </p>
       </div>
     </div>
 
+   
     <script type="module" src="./assets/js/admin.js"></script>
   </body>
 </html>
