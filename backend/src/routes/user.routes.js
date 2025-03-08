@@ -16,6 +16,7 @@ import {
 } from "../controllers/user.controller.js"
 import { upload, uploadMultiple } from "../middlewares/multer.middleware.js"
 import { verifyJWT } from "../middlewares/auth.middleware.js"
+import { get } from "http"
 
 const router = Router()
 
@@ -31,6 +32,7 @@ router.route("/get-profile/:id").get(verifyJWT, getUserProfile)
 router.route("/upload-files").post(verifyJWT,  uploadMultiple, uploadFiles)
 router.route("/get-file/:id").get(verifyJWT, getFiles)
 router.route("/delete-file").delete(verifyJWT, deleteFile)
+
 
 
 

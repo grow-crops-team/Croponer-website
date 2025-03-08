@@ -3,7 +3,7 @@ import ApiError from "../utils/ApiError.js"
 import User from "../models/user.model.js"
 import UserProfile from "../models/user_details.model.js"
 import File from "../models/files.model.js"
-import {uploadOnCloudinary,deleteOnCloudinary} from "../utils/cloudinary.js"
+import { uploadOnCloudinary, deleteOnCloudinary } from "../utils/cloudinary.js"
 import ApiResponse from "../utils/ApiResponse.js"
 import jwt from "jsonwebtoken"
 import mongoose from "mongoose"
@@ -364,11 +364,12 @@ const getFiles = asyncHandler(async (req, res) => {
     const files = await File.findOne({ user: req.user._id });
 
     if (!files || !files.images?.length) {
-        return res.status(200).json(new ApiResponse(200, [], "No files found for this user"));
+        throw new ApiError(404, "No files found for this user");
     }
 
     return res.status(200).json(new ApiResponse(200, files, "Files fetched successfully!"));
 })
+
 
 const deleteFile = asyncHandler(async (req, res) => {
     const { publicId } = req.body;
@@ -403,7 +404,8 @@ export {
     resetPassword,
     getUserProfile,
     getFiles,
-    deleteFile
+    deleteFile,
+
 
 
 }

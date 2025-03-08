@@ -1,4 +1,3 @@
-
 import mongoose, { Schema } from "mongoose";
 
 const fileSchema = new Schema(
@@ -16,14 +15,22 @@ const fileSchema = new Schema(
                 },
                 publicId: {
                     type: String,
-                    required: true // Public ID for Cloudinary (or another cloud service)
+                    required: true 
+                },
+                status: {
+                    type: String,
+                    enum: ["Processing", "Completed"],
+                    default: "Processing" 
+                },
+                ai_recommendation: {
+                    type: String,
+                    default: "" 
                 }
             }
         ],
     },
     { timestamps: true }
-)
-
+);
 
 const File = mongoose.model("File", fileSchema);
 

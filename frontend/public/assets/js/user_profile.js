@@ -1,4 +1,4 @@
-import { displayMessage, showLoader,hideLoader } from "./utils.js";
+import { displayMessage, showLoader, hideLoader } from "./utils.js";
 
 const default_coverImage = "https://images.unsplash.com/photo-1579548122080-c35fd6820ecb?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
 
@@ -18,7 +18,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     userName.innerHTML = sessionStorage.getItem("userFullname")
     userEmail.innerHTML = sessionStorage.getItem("email")
     const userId = sessionStorage.getItem("userID");
-showLoader()
+    showLoader()
     try {
 
         if (!userId) {
@@ -94,7 +94,7 @@ showLoader()
 
         })
         const result = await response.json();
-        // console.log(result);
+        console.log(result);
         if (result.statuscode === 200) {
 
             const images = result.data.images
@@ -109,7 +109,7 @@ showLoader()
         console.error("Profile fetch error:", error);
         displayMessage("error", "Unexpected error occur.", error);
 
-    }finally{
+    } finally {
         hideLoader()
     }
 
@@ -146,7 +146,7 @@ showLoader()
             <div class="absolute inset-0 bg-black bg-opacity-20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center space-x-3">
                 <button 
                     class="p-2 bg-gray-800 bg-opacity-20 rounded-full hover:bg-opacity-100 transition-all" 
-                    onclick="viewPhoto('${photo.url}')"
+                    onclick="viewPhoto('${photo.url}', '${photo.ai_recommendation || ''} )"
                     aria-label="View photo"
                 >
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -199,23 +199,37 @@ showLoader()
     }
 
     window.viewPhoto = viewPhoto;
-    function viewPhoto(imageUrl) {
+    async function viewPhoto(imageUrl, recommendationData) {
         const newWindow = window.open();
+    
+        let recommendationText = "Processing... Check back later.";
+        if (recommendationData && recommendationData.trim() !== "") {
+            recommendationText = recommendationData;
+        }
+    
         newWindow.document.write(`
-        <html>
-            <head>
-                <title>View Image</title>
-                <style>
-                    body { margin: 0; display: flex; justify-content: center; align-items: center; height: 100vh; background: black; }
-                    img { max-width: 100%; max-height: 100vh; object-fit: contain; }
-                </style>
-            </head>
-            <body>
-                <img src="${imageUrl}" alt="Viewed Image">
-            </body>
-        </html>
-    `);
+            <html>
+                <head>
+                    <title>View Image</title>
+                    <style>
+                        body { margin: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100vh; background: black; color: white; font-family: Arial, sans-serif; }
+                        img { max-width: 100%; max-height: 80vh; object-fit: contain; margin-bottom: 10px; }
+                        .recommendation-box { padding: 15px; background: rgba(255, 255, 255, 0.1); border-radius: 8px; max-width: 80%; text-align: center; }
+                    </style>
+                </head>
+                <body>
+                    <img src="${imageUrl}" alt="Viewed Image">
+                    <div class="recommendation-box">
+                        <h3>AI Recommendation</h3>
+                        <p>${recommendationText}</p>
+                    </div>
+                </body>
+            </html>
+        `);
     }
+    
+
+
 })
 
 
@@ -334,6 +348,6 @@ fileUploadForm.addEventListener("submit", async (evt) => {
         displayMessage("error", "Something went wrong.");
     } finally {
         fileUploadBtn.innerText = "Upload Photos";
-       
+
     }
 });
