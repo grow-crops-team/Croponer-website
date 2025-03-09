@@ -1,8 +1,9 @@
 import { displayMessage, showLoader, hideLoader } from "./utils.js";
 
-const default_coverImage = "https://images.unsplash.com/photo-1579548122080-c35fd6820ecb?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+const default_coverImage =
+    "https://images.unsplash.com/photo-1579548122080-c35fd6820ecb?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D";
 
-const default_profileImage = "/assets/images/avatar/default_user.jpg"
+const default_profileImage = "/assets/images/avatar/default_user.jpg";
 
 const coverImage = document.querySelector("#coverImage");
 const profileImage = document.querySelector("#userProfileImage");
@@ -14,13 +15,12 @@ const userJoinDate = document.querySelector("#userJoinDate");
 const userBio = document.querySelector("#userBio");
 
 document.addEventListener("DOMContentLoaded", async () => {
-    showLoader()
-    userName.innerHTML = sessionStorage.getItem("userFullname")
-    userEmail.innerHTML = sessionStorage.getItem("email")
+    showLoader();
+    userName.innerHTML = sessionStorage.getItem("userFullname");
+    userEmail.innerHTML = sessionStorage.getItem("email");
     const userId = sessionStorage.getItem("userID");
-   
-    try {
 
+    try {
         if (!userId) {
             // displayMessage("error", "User not logged in.");
             return;
@@ -29,28 +29,27 @@ document.addEventListener("DOMContentLoaded", async () => {
         const response = await fetch(`/api/v1/users/get-profile/${userId}`, {
             method: "GET",
             credentials: "include",
-            headers: { "Content-Type": "application/json" }
+            headers: { "Content-Type": "application/json" },
         });
 
         const data = await response.json();
         // console.log(data);
 
         if (data.statuscode === 200) {
-
             // ✅ Store values in sessionStorage
             localStorage.setItem("avatar", data.data.avatar || default_profileImage);
-            sessionStorage.setItem("userFullname", data.data.fullName)
+            sessionStorage.setItem("userFullname", data.data.fullName);
             sessionStorage.setItem("phoneNumber", data.data.phoneNumber);
             sessionStorage.setItem("bio", data.data.bio || "");
-            sessionStorage.setItem("coverImage", data.data.coverImage || default_coverImage);
+            sessionStorage.setItem(
+                "coverImage",
+                data.data.coverImage || default_coverImage
+            );
             sessionStorage.setItem("village", data.data.address.village);
             sessionStorage.setItem("pincode", data.data.address.pincode);
             sessionStorage.setItem("streetAddress", data.data.address.streetAddress);
             sessionStorage.setItem("district", data.data.address.district);
             sessionStorage.setItem("state", data.data.address.state);
-
-
-
 
             // display user data
             coverImage.src = data.data.coverImage || default_coverImage;
@@ -62,76 +61,77 @@ document.addEventListener("DOMContentLoaded", async () => {
                 data.data.address.village,
                 data.data.address.district,
                 data.data.address.state,
-                data.data.address.country
+                data.data.address.country,
             ].filter(Boolean);
-            userAddress.innerHTML = addressParts.length ? addressParts.join(", ") : "Not provided";
+            userAddress.innerHTML = addressParts.length
+                ? addressParts.join(", ")
+                : "Not provided";
 
             const joinDate = new Date(data.data.createdAt);
             const day = joinDate.getDate();
-            const month = joinDate.toLocaleString("en-US", { month: "long" })
+            const month = joinDate.toLocaleString("en-US", { month: "long" });
             const year = joinDate.getFullYear();
             userJoinDate.innerText = `Joined ${day} ${month}, ${year}`;
-            userBio.innerHTML = data.data.bio ? data.data.bio.replace(/\n/g, "<br>") : "No bio available";
-
+            userBio.innerHTML = data.data.bio
+                ? data.data.bio.replace(/\n/g, "<br>")
+                : "No bio available";
         } else {
             displayMessage("error", data.message);
         }
     } catch (error) {
         console.error("Profile fetch error:", error);
-        displayMessage("error", "An error occurred while loading the user profile.", error);
+        displayMessage(
+            "error",
+            "An error occurred while loading the user profile.",
+            error
+        );
     }
 
-
     // get all images
-    const photoGallery = document.getElementById('photoGallery');
-    const photoCount = document.getElementById('photoCount');
-    const emptyMessage = document.getElementById('emptyGalleryMessage');
+    const photoGallery = document.getElementById("photoGallery");
+    const photoCount = document.getElementById("photoCount");
+    const emptyMessage = document.getElementById("emptyGalleryMessage");
     try {
         const response = await fetch(`/api/v1/users/get-file/${userId}`, {
             method: "GET",
             credentials: "include",
-            headers: { "Content-Type": "application/json" }
-
-        })
+            headers: { "Content-Type": "application/json" },
+        });
         const result = await response.json();
         // console.log(result);
         if (result.statuscode === 200) {
-
-            const images = result.data.images
+            const images = result.data.images;
             renderPhotos(images);
-
         }
-        
-
     } catch (error) {
         console.error("Profile fetch error:", error);
         displayMessage("error", "Unexpected error occur.", error);
-
     } finally {
-        hideLoader()
+        hideLoader();
     }
 
     function renderPhotos(photos) {
+        photoGallery.innerHTML = "";
 
-        photoGallery.innerHTML = '';
-
-        photoCount.textContent = `${photos.length} photo${photos.length !== 1 ? 's' : ''}`;
+        photoCount.textContent = `${photos.length} photo${photos.length !== 1 ? "s" : ""
+            }`;
 
         if (photos.length === 0) {
-            emptyMessage.classList.remove('hidden');
+            emptyMessage.classList.remove("hidden");
             return;
         } else {
-            emptyMessage.classList.add('hidden');
+            emptyMessage.classList.add("hidden");
         }
 
-        photos.forEach(photo => {
+        photos.forEach((photo) => {
             const photoElement = createPhotoElement(photo);
             photoGallery.appendChild(photoElement);
         });
     }
     function createPhotoElement(photo) {
-        const photoDiv = document.createElement('div');
-        photoDiv.className = 'relative group aspect-square rounded-lg overflow-hidden shadow-md';
+        const photoDiv = document.createElement("div");
+        photoDiv.className =
+            "relative group aspect-square rounded-lg overflow-hidden shadow-md";
         photoDiv.dataset.photoId = photo.publicId;
 
         photoDiv.innerHTML = `
@@ -144,7 +144,7 @@ document.addEventListener("DOMContentLoaded", async () => {
             <div class="absolute inset-0 bg-black bg-opacity-20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center space-x-3">
                 <button 
                     class="p-2 bg-gray-800 bg-opacity-20 rounded-full hover:bg-opacity-100 transition-all" 
-                    onclick="viewPhoto('${photo.url}', '${photo.ai_recommendation || ''} )"
+                    onclick="viewPhoto('${photo.url}', '${photo.ai_recommendation}' )"
                     aria-label="View photo"
                 >
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -175,7 +175,7 @@ document.addEventListener("DOMContentLoaded", async () => {
                 method: "DELETE",
                 credentials: "include",
                 headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ publicId })
+                body: JSON.stringify({ publicId }),
             });
 
             const result = await response.json();
@@ -183,7 +183,9 @@ document.addEventListener("DOMContentLoaded", async () => {
                 displayMessage("success", "Photo deleted successfully!");
 
                 // ✅ Select the photo by dataset attribute and remove it
-                const photoElement = document.querySelector(`[data-photo-id="${publicId}"]`);
+                const photoElement = document.querySelector(
+                    `[data-photo-id="${publicId}"]`
+                );
                 if (photoElement) {
                     photoElement.remove();
                 }
@@ -199,66 +201,52 @@ document.addEventListener("DOMContentLoaded", async () => {
     window.viewPhoto = viewPhoto;
     async function viewPhoto(imageUrl, recommendationData) {
         const newWindow = window.open();
-    
+
         let recommendationText = "Processing... Check back later.";
         if (recommendationData && recommendationData.trim() !== "") {
             recommendationText = recommendationData;
         }
-    
+
         newWindow.document.write(`
-            <html>
-                <head>
-                    <title>View Image</title>
-                    <style>
-                        body { margin: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100vh; background: black; color: white; font-family: Arial, sans-serif; }
-                        img { max-width: 100%; max-height: 80vh; object-fit: contain; margin-bottom: 10px; }
-                        .recommendation-box { padding: 15px; background: rgba(255, 255, 255, 0.1); border-radius: 8px; max-width: 80%; text-align: center; }
-                    </style>
-                </head>
-                <body>
-                    <img src="${imageUrl}" alt="Viewed Image">
-                    <div class="recommendation-box">
-                        <h3>AI Recommendation</h3>
-                        <p>${recommendationText}</p>
-                    </div>
-                </body>
-            </html>
+            <html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Show photo with recommendation</title>
+    <link rel="stylesheet" href="./assets/css/style.css">
+</head>
+<body class="bg-black">
+    <div class=" my-5 px-10 flex flex-col lg:flex-row items-center ">
+        <img class="shadow-xl bg-white p-2 lg:max-w-2xl" src="${imageUrl}" alt="">
+        <div class="bg-gray-100 text-black text-2xl w-100 h-auto py-5 px-5 mt-5 lg:mt-0 lg:ml-8">
+            <p class="text-center mb-5">Recommendations :</p>
+            <p class="text-xl">${recommendationText}</p>
+        </div>
+    </div>
+</body>
+</html>
         `);
     }
-    
-
-
-})
-
-
-
-
-
-
-
-
-
-
+});
 
 // file upload functions
 
+const fileUploadForm = document.querySelector("#uploadImagesForm");
+const fileUploadInput = document.querySelector("#file-upload");
 
-const fileUploadForm = document.querySelector("#uploadImagesForm")
-const fileUploadInput = document.querySelector("#file-upload")
+const previewContainer = document.querySelector("#previewContainer");
+const progressContainer = document.querySelector("#progressContainer");
+const progressBar = document.querySelector("#progressBar");
+const fileUploadBtn = document.querySelector("#fileUploadBtn");
 
-const previewContainer = document.querySelector("#previewContainer")
-const progressContainer = document.querySelector("#progressContainer")
-const progressBar = document.querySelector("#progressBar")
-const fileUploadBtn = document.querySelector("#fileUploadBtn")
-
-const MAX_SIZE = 5 * 1024 * 1024 // 5MB
+const MAX_SIZE = 5 * 1024 * 1024; // 5MB
 
 fileUploadInput.addEventListener("change", (evt) => {
-    previewContainer.innerHTML = ""
+    previewContainer.innerHTML = "";
     const files = evt.target.files;
 
     let totalSize = 0;
-    let validFiles = []
+    let validFiles = [];
 
     for (let file of files) {
         if (!file.type.startsWith("image/")) {
@@ -273,24 +261,21 @@ fileUploadInput.addEventListener("change", (evt) => {
             return;
         }
 
-        validFiles.push(file)
-        previewImage(file)
-
+        validFiles.push(file);
+        previewImage(file);
     }
-})
+});
 
 function previewImage(file) {
-    const reader = new FileReader()
+    const reader = new FileReader();
     reader.onload = function (e) {
-        const img = document.createElement("img")
-        img.src = e.target.result
-        img.classList.add("h-24", "w-24", "object-cover", "rounded-md", "m-2")
-        previewContainer.appendChild(img)
-    }
-    reader.readAsDataURL(file)
+        const img = document.createElement("img");
+        img.src = e.target.result;
+        img.classList.add("h-24", "w-24", "object-cover", "rounded-md", "m-2");
+        previewContainer.appendChild(img);
+    };
+    reader.readAsDataURL(file);
 }
-
-
 
 fileUploadForm.addEventListener("submit", async (evt) => {
     evt.preventDefault();
@@ -314,7 +299,6 @@ fileUploadForm.addEventListener("submit", async (evt) => {
         const xhr = new XMLHttpRequest();
         xhr.open("POST", "/api/v1/users/upload-files", true);
 
-
         xhr.upload.onprogress = function (event) {
             if (event.lengthComputable) {
                 const percent = Math.round((event.loaded / event.total) * 100);
@@ -327,10 +311,9 @@ fileUploadForm.addEventListener("submit", async (evt) => {
             if (xhr.status === 200) {
                 displayMessage("success", "Images uploaded successfully!");
                 progressBar.style.width = "100%";
-                
-                    progressBar.classList.add("hidden");
-                    window.location.reload();
-            
+
+                progressBar.classList.add("hidden");
+                window.location.reload();
             } else {
                 displayMessage("error", "Upload failed.");
             }
@@ -346,6 +329,5 @@ fileUploadForm.addEventListener("submit", async (evt) => {
         displayMessage("error", "Something went wrong.");
     } finally {
         fileUploadBtn.innerText = "Upload Photos";
-
     }
 });
