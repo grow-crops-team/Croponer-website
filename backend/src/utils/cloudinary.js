@@ -18,7 +18,7 @@ const uploadOnCloudinary = async (localFilePath) => {
         //upload the file in the cloud
         const response = await cloudinary.uploader.upload(localFilePath, {
             resource_type: "auto",
-            folder: "croponer-website"
+            folder: "Localhost"
         })
         //if file has been uploaded successfully
         // console.log("File has been successfully Uploaded to Cloudinary !!", response.url)

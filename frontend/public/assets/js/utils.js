@@ -243,14 +243,17 @@ function displayMessage(type, message) {
 function showLoader() {
     const loader = document.querySelector("#loader")
     if (loader) {
-        loader.classList.add("show")
+       loader.classList.remove("hidden")
+        
+        
     }
 }
 
 function hideLoader() {
     const loader = document.querySelector("#loader")
     if (loader) {
-        loader.classList.remove("show")
+        loader.classList.add("hidden")
+        
     }
 }
 

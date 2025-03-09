@@ -6,8 +6,9 @@ const password = document.querySelector("#password")
 
 if (userLogin) {
     userLogin.addEventListener("submit", async (evt) => {
-        showLoader()
+        
         evt.preventDefault()
+        showLoader()
         if (loginValidateInput(username, password)) {
             const formdata = new FormData(evt.target)
             const data = {
@@ -15,7 +16,7 @@ if (userLogin) {
                 password: formdata.get("password").trim()
             }
             // console.log(data)
-
+          
             try {
                 const response = await fetch("/api/v1/users/login", {
                     method: "POST",
@@ -66,6 +67,7 @@ showPassword(showPassWordBtn, password)
 async function UserLogout() {
     showLoader() 
     try {
+       
         const response = await fetch("/api/v1/users/logout", {
             method: "POST",
             credentials: "include",

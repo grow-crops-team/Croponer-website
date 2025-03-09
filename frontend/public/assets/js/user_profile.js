@@ -14,11 +14,11 @@ const userJoinDate = document.querySelector("#userJoinDate");
 const userBio = document.querySelector("#userBio");
 
 document.addEventListener("DOMContentLoaded", async () => {
-
+    showLoader()
     userName.innerHTML = sessionStorage.getItem("userFullname")
     userEmail.innerHTML = sessionStorage.getItem("email")
     const userId = sessionStorage.getItem("userID");
-    showLoader()
+   
     try {
 
         if (!userId) {
@@ -94,16 +94,14 @@ document.addEventListener("DOMContentLoaded", async () => {
 
         })
         const result = await response.json();
-        console.log(result);
+        // console.log(result);
         if (result.statuscode === 200) {
 
             const images = result.data.images
             renderPhotos(images);
 
         }
-        else {
-            displayMessage("error", result.message);
-        }
+        
 
     } catch (error) {
         console.error("Profile fetch error:", error);
@@ -329,10 +327,10 @@ fileUploadForm.addEventListener("submit", async (evt) => {
             if (xhr.status === 200) {
                 displayMessage("success", "Images uploaded successfully!");
                 progressBar.style.width = "100%";
-                setTimeout(() => {
+                
                     progressBar.classList.add("hidden");
                     window.location.reload();
-                }, 1000);
+            
             } else {
                 displayMessage("error", "Upload failed.");
             }
