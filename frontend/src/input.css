@@ -17,13 +17,17 @@
 @import url('https://fonts.googleapis.com/css2?family=Gabriela&display=swap');
 /*   font-family: "Bevan", serif; */
 @import url('https://fonts.googleapis.com/css2?family=Bevan:ital@0;1&display=swap');
+/*  font-family: "Inter", sans-serif; */
+@import url('https://fonts.googleapis.com/css2?family=Bevan:ital@0;1&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+
+
 @import "tailwindcss";
 
 
 @layer base{
     
     html{
-        font-family: "Akshar", sans-serif;
+        font-family: "Inter", sans-serif;
     }
 }
 

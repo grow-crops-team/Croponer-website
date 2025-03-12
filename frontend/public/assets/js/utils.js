@@ -224,19 +224,34 @@ const resetPasswordValidateInput = (newPassword, confirmPassword) => {
 // }
 
 // ---------------------- Display Message ----------------------
-function displayMessage(type, message) {
-    const displayError = document.querySelector("#displayError");
-    const messageElement = document.querySelector("#message");
-    if (displayError && messageElement) {
-        messageElement.textContent = message;
-        displayError.classList.remove("hidden");
-        setTimeout(() => {
-            displayError.classList.add("hidden");
-        }, 5000);
-    } else {
-        console.error("Message elements not found!");
-    }
-}
+function displayMessage(text, type = 'error') {
+    const messageElement = document.getElementById('displayMessage');
+    const messageContent = document.getElementById('messageContent');
+    const messageText = document.getElementById('message');
+    
+    // Reset any existing animation
+    messageElement.classList.add('hidden');
+    void messageElement.offsetWidth; // Trigger reflow
+    
+    // Set message content
+    messageText.textContent = text;
+    
+    // Set message type
+    messageContent.className = type === 'success' ? 'message-type-success' : 'message-type-error';
+    
+    // Show message
+    messageElement.classList.remove('hidden');
+    
+    // Auto-hide after animation completes
+    setTimeout(() => {
+      messageElement.classList.add('hidden');
+    }, 3600); // Match the total animation duration
+  }
+  
+  // Examples of usage:
+  // showMessage('Something went wrong!', 'error');
+  // showMessage('Operation completed successfully!', 'success');
+
 
 // function for Loader 
 

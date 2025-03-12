@@ -1,14 +1,1241 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-  <link rel="stylesheet" href="./assets/css/style.css">
-</head>
-<body>
-  <div >
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Croponer | AI-Powered Agricultural Solutions</title>
 
-  </div>
-</body>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css"
+    />
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"
+      integrity="sha512-A7AYk1fGKX6S2SsHywmPkrnzTZHrgiVT7GcQkLGDe2ev0aWb8zejytzS8wjo7PGEXKqJOrjQ4oORtnimIRZBtw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+
+    <!-- Swiper -->
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/swiper/swiper-bundle.min.css"
+    />
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+
+    <link rel="stylesheet" href="./assets/css/style.css" />
+    <link rel="stylesheet" href="./assets/css/coustomCss.css" />
+  </head>
+
+  <body class="bg-gray-50">
+    <!-- Header -->
+    <header class="fixed w-full z-50 bg-white/90 backdrop-blur-md shadow-sm">
+      <nav
+        class="container mx-auto flex justify-between items-center px-4 py-3"
+      >
+        <!-- logo section -->
+        <div class="flex items-center">
+          <div
+            class="h-10 w-10 bg-[#000480] rounded-lg flex items-center justify-center"
+          >
+            <span class="text-white font-bold text-lg">C</span>
+          </div>
+          <span class="text-[#000480] font-bold ml-2 text-xl">Croponer</span>
+        </div>
+
+        <!-- Desktop Menu -->
+        <div class="hidden md:flex items-center space-x-8">
+          <a href="#" class="text-gray-900 hover:text-[#1f1faa] font-medium"
+            >Home</a
+          >
+          <a href="#solutions" class="text-gray-700 hover:text-[#1f1faa]"
+            >About us</a
+          >
+          <a href="#crops" class="text-gray-700 hover:text-[#1f1faa]">Blog</a>
+          <a href="#about" class="text-gray-700 hover:text-[#1f1faa]"
+            >Research</a
+          >
+        </div>
+        <!-- login/signup -->
+        <div class="flex items-center space-x-4">
+          <div class="flex items-center space-x-2 group cursor-pointer">
+            <img
+              class="w-10 h-10 rounded-full "
+              src="./assets/images/avatar/default_user.jpg"
+              alt="avatar"
+            />
+            <span class="group-hover:text-[#1f1faa]">user</span>
+          </div>
+          <a
+            id="login-text"
+            href="/login"
+            class="hidden md:inline-block text-gray-700 hover:text-[#1f1faa] font-medium"
+            >Login</a
+          >
+
+          <a
+            href="/register"
+            class="bg-[#000480] hover:bg-[#1f1faa] text-white px-4 py-2 rounded-lg transition-colors"
+          >
+            Get Started
+          </a>
+          <!-- Mobile Menu Button -->
+          <button
+            id="menubar"
+            class="md:hidden text-gray-700 hover:text-[#1f1faa] cursor-pointer"
+          >
+            <i class="fas fa-bars text-xl"></i>
+          </button>
+        </div>
+      </nav>
+
+      <!-- Mobile Menu -->
+      <div
+        id="menu"
+        class="bg-white/90 h-screen w-56 top-16 right-[-224px] transition-all duration-500 delay-200 ease-in-out fixed rounded-bl-md z-20 md:hidden"
+      >
+        <div class="container ml-4 mx-auto px-4 py-3 space-y-1">
+          <a
+            href="/"
+            class="block py-2 text-gray-900 hover:text-[#1f1faa] font-medium"
+            >Home</a
+          >
+          <a href="/about" class="block py-2 text-gray-800 hover:text-[#1f1faa]"
+            >About us</a
+          >
+          <a href="/blog" class="block py-2 text-gray-800 hover:text-[#1f1faa]"
+            >Blog</a
+          >
+          <a
+            href="/research"
+            class="block py-2 text-gray-800 hover:text-[#1f1faa]"
+            >Research</a
+          >
+          <a href="/login" class="block py-2 text-gray-800 hover:text-[#1f1faa]"
+            >Login</a
+          >
+        </div>
+      </div>
+    </header>
+
+    <!-- Enhanced Hero Section with Background Image -->
+    <section
+      class="relative min-h-screen pt-24 pb-20 md:pb-28 overflow-hidden bg-cover bg-center flex flex-col justify-center"
+      style="
+        background-image: linear-gradient(
+            to bottom right,
+            rgba(5, 74, 41, 0.47),
+            rgba(45, 142, 94, 0.403)
+          ),
+          url('./assets/images/hero/main_bg.jpg');
+      "
+    >
+      <div class="container mx-auto px-4 relative z-10 flex-grow">
+        <!-- AI Badge - Repositioned for better mobile view -->
+        <div
+          class="absolute -top-5 right-0 md:absolute md:top-10 md:right-5 bg-white/95 backdrop-blur-sm px-3 py-1.5 md:px-4 md:py-2 rounded-lg shadow-lg flex items-center gap-2 md:gap-3 animate-fadeIn z-50"
+        >
+          <div
+            class="flex items-center justify-center w-8 h-8 md:w-10 md:h-10 rounded-full bg-green-100"
+          >
+            <i class="fas fa-seedling text-green-600 text-sm md:text-base"></i>
+          </div>
+          <div>
+            <p class="text-xs font-bold text-green-800">AI-Powered Analysis</p>
+            <p class="text-xs text-gray-600">98% accuracy rate</p>
+          </div>
+        </div>
+
+        <div class="max-w-3xl mx-auto text-center mt-8 md:mt-0">
+          <div
+            class="inline-flex items-center gap-2 px-3 py-1 bg-white/10 backdrop-blur-sm text-white rounded-full mb-6 animate-fadeIn"
+          >
+            <span
+              class="inline-block w-2 h-2 rounded-full bg-green-400 animate-ping"
+            ></span>
+            <span class="text-sm font-medium">AI-POWERED CROP ANALYSIS</span>
+          </div>
+
+          <h1
+            class="text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight mb-6 animate-fadeSlideUp"
+          >
+            Revolutionizing<br />
+            <span class="text-[#14b627]">Crop</span> Farming with <br />
+            <span class="text-[#fff532]">AI Technology</span> <br />
+            <span class="relative">
+              To Better Harvests
+              <svg
+                class="absolute h-3 md:h-4 w-full left-0 -bottom-1"
+                viewBox="0 0 400 15"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M3,11 C70,0 170,0 400,11"
+                  stroke="#4ade80"
+                  stroke-width="6"
+                  fill="none"
+                  stroke-linecap="round"
+                ></path>
+              </svg>
+            </span>
+          </h1>
+
+          <p
+            class="text-white/90 text-lg md:text-xl mb-8 max-w-lg mx-auto animate-fadeSlideUp animation-delay-200 text-justify"
+          >
+            Helping farmers make smarter decisions with advanced technology and
+            deep learning insights. Our 3P approach focuses on Paddy, Peanut,
+            and Potato cultivation.
+          </p>
+
+          <div
+            class="flex flex-col sm:flex-row gap-4 justify-center animate-fadeSlideUp animation-delay-400"
+          >
+            <a
+              href="#crops"
+              class="group relative overflow-hidden bg-white text-[#054a29] hover:text-white px-8 py-4 rounded-full text-lg font-medium transition-all shadow-lg"
+            >
+              <span class="relative z-10"> Explore 3P Crops</span>
+              <span
+                class="absolute inset-0 bg-gradient-to-r from-green-600 to-green-800 translate-y-full group-hover:translate-y-0 transition-transform duration-300"
+              ></span>
+            </a>
+            <a
+              href="#how-it-works"
+              class="bg-[#054a29]/30 border border-white/20 text-white px-8 py-4 rounded-full text-lg font-medium transition-colors hover:bg-[#054a29]/50"
+            >
+              See How It Works
+            </a>
+          </div>
+        </div>
+
+        <!-- Crop Type Chips -->
+        <div
+          class="flex flex-wrap gap-2 justify-center mt-10 animate-fadeSlideUp animation-delay-800"
+        >
+          <div
+            class="px-4 py-2 bg-white/10 backdrop-blur-sm rounded-full text-white text-sm flex items-center"
+          >
+            <span class="h-2 w-2 rounded-full bg-green-400 mr-2"></span>
+            Paddy
+          </div>
+          <div
+            class="px-4 py-2 bg-white/10 backdrop-blur-sm rounded-full text-white text-sm flex items-center"
+          >
+            <span class="h-2 w-2 rounded-full bg-yellow-400 mr-2"></span>
+            Peanut
+          </div>
+          <div
+            class="px-4 py-2 bg-white/10 backdrop-blur-sm rounded-full text-white text-sm flex items-center"
+          >
+            <span class="h-2 w-2 rounded-full bg-amber-400 mr-2"></span>
+            Potato
+          </div>
+        </div>
+      </div>
+
+      <!-- Wave Bottom Border - Fixed positioning -->
+      <div class="absolute -bottom-1 left-0 w-full">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 1440 120"
+          class="w-full h-auto"
+        >
+          <path
+            fill="#f9fafb"
+            fill-opacity="1"
+            d="M0,64L80,58.7C160,53,320,43,480,53.3C640,64,800,96,960,96C1120,96,1280,64,1360,48L1440,32L1440,320L1360,320C1280,320,1120,320,960,320C800,320,640,320,480,320C320,320,160,320,80,320L0,320Z"
+          ></path>
+        </svg>
+      </div>
+    </section>
+
+    <!-- tagline -->
+    <section class="py-20 relative overflow-hidden">
+      <div class="container mx-auto px-4">
+        <div class="max-w-4xl mx-auto text-center">
+          <!-- Enhanced Tagline with 3D effect -->
+          <h2
+            data-aos="zoom-in"
+            data-aos-delay="150"
+            class="font-[Bevan] text-3xl md:text-4xl lg:text-5xl font-bold relative"
+          >
+            <span
+              class="bg-clip-text text-transparent bg-gradient-to-r from-[#000480] via-[#41aa4e] to-[#32bfff] relative inline-block transform transition-transform duration-500 hover:scale-105"
+            >
+              Code the
+              <span class="text-[#34af42] relative inline-block"> Crop </span>,
+              Reap the
+              <span class="text-[#3295ff] relative inline-block"> Future </span>
+            </span>
+          </h2>
+
+          <!-- Enhanced description with highlight -->
+          <p
+            data-aos="fade-up"
+            data-aos-delay="250"
+            class="mt-8 text-gray-600 text-lg max-w-2xl mx-auto leading-relaxed"
+          >
+            Bridging the gap between
+            <span class="text-[#000480] font-medium">advanced technology</span>
+            and
+            <span class="text-[#41aa4e] font-medium"
+              >traditional farming practices</span
+            >
+            to create a more sustainable and profitable agricultural future for
+            everyone.
+          </p>
+
+          <!-- New CTA button -->
+          <div data-aos="fade-up" data-aos-delay="350" class="mt-8">
+            <a
+              href="/register"
+              class="inline-flex items-center px-6 py-3 bg-gradient-to-r from-[#000480] to-[#41aa4e] text-white rounded-full font-medium transition-all hover:shadow-lg hover:shadow-green-500/20 transform hover:-translate-y-1"
+            >
+              Discover Our Approach
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="h-5 w-5 ml-2"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M13 7l5 5m0 0l-5 5m5-5H6"
+                />
+              </svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Enhanced Welcome Section -->
+    <section id="welcome" class="py-16 bg-white relative">
+      <div class="container mx-auto px-4">
+        <div class="max-w-6xl mx-auto">
+          <!-- Section Header -->
+          <div class="text-center mb-12" data-aos="fade-up">
+            <h2
+              class="text-4xl md:text-5xl font-[Amaranth] font-bold text-[#000356]"
+            >
+              Welcome to Croponer
+            </h2>
+          </div>
+
+          <!-- Enhanced Swiper Carousel -->
+          <div
+            class="swiper welcome-swiper rounded-xl overflow-hidden bg-gradient-to-br from-gray-50 to-white shadow-sm border border-gray-100"
+            data-aos="fade-up"
+            data-aos-delay="100"
+          >
+            <div class="swiper-wrapper">
+              <!-- Slide 1 - Welcome -->
+              <div id="text-slide-1" class="swiper-slide p-8 md:p-12">
+                <div class="flex flex-col md:flex-row items-center gap-8">
+                  <div class="md:w-1/2 order-2 md:order-1">
+                    <div class="flex items-center mb-4">
+                      <div
+                        class="h-10 w-10 bg-[#000480] rounded-lg flex items-center justify-center"
+                      >
+                        <span class="text-white font-bold text-lg">C</span>
+                      </div>
+                      <h3
+                        class="text-3xl font-[Amaranth] font-semibold text-[#000480] ml-3"
+                      >
+                        Croponer
+                      </h3>
+                    </div>
+
+                    <p
+                      class="text-pretty my-4 text-lg text-gray-700 leading-relaxed"
+                    >
+                      At Croponer, we believe in empowering farmers with
+                      advanced technology and deep learning insights to help you
+                      make smarter, more informed decisions. Whether you're
+                      preparing your soil, sowing seeds, monitoring crop health,
+                      or planning your harvest, we provide expert guidance at
+                      every step.
+                    </p>
+
+                    <a
+                      href="/about"
+                      class="inline-flex items-center text-[#000480] font-medium hover:underline mt-2"
+                    >
+                      Learn more about our mission
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        class="h-4 w-4 ml-1"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                      >
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          d="M9 5l7 7-7 7"
+                        />
+                      </svg>
+                    </a>
+                  </div>
+
+                  <div class="md:w-1/2 order-1 md:order-2">
+                    <img
+                      src="./assets/images/welcome/smart-farming.jpg"
+                      alt="Smart Farming Technology"
+                      class="rounded-lg shadow-lg w-full h-auto"
+                    />
+                  </div>
+                </div>
+              </div>
+
+              <!-- Slide 2 - Why Us -->
+              <div id="text-slide-2" class="swiper-slide p-8 md:p-12">
+                <h3
+                  class="text-2xl font-[Amaranth] font-semibold text-[#000480] mb-6 flex items-center"
+                >
+                  <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                  Why Choose Croponer?
+                </h3>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <!-- Feature 1 -->
+                  <div
+                    class="bg-white p-4 rounded-lg shadow-sm border border-gray-100 hover:shadow-md transition-shadow"
+                  >
+                    <div class="flex items-start">
+                      <div
+                        class="w-10 h-10 rounded-full bg-green-100 flex-shrink-0 flex items-center justify-center"
+                      >
+                        <i class="fas fa-chart-bar text-green-600"></i>
+                      </div>
+                      <div class="ml-4">
+                        <h4 class="font-medium text-gray-900 mb-1">
+                          Real-time Insights
+                        </h4>
+                        <p class="text-gray-600 text-sm">
+                          Get farming insights tailored to your crops and
+                          location.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Feature 2 -->
+                  <div
+                    class="bg-white p-4 rounded-lg shadow-sm border border-gray-100 hover:shadow-md transition-shadow"
+                  >
+                    <div class="flex items-start">
+                      <div
+                        class="w-10 h-10 rounded-full bg-blue-100 flex-shrink-0 flex items-center justify-center"
+                      >
+                        <i class="fas fa-brain text-blue-600"></i>
+                      </div>
+                      <div class="ml-4">
+                        <h4 class="font-medium text-gray-900 mb-1">
+                          AI-powered Analytics
+                        </h4>
+                        <p class="text-gray-600 text-sm">
+                          Predict and prevent crop diseases before they spread.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Feature 3 -->
+                  <div
+                    class="bg-white p-4 rounded-lg shadow-sm border border-gray-100 hover:shadow-md transition-shadow"
+                  >
+                    <div class="flex items-start">
+                      <div
+                        class="w-10 h-10 rounded-full bg-amber-100 flex-shrink-0 flex items-center justify-center"
+                      >
+                        <i class="fas fa-seedling text-amber-600"></i>
+                      </div>
+                      <div class="ml-4">
+                        <h4 class="font-medium text-gray-900 mb-1">
+                          Maximize Yield
+                        </h4>
+                        <p class="text-gray-600 text-sm">
+                          Use scientifically backed strategies for better
+                          harvests.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Feature 4 -->
+                  <div
+                    class="bg-white p-4 rounded-lg shadow-sm border border-gray-100 hover:shadow-md transition-shadow"
+                  >
+                    <div class="flex items-start">
+                      <div
+                        class="w-10 h-10 rounded-full bg-purple-100 flex-shrink-0 flex items-center justify-center"
+                      >
+                        <i class="fas fa-database text-purple-600"></i>
+                      </div>
+                      <div class="ml-4">
+                        <h4 class="font-medium text-gray-900 mb-1">
+                          Data-Driven Decisions
+                        </h4>
+                        <p class="text-gray-600 text-sm">
+                          Optimize irrigation, fertilization, and pest control
+                          based on science.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- <div class="mt-8 text-center">
+              <a href="/register" class="inline-flex items-center justify-center px-6 py-3 bg-[#000480] text-white rounded-lg hover:bg-[#1f1faa] transition-colors">
+                Start Your Free Trial
+                <i class="fas fa-arrow-right ml-2"></i>
+              </a>
+            </div> -->
+              </div>
+            </div>
+
+            <!-- Enhanced Navigation -->
+
+            <div class="swiper-pagination !bottom-3"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Farm Lifecycle Section -->
+    <section class="py-16 bg-gradient-light" data-aos="fade-up">
+      <div class="container mx-auto px-4">
+        <div class="text-center mb-16">
+          <span
+            class="inline-block px-3 py-1 bg-[#e7e7ff] text-[#000480] text-sm font-medium rounded-lg mb-3"
+          >
+            END-TO-END SUPPORT
+          </span>
+          <h2
+            class="text-3xl md:text-4xl font-[Amaranth] font-bold text-gray-900"
+          >
+            Complete Farming Lifecycle
+          </h2>
+          <p class="mt-4 text-lg text-gray-600 max-w-3xl mx-auto">
+            Our AI solutions provide comprehensive support throughout the entire
+            cultivation process
+          </p>
+        </div>
+
+        <div class="relative max-w-5xl mx-auto">
+          <!-- Desktop Timeline -->
+          <div class="hidden md:block">
+            <div
+              class="h-2 bg-gradient-to-r from-green-500 via-blue-500 to-purple-500 rounded-full"
+            ></div>
+            <div class="grid grid-cols-4 gap-8 mt-6">
+              <div class="text-center">
+                <div
+                  class="w-20 h-20 mx-auto bg-white rounded-full shadow-lg flex items-center justify-center border-2 border-green-100"
+                >
+                  <i class="fas fa-seedling text-green-600 text-3xl"></i>
+                </div>
+                <h3 class="mt-4 text-lg font-medium">Pre-Planting</h3>
+                <p class="mt-2 text-sm text-gray-600">
+                  Soil analysis, seed selection and field preparation
+                </p>
+              </div>
+
+              <div class="text-center">
+                <div
+                  class="w-20 h-20 mx-auto bg-white rounded-full shadow-lg flex items-center justify-center border-2 border-blue-100"
+                >
+                  <i class="fas fa-tint text-blue-600 text-3xl"></i>
+                </div>
+                <h3 class="mt-4 text-lg font-medium">Growing Season</h3>
+                <p class="mt-2 text-sm text-gray-600">
+                  Irrigation, fertilizer application and disease monitoring
+                </p>
+              </div>
+
+              <div class="text-center">
+                <div
+                  class="w-20 h-20 mx-auto bg-white rounded-full shadow-lg flex items-center justify-center border-2 border-purple-100"
+                >
+                  <i
+                    class="fas fa-clipboard-check text-purple-600 text-3xl"
+                  ></i>
+                </div>
+                <h3 class="mt-4 text-lg font-medium">Harvest</h3>
+                <p class="mt-2 text-sm text-gray-600">
+                  Optimal timing and efficient harvesting techniques
+                </p>
+              </div>
+
+              <div class="text-center">
+                <div
+                  class="w-20 h-20 mx-auto bg-white rounded-full shadow-lg flex items-center justify-center border-2 border-amber-100"
+                >
+                  <i class="fas fa-warehouse text-amber-600 text-3xl"></i>
+                </div>
+                <h3 class="mt-4 text-lg font-medium">Post-Harvest</h3>
+                <p class="mt-2 text-sm text-gray-600">
+                  Storage guidance and market recommendations
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Mobile Timeline -->
+          <div class="md:hidden space-y-8">
+            <div class="flex items-center">
+              <div
+                class="w-16 h-16 bg-white rounded-full shadow flex items-center justify-center border-2 border-green-100"
+              >
+                <i class="fas fa-seedling text-green-600 text-2xl"></i>
+              </div>
+              <div class="ml-4 text-left">
+                <h3 class="text-lg font-medium">Pre-Planting</h3>
+                <p class="text-sm text-gray-600">
+                  Soil analysis, seed selection and field preparation
+                </p>
+              </div>
+            </div>
+
+            <div class="flex items-center">
+              <div
+                class="w-16 h-16 bg-white rounded-full shadow flex items-center justify-center border-2 border-blue-100"
+              >
+                <i class="fas fa-tint text-blue-600 text-2xl"></i>
+              </div>
+              <div class="ml-4 text-left">
+                <h3 class="text-lg font-medium">Growing Season</h3>
+                <p class="text-sm text-gray-600">
+                  Irrigation, fertilizer application and disease monitoring
+                </p>
+              </div>
+            </div>
+
+            <div class="flex items-center">
+              <div
+                class="w-16 h-16 bg-white rounded-full shadow flex items-center justify-center border-2 border-purple-100"
+              >
+                <i class="fas fa-clipboard-check text-purple-600 text-2xl"></i>
+              </div>
+              <div class="ml-4 text-left">
+                <h3 class="text-lg font-medium">Harvest</h3>
+                <p class="text-sm text-gray-600">
+                  Optimal timing and efficient harvesting techniques
+                </p>
+              </div>
+            </div>
+
+            <div class="flex items-center">
+              <div
+                class="w-16 h-16 bg-white rounded-full shadow flex items-center justify-center border-2 border-amber-100"
+              >
+                <i class="fas fa-warehouse text-amber-600 text-2xl"></i>
+              </div>
+              <div class="ml-4 text-left">
+                <h3 class="text-lg font-medium">Post-Harvest</h3>
+                <p class="text-sm text-gray-600">
+                  Storage guidance and market recommendations
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3P Crops Section -->
+    <section id="crops" class="py-16">
+      <div class="container mx-auto px-4">
+        <div class="text-center mb-16" data-aos="fade-up">
+          <span
+            class="inline-block px-3 py-1 bg-[#e7e7ff] text-[#000480] text-sm font-medium rounded-lg mb-3"
+          >
+            OUR EXPERTISE
+          </span>
+          <h2
+            class="text-3xl md:text-4xl font-[Amaranth] font-bold text-gray-900"
+          >
+            The 3P Approach
+          </h2>
+          <p class="mt-4 text-lg text-gray-600 max-w-3xl mx-auto">
+            We focus on three essential crops that form the backbone of
+            agriculture, providing targeted AI-powered insights for higher
+            yields and sustainable farming.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <!-- Paddy Card -->
+          <div
+            class="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-lg card-hover"
+            data-aos="fade-up"
+            data-aos-delay="100"
+          >
+            <div class="h-60 overflow-hidden">
+              <img
+                src="./assets/images/hero/paddy.jpg"
+                alt="Paddy field"
+                class="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
+              />
+            </div>
+            <div class="p-6">
+              <div class="flex items-center mb-4">
+                <div
+                  class="w-10 h-10 bg-green-100 rounded-full flex items-center justify-center"
+                >
+                  <i class="fas fa-seedling text-green-600"></i>
+                </div>
+                <h3
+                  class="text-2xl font-[Amaranth] font-semibold text-green-700 ml-3"
+                >
+                  Paddy
+                </h3>
+              </div>
+              <p class="text-gray-600 mb-4">
+                Rice feeds over half the world. Our AI-driven insights help
+                monitor soil moisture, prevent pest outbreaks, and optimize
+                harvesting to boost grain quality.
+              </p>
+              <div class="space-y-2">
+                <div class="flex items-center">
+                  <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                  <span class="text-gray-700 text-sm"
+                    >Optimal water management</span
+                  >
+                </div>
+                <div class="flex items-center">
+                  <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                  <span class="text-gray-700 text-sm">Disease prevention</span>
+                </div>
+                <div class="flex items-center">
+                  <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                  <span class="text-gray-700 text-sm"
+                    >Climate-resilient practices</span
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Peanut Card -->
+          <div
+            class="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-lg card-hover"
+            data-aos="fade-up"
+            data-aos-delay="200"
+          >
+            <div class="h-60 overflow-hidden">
+              <img
+                src="./assets/images/hero/peanuts-1735672.jpg"
+                alt="Peanut crop"
+                class="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
+              />
+            </div>
+            <div class="p-6">
+              <div class="flex items-center mb-4">
+                <div
+                  class="w-10 h-10 bg-amber-100 rounded-full flex items-center justify-center"
+                >
+                  <i class="fas fa-leaf text-amber-600"></i>
+                </div>
+                <h3
+                  class="text-2xl font-[Amaranth] font-semibold text-amber-700 ml-3"
+                >
+                  Peanut
+                </h3>
+              </div>
+              <p class="text-gray-600 mb-4">
+                Our machine learning tools analyze soil conditions, detect
+                diseases early, and guide optimal sowing and fertilization for
+                increased yields and profits.
+              </p>
+              <div class="space-y-2">
+                <div class="flex items-center">
+                  <i class="fas fa-check-circle text-amber-500 mr-2"></i>
+                  <span class="text-gray-700 text-sm"
+                    >Soil fertility analysis</span
+                  >
+                </div>
+                <div class="flex items-center">
+                  <i class="fas fa-check-circle text-amber-500 mr-2"></i>
+                  <span class="text-gray-700 text-sm"
+                    >Early pest detection</span
+                  >
+                </div>
+                <div class="flex items-center">
+                  <i class="fas fa-check-circle text-amber-500 mr-2"></i>
+                  <span class="text-gray-700 text-sm"
+                    >Resource optimization</span
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Potato Card -->
+          <div
+            class="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-lg card-hover"
+            data-aos="fade-up"
+            data-aos-delay="300"
+          >
+            <div class="h-60 overflow-hidden">
+              <img
+                src="./assets/images/hero/potato.jpg"
+                alt="Potato crop"
+                class="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
+              />
+            </div>
+            <div class="p-6">
+              <div class="flex items-center mb-4">
+                <div
+                  class="w-10 h-10 bg-purple-100 rounded-full flex items-center justify-center"
+                >
+                  <i class="fas fa-spa text-purple-600"></i>
+                </div>
+                <h3
+                  class="text-2xl font-[Amaranth] font-semibold text-purple-700 ml-3"
+                >
+                  Potato
+                </h3>
+              </div>
+              <p class="text-gray-600 mb-4">
+                Our AI solutions offer early disease detection, climate-smart
+                irrigation, and nutrient recommendations for high-quality,
+                disease-resistant harvests.
+              </p>
+              <div class="space-y-2">
+                <div class="flex items-center">
+                  <i class="fas fa-check-circle text-purple-500 mr-2"></i>
+                  <span class="text-gray-700 text-sm"
+                    >Fungal disease management</span
+                  >
+                </div>
+                <div class="flex items-center">
+                  <i class="fas fa-check-circle text-purple-500 mr-2"></i>
+                  <span class="text-gray-700 text-sm"
+                    >Smart irrigation systems</span
+                  >
+                </div>
+                <div class="flex items-center">
+                  <i class="fas fa-check-circle text-purple-500 mr-2"></i>
+                  <span class="text-gray-700 text-sm"
+                    >Storage loss prevention</span
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- AI Solutions Section -->
+    <section id="solutions" class="py-16 bg-gradient-light">
+      <div class="container mx-auto px-4">
+        <div class="text-center mb-16" data-aos="fade-up">
+          <span
+            class="inline-block px-3 py-1 bg-[#e7e7ff] text-[#000480] text-sm font-medium rounded-lg mb-3"
+          >
+            OUR TECHNOLOGY
+          </span>
+          <h2
+            class="text-3xl md:text-4xl font-[Amaranth] font-bold text-gray-900"
+          >
+            AI-Powered Solutions
+          </h2>
+          <p class="mt-4 text-lg text-gray-600 max-w-3xl mx-auto">
+            Leveraging cutting-edge artificial intelligence to transform
+            traditional farming practices
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <!-- AI Solution 1 -->
+          <div
+            class="bg-white rounded-xl overflow-hidden shadow-md border border-gray-100"
+            data-aos="fade-up"
+            data-aos-delay="100"
+          >
+            <div class="h-2 bg-gradient-to-r from-green-500 to-green-600"></div>
+            <div class="p-5">
+              <div class="flex items-center mb-3">
+                <div
+                  class="w-14 h-14 bg-green-50 rounded-full flex-shrink-0 flex items-center justify-center border border-green-100"
+                >
+                  <i class="fas fa-robot text-green-600 text-xl"></i>
+                </div>
+                <h3 class="text-lg font-semibold ml-3">
+                  AI Recommendation Engine
+                </h3>
+              </div>
+              <p class="text-gray-600 mb-3 text-sm">
+                Our core AI system processes multiple data inputs to generate
+                personalized farming recommendations.
+              </p>
+              <ul class="text-gray-600 space-y-1.5 text-sm">
+                <li class="flex items-center">
+                  <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                  <span>Crop-specific guidance</span>
+                </li>
+                <li class="flex items-center">
+                  <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                  <span>Soil analysis integration</span>
+                </li>
+                <li class="flex items-center">
+                  <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                  <span>Research-backed insights</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- AI Solution 2 -->
+          <div
+            class="bg-white rounded-xl overflow-hidden shadow-lg border border-purple-200"
+            data-aos="fade-up"
+            data-aos-delay="200"
+          >
+            <div
+              class="h-2 bg-gradient-to-r from-purple-500 to-purple-600"
+            ></div>
+            <div class="p-5">
+              <div class="flex flex-col items-center mb-3">
+                <div
+                  class="w-16 h-16 bg-purple-50 rounded-full flex items-center justify-center border-2 border-purple-200 mb-2"
+                >
+                  <i class="fas fa-virus-slash text-purple-600 text-2xl"></i>
+                </div>
+                <span
+                  class="bg-purple-100 text-purple-800 text-xs font-medium px-3 py-0.5 rounded-full"
+                  >FLAGSHIP FEATURE</span
+                >
+                <h3 class="text-lg font-semibold mt-1.5">
+                  Early Disease Detection
+                </h3>
+              </div>
+              <p class="text-gray-600 mb-3 text-sm">
+                Our advanced computer vision system identifies crop diseases
+                with high accuracy from simple smartphone photos.
+              </p>
+              <div class="bg-purple-50 p-3 rounded-lg">
+                <div class="flex items-start">
+                  <i class="fas fa-lightbulb text-purple-600 mt-1 mr-2"></i>
+                  <p class="text-xs text-gray-700">
+                    Detect issues before they spread and receive customized
+                    treatment recommendations.
+                  </p>
+                </div>
+              </div>
+              <div class="mt-3">
+                <div class="flex justify-between items-center">
+                  <span class="text-gray-600 text-xs">Accuracy Rate</span>
+                  <span class="text-purple-700 font-medium text-sm">98%</span>
+                </div>
+                <div class="w-full bg-gray-200 rounded-full h-2 mt-1">
+                  <div
+                    class="bg-purple-600 h-2 rounded-full"
+                    style="width: 98%"
+                  ></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- AI Solution 3 -->
+          <div
+            class="bg-white rounded-xl overflow-hidden shadow-md border border-gray-100"
+            data-aos="fade-up"
+            data-aos-delay="300"
+          >
+            <div class="h-2 bg-gradient-to-r from-blue-500 to-blue-600"></div>
+            <div class="p-5">
+              <div class="flex items-center mb-3">
+                <div
+                  class="w-14 h-14 bg-blue-50 rounded-full flex-shrink-0 flex items-center justify-center border border-blue-100"
+                >
+                  <i class="fas fa-cloud-rain text-blue-600 text-xl"></i>
+                </div>
+                <h3 class="text-lg font-semibold ml-3">
+                  Smart Irrigation System
+                </h3>
+              </div>
+              <p class="text-gray-600 mb-3 text-sm">
+                Optimize water usage with our intelligent irrigation management
+                system that adapts to weather and soil conditions.
+              </p>
+              <ul class="text-gray-600 space-y-1.5 text-sm">
+                <li class="flex items-center">
+                  <i class="fas fa-check-circle text-blue-500 mr-2"></i>
+                  <span>Weather prediction integration</span>
+                </li>
+                <li class="flex items-center">
+                  <i class="fas fa-check-circle text-blue-500 mr-2"></i>
+                  <span>Soil moisture monitoring</span>
+                </li>
+                <li class="flex items-center">
+                  <i class="fas fa-check-circle text-blue-500 mr-2"></i>
+                  <span>Water conservation focused</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="py-16 bg-white">
+      <div class="container mx-auto px-4">
+        <div class="text-center mb-12" data-aos="fade-up">
+          <span
+            class="inline-block px-3 py-1 bg-[#e7e7ff] text-[#000480] text-sm font-medium rounded-lg mb-3"
+          >
+            OUR IMPACT
+          </span>
+          <h2
+            class="text-3xl md:text-4xl font-[Amaranth] font-bold text-gray-900"
+          >
+            Making a Difference
+          </h2>
+        </div>
+
+        <div
+          class="grid grid-cols-2 md:grid-cols-4 gap-6"
+          data-aos="fade-up"
+          data-aos-delay="100"
+        >
+          <div class="bg-gradient-light p-6 rounded-lg text-center">
+            <div class="text-4xl font-bold text-[#000480] mb-2">75K+</div>
+            <p class="text-gray-700">Farmers Using Our Solutions</p>
+          </div>
+
+          <div class="bg-gradient-light p-6 rounded-lg text-center">
+            <div class="text-4xl font-bold text-green-600 mb-2">30%</div>
+            <p class="text-gray-700">Average Yield Increase</p>
+          </div>
+
+          <div class="bg-gradient-light p-6 rounded-lg text-center">
+            <div class="text-4xl font-bold text-amber-600 mb-2">12</div>
+            <p class="text-gray-700">States Across India</p>
+          </div>
+
+          <div class="bg-gradient-light p-6 rounded-lg text-center">
+            <div class="text-4xl font-bold text-purple-600 mb-2">40%</div>
+            <p class="text-gray-700">Reduction in Water Usage</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-20 bg-[#000480]">
+      <div class="container mx-auto px-4 text-center">
+        <h2
+          class="text-3xl md:text-4xl font-[Amaranth] font-bold text-white mb-6"
+          data-aos="fade-up"
+        >
+          Ready to Transform Your Farming?
+        </h2>
+        <p
+          class="text-white/80 text-lg max-w-3xl mx-auto mb-10"
+          data-aos="fade-up"
+          data-aos-delay="100"
+        >
+          Join thousands of farmers who are already using Croponer to increase
+          yields, reduce resource usage, and make smarter decisions.
+        </p>
+        <div
+          class="flex flex-col sm:flex-row justify-center gap-4"
+          data-aos="fade-up"
+          data-aos-delay="200"
+        >
+          <a
+            href="/register"
+            class="bg-white text-[#000480] hover:bg-gray-100 px-8 py-3 rounded-lg text-lg font-medium transition-colors shadow-lg hover:shadow-xl"
+          >
+            Get Started Free
+          </a>
+          <a
+            href="/demo"
+            class="bg-[#1f1faa] border border-white/20 text-white px-8 py-3 rounded-lg text-lg font-medium transition-colors hover:bg-[#000366]"
+          >
+            Request a Demo
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 select-none mt-20">
+      <div
+        class="flex flex-col lg:flex-row lg:space-x-2 lg:space-y-0 lg:justify-center mx-5 mt-10 lg:pt-8 lg:pb-4 px-5 pt-10 pb-10 space-y-16 text-gray-400"
+      >
+        <div class="lg:h-60 lg:w-56 lg:mr-24 text-pretty">
+          <div>
+            <div class="flex items-center mb-6">
+              <div
+                class="h-10 w-10 bg-white rounded-lg flex items-center justify-center"
+              >
+                <span class="text-[#000480] font-bold text-lg">C</span>
+              </div>
+              <span class="text-white font-bold ml-2 text-xl">Croponer</span>
+            </div>
+            <p class="text-gray-400 mb-6">
+              AI-powered agricultural technology for smarter, more efficient
+              farming.
+            </p>
+            <div class="flex space-x-4">
+              <a
+                href="#"
+                class="text-gray-400 hover:text-white transition-colors"
+              >
+                <i class="fab fa-twitter"></i>
+              </a>
+              <a
+                href="#"
+                class="text-gray-400 hover:text-white transition-colors"
+              >
+                <i class="fab fa-facebook"></i>
+              </a>
+              <a
+                href="#"
+                class="text-gray-400 hover:text-white transition-colors"
+              >
+                <i class="fab fa-linkedin"></i>
+              </a>
+              <a
+                href="#"
+                class="text-gray-400 hover:text-white transition-colors"
+              >
+                <i class="fab fa-instagram"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div class="lg:h-60 w-60 text-pretty">
+          <p class="text-xl font-semibold text-gray-300 mb-2">Quick Links</p>
+          <ul class="space-y-2">
+            <li class="hover:text-gray-100"><a href="/about">About Us</a></li>
+            <li class="hover:text-gray-100"><a href="/work">our Works</a></li>
+            <li class="hover:text-gray-100"><a href="/team">Our Team</a></li>
+            <li class="hover:text-gray-100">
+              <a href="/articles">Read Article</a>
+            </li>
+          </ul>
+        </div>
+
+        <div class="lg:h-60 w-60 text-pretty">
+          <p class="text-xl font-semibold text-gray-300 mb-2">Help/Support</p>
+          <ul class="space-y-3">
+            <li class="hover:text-gray-100">
+              <a href="/contact">Contact Us</a>
+            </li>
+            <li class="hover:text-gray-100"><a href="/help">help</a></li>
+            <li class="hover:text-gray-100"><a href="/support">Support</a></li>
+            <li class="hover:text-gray-100">
+              <a href="/terms">Terms & Condition</a>
+            </li>
+          </ul>
+        </div>
+
+        <div class="lg:h-60 w-60 text-pretty">
+          <p class="text-xl font-semibold text-gray-300 mb-2">Community</p>
+          <ul class="space-y-3">
+            <li class="hover:text-gray-100">
+              <a href="/team">Join our Community</a>
+            </li>
+            <li class="hover:text-gray-100"><a href="/gallery">Gallery</a></li>
+            <li class="hover:text-gray-100"><a href="/blog">Our Blogs</a></li>
+            <li class="hover:text-gray-100">
+              <a href="/events">Special Events</a>
+            </li>
+          </ul>
+        </div>
+
+        <div class="w-60">
+          <div>
+            <p class="text-xl font-semibold text-gray-300">Write a review</p>
+            <p class="hover:text-gray-100"><a href="/review">feedback</a></p>
+          </div>
+        </div>
+      </div>
+
+      <!-- footer last -->
+
+      <div
+        class="border-t border-gray-800 mt-10 pt-8 flex flex-col md:flex-row justify-between items-center pb-5 px-5"
+      >
+        <p class="text-gray-400 text-sm">
+          &copy; 2025 Croponer. All rights reserved.
+        </p>
+        <div class="flex space-x-6 mt-4 md:mt-0">
+          <a
+            href="#"
+            class="text-gray-400 hover:text-white transition-colors text-sm"
+            >Privacy Policy</a
+          >
+          <a
+            href="#"
+            class="text-gray-400 hover:text-white transition-colors text-sm"
+            >Terms of Service</a
+          >
+          <a
+            href="#"
+            class="text-gray-400 hover:text-white transition-colors text-sm"
+            >Cookie Policy</a
+          >
+        </div>
+      </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script>
+      // Initialize AOS
+      AOS.init({
+        duration: 800,
+        easing: "ease-in-out",
+        once: true,
+        offset: 100,
+      });
+
+      const swiper = new Swiper(".swiper", {
+        loop: true,
+        autoplay: {
+          delay: 5000,
+          disableOnInteraction: false,
+        },
+        speed: 1000,
+        pagination: {
+          el: ".swiper-pagination",
+          clickable: true,
+        },
+        effect: "fade",
+        fadeEffect: {
+          crossFade: true,
+        },
+        allowTouchMove: true,
+        on: {
+          click: function () {
+            this.autoplay.stop();
+          },
+        },
+      });
+    </script>
+
+    <script type="module" src="./assets/js/main.js"></script>
+  </body>
 </html>

@@ -4,28 +4,18 @@ import { showLoader, hideLoader } from "./utils.js"
 
 // ---------- Menu bar----------------------------
 function openMenu() {
-    const menuBar = document.querySelector("#menuBar")
-    const menu = document.querySelector("#menu")
-    // console.log(menuBar, menu);
-    if (menu && menuBar) {
-        function openMenu() {
-            if (menu.classList.contains("right-0")) {
-                menu.classList.remove("right-0")
-                menu.classList.add("right-[-224px]")
-            }
-            else {
-                menu.classList.remove("right-[-224px]")
-                menu.classList.add("right-0")
-            }
-        }
-        menuBar.addEventListener("click", (evt) => {
-            // console.log("clicked");
-            openMenu()
-        })
+    const menuButton = document.getElementById('menubar');
+    const mobileMenu = document.getElementById('menu');
+    
+    if (menuButton && mobileMenu) {
+      menuButton.addEventListener('click', function() {
+        mobileMenu.classList.toggle('right-[-224px]');
+        mobileMenu.classList.toggle('right-0');
+      });
         document.addEventListener("click", (evt) => {
-            if (!menuBar.contains(evt.target) && !menu.contains(evt.target)) {
-                menu.classList.remove("right-0")
-                menu.classList.add("right-[-224px]")
+            if (!menuButton.contains(evt.target) && !mobileMenu.contains(evt.target)) {
+                mobileMenu.classList.remove("right-0")
+                mobileMenu.classList.add("right-[-224px]")
             }
         })
 
@@ -35,28 +25,23 @@ openMenu()
 
 // ---------------------- Login Dropdown ----------------------
 function openLoginDropdown() {
-    const loginDropDowns = document.querySelectorAll("#loginDropDown")
-    const loginDropDownMenus = document.querySelectorAll("#loginDropDownMenu")
-
-    if (loginDropDowns && loginDropDownMenus) {
-
-        loginDropDowns.forEach((dropDown, index) => {
-            dropDown.addEventListener("click", (evt) => {
-                // console.log("open");
-                loginDropDownMenus[index].classList.toggle("hidden")
-            })
-           
-        })
-
-        document.addEventListener("click", (evt) => {
-            loginDropDowns.forEach((dropDown, index) => {
-                if (!dropDown.contains(evt.target) && !loginDropDownMenus[index].contains(evt.target)) {
-                    // console.log("close");
-                    loginDropDownMenus[index].classList.add("hidden")
-                }
-            })
-        })
-    }
+    const userAvatar = document.querySelector('.group.cursor-pointer');
+    const userProfileModal = document.getElementById('userProfileModal');
+    
+    // Toggle modal on avatar click
+    userAvatar.addEventListener('click', function(e) {
+      e.stopPropagation();
+    //   console.log("clicked avatar");
+      userProfileModal.classList.toggle('hidden');
+    
+    });
+    
+    // Close modal when clicking outside
+    document.addEventListener('click', function(e) {
+      if (!userProfileModal.contains(e.target) && !userAvatar.contains(e.target)) {
+        userProfileModal.classList.add('hidden');
+      }
+    });
 }
 openLoginDropdown()
 
@@ -68,47 +53,53 @@ document.addEventListener("DOMContentLoaded", () => {
     const username = sessionStorage.getItem("userFullname") || ""
     const avatarUrl = localStorage.getItem("avatar") || "../images/avatar/default_user.jpg"
 
-    const userAvatar = document.querySelector("#userAvatar")
-    const showName = document.querySelector("#showName")
-    const loginOptionDesktop = document.querySelector("#loginOptionDesktop")
-    const loginOptionMobile = document.querySelector("#loginOptionMobile")
+    const userProfile = document.querySelector("#profile")
+    const showName1 = document.querySelector("#showName1")
+    const showName2 = document.querySelector("#showName2")
+    const loginOptionDesktop = document.querySelector("#loginDesktop")
+    const loginOptionMobile = document.querySelector("#loginMobile")
+    const registerOption = document.querySelector("#register")
 
     const userProfileModal = document.querySelector("#userProfileModal")
-    const searchBar = document.querySelector(".searchOption")
     const avatars = document.querySelectorAll(".avatar")
     // console.log( isLoggedIn, username, avatarUrl);
     // console.log(showName,);
     
     
 
-    if (userAvatar && showName && loginOptionDesktop && loginOptionMobile && userProfileModal && searchBar && avatars) {
+    if (userProfile && showName1 && showName2 && loginOptionDesktop && loginOptionMobile &&registerOption && userProfileModal  && avatars) {
         if (isLoggedIn) {
             // console.log("logged in");
             
-            userAvatar.classList.remove("hidden")
-           showName.innerHTML = username
-            loginOptionDesktop.classList.remove("lg:block")
+            userProfile.classList.remove("hidden")
+           showName1.innerHTML = username
+           showName2.innerHTML = username
+            loginOptionDesktop.classList.remove("md:hidden")
             loginOptionMobile.classList.add("hidden")
-            searchBar.classList.add("ml-96")
+           registerOption.classList.add("hidden")
 
             avatars.forEach(avatar => {
                 avatar.style.backgroundImage = `url(${avatarUrl})`
             })
         } else {
             // console.log("logged out");
-            
-            userAvatar.classList.add("hidden")
-            showName.innerHTML = "User"
-            loginOptionDesktop.classList.add("lg:block")
-            loginOptionMobile.classList.remove("hidden")
+            userProfile.classList.add("hidden")
+            showName1.innerHTML = "user"
+            showName2.innerHTML = "user"
+             loginOptionDesktop.classList.add("md:hidden")
+             loginOptionMobile.classList.remove("hidden")
+            registerOption.classList.remove("hidden")
+            avatars.forEach(avatar => {
+                avatar.style.backgroundImage = `url("../images/aboutPage/spring-4202968.jpg")`
+            })
         }
-        if (userAvatar && userProfileModal) {
-            userAvatar.addEventListener("click", (evt) => {
+        if (userProfile && userProfileModal) {
+            userProfile.addEventListener("click", (evt) => {
                 evt.stopPropagation();
                 userProfileModal.classList.toggle("hidden")
             })
             document.addEventListener("click", (evt) => {
-                if (!userAvatar.contains(evt.target) && !userProfileModal.contains(evt.target)) {
+                if (!userProfile.contains(evt.target) && !userProfileModal.contains(evt.target)) {
                     userProfileModal.classList.add("hidden")
                 }
             })
@@ -162,7 +153,3 @@ async function fetchWithAuth(url, options = {}) {
 
     return response.json();
 }
-
-
-
-//  
