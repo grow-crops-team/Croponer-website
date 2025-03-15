@@ -71,9 +71,9 @@ router.route("/blog")
 
 router.route("/research")
     .get((req, res) => {
-        res.sendFile(path.join(staticPath, "research.html"), (err) => {
+        res.sendFile(path.join(staticPath, "research_page.html"), (err) => {
             if (err) {
-                res.status(500).send("Error loading research.html")
+                res.status(500).send("Error loading research_page.html")
             }
         })
         // console.log(req.url)

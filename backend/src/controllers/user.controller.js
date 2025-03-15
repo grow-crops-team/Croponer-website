@@ -6,9 +6,9 @@ import File from "../models/files.model.js"
 import { uploadOnCloudinary, deleteOnCloudinary } from "../utils/cloudinary.js"
 import ApiResponse from "../utils/ApiResponse.js"
 import jwt from "jsonwebtoken"
-import mongoose from "mongoose"
-import sendEmail from "../utils/sendmail.js"
-import bcrypt from "bcrypt"
+import sendEmail from "../utils/sendMail.js"
+import { strict } from "assert"
+
 
 const generateAccessAndRefreshTokens = async (userId) => {
     try {
@@ -90,22 +90,27 @@ const loginUser = asyncHandler(async (req, res) => {
     const loggedInUser = await User.findById(user._id).select(
         "-password -refreshToken"
     )
-
+    const userProfile = await UserProfile.findOne({ user: user._id }).select("avatar");
+    const userResponse = {
+        ...loggedInUser.toObject(), 
+        avatar: userProfile?.avatar || "/assets/images/avatar/default_user.jpg", 
+    }
     const options = {
         httpOnly: true,
         secure: true,
+        sameSite: "Strict",
     }
     // secure: process.env.NODE_ENV === "production",
 
     return res
         .status(200)
-        .cookie("accessToken", accessToken, options)
-        .cookie("refreshToken", refreshToken, options)
+        .cookie("accessToken", accessToken, {...options , maxAge: 24 * 60 * 60 * 1000,} )
+        .cookie("refreshToken", refreshToken, options )
         .json(
             new ApiResponse(
                 200,
                 {
-                    user: loggedInUser,
+                    user: userResponse,
                     accessToken,
                     refreshToken,
                 },
@@ -130,11 +135,12 @@ const logoutUser = asyncHandler(async (req, res) => {
     const options = {
         httpOnly: true,
         secure: true,
+        sameSite: "Strict",
     }
 
     return res
         .status(200)
-        .clearCookie("accessToken", options)
+        .clearCookie("accessToken", {...options, maxAge:0})
         .clearCookie("refreshToken", options)
         .json(new ApiResponse(200, {}, "Logged out successfully !! \n waiting to See you soon"))
 })
@@ -162,6 +168,7 @@ const refreshAccessToken = asyncHandler(async (req, res) => {
         const options = {
             httpOnly: true,
             secure: true,
+            sameSite: "Strict",
         }
         const { accessToken, newRefreshToken } = await generateAccessAndRefreshTokens(
             user._id
@@ -169,7 +176,7 @@ const refreshAccessToken = asyncHandler(async (req, res) => {
 
         return res
             .status(200)
-            .cookie("accessToken", accessToken, options)
+            .cookie("accessToken", accessToken, {...options, maxAge: 24 * 60 * 60 * 1000,} )
             .cookie("refreshToken", newRefreshToken, options)
             .json(
                 new ApiResponse(200, {
@@ -364,12 +371,11 @@ const getFiles = asyncHandler(async (req, res) => {
     const files = await File.findOne({ user: req.user._id });
 
     if (!files || !files.images?.length) {
-        throw new ApiError(404, "No files found for this user");
+        return res.status(200).json(new ApiResponse(200, [], "No files found for this user"));
     }
 
     return res.status(200).json(new ApiResponse(200, files, "Files fetched successfully!"));
 })
-
 
 const deleteFile = asyncHandler(async (req, res) => {
     const { publicId } = req.body;
@@ -404,8 +410,7 @@ export {
     resetPassword,
     getUserProfile,
     getFiles,
-    deleteFile,
-
+    deleteFile
 
 
 }
