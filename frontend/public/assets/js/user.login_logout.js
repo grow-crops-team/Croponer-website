@@ -6,9 +6,8 @@ const password = document.querySelector("#password")
 
 if (userLogin) {
     userLogin.addEventListener("submit", async (evt) => {
-        
         evt.preventDefault()
-        showLoader()
+        
         if (loginValidateInput(username, password)) {
             const formdata = new FormData(evt.target)
             const data = {
@@ -16,7 +15,8 @@ if (userLogin) {
                 password: formdata.get("password").trim()
             }
             // console.log(data)
-          
+            
+            showLoader()
             try {
                 const response = await fetch("/api/v1/users/login", {
                     method: "POST",
@@ -28,28 +28,28 @@ if (userLogin) {
                 })
                 const result = await response.json()
 
-                // console.log("Login Data frontend:", result)
+                console.log("Login Data frontend:", result)
 
                 if (result.statuscode === 200) {
 
-                    displayMessage("success", result.message)
+                    displayMessage(result.message, "success")
 
-                    sessionStorage.setItem("isLoggedIn", true)
-                    sessionStorage.setItem("userID", result.data.user._id)
-                    sessionStorage.setItem("userFullname", result.data.user.fullName)
-                    sessionStorage.setItem("email", result.data.user.email)
-                    sessionStorage.setItem("accessToken", result.data.accessToken)
-
+                    localStorage.setItem("isLoggedIn", true);
+                    localStorage.setItem("userID", result.data.user._id);
+                    localStorage.setItem("userName", result.data.user.username);
+                    localStorage.setItem("userFullname", result.data.user.fullName);
+                    localStorage.setItem("email", result.data.user.email);
+                    localStorage.setItem("avatar", result.data.user.avatar);
 
                     setTimeout(() => {
                         window.location.href = "/"
                     }, 3000)
                 }
                 else {
-                    displayMessage("error", result.message)
+                    displayMessage( result.message, "error")
                 }
             } catch (error) {
-                displayMessage("error", "An unexpected error occurred! Please try again.")
+                displayMessage( "An unexpected error occurred! Please try again.", "error")
                 console.error("Fetch error:", error)
             } finally {
                 hideLoader()
@@ -64,10 +64,10 @@ const showPassWordBtn = document.querySelector("#showPassword")
 showPassword(showPassWordBtn, password)
 
 // logout function
+const logoutChannel = new BroadcastChannel("logout_channel");
 async function UserLogout() {
     showLoader() 
     try {
-       
         const response = await fetch("/api/v1/users/logout", {
             method: "POST",
             credentials: "include",
@@ -78,8 +78,10 @@ async function UserLogout() {
 
         const data = await response.json();
         if (response.ok) {
-            displayMessage("success", data.message);
+            displayMessage( data.message, "success");
             sessionStorage.clear();
+            localStorage.clear();
+            logoutChannel.postMessage("logout");
 
            
             setTimeout(() => {
@@ -87,11 +89,11 @@ async function UserLogout() {
             }, 3000)
 
         } else {
-            displayMessage("error", data.message);
+            displayMessage( data.message, "error");
         }
     } catch (error) {
         console.error("Logout error:", error);
-        displayMessage("error", "An error occurred. Please check your connection.");
+        displayMessage( "An error occurred. Please check your connection.", "error");
     } finally {
         hideLoader()
     }

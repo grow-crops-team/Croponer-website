@@ -25,20 +25,18 @@ resetPassword.addEventListener("submit", async (evt) => {
 
         const result = await response.json()
         if (result.statuscode === 200) {
-            displayMessage("success", result.message)
+            displayMessage( result.message, "success")
             setTimeout(() => {
                 window.location.href = "/login"
             }, 2000)
         } else {
-            displayMessage("error", result.message)
+            displayMessage( result.message, "error")
         }
     } catch (error) {
-        displayMessage("error", "Something went wrong! Try again.")
+        displayMessage( "Something went wrong! Try again.", "error")
         console.log("Something went wrong! Try again.", error)
     } finally {
-       setTimeout(() => {
-            hideLoader()
-        }, 2000)
+        hideLoader()
     }
 })
 

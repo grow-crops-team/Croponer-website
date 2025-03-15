@@ -1,4 +1,4 @@
-import { displayMessage, hideLoader, showLoader } from './utils.js';
+import { displayMessage, showLoader, hideLoader} from './utils.js';
 
 const coverImageInput = document.querySelector("#coverImage");
 const avatarImageInput = document.querySelector("#avatar");
@@ -84,8 +84,8 @@ document.getElementById("bio").addEventListener("input", function (e) {
 
 
 profileUpdateForm.addEventListener("submit", async (evt) => {
-    showLoader()
     evt.preventDefault();
+    showLoader()
 
     if (!fullName.value || !phoneNumber.value || !country.value || !state.value || !district.value || !village.value || !pincode.value) {
         displayMessage("error", "Please fill all the required fields");
@@ -126,16 +126,16 @@ profileUpdateForm.addEventListener("submit", async (evt) => {
         console.log(result);
 
         if (result.statuscode === 200) {
-            displayMessage("success", result.message);
+            displayMessage( result.message, "success");
             setTimeout(() => {
                 window.location.href = "/user-profile";
             }, 2000);
         } else {
-            displayMessage("error", result.message);
+            displayMessage( result.message, "error");
         }
     } catch (error) {
         console.error("Profile update error:", error);
-        displayMessage("error", "Something went wrong");
+        displayMessage( "Something went wrong", "error");
     }finally{
         hideLoader()
     }
@@ -151,8 +151,8 @@ cancelBtn.addEventListener("click", (e) => {
 
 document.addEventListener("DOMContentLoaded", function () {
 
-    fullName.value = sessionStorage.getItem("userFullname")
-    email.value = sessionStorage.getItem("email")
+    fullName.value = localStorage.getItem("userFullname")
+    email.value = localStorage.getItem("email")
     phoneNumber.value = sessionStorage.getItem("phoneNumber");
     userBio.value = sessionStorage.getItem("bio") || "";
     streetAddress.value = sessionStorage.getItem("streetAddress");
@@ -165,49 +165,36 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
     const profileUpdateForm = document.getElementById("profileUpdateForm");
-    const updateProfileBtn = document.getElementById("updateProfileBtn");
-
-    const tooltip = document.createElement("div");
-    tooltip.className = "tooltip-message hidden absolute bg-gray-800 text-white text-sm px-2 py-1 rounded-md shadow-md";
-    tooltip.textContent = "Make changes before updating!";
-    document.body.appendChild(tooltip);
-
-    const formInputs = profileUpdateForm.querySelectorAll("input, textarea, select");
-    const initialValues = {};
-    formInputs.forEach(input => initialValues[input.name] = input.value);
-
-    function checkForChanges() {
-        let isChanged = [...formInputs].some(input =>
-            (input.type === "file" && input.files.length > 0) ||
-            input.value !== initialValues[input.name]
-        );
-
-        updateProfileBtn.disabled = !isChanged;
-        updateProfileBtn.classList.toggle("opacity-50", !isChanged);
-        updateProfileBtn.classList.toggle("cursor-not-allowed", !isChanged);
-    }
-
-    formInputs.forEach(input => {
-        input.addEventListener("input", checkForChanges);
-        input.addEventListener("change", checkForChanges);
-    });
-
-    updateProfileBtn.addEventListener("mouseenter", function (event) {
-        if (updateProfileBtn.disabled) {
-            tooltip.classList.remove("hidden");
-            tooltip.style.top = `${event.clientY + 10}px`;
-            tooltip.style.left = `${event.clientX}px`;
-        }
-    });
-
-    updateProfileBtn.addEventListener("mouseleave", function () {
-        tooltip.classList.add("hidden");
-    });
-
-    updateProfileBtn.disabled = true;
-    updateProfileBtn.classList.add("opacity-50", "cursor-not-allowed");
+const updateProfileBtn = document.getElementById("updateProfileBtn");
 
 
+
+const formInputs = profileUpdateForm.querySelectorAll("input, textarea, select");
+const initialValues = {};
+formInputs.forEach(input => initialValues[input.name] = input.value);
+
+// ✅ Check if Any Input Has Changed
+function checkForChanges() {
+    let isChanged = [...formInputs].some(input =>
+        (input.type === "file" && input.files.length > 0) ||
+        input.value !== initialValues[input.name]
+    );
+
+    updateProfileBtn.disabled = !isChanged;
+    updateProfileBtn.classList.toggle("opacity-50", !isChanged);
+    updateProfileBtn.classList.toggle("cursor-not-allowed", !isChanged);
+    updateProfileBtn.classList.toggle("cursor-pointer", isChanged);
+}
+
+// ✅ Add Event Listeners to Detect Changes
+formInputs.forEach(input => {
+    input.addEventListener("input", checkForChanges);
+    input.addEventListener("change", checkForChanges);
+});
+
+
+updateProfileBtn.disabled = true;
+updateProfileBtn.classList.add("opacity-50", "cursor-not-allowed");
 
 
     pincode.addEventListener("input", async function () {
@@ -219,10 +206,6 @@ document.addEventListener("DOMContentLoaded", function () {
                 if (data[0].Status === "Success") {
 
                     const postOffice = data[0].PostOffice[0];
-
-
-
-
                     state.innerHTML = `<option value="${postOffice.State}" selected>${postOffice.State}</option>`;
                     district.innerHTML = `<option value="${postOffice.District}" selected>${postOffice.District}</option>`;
                 } else {

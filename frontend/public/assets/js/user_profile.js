@@ -16,13 +16,13 @@ const userBio = document.querySelector("#userBio");
 
 document.addEventListener("DOMContentLoaded", async () => {
     showLoader();
-    userName.innerHTML = sessionStorage.getItem("userFullname");
-    userEmail.innerHTML = sessionStorage.getItem("email");
-    const userId = sessionStorage.getItem("userID");
+    userName.innerHTML = localStorage.getItem("userFullname");
+    userEmail.innerHTML = localStorage.getItem("email");
+    const userId = localStorage.getItem("userID");
 
     try {
         if (!userId) {
-            // displayMessage("error", "User not logged in.");
+            displayMessage( "User not logged in.", "error");
             return;
         }
 
@@ -36,9 +36,9 @@ document.addEventListener("DOMContentLoaded", async () => {
         // console.log(data);
 
         if (data.statuscode === 200) {
-            // ✅ Store values in sessionStorage
+            // ✅ Store values 
             localStorage.setItem("avatar", data.data.avatar || default_profileImage);
-            sessionStorage.setItem("userFullname", data.data.fullName);
+            localStorage.setItem("userFullname", data.data.fullName);
             sessionStorage.setItem("phoneNumber", data.data.phoneNumber);
             sessionStorage.setItem("bio", data.data.bio || "");
             sessionStorage.setItem(
@@ -76,15 +76,15 @@ document.addEventListener("DOMContentLoaded", async () => {
                 ? data.data.bio.replace(/\n/g, "<br>")
                 : "No bio available";
         } else {
-            displayMessage("error", data.message);
+            displayMessage( " You did not Update your details, Please update ", "error");
+            // console.log("Error fetching profile:", data.message);
+            
         }
     } catch (error) {
         console.error("Profile fetch error:", error);
-        displayMessage(
-            "error",
-            "An error occurred while loading the user profile.",
-            error
-        );
+        displayMessage("An error occurred while loading the user profile.",error, "error" )
+    }finally {
+        hideLoader();
     }
 
     // get all images
@@ -105,7 +105,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         }
     } catch (error) {
         console.error("Profile fetch error:", error);
-        displayMessage("error", "Unexpected error occur.", error);
+        
     } finally {
         hideLoader();
     }
@@ -180,7 +180,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
             const result = await response.json();
             if (result.statuscode === 200) {
-                displayMessage("success", "Photo deleted successfully!");
+                displayMessage( "Photo deleted successfully!","success");
 
                 // ✅ Select the photo by dataset attribute and remove it
                 const photoElement = document.querySelector(
@@ -189,12 +189,13 @@ document.addEventListener("DOMContentLoaded", async () => {
                 if (photoElement) {
                     photoElement.remove();
                 }
+                window.location.reload();
             } else {
-                displayMessage("error", result.message);
+                displayMessage( result.message, "error");
             }
         } catch (error) {
             console.error("Error deleting photo:", error);
-            displayMessage("error", "Something went wrong.");
+            displayMessage( "Something went wrong.","error");
         }
     }
 
@@ -217,7 +218,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 </head>
 <body class="bg-black">
     <div class=" my-5 px-10 flex flex-col lg:flex-row items-center ">
-        <img class="shadow-xl bg-white p-2 lg:max-w-2xl" src="${imageUrl}" alt="">
+        <img class="shadow-xl bg-white p-2 max-w-2xl" src="${imageUrl}" alt="">
         <div class="bg-gray-100 text-black text-2xl w-100 h-auto py-5 px-5 mt-5 lg:mt-0 lg:ml-8">
             <p class="text-center mb-5">Recommendations :</p>
             <p class="text-xl">${recommendationText}</p>
@@ -282,7 +283,7 @@ fileUploadForm.addEventListener("submit", async (evt) => {
 
     const files = fileUploadInput.files;
     if (files.length === 0) {
-        displayMessage("error", "Please select files to upload.");
+        displayMessage( "Please select files to upload.","error");
         return;
     }
 
@@ -309,24 +310,24 @@ fileUploadForm.addEventListener("submit", async (evt) => {
         };
         xhr.onload = function () {
             if (xhr.status === 200) {
-                displayMessage("success", "Images uploaded successfully!");
+                displayMessage( "Images uploaded successfully!","success");
                 progressBar.style.width = "100%";
 
                 progressBar.classList.add("hidden");
                 window.location.reload();
             } else {
-                displayMessage("error", "Upload failed.");
+                displayMessage( "Upload failed.","error");
             }
         };
 
         xhr.onerror = function () {
-            displayMessage("error", "Network error occurred.");
+            displayMessage( "Network error occurred.","error");
         };
 
         xhr.send(formData);
     } catch (error) {
         console.error("Upload error:", error);
-        displayMessage("error", "Something went wrong.");
+        displayMessage( "Something went wrong.", "error");
     } finally {
         fileUploadBtn.innerText = "Upload Photos";
     }

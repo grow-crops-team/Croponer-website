@@ -49,9 +49,11 @@ openLoginDropdown()
 // ------- when the user logged in ---
 
 document.addEventListener("DOMContentLoaded", () => {
-    const isLoggedIn = sessionStorage.getItem("isLoggedIn") === "true"
-    const username = sessionStorage.getItem("userFullname") || ""
+    const isLoggedIn = localStorage.getItem("isLoggedIn") === "true"
+    const username = localStorage.getItem("userName") || "user"
+    const userFullname = localStorage.getItem("userFullname") || "user"
     const avatarUrl = localStorage.getItem("avatar") || "../images/avatar/default_user.jpg"
+// console.log(avatarUrl);
 
     const userProfile = document.querySelector("#profile")
     const showName1 = document.querySelector("#showName1")
@@ -73,8 +75,8 @@ document.addEventListener("DOMContentLoaded", () => {
             
             userProfile.classList.remove("hidden")
            showName1.innerHTML = username
-           showName2.innerHTML = username
-            loginOptionDesktop.classList.remove("md:hidden")
+           showName2.innerHTML = userFullname
+            loginOptionDesktop.classList.remove("md:inline-block")
             loginOptionMobile.classList.add("hidden")
            registerOption.classList.add("hidden")
 
@@ -86,7 +88,7 @@ document.addEventListener("DOMContentLoaded", () => {
             userProfile.classList.add("hidden")
             showName1.innerHTML = "user"
             showName2.innerHTML = "user"
-             loginOptionDesktop.classList.add("md:hidden")
+             loginOptionDesktop.classList.add("md:inline-block")
              loginOptionMobile.classList.remove("hidden")
             registerOption.classList.remove("hidden")
             avatars.forEach(avatar => {
@@ -153,3 +155,12 @@ async function fetchWithAuth(url, options = {}) {
 
     return response.json();
 }
+
+const logoutChannel = new BroadcastChannel("logout_channel");
+
+
+logoutChannel.onmessage = (event) => {
+    if (event.data === "logout") {
+        window.location.href = "/"; // Redirect all tabs to login page
+    }
+};

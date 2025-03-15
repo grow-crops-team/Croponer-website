@@ -4,8 +4,8 @@ const userRegister = document.querySelector("#signupForm")
 
 
 userRegister.addEventListener("submit", async (evt) => {
-    showLoader()
     evt.preventDefault()
+    showLoader()
     const username = document.querySelector("#username")
     const fullName = document.querySelector("#fullName")
     const email = document.querySelector("#email")
@@ -37,18 +37,18 @@ userRegister.addEventListener("submit", async (evt) => {
             // console.log("\n the json response(result) :", result)
             if (result.statuscode === 201) {
 
-                displayMessage("success", result.message)
+                displayMessage( result.message, "success")
                 setTimeout(() => {
                     window.location.href = "/"
                 }, 3000)
 
             }
             else {
-                displayMessage("error", result.message)
+                displayMessage( result.message, "error")
             }
 
         } catch (error) {
-            displayMessage("error", "An unexpected error occurred! Please try again.")
+            displayMessage( "An unexpected error occurred! Please try again.", "error")
             console.error("Fetch error:", error)
         }finally{
             hideLoader()

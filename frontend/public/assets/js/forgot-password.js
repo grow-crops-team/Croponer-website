@@ -1,11 +1,12 @@
-import {displayMessage, showLoader,} from './utils.js'
+import {displayMessage, showLoader, hideLoader} from './utils.js'
 
 const sendEmail = document.querySelector(".sendEmail")  
 const cancelBtn = document.querySelector("#cancelBtn")
 
 sendEmail.addEventListener("submit", async (evt) => {
     evt.preventDefault()
-showLoader()
+    showLoader()
+
     const email = document.getElementById("email").value
 
     try {
@@ -17,17 +18,18 @@ showLoader()
 
         const result = await response.json()
         if (result.statuscode === 200) {
-            displayMessage("success", result.message)
+            displayMessage( result.message, "success")
+            setTimeout(() => {
+                window.location.href = "/"
+            }, 2000)
         } else {
-            displayMessage("error", result.message)
+            displayMessage( result.message, "error")
         }
     } catch (error) {
-        displayMessage("error", "Something went wrong! Try again.")
+        displayMessage( "Something went wrong! Try again.", "error")
         console.log("server error:", error)
     }finally{
-        setTimeout(() => {
-            window.location.href = "/"
-        }, 2000)
+        hideLoader()
     }
 })
 
