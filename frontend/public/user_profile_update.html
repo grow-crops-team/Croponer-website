@@ -19,7 +19,7 @@
     <link rel="stylesheet" href="./assets/css/coustomCss.css?v=1.0" />
   </head>
 
-  <body class="bg-[#cae4f3] select-none">
+  <body class="bg-[#cae4f3] ">
     <div class="max-w-4xl mx-auto my-8 px-4">
       <div class="bg rounded-2xl shadow-xl overflow-hidden">
         <!-- Form content -->
@@ -457,7 +457,7 @@
               <button
                 type="submit"
                 id="updateProfileBtn"
-                class="order-1 sm:order-2 px-6 py-3 rounded-xl bg-gradient-to-r from-indigo-600 to-indigo-500 text-white hover:from-indigo-700 hover:to-indigo-600 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition-all shadow-md "
+                class="order-1 sm:order-2 px-6 py-3 rounded-xl bg-gradient-to-r from-indigo-600 to-indigo-500 text-white hover:from-indigo-700 hover:to-indigo-600 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition-all shadow-md"
               >
                 <i class="bi bi-check2 mr-1"></i> Update Profile
               </button>
@@ -467,9 +467,9 @@
       </div>
     </div>
 
-    <!-- Display messages -->
-    <div id="displayError" class="hidden">
-      <div id="displayErrorContent">
+    <!-- Enhanced display message system -->
+    <div id="displayMessage" class="hidden">
+      <div id="messageContent" class="message-type-error">
         <p id="message"></p>
       </div>
     </div>

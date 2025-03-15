@@ -6,6 +6,33 @@
 
     <title>Croponer | AI-Powered Agricultural Solutions</title>
 
+    <!-- preload Images -->
+
+    <link
+      rel="preload"
+      href="./assets/images/hero/main_bg.jpg"
+      as="image"
+      type="image/jpeg"
+    />
+    <link
+      rel="preload"
+      href="./assets/images/hero/paddy.jpg"
+      as="image"
+      type="image/jpeg"
+    />
+    <link
+      rel="preload"
+      href="./assets/images/hero/peanuts-1735672.jpg"
+      as="image"
+      type="image/jpeg"
+    />
+    <link
+      rel="preload"
+      href="./assets/images/hero/potato.jpg"
+      as="image"
+      type="image/jpeg"
+    />
+    
     <link
       rel="stylesheet"
       href="https://unpkg.com/swiper/swiper-bundle.min.css"
@@ -42,8 +69,9 @@
   </head>
 
   <body class="bg-gray-50">
+
     <!-- Header -->
-    <header class="fixed w-full z-50 bg-white/90 backdrop-blur-md shadow-sm">
+    <header class="fixed w-full z-50 bg-white/90 backdrop-blur-md shadow-sm select-none">
       <nav
         class="container mx-auto flex justify-between items-center px-4 py-3"
       >
@@ -222,7 +250,7 @@
               ></span>
             </a>
             <a
-              href="#how-it-works"
+              href="/help"
               class="bg-[#054a29]/30 border border-white/20 text-white px-8 py-4 rounded-full text-lg font-medium transition-colors hover:bg-[#054a29]/50"
             >
               See How It Works
@@ -1193,7 +1221,10 @@
         class="border-t border-gray-800 mt-10 pt-8 flex flex-col md:flex-row justify-between items-center pb-5 px-5"
       >
         <p class="text-gray-400 text-sm">
-          &copy; 2025 Croponer. All rights reserved.
+          &copy; 2025 Croponer. All rights reserved. Developed by
+          <a class="hover:text-blue-600" href="https://amarnath404.in"
+            >Amaranth Bera</a
+          >
         </p>
         <div class="flex space-x-6 mt-4 md:mt-0">
           <a
@@ -1218,7 +1249,7 @@
     <!-- user profile modal after login -->
     <div
       id="userProfileModal"
-      class="absolute hidden z-50 top-14 right-10 lg:right-0"
+      class="absolute hidden z-50 top-14 right-10 lg:right-0 select-none"
     >
       <div
         class="bg-blue-100 w-56 flex flex-col items-center py-5 rounded-xl shadow-lg border border-blue-100/50 relative overflow-hidden"

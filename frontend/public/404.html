@@ -1,26 +1,630 @@
+
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>404-error!</title>
-      
-        <link rel="stylesheet" href="./assets/css/style.css?v=1.0" />
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Page Not Found - 404</title>
+    
+    <link rel="stylesheet" href="./assets/css/style.css?v=1.0" />
     <link rel="stylesheet" href="./assets/css/coustomCss.css?v=1.0" />
-       
-    
-    </head>
-<body class="bg-[#ebf1f5]">
-    
-<div class="mt-44">
-    <div class="text-content mx-auto bg-white w-[400px] h-56y p-8 space-y-2">
-        <p class="text-[#ff1616bf] text-xl font-semibold">404</p>
-        <p class="text-[#747474] text-2xl">Page Not Found</p>
-        <p class=" text-gray-800 text-[15px]">The specified file was not found on this website. Please check the URL for mistakes and try again.</p>
-        <a class="block text-[12px] underline text-end mt-5" href="/">Go to Home</a>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #0F172A 0%, #1E1B4B 50%, #4C1D95 100%);
+            overflow-x: hidden;
+            color: #f5f5f5;
+            position: relative;
+            perspective: 1000px;
+            min-height: 100vh;
+        }
+        
+        /* Enhanced Space Background */
+        .space-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -10;
+            overflow: hidden;
+        }
+        
+        .stars {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -5;
+        }
+        
+        .star {
+            position: absolute;
+            background: white;
+            border-radius: 50%;
+            transform-origin: center;
+            opacity: 0.5;
+        }
+        
+        .nebula {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(60px);
+            opacity: 0.2;
+            z-index: -8;
+        }
+        
+        .nebula-1 {
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(167,139,250,0.8) 0%, rgba(167,139,250,0) 70%);
+            top: 10%;
+            left: 20%;
+            animation: nebula-drift 100s ease-in-out infinite alternate;
+        }
+        
+        .nebula-2 {
+            width: 700px;
+            height: 700px;
+            background: radial-gradient(circle, rgba(236,72,153,0.6) 0%, rgba(236,72,153,0) 70%);
+            bottom: 5%;
+            right: 10%;
+            animation: nebula-drift 120s ease-in-out infinite alternate-reverse;
+        }
+        
+        .nebula-3 {
+            width: 600px;
+            height: 400px;
+            background: radial-gradient(ellipse, rgba(59,130,246,0.5) 0%, rgba(59,130,246,0) 70%);
+            top: 60%;
+            left: 5%;
+            animation: nebula-drift 150s ease-in-out infinite alternate;
+        }
+        
+        @keyframes nebula-drift {
+            0% { transform: translate(0, 0) scale(1); }
+            50% { transform: translate(50px, -30px) scale(1.1); }
+            100% { transform: translate(-50px, 30px) scale(0.9); }
+        }
+        
+        .shooting-star {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: linear-gradient(90deg, rgba(255,255,255,1), rgba(255,255,255,0));
+            border-radius: 50%;
+            opacity: 0;
+            filter: blur(1px);
+        }
+        
+        @keyframes shooting {
+            0% { 
+                transform: translateX(0) translateY(0); 
+                opacity: 1;
+                width: 0px;
+            }
+            30% {
+                width: 100px;
+            }
+            100% { 
+                transform: translateX(var(--travel-x)) translateY(var(--travel-y)); 
+                opacity: 0;
+                width: 50px;
+            }
+        }
+        
+        .space-dust {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -3;
+        }
+        
+        /* Parallax Effect */
+        .parallax-layer {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            pointer-events: none;
+        }
+        
+        .layer-1 { z-index: -7; }
+        .layer-2 { z-index: -6; }
+        .layer-3 { z-index: -5; }
+        
+        @keyframes drift-slow {
+            0% { transform: translate3d(0, 0, 0); }
+            50% { transform: translate3d(-20px, 10px, 0); }
+            100% { transform: translate3d(0, 0, 0); }
+        }
+        
+        @keyframes drift-medium {
+            0% { transform: translate3d(0, 0, 0); }
+            50% { transform: translate3d(-40px, 20px, 0); }
+            100% { transform: translate3d(0, 0, 0); }
+        }
+        
+        @keyframes drift-fast {
+            0% { transform: translate3d(0, 0, 0); }
+            50% { transform: translate3d(-60px, 30px, 0); }
+            100% { transform: translate3d(0, 0, 0); }
+        }
+        
+        .layer-1 { animation: drift-slow 40s ease-in-out infinite; }
+        .layer-2 { animation: drift-medium 30s ease-in-out infinite; }
+        .layer-3 { animation: drift-fast 20s ease-in-out infinite; }
+        
+        /* Space travel animation */
+        @keyframes space-travel {
+            from { 
+                transform: translateZ(0);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.8;
+            }
+            to { 
+                transform: translateZ(400px);
+                opacity: 0;
+            }
+        }
+        
+        /* Enhanced animations from the existing code */
+        @keyframes float {
+            0% { transform: translateY(0px) rotate(0deg); }
+            25% { transform: translateY(-15px) rotate(2deg); }
+            50% { transform: translateY(-30px) rotate(0deg); }
+            75% { transform: translateY(-15px) rotate(-2deg); }
+            100% { transform: translateY(0px) rotate(0deg); }
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); text-shadow: 0 0 0px rgba(255,255,255,0.8); }
+            50% { transform: scale(1.05); text-shadow: 0 0 15px rgba(255,255,255,0.8); }
+            100% { transform: scale(1); text-shadow: 0 0 0px rgba(255,255,255,0.8); }
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        @keyframes drift {
+            0% { transform: translate(0, 0) rotate(0deg); }
+            25% { transform: translate(5px, 10px) rotate(5deg); }
+            50% { transform: translate(10px, 5px) rotate(0deg); }
+            75% { transform: translate(5px, -5px) rotate(-5deg); }
+            100% { transform: translate(0, 0) rotate(0deg); }
+        }
+        
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
+        }
+        
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
+            20%, 40%, 60%, 80% { transform: translateX(5px); }
+        }
+        
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.2; }
+            50% { opacity: 1; }
+        }
+        
+        .animate-float { animation: float 8s ease-in-out infinite; }
+        .animate-drift { animation: drift 20s ease-in-out infinite; }
+        .animate-pulse-slow { animation: pulse 3s ease-in-out infinite; }
+        .animate-fade-in { animation: fadeIn 0.8s ease-out forwards; opacity: 0; }
+        .animate-bounce { animation: bounce 2s ease-in-out infinite; }
+        .animate-twinkle { animation: twinkle 3s ease-in-out infinite; }
+        
+        .delay-100 { animation-delay: 0.1s; }
+        .delay-200 { animation-delay: 0.2s; }
+        .delay-300 { animation-delay: 0.3s; }
+        .delay-400 { animation-delay: 0.4s; }
+        .delay-500 { animation-delay: 0.5s; }
+        
+        .home-btn {
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+        
+        .home-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, rgba(255,255,255,0.1), rgba(255,255,255,0.3));
+            transition: all 0.4s ease;
+            z-index: -1;
+        }
+        
+        .home-btn:hover::before { left: 100%; }
+        
+        .home-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            letter-spacing: 0.5px;
+        }
+        
+        .home-btn:active { transform: translateY(0); }
+        
+        .particles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+        
+        .particle {
+            position: absolute;
+            border-radius: 50%;
+        }
+        
+        .error-number {
+            position: relative;
+            font-size: 6rem;
+            font-weight: 800;
+            letter-spacing: -3px;
+            background: linear-gradient(45deg, #FF416C 0%, #FF4B2B 100%);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.1);
+        }
+        
+        .card-error {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .card-error::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(
+                60deg,
+                rgba(255, 255, 255, 0) 20%,
+                rgba(255, 255, 255, 0.05) 20%,
+                rgba(255, 255, 255, 0.05) 40%,
+                rgba(255, 255, 255, 0) 40%
+            );
+            transform: rotate(-45deg);
+            animation: drift 8s linear infinite;
+            pointer-events: none;
+        }
+        
+        .glow {
+            filter: drop-shadow(0 0 8px rgba(74, 109, 255, 0.6));
+        }
+        
+        .shake-on-hover:hover {
+            animation: shake 0.5s ease-in-out;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex items-center justify-center p-4 relative">
+    <!-- Enhanced space background -->
+    <div class="space-background">
+        <!-- Nebula clouds -->
+        <div class="nebula nebula-1"></div>
+        <div class="nebula nebula-2"></div>
+        <div class="nebula nebula-3"></div>
+        
+        <!-- Parallax star layers -->
+        <div class="parallax-layer layer-1" id="stars-layer-1"></div>
+        <div class="parallax-layer layer-2" id="stars-layer-2"></div>
+        <div class="parallax-layer layer-3" id="stars-layer-3"></div>
+        
+        <!-- Space dust particles -->
+        <div class="space-dust" id="space-dust"></div>
+        
+        <!-- Shooting stars container -->
+        <div id="shooting-stars"></div>
     </div>
-</div>
+    
+    <!-- Main content -->
+    <div class="max-w-4xl w-full text-center relative z-10">
+        <!-- Animated 404 Illustration -->
+        <div class="animate-float mb-8 relative">
+            <!-- Cosmic 404 background -->
+            <svg class="w-72 h-72 mx-auto" viewBox="0 0 240 240" xmlns="http://www.w3.org/2000/svg">
+                <!-- Background galaxy -->
+                <defs>
+                    <radialGradient id="galaxy-gradient" cx="50%" cy="50%" r="50%" fx="50%" fy="50%">
+                        <stop offset="0%" stop-color="#8B5CF6" stop-opacity="0.8"/>
+                        <stop offset="70%" stop-color="#6366F1" stop-opacity="0.6"/>
+                        <stop offset="100%" stop-color="#3B82F6" stop-opacity="0.2"/>
+                    </radialGradient>
+                    <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+                        <feGaussianBlur stdDeviation="8" result="blur"/>
+                        <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+                    </filter>
+                </defs>
+                
+                <!-- Cosmic background -->
+                <circle cx="120" cy="120" r="110" fill="url(#galaxy-gradient)" />
+                
+                <!-- Stars -->
+                <g class="stars">
+                    <circle cx="50" cy="60" r="2" fill="white" class="animate-twinkle" />
+                    <circle cx="180" cy="40" r="1.5" fill="white" class="animate-twinkle delay-200" />
+                    <circle cx="160" cy="90" r="1" fill="white" class="animate-twinkle delay-300" />
+                    <circle cx="70" cy="160" r="2" fill="white" class="animate-twinkle delay-100" />
+                    <circle cx="190" cy="180" r="1.5" fill="white" class="animate-twinkle delay-400" />
+                    <circle cx="40" cy="100" r="1" fill="white" class="animate-twinkle delay-200" />
+                    <circle cx="120" cy="30" r="1.5" fill="white" class="animate-twinkle delay-300" />
+                    <circle cx="200" cy="110" r="1" fill="white" class="animate-twinkle delay-100" />
+                    <circle cx="90" cy="200" r="1.5" fill="white" class="animate-twinkle delay-200" />
+                    <circle cx="145" cy="170" r="1" fill="white" class="animate-twinkle delay-300" />
+                    <!-- Additional stars for more density -->
+                    <circle cx="65" cy="35" r="1" fill="white" class="animate-twinkle delay-400" />
+                    <circle cx="210" cy="75" r="1.2" fill="white" class="animate-twinkle delay-100" />
+                    <circle cx="30" cy="190" r="1.3" fill="white" class="animate-twinkle delay-200" />
+                    <circle cx="110" cy="210" r="1" fill="white" class="animate-twinkle delay-300" />
+                    <circle cx="175" cy="145" r="1.4" fill="white" class="animate-twinkle delay-400" />
+                </g>
+                
+                <!-- Nebula effect -->
+                <ellipse cx="80" cy="70" rx="55" ry="35" fill="#A78BFA" opacity="0.3" transform="rotate(-15 80 70)" />
+                <ellipse cx="170" cy="180" rx="45" ry="30" fill="#EC4899" opacity="0.2" transform="rotate(25 170 180)" />
+                
+                <!-- Orbits -->
+                <g stroke="#FFFFFF" fill="none" stroke-opacity="0.3">
+                    <ellipse cx="120" cy="120" rx="95" ry="60" transform="rotate(25 120 120)" stroke-width="1" stroke-dasharray="5,5" />
+                    <ellipse cx="120" cy="120" rx="70" ry="90" transform="rotate(-15 120 120)" stroke-width="1" stroke-dasharray="3,3" />
+                </g>
+                
+                <!-- Planets -->
+                <circle cx="185" cy="95" r="8" fill="#EC4899" filter="url(#glow)" />
+                <circle cx="65" cy="150" r="12" fill="#F59E0B" filter="url(#glow)" />
+                <circle cx="200" cy="170" r="5" fill="#3B82F6" filter="url(#glow)" />
+                
+                <!-- Small spacecraft/satellite -->
+                <g transform="translate(155, 150) rotate(-30)" filter="url(#glow)">
+                    <rect x="-6" y="-2" width="12" height="4" fill="#94A3B8" />
+                    <rect x="-8" y="-5" width="3" height="10" fill="#64748B" />
+                    <rect x="5" y="-5" width="3" height="10" fill="#64748B" />
+                </g>
+                
+                <!-- Comet -->
+                <g transform="translate(40, 50) rotate(30)">
+                    <circle cx="0" cy="0" r="3" fill="white" />
+                    <path d="M0,0 L-20,15" stroke="white" stroke-width="2" stroke-linecap="round" opacity="0.7" />
+                    <path d="M0,0 L-30,22" stroke="white" stroke-width="1.5" stroke-linecap="round" opacity="0.5" />
+                    <path d="M0,0 L-40,30" stroke="white" stroke-width="1" stroke-linecap="round" opacity="0.3" />
+                </g>
+            </svg>
+            
+            <!-- Animated characters -->
+            <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-full">
+                <div class="flex justify-center items-center space-x-3">
+                    <span class="error-number animate-bounce delay-100 shadow-lg">4</span>
+                    <div class="animate-float delay-300">
+                        <i class="fas fa-rocket text-4xl text-white opacity-90" style="transform: rotate(45deg);"></i>
+                    </div>
+                    <span class="error-number animate-bounce delay-200 shadow-lg">4</span>
+                </div>
+            </div>
+            
+            <!-- Small floating elements - updated to match space theme -->
+            <div class="absolute top-0 right-1/4 animate-float delay-200">
+                <i class="fas fa-star text-yellow-200 text-xl"></i>
+            </div>
+            <div class="absolute bottom-5 left-1/3 animate-float delay-300">
+                <i class="fas fa-meteor text-orange-400 text-xl"></i>
+            </div>
+            <div class="absolute top-1/3 left-1/4 animate-float delay-400">
+                <i class="fas fa-moon text-gray-200 text-xl"></i>
+            </div>
+        </div>
+        
+        <!-- Content Box - Updated to glass morphism style -->
+        <div class="card-error w-full max-w-md mx-auto">
+            <!-- Error Message -->
+            <div class="p-10 space-y-6">
+                <h2 class="text-4xl font-bold text-white animate-fade-in tracking-tight">
+                    Lost in <span class="bg-clip-text text-transparent bg-gradient-to-r from-pink-500 to-violet-500">Space</span>
+                </h2>
+                <p class="text-lg text-gray-300 animate-fade-in delay-100">
+                    The page you're looking for has drifted away into the digital <span class="bg-clip-text text-transparent bg-gradient-to-r from-red-500 to-blue-500">cosmos.</span> 
+                </p>
+                
+                <!-- Divider with decorative element -->
+                <div class="relative animate-fade-in delay-200">
+                    <div class="absolute left-1/2 transform -translate-x-1/2 -top-2">
+                        <div class="w-10 h-1 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full"></div>
+                    </div>
+                    <div class="border-t border-gray-700 my-6"></div>
+                </div>
+                
+                <!-- CTA Buttons -->
+                <div class="flex flex-col sm:flex-row justify-center gap-4 animate-fade-in delay-300">
+                    <a href="/" class="home-btn flex items-center justify-center gap-2 bg-gradient-to-r from-indigo-500 to-purple-600 text-white font-medium rounded-xl px-6 py-3 shadow-lg">
+                        <i class="fas fa-home"></i>
+                        <span>Back to Homepage</span>
+                    </a>
+                    <button onclick="window.history.back()" class="home-btn flex items-center justify-center gap-2 bg-gradient-to-r from-gray-700 to-gray-800 text-white font-medium rounded-xl px-6 py-3 shadow-lg">
+                        <i class="fas fa-arrow-left"></i>
+                        <span>Go Back</span>
+                    </button>
+                </div>
+                
+                <p class="text-sm text-gray-400 mt-6 animate-fade-in delay-400 italic">
+                    Lost? Need help? <a href="#" class="text-indigo-300 hover:text-indigo-200 underline">Contact our support team</a>
+                </p>
+            </div>
+        </div>
+        
+        <!-- Footer -->
+        <div class="mt-10 animate-fade-in delay-500">
+            <div class="flex justify-center space-x-4 mb-2">
+                <a href="#" class="text-gray-400 hover:text-indigo-300 transition-colors">
+                    <i class="fab fa-twitter"></i>
+                </a>
+                <a href="#" class="text-gray-400 hover:text-indigo-300 transition-colors">
+                    <i class="fab fa-facebook"></i>
+                </a>
+                <a href="#" class="text-gray-400 hover:text-indigo-300 transition-colors">
+                    <i class="fab fa-instagram"></i>
+                </a>
+            </div>
+            <p class="text-gray-500 text-sm">
+                &copy; 2025 Croponer. All rights reserved. Created By Amarnath Bera
+            </p>
+        </div>
+    </div>
 
-
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            createStars();
+            createSpaceDust();
+            setupShootingStars();
+            
+            // Add parallax effect on mouse movement
+            document.addEventListener('mousemove', (e) => {
+                const x = e.clientX / window.innerWidth;
+                const y = e.clientY / window.innerHeight;
+                
+                const layer1 = document.getElementById('stars-layer-1');
+                const layer2 = document.getElementById('stars-layer-2');
+                const layer3 = document.getElementById('stars-layer-3');
+                
+                layer1.style.transform = `translate3d(${x * -20}px, ${y * -20}px, 0)`;
+                layer2.style.transform = `translate3d(${x * -40}px, ${y * -40}px, 0)`;
+                layer3.style.transform = `translate3d(${x * -60}px, ${y * -60}px, 0)`;
+            });
+        });
+        
+        function createStars() {
+            const layers = [
+                { id: 'stars-layer-1', count: 100, maxSize: 2 },
+                { id: 'stars-layer-2', count: 150, maxSize: 3 },
+                { id: 'stars-layer-3', count: 80, maxSize: 4 }
+            ];
+            
+            layers.forEach(layer => {
+                const container = document.getElementById(layer.id);
+                
+                for (let i = 0; i < layer.count; i++) {
+                    const star = document.createElement('div');
+                    star.className = 'star animate-twinkle';
+                    
+                    // Random properties
+                    const size = Math.random() * layer.maxSize + 0.5;
+                    const x = Math.random() * 100;
+                    const y = Math.random() * 100;
+                    const delay = Math.random() * 5;
+                    const duration = Math.random() * 3 + 2;
+                    const opacity = Math.random() * 0.7 + 0.3;
+                    
+                    // Apply styles
+                    star.style.width = `${size}px`;
+                    star.style.height = `${size}px`;
+                    star.style.left = `${x}%`;
+                    star.style.top = `${y}%`;
+                    star.style.opacity = opacity;
+                    star.style.animationDelay = `${delay}s`;
+                    star.style.animationDuration = `${duration}s`;
+                    
+                    container.appendChild(star);
+                }
+            });
+        }
+        
+        function createSpaceDust() {
+            const container = document.getElementById('space-dust');
+            const dustCount = 100;
+            
+            for (let i = 0; i < dustCount; i++) {
+                const dust = document.createElement('div');
+                dust.className = 'star';
+                
+                // Random size and position
+                const size = Math.random() * 1.5 + 0.5;
+                const x = Math.random() * 100;
+                const y = Math.random() * 100;
+                const z = Math.random() * 400;
+                
+                // Animation properties
+                const duration = Math.random() * 30 + 20;
+                const delay = Math.random() * 20;
+                
+                // Apply styles
+                dust.style.width = `${size}px`;
+                dust.style.height = `${size}px`;
+                dust.style.left = `${x}%`;
+                dust.style.top = `${y}%`;
+                dust.style.opacity = 0.1 + Math.random() * 0.3;
+                dust.style.animationName = 'space-travel';
+                dust.style.animationDuration = `${duration}s`;
+                dust.style.animationDelay = `${delay}s`;
+                dust.style.animationIterationCount = 'infinite';
+                dust.style.animationTimingFunction = 'linear';
+                dust.style.transform = `translateZ(${z}px)`;
+                
+                container.appendChild(dust);
+            }
+        }
+        
+        function setupShootingStars() {
+            const container = document.getElementById('shooting-stars');
+            const createShootingStar = () => {
+                const star = document.createElement('div');
+                star.className = 'shooting-star';
+                
+                // Random position and direction
+                const startX = Math.random() * 100;
+                const startY = Math.random() * 100;
+                const travelX = (Math.random() * 200) - 100;
+                const travelY = (Math.random() * 200) - 100;
+                
+                // Animation properties
+                star.style.left = `${startX}%`;
+                star.style.top = `${startY}%`;
+                star.style.setProperty('--travel-x', `${travelX}px`);
+                star.style.setProperty('--travel-y', `${travelY}px`);
+                star.style.animation = `shooting 1s linear forwards`;
+                
+                container.appendChild(star);
+                
+                // Remove after animation
+                setTimeout(() => {
+                    star.remove();
+                }, 1000);
+            };
+            
+            // Create shooting stars randomly
+            setInterval(() => {
+                if (Math.random() > 0.7) { // 30% chance each interval
+                    createShootingStar();
+                }
+            }, 2000);
+        }
+    </script>
 </body>
 </html>

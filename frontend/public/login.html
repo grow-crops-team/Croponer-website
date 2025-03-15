@@ -25,291 +25,328 @@
   >
     <!---------------- main container --------------->
     <div
-      id="outer-Container"
-      class="text-white mx-auto mt-20 lg:mt-24 bg-white/10 backdrop-blur-md rounded-2xl w-[400px] lg:w-[900px] p-6 lg:p-0 shadow-xl border border-white/20 flex flex-col lg:flex-row overflow-hidden"
+    id="outer-Container"
+    class="text-white mx-auto mt-20 lg:mt-24 bg-white/10 backdrop-blur-md rounded-2xl w-[400px] lg:w-[900px] p-6 lg:p-0 shadow-xl border border-white/20 flex flex-col lg:flex-row overflow-hidden"
+  >
+    <!-- Left side with logo and background design -->
+    <div
+      class="lg:basis-1/2 lg:py-16 relative bg-gradient-to-br from-[#001247] to-[#183B8E] lg:rounded-l-2xl"
     >
-      <!-- Left side with logo and background design -->
       <div
-        class="lg:basis-1/2 lg:py-16 relative bg-gradient-to-br from-[#001247] to-[#183B8E] lg:rounded-l-2xl"
-      >
-        <div
-          class="absolute w-64 h-64 bg-blue-500/20 rounded-full blur-3xl -top-20 -left-20"
-        ></div>
-        <div
-          class="absolute w-64 h-64 bg-indigo-500/20 rounded-full blur-3xl -bottom-20 -right-20"
-        ></div>
+        class="absolute w-64 h-64 bg-blue-500/20 rounded-full blur-3xl -top-20 -left-20"
+      ></div>
+      <div
+        class="absolute w-64 h-64 bg-indigo-500/20 rounded-full blur-3xl -bottom-20 -right-20"
+      ></div>
 
-        <img
-          src=""
-          alt="croponer logo"
-          class="w-36 h-16 mx-auto my-5 relative z-10"
-        />
-        <p
-          class="text-blue-100 text-center lg:text-2xl text-xl font-light tracking-wide mt-2 mb-6 relative z-10"
+      <img
+        src=""
+        alt="croponer logo"
+        class="w-36 h-16 mx-auto my-5 relative z-10"
+      />
+      <p
+        class="text-blue-100 text-center lg:text-2xl text-xl font-light tracking-wide mt-2 mb-6 relative z-10"
+      >
+        Welcome to our Website
+      </p>
+
+      <!-- Decorative elements -->
+      <div class="hidden lg:flex justify-center mt-10 relative z-10">
+        <div
+          class="w-32 h-1 bg-gradient-to-r from-transparent via-blue-300 to-transparent"
+        ></div>
+      </div>
+      <div
+        class="hidden lg:block text-center text-blue-200/70 text-sm mt-8 px-10 relative z-10"
+      >
+        Join our community of farmers and experts to grow better crops and
+        increase your yield
+      </div>
+    </div>
+
+    <!-- Right side with login form -->
+    <div
+      id="login-form"
+      class="lg:basis-1/2 lg:p-10 lg:mt-0 text-center bg-white/5 backdrop-blur-sm lg:rounded-r-2xl pt-8 pb-10"
+    >
+      <h1
+        class="text-2xl text-[#080662] lg:text-3xl font-semibold lg:mb-8 relative"
+      >
+        Login to Croponer
+        <div
+          class="h-1 w-12 bg-gradient-to-r from-[#6190E8] to-[#0f238b] mx-auto mt-2"
+        ></div>
+      </h1>
+
+      <!-- Social login buttons with modern design -->
+      <div class="flex justify-center gap-5 mt-6 lg:mt-8">
+        <a
+          class="flex items-center gap-2 px-6 py-2.5 rounded-lg transition-all duration-300 bg-white/5 hover:bg-white/10 border border-white/10 hover:border-white/30"
+          href="/google"
         >
-          Welcome to our Website
+          <img
+            class="w-5 h-5"
+            src="./assets/images/login_signup/Google__G__logo.svg"
+            alt="Google"
+          />
+          <p class="text-[16px] font-medium">Google</p>
+        </a>
+        <a
+          class="flex items-center gap-2 px-6 py-2.5 rounded-lg transition-all duration-300 bg-white/5 hover:bg-white/10 border border-white/10 hover:border-white/30"
+          href="/apple"
+        >
+          <img
+            class="w-5 h-5"
+            src="./assets/images/login_signup/apple-black-logo-svgrepo-com.svg"
+            alt="Apple"
+          />
+          <p class="text-[16px] font-medium">Apple</p>
+        </a>
+      </div>
+
+      <!-- Divider with improved styling -->
+      <div class="flex items-center justify-center mt-8">
+        <div
+          class="h-[1px] w-28 bg-gradient-to-r from-transparent via-[#bbddff] to-transparent"
+        ></div>
+        <p class="text-[#ffffff] text-[16px] mx-3 font-light">
+          Or continue with
         </p>
-
-        <!-- Decorative elements -->
-        <div class="hidden lg:flex justify-center mt-10 relative z-10">
-          <div
-            class="w-32 h-1 bg-gradient-to-r from-transparent via-blue-300 to-transparent"
-          ></div>
-        </div>
         <div
-          class="hidden lg:block text-center text-blue-200/70 text-sm mt-8 px-10 relative z-10"
-        >
-          Join our community of farmers and experts to grow better crops and
-          increase your yield
-        </div>
+          class="h-[1px] w-28 bg-gradient-to-r from-transparent via-[#bbddff] to-transparent"
+        ></div>
       </div>
 
-      <!-- Right side with login form -->
-      <div
-        id="login-form"
-        class="lg:basis-1/2 lg:p-10 lg:mt-0 text-center bg-white/5 backdrop-blur-sm lg:rounded-r-2xl pt-8 pb-10"
+      <!-- Form with modern input styling -->
+      <form
+        action="loginForm"
+        id="loginForm"
+        class="loginForm mt-8 lg:mt-10 max-w-sm mx-auto"
       >
-        <h1
-          class="text-2xl text-[#080662] lg:text-3xl font-semibold lg:mb-8 relative"
-        >
-          Login to Croponer
+        <div class="userName relative mb-8 group">
           <div
-            class="h-1 w-12 bg-gradient-to-r from-[#6190E8] to-[#0f238b] mx-auto mt-2"
-          ></div>
-        </h1>
-
-        <!-- Social login buttons with modern design -->
-        <div class="flex justify-center gap-5 mt-6 lg:mt-8">
-          <a
-            class="flex items-center gap-2 px-6 py-2.5 rounded-lg transition-all duration-300 bg-white/5 hover:bg-white/10 border border-white/10 hover:border-white/30"
-            href="/google"
+            class="flex items-center bg-white/5 border border-white/10 group-hover:border-[#529ce7]/70 rounded-lg px-4 transition-all duration-300"
           >
-            <img
-              class="w-5 h-5"
-              src="./assets/images/login_signup/Google__G__logo.svg"
-              alt="Google"
+            <i class="bi bi-person text-[#305a84] mr-2"></i>
+            <input
+              id="username"
+              type="text"
+              name="username"
+              placeholder="Username"
+              class="w-full py-3 px-1 text-[16px] text-[#003e7b] placeholder:text-[#003e7b]/60 focus:outline-none bg-transparent caret-[#003e7b] select-text"
             />
-            <p class="text-[16px] font-medium">Google</p>
-          </a>
-          <a
-            class="flex items-center gap-2 px-6 py-2.5 rounded-lg transition-all duration-300 bg-white/5 hover:bg-white/10 border border-white/10 hover:border-white/30"
-            href="/apple"
+            <span
+            id="userNameError"
+            class="error absolute text-[12px] font-medium text-red-400 left-1 -bottom-5"
+          ></span>
+          </div>
+         
+        </div>
+
+        <div class="password relative group">
+          <div
+            class="flex items-center bg-white/5 border border-white/10 group-hover:border-[#529ce7]/70 rounded-lg px-4 transition-all duration-300"
           >
-            <img
-              class="w-5 h-5"
-              src="./assets/images/login_signup/apple-black-logo-svgrepo-com.svg"
-              alt="Apple"
+            <i class="bi bi-lock text-[#003e7b] mr-2"></i>
+            <input
+              id="password"
+              type="password"
+              name="password"
+              placeholder="Password"
+              class="w-full py-3 px-1 text-[16px] text-[#003e7b] placeholder:text-[#003e7b]/60 focus:outline-none bg-transparent caret-[#003e7b]"
             />
-            <p class="text-[16px] font-medium">Apple</p>
-          </a>
+            <i
+              id="showPassword"
+              class="bi bi-eye-slash-fill text-lg text-[#003e7b] cursor-pointer"
+            ></i>
+            <span
+            id="passwordError"
+            class="error absolute text-[12px] font-medium text-red-400 left-1 -bottom-5"
+          ></span>
+          </div>
+         
         </div>
 
-        <!-- Divider with improved styling -->
-        <div class="flex items-center justify-center mt-8">
-          <div
-            class="h-[1px] w-28 bg-gradient-to-r from-transparent via-[#bbddff] to-transparent"
-          ></div>
-          <p class="text-[#ffffff] text-[16px] mx-3 font-light">
-            Or continue with
-          </p>
-          <div
-            class="h-[1px] w-28 bg-gradient-to-r from-transparent via-[#bbddff] to-transparent"
-          ></div>
-        </div>
-
-        <!-- Form with modern input styling -->
-        <form
-          action="loginForm"
-          id="loginForm"
-          class="loginForm mt-8 lg:mt-10 max-w-sm mx-auto"
-        >
-          <div class="userName relative mb-8 group">
-            <div
-              class="flex items-center bg-white/5 border border-white/10 group-hover:border-[#529ce7]/70 rounded-lg px-4 transition-all duration-300"
-            >
-              <i class="bi bi-person text-[#305a84] mr-2"></i>
-              <input
-                id="username"
-                type="text"
-                name="username"
-                placeholder="Username"
-                class="w-full py-3 px-1 text-[16px] text-[#003e7b] placeholder:text-[#003e7b]/60 focus:outline-none bg-transparent caret-[#003e7b] select-text"
-              />
-              <span
-                id="userNameError"
-                class="error absolute text-[12px] font-medium text-red-400 left-1 -bottom-5"
-              ></span>
-            </div>
-          </div>
-
-          <div class="password relative group">
-            <div
-              class="flex items-center bg-white/5 border border-white/10 group-hover:border-[#529ce7]/70 rounded-lg px-4 transition-all duration-300"
-            >
-              <i class="bi bi-lock text-[#003e7b] mr-2"></i>
-              <input
-                id="password"
-                type="password"
-                name="password"
-                placeholder="Password"
-                class="w-full py-3 px-1 text-[16px] text-[#003e7b] placeholder:text-[#003e7b]/60 focus:outline-none bg-transparent caret-[#003e7b]"
-              />
-              <i
-                id="showPassword"
-                class="bi bi-eye-slash-fill text-lg text-[#003e7b] cursor-pointer"
-              ></i>
-              <span
-                id="passwordError"
-                class="error absolute text-[12px] font-medium text-red-400 left-1 -bottom-5"
-              ></span>
-            </div>
-          </div>
-
-          <!-- Forgot password link -->
-          <div class="mt-3 text-center lg:text-right">
-            <a
-              href="/forgot-password"
-              class="text-[#003e7b] text-sm hover:text-[#003d7bc6] transition-colors duration-300"
-              >Forgot Password?</a
-            >
-          </div>
-
-          <!-- Login button with improved styling -->
-          <button
-            type="submit"
-            id="loginSubmitbtn"
-            class="mt-8 w-full rounded-lg bg-gradient-to-r from-[#6190E8] to-[#0f238b] py-3 text-lg font-semibold hover:shadow-lg hover:shadow-blue-900/30 transition-all duration-300 text-white cursor-pointer"
+        <!-- Forgot password link -->
+        <div class="mt-3 text-center lg:text-right">
+          <a
+            href="/forgot-password"
+            class="text-[#003e7b] text-sm hover:text-[#003d7bc6] transition-colors duration-300"
+            >Forgot Password?</a
           >
-            Login
-          </button>
+        </div>
 
-          <!-- Sign up link -->
-          <p class="text-sm text-white mt-6">
-            Don't have an account?
-            <a
-              id="signup"
-              href="/register"
-              target="_blank"
-              class="text-[#bbddff] hover:text-white font-medium transition-colors duration-300"
-              >Sign Up</a
-            >
-          </p>
-        </form>
-      </div>
+        <!-- Login button with improved styling -->
+        <button
+          type="submit"
+          id="loginSubmitbtn"
+          class="mt-8 w-full rounded-lg bg-gradient-to-r from-[#6190E8] to-[#0f238b] py-3 text-lg font-semibold hover:shadow-lg hover:shadow-blue-900/30 transition-all duration-300 text-white cursor-pointer"
+        >
+          Login
+        </button>
+
+        <!-- Sign up link -->
+        <p class="text-sm text-white mt-6">
+          Don't have an account?
+          <a
+            id="signup"
+            href="/register"
+            target="_blank"
+            class="text-[#bbddff] hover:text-white font-medium transition-colors duration-300"
+            >Sign Up</a
+          >
+        </p>
+      </form>
     </div>
+  </div>
 
-    <!-- Display messages -->
-    <div id="displayError" class="hidden">
-      <div id="displayErrorContent">
-        <p id="message"></p>
-      </div>
-    </div>
-
-    <!------------- footer ------------- -->
-
-    <footer class="bg-[#092050] select-none mt-40">
-      <div
-        class="flex flex-col lg:flex-row lg:space-x-2 lg:space-y-0 lg:justify-center mx-5 mt-10 lg:py-10 px-5 pt-10 pb-14 space-y-16 text-gray-400 border-b-[1px] border-[#ffffffa7]"
-      >
-        <div class="lg:h-60 lg:w-56 lg:mr-24 text-pretty">
-          <p class="text-lg font-semibold text-gray-300 mb-2">Contact</p>
-          <ul class="text-sm space-y-3">
-            <li>
-              Address:
-              <address>Egra, East Midnapore, West Bengal, 721329</address>
-            </li>
-            <li>
-              Email:
-              <a href="mailto:growcropsteam@gmail.com"
-                >growcropsteam@gmail.com</a
-              >
-            </li>
-            <li>Follow us on:</li>
-            <li class="space-x-5 mt-1 ml-3 text-lg">
-              <a href=" https://wa.me/919800068420" target="_blank"
-                ><i class="bi bi-whatsapp text-green-600"></i
-              ></a>
-              <a target="_blank"><i class="bi bi-twitter-x text-black"></i></a>
-              <a target="_blank"
-                ><i class="fa-brands fa-linkedin text-blue-700"></i
-              ></a>
-            </li>
-          </ul>
-        </div>
-
-        <div class="lg:h-60 w-60 text-pretty">
-          <p class="text-lg font-semibold text-gray-300 mb-2">Quick Links</p>
-          <ul class="text-sm space-y-2">
-            <li><a href="/about">About Us</a></li>
-            <li><a href="/work">our Works</a></li>
-            <li><a href="/work">Our Team</a></li>
-            <li><a href="/work"></a>Read Article</li>
-          </ul>
-        </div>
-
-        <div class="lg:h-60 w-60 text-pretty">
-          <p class="text-lg font-semibold text-gray-300 mb-2">Help/Support</p>
-          <ul class="text-sm space-y-3">
-            <li><a href="/contact">Contact Us</a></li>
-            <li><a href="/help">help</a></li>
-            <li><a href="/support">Support</a></li>
-            <li><a href="/terms">Terms & Condition</a></li>
-          </ul>
-        </div>
-
-        <div class="lg:h-60 w-60 text-pretty">
-          <p class="text-lg font-semibold text-gray-300 mb-2">Community</p>
-          <ul class="text-sm space-y-3">
-            <li><a href="/team">Join our Community</a></li>
-            <li><a href="/gallery">Gallery</a></li>
-            <li><a href="/blog">Our Blogs</a></li>
-            <li><a href="/events">Special Events</a></li>
-          </ul>
-        </div>
-
-        <div class="w-60">
-          <div>
-            <p class="text-lg font-semibold text-gray-300">Write a review</p>
-            <p><a href="/review">feedback</a></p>
-          </div>
-          <!-- <div class="mt-16">
-              <p class="text-lg font-semibold text-gray-300 mb-2">
-                Download Our mobile app
+    
+      <!-- Footer -->
+      <footer class="bg-gray-900 select-none mt-20">
+        <div
+          class="flex flex-col lg:flex-row lg:space-x-2 lg:space-y-0 lg:justify-center mx-5 mt-10 lg:pt-8 lg:pb-4 px-5 pt-10 pb-10 space-y-16 text-gray-400"
+        >
+          <div class="lg:h-60 lg:w-56 lg:mr-24 text-pretty">
+            <div>
+              <div class="flex items-center mb-6">
+                <div
+                  class="h-10 w-10 bg-white rounded-lg flex items-center justify-center"
+                >
+                  <span class="text-[#000480] font-bold text-lg">C</span>
+                </div>
+                <span class="text-white font-bold ml-2 text-xl">Croponer</span>
+              </div>
+              <p class="text-gray-400 mb-6">
+                AI-powered agricultural technology for smarter, more efficient
+                farming.
               </p>
-              <img
-                class="inline-block h-8"
-                src="./img/hero/app-store.png"
-                alt=""
-              />
-              <img
-                class="inline-block h-8"
-                src="./img/hero/play-store.png"
-                alt=""
-              />
-            </div> -->
+              <div class="flex space-x-4">
+                <a
+                  href="#"
+                  class="text-gray-400 hover:text-white transition-colors"
+                >
+                  <i class="fab fa-twitter"></i>
+                </a>
+                <a
+                  href="#"
+                  class="text-gray-400 hover:text-white transition-colors"
+                >
+                  <i class="fab fa-facebook"></i>
+                </a>
+                <a
+                  href="#"
+                  class="text-gray-400 hover:text-white transition-colors"
+                >
+                  <i class="fab fa-linkedin"></i>
+                </a>
+                <a
+                  href="#"
+                  class="text-gray-400 hover:text-white transition-colors"
+                >
+                  <i class="fab fa-instagram"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+  
+          <div class="lg:h-60 w-60 text-pretty">
+            <p class="text-xl font-semibold text-gray-300 mb-2">Quick Links</p>
+            <ul class="space-y-2">
+              <li class="hover:text-gray-100"><a href="/about">About Us</a></li>
+              <li class="hover:text-gray-100"><a href="/work">our Works</a></li>
+              <li class="hover:text-gray-100"><a href="/team">Our Team</a></li>
+              <li class="hover:text-gray-100">
+                <a href="/articles">Read Article</a>
+              </li>
+            </ul>
+          </div>
+  
+          <div class="lg:h-60 w-60 text-pretty">
+            <p class="text-xl font-semibold text-gray-300 mb-2">Help/Support</p>
+            <ul class="space-y-3">
+              <li class="hover:text-gray-100">
+                <a href="/contact">Contact Us</a>
+              </li>
+              <li class="hover:text-gray-100"><a href="/help">help</a></li>
+              <li class="hover:text-gray-100"><a href="/support">Support</a></li>
+              <li class="hover:text-gray-100">
+                <a href="/terms">Terms & Condition</a>
+              </li>
+            </ul>
+          </div>
+  
+          <div class="lg:h-60 w-60 text-pretty">
+            <p class="text-xl font-semibold text-gray-300 mb-2">Community</p>
+            <ul class="space-y-3">
+              <li class="hover:text-gray-100">
+                <a href="/team">Join our Community</a>
+              </li>
+              <li class="hover:text-gray-100"><a href="/gallery">Gallery</a></li>
+              <li class="hover:text-gray-100"><a href="/blog">Our Blogs</a></li>
+              <li class="hover:text-gray-100">
+                <a href="/events">Special Events</a>
+              </li>
+            </ul>
+          </div>
+  
+          <div class="w-60">
+            <div>
+              <p class="text-xl font-semibold text-gray-300">Write a review</p>
+              <p class="hover:text-gray-100"><a href="/review">feedback</a></p>
+            </div>
+          </div>
         </div>
-      </div>
-      <!-- footer last -->
-      <div>
-        <p class="text-center align-middle p-6 text-sm text-gray-400">
-          &copy; 2025 Croponer. All rights reserved.
-        </p>
-      </div>
-    </footer>
-<!-- Loader -->
-    <div id="loader" class="hidden">
-      <div
-        class="fixed inset-0 z-30 flex items-center justify-center bg-[#000000d0]"
-      >
-        <div class="bouncing-balls">
-          <div class="bouncing-ball"></div>
-          <div class="bouncing-ball"></div>
-          <div class="bouncing-ball"></div>
-          <div class="bouncing-ball"></div>
-          <div class="bouncing-ball"></div>
+  
+        <!-- footer last -->
+  
+        <div
+          class="border-t border-gray-800 mt-10 pt-8 flex flex-col md:flex-row justify-between items-center pb-5 px-5"
+        >
+          <p class="text-gray-400 text-sm">
+            &copy; 2025 Croponer. All rights reserved.
+          </p>
+          <div class="flex space-x-6 mt-4 md:mt-0">
+            <a
+              href="#"
+              class="text-gray-400 hover:text-white transition-colors text-sm"
+              >Privacy Policy</a
+            >
+            <a
+              href="#"
+              class="text-gray-400 hover:text-white transition-colors text-sm"
+              >Terms of Service</a
+            >
+            <a
+              href="#"
+              class="text-gray-400 hover:text-white transition-colors text-sm"
+              >Cookie Policy</a
+            >
+          </div>
         </div>
+      </footer>
+
+
+   <!-- Enhanced display message system -->
+   <div id="displayMessage" class="hidden">
+    <div id="messageContent" class="message-type-error">
+      <p id="message"></p>
+    </div>
+  </div>
+
+  <!-- Loader -->
+  <div id="loader" class="hidden">
+    <div
+      class="fixed inset-0 flex z-30 items-center justify-center bg-[#000000d0]"
+    >
+      <div class="bouncing-balls">
+        <div class="bouncing-ball"></div>
+        <div class="bouncing-ball"></div>
+        <div class="bouncing-ball"></div>
+        <div class="bouncing-ball"></div>
+        <div class="bouncing-ball"></div>
       </div>
     </div>
+  </div>
 
     <script type="module" src="./assets/js/user.login_logout.js"></script>
   </body>

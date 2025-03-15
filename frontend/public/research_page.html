@@ -12,217 +12,105 @@
     <link rel="stylesheet" href="./assets/css/style.css" />
   </head>
 
-  <body class="bg-gray-50 ">
-     <!------------------------------------- Header------------------------->
-
-     <header class="bg-[#000480] w-full select-none sticky top-0 z-20">
+  <body class="bg-gray-50">
+    
+     <!-- Header -->
+     <header class="fixed w-full z-50 bg-white/90 backdrop-blur-md shadow-sm">
       <nav
-        aria-label="Main Navigation"
-        id="navbar"
-        class="w-full h-14 flex items-center justify-between px-5 lg:px-12 z-10 text-lg"
+        class="container mx-auto flex justify-between items-center px-4 py-3"
       >
-        <!-- logo -->
-        <div class="logo">
-          <img
-            class="w-full h-full select-none"
-            src="#"
-            alt="croponer logo"
-            loading="lazy"
-          />
-        </div>
-        <!-- menu bar -->
-        <div
-          id="menu"
-          class="bg-[#000480] h-screen w-56 top-[56px] right-[-224px] transition-all duration-500 delay-200 ease-in-out fixed rounded-bl-md z-20 lg:static lg:right-0 lg:block lg:z-0 lg:bg-transparent lg:h-auto lg:w-auto lg:top-auto lg:transition-none lg:delay-0 lg:ease-none lg:rounded-none lg:ml-10"
-        >
-          <ul
-            class="text-gray-300 p-4 ml-6 pl-5 text-lg lg:text-xl space-y-3 lg:space-y-0 lg:flex lg:space-x-6 lg:p-0"
-          >
-            <li
-              class="hover:cursor-pointer hover:text-gray-100 select-none text-lg"
-            >
-              <a href="/" target="_self">Home</a>
-            </li>
-            <li
-              class="hover:cursor-pointer hover:text-gray-100 select-none text-lg"
-            >
-              <a href="/about" target="_self">About</a>
-            </li>
-            <li class="hover:cursor-pointer hover:text-gray-100 select-none">
-              <a id="service" href="/blog" target="_self"> Blog </a>
-            </li>
-            <li class="hover:cursor-pointer hover:text-gray-100 select-none">
-              <a href="/research" target="_self">Research</a>
-            </li>
-            <li>
-              <!-- login for mobile screen -->
-              <div id="loginOptionMobile" class="relative lg:hidden">
-                <div id="loginDropDown" class="cursor-pointer">
-                  <p
-                    id="userProfile"
-                    class="hover:cursor-pointer text-gray-300 hover:text-white"
-                  >
-                    Login/signup
-                  </p>
-                </div>
-
-                <div
-                  id="loginDropDownMenu"
-                  class="absolute hidden right-0 w-44 mt-2 origin-top-right bg-gradient-to-b from-[#090d81] to-[#05063a] rounded-lg shadow-lg transform scale-95 transition-all duration-200 border border-[#1e1f6a] overflow-hidden"
-                >
-                  <div
-                    class="h-1 bg-gradient-to-r from-blue-500 via-indigo-500 to-purple-500"
-                  ></div>
-                  <div class="py-1.5 px-2">
-                    <!-- Login option -->
-                    <a
-                      href="/login"
-                      class="flex items-center text-gray-300 hover:text-white py-2.5 px-2 rounded-md hover:bg-[#141899] transition-all duration-200"
-                    >
-                      <svg
-                        class="w-5 h-5 mr-3"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke="currentColor"
-                      >
-                        <path
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
-                          stroke-width="2"
-                          d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1"
-                        />
-                      </svg>
-                      <span>Login</span>
-                    </a>
-                    <div class="my-2 border-b border-[#2d2f78]"></div>
-                    <a
-                      href="/register"
-                      class="flex items-center text-gray-300 hover:text-white py-2.5 px-2 rounded-md hover:bg-[#141899] transition-all duration-200"
-                    >
-                      <svg
-                        class="w-5 h-5 mr-3"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke="currentColor"
-                      >
-                        <path
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
-                          stroke-width="2"
-                          d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z"
-                        />
-                      </svg>
-                      <span>Sign up</span>
-                    </a>
-                  </div>
-                </div>
-              </div>
-            </li>
-            <li>
-              <!-- search bar -->
-              <div class="lg:hidden">
-                <i
-                  id="searchBar"
-                  class="bi bi-search cursor-pointer text-lg text-gray-300"
-                ></i>
-              </div>
-            </li>
-          </ul>
-        </div>
-
-        <!--login DropDown for large screen  -->
-        <div id="loginOptionDesktop" class="relative hidden lg:block lg:ml-96">
-          <div id="loginDropDown" class="cursor-pointer">
-            <p
-              id="userProfile"
-              class="hover:cursor-pointer text-gray-300 hover:text-white"
-            >
-              Login/signup
-            </p>
-          </div>
-
+        <!-- logo section -->
+        <div class="flex items-center">
           <div
-            id="loginDropDownMenu"
-            class="absolute hidden right-0 w-40 mt-2 lg:-right-8 bg-gradient-to-b from-[#090d81] to-[#05063a] rounded-lg shadow-lg transform scale-95 transition-all duration-200 border border-[#1e1f6a] overflow-hidden"
+            class="h-10 w-10 bg-[#000480] rounded-lg flex items-center justify-center"
           >
-            <div
-              class="h-1 bg-gradient-to-r from-blue-500 via-indigo-500 to-purple-500"
-            ></div>
-            <div class="py-2 px-3">
-              <!-- Login option -->
-              <a
-                href="/login"
-                class="flex items-center text-gray-300 hover:text-white py-2.5 px-2 rounded-md hover:bg-[#141899] transition-all duration-200"
-              >
-                <svg
-                  class="w-5 h-5 mr-3"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
+            <span class="text-white font-bold text-lg">C</span>
+          </div>
+          <span class="text-[#000480] font-bold ml-2 text-xl">Croponer</span>
+        </div>
+
+        <!-- Desktop Menu -->
+        <div class="hidden md:flex items-center space-x-8">
+          <a href="/" class="text-gray-900 hover:text-[#1f1faa] font-medium"
+            >Home</a
+          >
+          <a href="/about" class="text-gray-700 hover:text-[#1f1faa]"
+            >About us</a
+          >
+          <a href="/blog" class="text-gray-700 hover:text-[#1f1faa]">Blog</a>
+          <a href="/research" class="text-gray-700 hover:text-[#1f1faa]"
+            >Research</a
+          >
+        </div>
+        <!-- login/signup -->
+        <div class="flex items-center space-x-4">
+          <div id="profile" class="hidden">
+            <div class="flex items-center space-x-2 group cursor-pointer">
+              <div class="avatar w-10 h-10 rounded-full"></div>
+              <p class="group-hover:text-[#1f1faa]">
+                Hi
+                <span id="showName1" class="group-hover:text-[#1f1faa]"
+                  >user</span
                 >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1"
-                  />
-                </svg>
-                <span>Login</span>
-              </a>
-              <div class="my-2 border-b border-[#2d2f78]"></div>
-              <a
-                href="/register"
-                class="flex items-center text-gray-300 hover:text-white py-2.5 px-2 rounded-md hover:bg-[#141899] transition-all duration-200"
-              >
-                <svg
-                  class="w-5 h-5 mr-3"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z"
-                  />
-                </svg>
-                <span>Sign up</span>
-              </a>
+              </p>
             </div>
           </div>
-        </div>
+          <a
+            id="loginDesktop"
+            href="/login"
+            class="hidden md:inline-block text-gray-700 hover:text-[#1f1faa] font-medium"
+            >Login</a
+          >
 
-        <!-- search bar for large screen -->
-        <div id="searchBar" class="searchOption relative hidden lg:block">
-          <input
-            class="ml-2 w-56 h-10 bg-transparent text-gray-300 border border-gray-500 rounded-md py-1 px-3 focus:border-blue-500 focus:outline-none caret-blue-500 select-text transition duration-200 ease-in-out"
-            type="text"
-            name="search"
-            placeholder="Search"
-          />
-          <i
-            class="bi bi-search text-lg border text-gray-300 border-gray-500 rounded-md py-[6px] px-3 cursor-pointer hover:border-blue-500"
-          ></i>
-        </div>
-        <!-- user profile -->
-        <div id="userAvatar" class="userAvatar hidden ml-24 lg:ml-0">
-          <div
-            id="smallAvatar"
-            class="avatar rounded-full w-8 h-8 lg:w-10 lg:h-10 cursor-pointer"
-            role="button"
-            aria-label="user profile"
-          ></div>
-        </div>
-        <!------------ Menu Bar icon for Small Device----------->
-        <div class="lg:hidden">
-          <i
-            id="menuBar"
-            class="bi bi-list text-3xl cursor-pointer text-gray-300"
-          ></i>
+          <a
+            id="register"
+            href="/register"
+            class="bg-[#000480] hover:bg-[#1f1faa] text-white px-4 py-2 rounded-lg transition-colors"
+          >
+            Get Started
+          </a>
+          <!-- Mobile Menu Button -->
+          <button
+            id="menubar"
+            class="md:hidden text-gray-700 hover:text-[#1f1faa] cursor-pointer"
+          >
+            <i class="fas fa-bars text-xl"></i>
+          </button>
         </div>
       </nav>
+
+      <!-- Mobile Menu -->
+      <div
+        id="menu"
+        class="bg-white/90 h-screen w-56 top-16 right-[-224px] transition-all duration-500 delay-200 ease-in-out fixed rounded-bl-md z-20 md:hidden"
+      >
+        <div class="container ml-4 mx-auto px-4 py-3 space-y-1">
+          <a
+            href="/"
+            class="block py-2 text-gray-900 hover:text-[#1f1faa] font-medium"
+            >Home</a
+          >
+          <a href="/about" class="block py-2 text-gray-800 hover:text-[#1f1faa]"
+            >About us</a
+          >
+          <a href="/blog" class="block py-2 text-gray-800 hover:text-[#1f1faa]"
+            >Blog</a
+          >
+          <a
+            href="/research"
+            class="block py-2 text-gray-800 hover:text-[#1f1faa]"
+            >Research</a
+          >
+          <a
+            id="loginMobile"
+            href="/login"
+            class="block py-2 text-gray-800 hover:text-[#1f1faa]"
+            >Login</a
+          >
+        </div>
+      </div>
     </header>
+
     <main>
       <!-- Hero Section -->
       <div
@@ -296,7 +184,6 @@
                   src="./assets/images/research/ai-lab.jpg"
                   alt="Croponer Research Lab"
                   class="rounded-lg w-full h-auto shadow"
-                
                 />
               </div>
             </div>
@@ -321,7 +208,6 @@
                   src="./assets/images/research/disease-detection.jpg"
                   alt="Disease Detection"
                   class="w-full h-full object-cover"
-                 
                 />
               </div>
               <div class="p-6">
@@ -352,7 +238,6 @@
                   src="./assets/images/research/yield-prediction.jpg"
                   alt="Yield Prediction"
                   class="w-full h-full object-cover"
-                  
                 />
               </div>
               <div class="p-6">
@@ -383,7 +268,6 @@
                   src="./assets/images/research/soil-analysis.jpg"
                   alt="Soil Analysis"
                   class="w-full h-full object-cover"
-                 
                 />
               </div>
               <div class="p-6">
@@ -414,7 +298,6 @@
                   src="./assets/images/research/drought-resistant.jpg"
                   alt="Drought Resistant Farming"
                   class="w-full h-full object-cover"
-                 
                 />
               </div>
               <div class="p-6">
@@ -447,7 +330,6 @@
                   src="./assets/images/research/smart-irrigation.jpg"
                   alt="Smart Irrigation"
                   class="w-full h-full object-cover"
-                  
                 />
               </div>
               <div class="p-6">
@@ -480,7 +362,6 @@
                   src="./assets/images/research/mobile-tech.jpg"
                   alt="Mobile Technology"
                   class="w-full h-full object-cover"
-                  
                 />
               </div>
               <div class="p-6">
@@ -565,13 +446,11 @@
                 src="./assets/images/research/farmer-training.jpg"
                 alt="Farmer Training"
                 class="rounded-lg w-full md:w-1/2 h-auto"
-               
               />
               <img
                 src="./assets/images/research/field-testing.jpg"
                 alt="Field Testing"
                 class="rounded-lg w-full md:w-1/2 h-auto"
-
               />
             </div>
           </div>
@@ -594,7 +473,6 @@
                 src="./assets/images/team/dr-sharma.jpg"
                 alt="Dr. Aarav Sharma"
                 class="w-full h-56 object-cover object-center"
-               
               />
               <div class="p-6">
                 <h3 class="text-xl font-semibold text-gray-800 mb-1">
@@ -630,7 +508,6 @@
                 src="./assets/images/team/dr-patel.jpg"
                 alt="Dr. Priya Patel"
                 class="w-full h-56 object-cover object-center"
-                
               />
               <div class="p-6">
                 <h3 class="text-xl font-semibold text-gray-800 mb-1">
@@ -666,7 +543,6 @@
                 src="./assets/images/team/prof-nair.jpg"
                 alt="Prof. Rajiv Nair"
                 class="w-full h-56 object-cover object-center"
-                
               />
               <div class="p-6">
                 <h3 class="text-xl font-semibold text-gray-800 mb-1">
@@ -810,40 +686,52 @@
       </div>
     </main>
 
-    <!------------------------------------- Footer ------------------------->
-    <footer class="bg-[#0b1d40] select-none mt-20">
+     <!-- Footer -->
+     <footer class="bg-gray-900 select-none mt-20">
       <div
-        class="flex flex-col lg:flex-row lg:space-x-2 lg:space-y-0 lg:justify-center mx-5 mt-10 lg:pt-8 lg:pb-4 px-5 pt-10 pb-14 space-y-16 text-gray-400 border-b-[1px] border-[#ffffffa7]"
+        class="flex flex-col lg:flex-row lg:space-x-2 lg:space-y-0 lg:justify-center mx-5 mt-10 lg:pt-8 lg:pb-4 px-5 pt-10 pb-10 space-y-16 text-gray-400"
       >
         <div class="lg:h-60 lg:w-56 lg:mr-24 text-pretty">
-          <p class="text-xl font-semibold text-gray-300 mb-2">Contact Us</p>
-          <ul class="space-y-3">
-            <li>
-              Address:
-              <p>Egra, East Midnapore, West Bengal, 721329</p>
-            </li>
-            <li>
-              Email:
-              <a
-                class="hover:text-gray-100"
-                href="mailto:growcropsteam@gmail.com"
-                >growcropsteam@gmail.com</a
+          <div>
+            <div class="flex items-center mb-6">
+              <div
+                class="h-10 w-10 bg-white rounded-lg flex items-center justify-center"
               >
-            </li>
-            <li>Follow us on:</li>
-            <li class="space-x-5 mt-1 ml-3 text-lg">
+                <span class="text-[#000480] font-bold text-lg">C</span>
+              </div>
+              <span class="text-white font-bold ml-2 text-xl">Croponer</span>
+            </div>
+            <p class="text-gray-400 mb-6">
+              AI-powered agricultural technology for smarter, more efficient
+              farming.
+            </p>
+            <div class="flex space-x-4">
               <a
-                class="hover:text-green-700"
-                href=" https://wa.me/919800068420"
-                target="_blank"
-                ><i class="bi bi-whatsapp text-green-500"></i
-              ></a>
-              <a target="_blank"><i class="bi bi-twitter-x text-black"></i></a>
-              <a target="_blank"
-                ><i class="fa-brands fa-facebook text-blue-700"></i
-              ></a>
-            </li>
-          </ul>
+                href="#"
+                class="text-gray-400 hover:text-white transition-colors"
+              >
+                <i class="fab fa-twitter"></i>
+              </a>
+              <a
+                href="#"
+                class="text-gray-400 hover:text-white transition-colors"
+              >
+                <i class="fab fa-facebook"></i>
+              </a>
+              <a
+                href="#"
+                class="text-gray-400 hover:text-white transition-colors"
+              >
+                <i class="fab fa-linkedin"></i>
+              </a>
+              <a
+                href="#"
+                class="text-gray-400 hover:text-white transition-colors"
+              >
+                <i class="fab fa-instagram"></i>
+              </a>
+            </div>
+          </div>
         </div>
 
         <div class="lg:h-60 w-60 text-pretty">
@@ -896,53 +784,129 @@
 
       <!-- footer last -->
 
-      <div>
-        <p class="text-center align-middle p-6 text-gray-300">
-          &copy; 2025 Croponer. All rights reserved. Created by
-          <a
-            class="hover:text-blue-500"
-            href="https://amarnath404.web.app"
-            target="_blank"
-            >Amarnath Bera</a
-          >
+      <div
+        class="border-t border-gray-800 mt-10 pt-8 flex flex-col md:flex-row justify-between items-center pb-5 px-5"
+      >
+        <p class="text-gray-400 text-sm">
+          &copy; 2025 Croponer. All rights reserved.
         </p>
+        <div class="flex space-x-6 mt-4 md:mt-0">
+          <a
+            href="#"
+            class="text-gray-400 hover:text-white transition-colors text-sm"
+            >Privacy Policy</a
+          >
+          <a
+            href="#"
+            class="text-gray-400 hover:text-white transition-colors text-sm"
+            >Terms of Service</a
+          >
+          <a
+            href="#"
+            class="text-gray-400 hover:text-white transition-colors text-sm"
+            >Cookie Policy</a
+          >
+        </div>
       </div>
     </footer>
 
-      <!-- user profile  modal  after login -->
-      <div
+    <!-- user profile modal after login -->
+    <div
       id="userProfileModal"
-      class="absolute hidden h z-10 top-14 right-10 lg:right-0"
+      class="absolute hidden z-50 top-14 right-10 lg:right-0"
     >
       <div
-        class="bg-[#a5c7e2f5] w-48 h-64 flex flex-col items-center space-y-3 py-5 rounded-md text-lg"
+        class="bg-blue-100 w-56 flex flex-col items-center py-5 rounded-xl shadow-lg border border-blue-100/50 relative overflow-hidden"
       >
-        <div class="avatar w-20 h-20 rounded-full"></div>
-        <p
-          class=" border-b-2 border-transparent hover:border-b-2 hover:border-b-blue-700"
+        <div class="relative mb-3 z-10">
+          <div
+            class="avatar w-20 h-20 rounded-full border-2 border-blue-400 shadow-md bg-gray-100 flex items-center justify-center overflow-hidden"
+          >
+            <!-- If image fails to load, show initials -->
+            <span class="text-[#000480] text-2xl font-bold hidden">U</span>
+          </div>
+          <div
+            class="absolute bottom-0 right-0 w-5 h-5 bg-green-500 border-2 border-white rounded-full"
+          ></div>
+        </div>
+
+        <!-- Username -->
+        <div class="w-full px-4 mb-4 relative z-10">
+          <p class="text-center font-medium text-gray-800 text-lg">
+            <span id="showName2" class="truncate block">Username</span>
+          </p>
+        </div>
+
+        <!-- Menu Options -->
+        <div
+          class="w-full border-t border-blue-200/70 pt-3 px-3 space-y-1 relative z-10"
         >
-          <a href="/user-profile" ><span id="showName">Username</span></a>
-        </p>
-        <p
-          class="border-b-2 border-transparent hover:border-b-2 hover:border-b-blue-700"
-        >
-          <a href="/edit-profile">Update profile</a>
-        </p>
-        <p
-          class="logout border-b-2 border-transparent hover:border-b-2 hover:border-b-blue-700"
-        >
-          <a class="cursor-pointer">logout</a>
-        </p>
+          <!-- View Profile -->
+          <p>
+            <a
+              href="/user-profile"
+              class="flex items-center text-gray-700 px-3 py-2 rounded-lg hover:bg-blue-200/70 transition-colors group"
+            >
+              <i
+                class="fas fa-user mr-2.5 text-[#000480] opacity-70 group-hover:opacity-100"
+              ></i>
+              <span class="text-base">View Profile</span>
+            </a>
+          </p>
+
+          <!-- Update Profile -->
+          <p>
+            <a
+              href="/edit-profile"
+              class="flex items-center text-gray-700 px-3 py-2 rounded-lg hover:bg-blue-200/70 transition-colors group"
+            >
+              <i
+                class="fas fa-user-edit mr-2.5 text-[#000480] opacity-70 group-hover:opacity-100"
+              ></i>
+              <span class="text-base">Update Profile</span>
+            </a>
+          </p>
+
+          <!-- Divider -->
+          <div class="border-t border-blue-200/70 my-1"></div>
+
+          <!-- Logout -->
+          <p class="logout">
+            <a
+              class="flex items-center px-3 py-2 rounded-lg text-red-600 hover:bg-red-100/70 transition-colors group cursor-pointer"
+            >
+              <i
+                class="fas fa-sign-out-alt mr-2.5 opacity-70 group-hover:opacity-100"
+              ></i>
+              <span class="text-base">Logout</span>
+            </a>
+          </p>
+        </div>
       </div>
     </div>
 
-     <!-- display message -->
-     <div id="displayError" class="hidden">
-      <div id="displayErrorContent">
+    <!-- Enhanced display message system -->
+    <div id="displayMessage" class="hidden">
+      <div id="messageContent" class="message-type-error">
         <p id="message"></p>
       </div>
     </div>
 
-<script type="module" src="./assets/js/main.js"></script>
+    <!-- Loader -->
+    <div id="loader" class="hidden">
+      <div
+        class="fixed inset-0 flex z-30 items-center justify-center bg-[#000000d0]"
+      >
+        <div class="bouncing-balls">
+          <div class="bouncing-ball"></div>
+          <div class="bouncing-ball"></div>
+          <div class="bouncing-ball"></div>
+          <div class="bouncing-ball"></div>
+          <div class="bouncing-ball"></div>
+        </div>
+      </div>
+    </div>
+
+    <script type="module" src="./assets/js/main.js"></script>
   </body>
 </html>
