@@ -110,7 +110,7 @@ async function fetchUserDetails() {
             })
         }
         else{
-            console.log("error :",users.message);
+            console.log("error :",userProfile.message);
             
         }
     }

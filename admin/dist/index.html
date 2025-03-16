@@ -43,6 +43,7 @@
           />
           <button
             @click="open = !open"
+            aria-label="Toggle Sidebar"
             class="p-2 focus:outline-none hover:bg-gray-700 transition"
           >
             <i class="fa-solid fa-bars"></i>
@@ -207,16 +208,37 @@
           <div
             class="overflow-x-auto bg-slate-400 rounded-lg mt-10 mx-5 lg:mx-10 shadow-md"
           >
-            <div class="flex justify-between items-center my-2">
-              <p class="text-2xl font-semibold ml-4 text-[#04043b]">
+            <div class="flex flex-col sm:flex-row justify-between items-center my-2 px-4">
+              <p class="text-2xl font-semibold text-[#04043b]">
                 Task Panel
               </p>
-              <button
-                id="taskModalBtn"
-                class="bg-blue-600 text-white px-2 py-1 rounded-lg mx-5 hidden"
-              >
-                Add task
-              </button>
+              <div class="flex items-center space-x-4 mt-2 sm:mt-0">
+                <div class="flex items-center">
+                  <label class="mr-2 text-[#04043b]">Show entries:</label>
+                  <select 
+                    class="task-entries-select bg-white border border-gray-300 rounded px-2 py-1"
+                    aria-label="Number of tasks to display"
+                  >
+                    <option value="5">5</option>
+                    <option value="10">10</option>
+                    <option value="25">25</option>
+                    <option value="50">50</option>
+                  </select>
+                </div>
+                <div class="flex items-center">
+                  <input
+                    type="search"
+                    placeholder="Search tasks..."
+                    class="task-search border border-gray-300 rounded px-3 py-1 w-40 sm:w-auto"
+                  />
+                </div>
+                <button
+                  id="taskModalBtn"
+                  class="bg-blue-600 text-white px-2 py-1 rounded-lg hidden"
+                >
+                  Add task
+                </button>
+              </div>
             </div>
             <table
               class="task-table w-full border-collapse bg-slate-300 rounded-lg shadow-md"
@@ -280,9 +302,32 @@
             id="user-Data"
             class="overflow-x-auto bg-slate-400 rounded-lg mt-10 mx-5 lg:mx-10 shadow-md"
           >
-            <p class="text-2xl font-semibold my-2 ml-4 text-[#04043b]">
-              Users Panel
-            </p>
+            <div class="flex flex-col sm:flex-row justify-between items-center my-2 px-4">
+              <p class="text-2xl font-semibold text-[#04043b]">
+                Users Panel
+              </p>
+              <div class="flex items-center space-x-4 mt-2 sm:mt-0">
+                <div class="flex items-center">
+                  <label class="mr-2 text-[#04043b]">Show entries:</label>
+                  <select 
+                    class="user-entries-select bg-white border border-gray-300 rounded px-2 py-1"
+                    aria-label="Number of users to display"
+                  >
+                    <option value="5">5</option>
+                    <option value="10">10</option>
+                    <option value="25">25</option>
+                    <option value="50">50</option>
+                  </select>
+                </div>
+                <div class="flex items-center">
+                  <input
+                    type="search"
+                    placeholder="Search users..."
+                    class="user-search border border-gray-300 rounded px-3 py-1 w-40 sm:w-auto"
+                  />
+                </div>
+              </div>
+            </div>
             <table
               class="user-data-table bg-white table-auto w-full border-collapse rounded-lg shadow-md"
             >
@@ -307,6 +352,7 @@
                   <td class="py-4 px-6">
                     <img
                       src="./assets/images/person_circle.svg"
+                      alt="User Avatar"
                       class="w-18 h-18 rounded-full border border-gray-400 shadow-md"
                     />
                   </td>
@@ -318,6 +364,7 @@
                   <td class="py-4 px-6">
                     <img
                       src="./assets/images/person_circle.svg"
+                      alt="User Avatar"
                       class="w-12 h-12 rounded-full border border-gray-400 shadow-md"
                     />
                   </td>
@@ -335,7 +382,8 @@
                 class="hover:text-blue-500"
                 href="https://amarnath404.web.app"
                 target="_blank"
-                >Amarnath Bera</a
+                rel="noopener noreferrer"
+              >Amarnath Bera</a
               >
             </p>
           </div>

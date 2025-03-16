@@ -1,84 +1,1475 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Task Management</title>
-    <script defer src="scripts.js"></script>
-   <link rel="stylesheet" href="./assets/css/style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Croponer Admin Dashboard</title>
+  
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Alpine.js -->
+  <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.14.8/dist/cdn.min.js"></script>
+  
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: {
+              50: '#eef2ff',
+              100: '#e0e7ff',
+              500: '#6366f1',
+              600: '#4f46e5',
+              700: '#4338ca',
+              800: '#3730a3',
+              900: '#312e81'
+            },
+            secondary: {
+              50: '#f8fafc',
+              100: '#f1f5f9',
+              200: '#e2e8f0',
+              800: '#1e293b',
+              900: '#0f172a'
+            }
+          },
+          fontFamily: {
+            sans: ['Inter', 'sans-serif']
+          }
+        }
+      }
+    }
+  </script>
+  
+  <style type="text/css">
+    body {
+      font-family: 'Inter', sans-serif;
+    }
+    
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    
+    ::-webkit-scrollbar-track {
+      background: #f1f5f9;
+    }
+    
+    ::-webkit-scrollbar-thumb {
+      background: #94a3b8;
+      border-radius: 3px;
+    }
+    
+    ::-webkit-scrollbar-thumb:hover {
+      background: #64748b;
+    }
+    
+    /* Card hover effects */
+    .stat-card {
+      transition: all 0.3s ease;
+    }
+    
+    .stat-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+    }
+    
+    /* Table hover animation */
+    .table-row-fade {
+      transition: background-color 0.2s ease;
+    }
+  </style>
 </head>
-<body>
-    <h2>Task Management</h2>
 
-    <div
-    class="overflow-x-auto bg-slate-400 rounded-lg mt-10 mx-5 lg:mx-10 shadow-md"
-  >
-  <div class="flex justify-between items-center my-2">
-    <p class="text-2xl font-semibold  ml-4 text-[#04043b]">
-      Task Panel
-    </p>
-    <button id="taskModalBtn" class="bg-blue-600 text-white px-2 py-1 rounded-lg mx-5">Add task</button>
-  </div>
-    <table
-      class="task-table w-full border-collapse bg-slate-300 rounded-lg shadow-md"
+<body class="bg-secondary-100 antialiased">
+  <div x-data="{ sidebarOpen: true, userDropdownOpen: false, notificationsOpen: false }" class="flex h-screen overflow-hidden">
+    
+    <!-- Sidebar -->
+    <div 
+      :class="sidebarOpen ? 'translate-x-0 w-64' : '-translate-x-full lg:translate-x-0 lg:w-20'"
+      class="fixed inset-y-0 left-0 z-30 flex-shrink-0 bg-primary-900 text-white transition-all duration-300 lg:static"
     >
-      <!-- Table Head -->
-      <thead
-        class="bg-gradient-to-r from-gray-500 to-gray-700 text-white"
-      >
-        <tr>
-          <th class="py-4 px-6 text-left">Title</th>
-          <th class="py-4 px-6 text-left">Description</th>
-          <th class="py-4 px-6 text-left">Assigned To</th>
-          <th class="py-4 px-6 text-left">Status</th>
-          <th class="py-4 px-6 text-left">Priority</th>
-          <th class="py-4 px-6 text-left">Due Date</th>
-          <th class="py-4 px-6 text-left">Actions</th>
-        </tr>
-      </thead>
+      <!-- Logo and Toggle -->
+      <div class="flex h-16 items-center justify-between px-4 py-5">
+        <div class="flex items-center space-x-2">
+          <svg class="h-8 w-8 text-primary-100" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
+          </svg>
+          <span :class="sidebarOpen ? 'opacity-100' : 'opacity-0 lg:hidden'" class="text-xl font-bold transition-opacity">Croponer</span>
+        </div>
+        <button 
+          @click="sidebarOpen = !sidebarOpen"
+          class="text-white focus:outline-none lg:hidden"
+        >
+          <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+          </svg>
+        </button>
+      </div>
+      
+      <!-- Navigation -->
+      <nav class="mt-5 px-2">
+        <div class="space-y-1">
+          <!-- Dashboard -->
+          <a href="#" class="group flex items-center rounded-lg bg-primary-800 px-4 py-3 text-sm font-medium text-white">
+            <svg class="mr-3 h-5 w-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path>
+            </svg>
+            <span :class="sidebarOpen ? 'opacity-100' : 'opacity-0 hidden lg:inline-block'" class="transition-opacity">Dashboard</span>
+          </a>
+          
+          <!-- Users -->
+          <a href="#" class="group flex items-center rounded-lg px-4 py-3 text-sm font-medium text-primary-100 hover:bg-primary-800">
+            <svg class="mr-3 h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"></path>
+            </svg>
+            <span :class="sidebarOpen ? 'opacity-100' : 'opacity-0 hidden lg:inline-block'" class="transition-opacity">Manage Users</span>
+          </a>
+          
+          <!-- Tasks -->
+          <a href="#" class="group flex items-center rounded-lg px-4 py-3 text-sm font-medium text-primary-100 hover:bg-primary-800">
+            <svg class="mr-3 h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"></path>
+            </svg>
+            <span :class="sidebarOpen ? 'opacity-100' : 'opacity-0 hidden lg:inline-block'" class="transition-opacity">Task Panel</span>
+          </a>
+          
+          <!-- Settings -->
+          <a href="#" class="group flex items-center rounded-lg px-4 py-3 text-sm font-medium text-primary-100 hover:bg-primary-800">
+            <svg class="mr-3 h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path>
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+            </svg>
+            <span :class="sidebarOpen ? 'opacity-100' : 'opacity-0 hidden lg:inline-block'" class="transition-opacity">Admin Settings</span>
+          </a>
+        </div>
+      </nav>
+    </div>
+    
+    <!-- Main Content -->
+    <div class="flex flex-1 flex-col overflow-hidden">
+      <!-- Navbar -->
+      <header class="bg-white shadow">
+        <div class="flex h-16 items-center justify-between px-4 sm:px-6 lg:px-8">
+          <!-- Left: Hamburger menu & Search -->
+          <div class="flex items-center space-x-3">
+            <button 
+              @click="sidebarOpen = !sidebarOpen"
+              class="rounded-md p-2 text-gray-500 hover:bg-gray-100 hover:text-gray-900 focus:outline-none lg:hidden"
+            >
+              <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+              </svg>
+            </button>
+            
+            <div class="hidden sm:block">
+              <div class="relative max-w-xs">
+                <input type="text" class="block w-full rounded-md border border-gray-300 bg-gray-50 py-2 pl-10 pr-3 text-sm placeholder-gray-400 focus:border-primary-500 focus:outline-none focus:ring-1 focus:ring-primary-500" placeholder="Search...">
+                <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
+                  <svg class="h-4 w-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                  </svg>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Right: Notifications & User -->
+          <div class="flex items-center space-x-4">
+            <!-- Notifications -->
+            <div class="relative" x-data="{ notificationsOpen: false }">
+              <button 
+                @click="notificationsOpen = !notificationsOpen"
+                class="flex rounded-full p-1 text-gray-500 hover:bg-gray-100 hover:text-gray-900 focus:outline-none"
+              >
+                <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"></path>
+                </svg>
+                <span class="absolute right-0 top-0 flex h-2 w-2">
+                  <span class="absolute inline-flex h-full w-full animate-ping rounded-full bg-red-400 opacity-75"></span>
+                  <span class="relative inline-flex h-2 w-2 rounded-full bg-red-500"></span>
+                </span>
+              </button>
+              
+              <!-- Notification Dropdown -->
+              <div 
+                x-show="notificationsOpen" 
+                @click.away="notificationsOpen = false"
+                x-transition:enter="transition ease-out duration-100"
+                x-transition:enter-start="transform opacity-0 scale-95"
+                x-transition:enter-end="transform opacity-100 scale-100"
+                x-transition:leave="transition ease-in duration-75"
+                x-transition:leave-start="transform opacity-100 scale-100"
+                x-transition:leave-end="transform opacity-0 scale-95"
+                class="absolute right-0 mt-2 w-80 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
+                style="display: none;"
+              >
+                <div class="py-1">
+                  <div class="border-b border-gray-200 px-4 py-2">
+                    <p class="text-sm font-medium text-gray-700">Notifications</p>
+                  </div>
+                  <div class="max-h-64 overflow-y-auto">
+                    <a href="#" class="block px-4 py-2 hover:bg-gray-100">
+                      <div class="flex items-start">
+                        <div class="flex-shrink-0">
+                          <span class="flex h-8 w-8 items-center justify-center rounded-full bg-primary-100 text-primary-600">
+                            <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
+                            </svg>
+                          </span>
+                        </div>
+                        <div class="ml-3 w-0 flex-1">
+                          <p class="text-sm font-medium text-gray-900">New task assigned</p>
+                          <p class="mt-1 text-xs text-gray-500">5 minutes ago</p>
+                        </div>
+                      </div>
+                    </a>
+                    <a href="#" class="block px-4 py-2 hover:bg-gray-100">
+                      <div class="flex items-start">
+                        <div class="flex-shrink-0">
+                          <span class="flex h-8 w-8 items-center justify-center rounded-full bg-green-100 text-green-600">
+                            <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                            </svg>
+                          </span>
+                        </div>
+                        <div class="ml-3 w-0 flex-1">
+                          <p class="text-sm font-medium text-gray-900">Task completed successfully</p>
+                          <p class="mt-1 text-xs text-gray-500">1 hour ago</p>
+                        </div>
+                      </div>
+                    </a>
+                  </div>
+                  <div class="border-t border-gray-200 px-4 py-2 text-center">
+                    <a href="#" class="text-xs font-medium text-primary-600 hover:text-primary-500">View all notifications</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <!-- User Menu -->
+            <div class="relative" x-data="{ userMenuOpen: false }">
+              <button 
+                @click="userMenuOpen = !userMenuOpen" 
+                class="flex items-center space-x-2 rounded-full text-gray-700 hover:text-gray-900 focus:outline-none"
+              >
+                <span class="hidden text-sm font-medium md:block">Admin</span>
+                <img class="h-8 w-8 rounded-full" src="https://ui-avatars.com/api/?name=Admin&background=4f46e5&color=fff" alt="User avatar">
+              </button>
+              
+              <!-- User Dropdown -->
+              <div 
+                x-show="userMenuOpen" 
+                @click.away="userMenuOpen = false"
+                x-transition:enter="transition ease-out duration-100"
+                x-transition:enter-start="transform opacity-0 scale-95"
+                x-transition:enter-end="transform opacity-100 scale-100"
+                x-transition:leave="transition ease-in duration-75"
+                x-transition:leave-start="transform opacity-100 scale-100"
+                x-transition:leave-end="transform opacity-0 scale-95"
+                class="absolute right-0 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
+                style="display: none;"
+              >
+                <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Your Profile</a>
+                <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Settings</a>
+                <div class="border-t border-gray-100"></div>
+                <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Sign out</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </header>
+      
+      <!-- Main Content Area -->
+      <main class="flex-1 overflow-y-auto bg-secondary-50 p-4 sm:p-6 lg:p-8">
+        <!-- Page Header -->
+        <div class="mb-8 sm:flex sm:items-center sm:justify-between">
+          <div>
+            <h1 class="text-2xl font-bold text-secondary-900">Dashboard Overview</h1>
+            <p class="mt-1 text-sm text-gray-500">Monitor your key metrics and performance</p>
+          </div>
+          <div class="mt-4 flex sm:mt-0">
+            <button class="inline-flex items-center rounded-md border border-transparent bg-primary-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2">
+              <svg class="-ml-1 mr-2 h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
+              </svg>
+              Add New Task
+            </button>
+          </div>
+        </div>
+        
+        <!-- Stats Cards -->
+        <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          <!-- Visitors -->
+          <div class="stat-card overflow-hidden rounded-lg bg-white shadow transition">
+            <div class="p-5">
+              <div class="flex items-center">
+                <div class="flex-shrink-0 rounded-md bg-indigo-100 p-3">
+                  <svg class="h-6 w-6 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path>
+                  </svg>
+                </div>
+                <div class="ml-4 flex-1">
+                  <h3 class="text-sm font-medium text-gray-500">Visitors</h3>
+                  <div class="mt-1 flex items-baseline">
+                    <p class="text-2xl font-semibold text-gray-900">1,342</p>
+                    <p class="ml-2 text-xs font-medium text-green-500">
+                      <span>↑ 12%</span>
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="bg-gray-50 px-5 py-3">
+              <div class="text-sm">
+                <a href="#" class="font-medium text-primary-600 hover:text-primary-500">View all</a>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Total Users -->
+          <div class="stat-card overflow-hidden rounded-lg bg-white shadow transition">
+            <div class="p-5">
+              <div class="flex items-center">
+                <div class="flex-shrink-0 rounded-md bg-blue-100 p-3">
+                  <svg class="h-6 w-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"></path>
+                  </svg>
+                </div>
+                <div class="ml-4 flex-1">
+                  <h3 class="text-sm font-medium text-gray-500">Total Users</h3>
+                  <div class="mt-1 flex items-baseline">
+                    <p class="text-2xl font-semibold text-gray-900">2,840</p>
+                    <p class="ml-2 text-xs font-medium text-green-500">
+                      <span>↑ 8.2%</span>
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="bg-gray-50 px-5 py-3">
+              <div class="text-sm">
+                <a href="#" class="font-medium text-primary-600 hover:text-primary-500">View all</a>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Orders -->
+          <div class="stat-card overflow-hidden rounded-lg bg-white shadow transition">
+            <div class="p-5">
+              <div class="flex items-center">
+                <div class="flex-shrink-0 rounded-md bg-purple-100 p-3">
+                  <svg class="h-6 w-6 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path>
+                  </svg>
+                </div>
+                <div class="ml-4 flex-1">
+                  <h3 class="text-sm font-medium text-gray-500">Orders</h3>
+                  <div class="mt-1 flex items-baseline">
+                    <p class="text-2xl font-semibold text-gray-900">543</p>
+                    <p class="ml-2 text-xs font-medium text-green-500">
+                      <span>↑ 5.7%</span>
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="bg-gray-50 px-5 py-3">
+              <div class="text-sm">
+                <a href="#" class="font-medium text-primary-600 hover:text-primary-500">View all</a>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Admins -->
+          <div class="stat-card overflow-hidden rounded-lg bg-white shadow transition">
+            <div class="p-5">
+              <div class="flex items-center">
+                <div class="flex-shrink-0 rounded-md bg-teal-100 p-3">
+                  <svg class="h-6 w-6 text-teal-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5.121 17.804A13.937 13.937 0 0112 16c2.5 0 4.847.655 6.879 1.804M15 10a3 3 0 11-6 0 3 3 0 016 0zm6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                  </svg>
+                </div>
+                <div class="ml-4 flex-1">
+                  <h3 class="text-sm font-medium text-gray-500">Admins</h3>
+                  <div class="mt-1 flex items-baseline">
+                    <p class="text-2xl font-semibold text-gray-900">5</p>
+                    <p class="ml-2 text-xs font-medium text-gray-500">Active</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="bg-gray-50 px-5 py-3">
+              <div class="text-sm">
+                <a href="#" class="font-medium text-primary-600 hover:text-primary-500">Manage</a>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Tasks Table -->
+        <div class="mt-8">
+          <div class="rounded-lg bg-white shadow">
+            <div class="border-b border-gray-200 px-6 py-4 sm:flex sm:items-center sm:justify-between">
+              <h3 class="text-lg font-medium text-gray-900">Tasks Panel</h3>
+              <div class="mt-3 flex sm:mt-0 sm:space-x-3">
+                <div class="flex items-center">
+                  <label for="entries" class="mr-2 text-sm font-medium text-gray-700">Show:</label>
+                  <select id="entries" class="rounded-md border-gray-300 py-1 pl-3 pr-8 text-sm focus:border-primary-500 focus:outline-none focus:ring-primary-500">
+                    <option>10</option>
+                    <option>25</option>
+                    <option>50</option>
+                  </select>
+                </div>
+                <div class="relative mt-1 rounded-md shadow-sm">
+                  dist\modern-admin.html -->
+                  <!DOCTYPE html>
+                  <html lang="en">
+                  <head>
+                    <meta charset="UTF-8">
+                    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                    <title>Croponer Admin Dashboard</title>
+                    
+                    <!-- Font Awesome -->
+                    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+                    
+                    <!-- Google Fonts -->
+                    <link rel="preconnect" href="https://fonts.googleapis.com">
+                    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+                    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+                    
+                    <!-- Alpine.js -->
+                    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.14.8/dist/cdn.min.js"></script>
+                    
+                    <!-- Tailwind CSS -->
+                    <script src="https://cdn.tailwindcss.com"></script>
+                    
+                    <script>
+                      tailwind.config = {
+                        theme: {
+                          extend: {
+                            colors: {
+                              primary: {
+                                50: '#eef2ff',
+                                100: '#e0e7ff',
+                                500: '#6366f1',
+                                600: '#4f46e5',
+                                700: '#4338ca',
+                                800: '#3730a3',
+                                900: '#312e81'
+                              },
+                              secondary: {
+                                50: '#f8fafc',
+                                100: '#f1f5f9',
+                                200: '#e2e8f0',
+                                800: '#1e293b',
+                                900: '#0f172a'
+                              }
+                            },
+                            fontFamily: {
+                              sans: ['Inter', 'sans-serif']
+                            }
+                          }
+                        }
+                      }
+                    </script>
+                    
+                    <style type="text/css">
+                      body {
+                        font-family: 'Inter', sans-serif;
+                      }
+                      
+                      /* Custom Scrollbar */
+                      ::-webkit-scrollbar {
+                        width: 6px;
+                        height: 6px;
+                      }
+                      
+                      ::-webkit-scrollbar-track {
+                        background: #f1f5f9;
+                      }
+                      
+                      ::-webkit-scrollbar-thumb {
+                        background: #94a3b8;
+                        border-radius: 3px;
+                      }
+                      
+                      ::-webkit-scrollbar-thumb:hover {
+                        background: #64748b;
+                      }
+                      
+                      /* Card hover effects */
+                      .stat-card {
+                        transition: all 0.3s ease;
+                      }
+                      
+                      .stat-card:hover {
+                        transform: translateY(-5px);
+                        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+                      }
+                      
+                      /* Table hover animation */
+                      .table-row-fade {
+                        transition: background-color 0.2s ease;
+                      }
+                    </style>
+                  </head>
+                  
+                  <body class="bg-secondary-100 antialiased">
+                    <div x-data="{ sidebarOpen: true, userDropdownOpen: false, notificationsOpen: false }" class="flex h-screen overflow-hidden">
+                      
+                      <!-- Sidebar -->
+                      <div 
+                        :class="sidebarOpen ? 'translate-x-0 w-64' : '-translate-x-full lg:translate-x-0 lg:w-20'"
+                        class="fixed inset-y-0 left-0 z-30 flex-shrink-0 bg-primary-900 text-white transition-all duration-300 lg:static"
+                      >
+                        <!-- Logo and Toggle -->
+                        <div class="flex h-16 items-center justify-between px-4 py-5">
+                          <div class="flex items-center space-x-2">
+                            <svg class="h-8 w-8 text-primary-100" viewBox="0 0 24 24" fill="currentColor">
+                              <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
+                            </svg>
+                            <span :class="sidebarOpen ? 'opacity-100' : 'opacity-0 lg:hidden'" class="text-xl font-bold transition-opacity">Croponer</span>
+                          </div>
+                          <button 
+                            @click="sidebarOpen = !sidebarOpen"
+                            class="text-white focus:outline-none lg:hidden"
+                          >
+                            <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                            </svg>
+                          </button>
+                        </div>
+                        
+                        <!-- Navigation -->
+                        <nav class="mt-5 px-2">
+                          <div class="space-y-1">
+                            <!-- Dashboard -->
+                            <a href="#" class="group flex items-center rounded-lg bg-primary-800 px-4 py-3 text-sm font-medium text-white">
+                              <svg class="mr-3 h-5 w-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path>
+                              </svg>
+                              <span :class="sidebarOpen ? 'opacity-100' : 'opacity-0 hidden lg:inline-block'" class="transition-opacity">Dashboard</span>
+                            </a>
+                            
+                            <!-- Users -->
+                            <a href="#" class="group flex items-center rounded-lg px-4 py-3 text-sm font-medium text-primary-100 hover:bg-primary-800">
+                              <svg class="mr-3 h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"></path>
+                              </svg>
+                              <span :class="sidebarOpen ? 'opacity-100' : 'opacity-0 hidden lg:inline-block'" class="transition-opacity">Manage Users</span>
+                            </a>
+                            
+                            <!-- Tasks -->
+                            <a href="#" class="group flex items-center rounded-lg px-4 py-3 text-sm font-medium text-primary-100 hover:bg-primary-800">
+                              <svg class="mr-3 h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"></path>
+                              </svg>
+                              <span :class="sidebarOpen ? 'opacity-100' : 'opacity-0 hidden lg:inline-block'" class="transition-opacity">Task Panel</span>
+                            </a>
+                            
+                            <!-- Settings -->
+                            <a href="#" class="group flex items-center rounded-lg px-4 py-3 text-sm font-medium text-primary-100 hover:bg-primary-800">
+                              <svg class="mr-3 h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path>
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                              </svg>
+                              <span :class="sidebarOpen ? 'opacity-100' : 'opacity-0 hidden lg:inline-block'" class="transition-opacity">Admin Settings</span>
+                            </a>
+                          </div>
+                        </nav>
+                      </div>
+                      
+                      <!-- Main Content -->
+                      <div class="flex flex-1 flex-col overflow-hidden">
+                        <!-- Navbar -->
+                        <header class="bg-white shadow">
+                          <div class="flex h-16 items-center justify-between px-4 sm:px-6 lg:px-8">
+                            <!-- Left: Hamburger menu & Search -->
+                            <div class="flex items-center space-x-3">
+                              <button 
+                                @click="sidebarOpen = !sidebarOpen"
+                                class="rounded-md p-2 text-gray-500 hover:bg-gray-100 hover:text-gray-900 focus:outline-none lg:hidden"
+                              >
+                                <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                                </svg>
+                              </button>
+                              
+                              <div class="hidden sm:block">
+                                <div class="relative max-w-xs">
+                                  <input type="text" class="block w-full rounded-md border border-gray-300 bg-gray-50 py-2 pl-10 pr-3 text-sm placeholder-gray-400 focus:border-primary-500 focus:outline-none focus:ring-1 focus:ring-primary-500" placeholder="Search...">
+                                  <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
+                                    <svg class="h-4 w-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                                    </svg>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                            
+                            <!-- Right: Notifications & User -->
+                            <div class="flex items-center space-x-4">
+                              <!-- Notifications -->
+                              <div class="relative" x-data="{ notificationsOpen: false }">
+                                <button 
+                                  @click="notificationsOpen = !notificationsOpen"
+                                  class="flex rounded-full p-1 text-gray-500 hover:bg-gray-100 hover:text-gray-900 focus:outline-none"
+                                >
+                                  <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"></path>
+                                  </svg>
+                                  <span class="absolute right-0 top-0 flex h-2 w-2">
+                                    <span class="absolute inline-flex h-full w-full animate-ping rounded-full bg-red-400 opacity-75"></span>
+                                    <span class="relative inline-flex h-2 w-2 rounded-full bg-red-500"></span>
+                                  </span>
+                                </button>
+                                
+                                <!-- Notification Dropdown -->
+                                <div 
+                                  x-show="notificationsOpen" 
+                                  @click.away="notificationsOpen = false"
+                                  x-transition:enter="transition ease-out duration-100"
+                                  x-transition:enter-start="transform opacity-0 scale-95"
+                                  x-transition:enter-end="transform opacity-100 scale-100"
+                                  x-transition:leave="transition ease-in duration-75"
+                                  x-transition:leave-start="transform opacity-100 scale-100"
+                                  x-transition:leave-end="transform opacity-0 scale-95"
+                                  class="absolute right-0 mt-2 w-80 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
+                                  style="display: none;"
+                                >
+                                  <div class="py-1">
+                                    <div class="border-b border-gray-200 px-4 py-2">
+                                      <p class="text-sm font-medium text-gray-700">Notifications</p>
+                                    </div>
+                                    <div class="max-h-64 overflow-y-auto">
+                                      <a href="#" class="block px-4 py-2 hover:bg-gray-100">
+                                        <div class="flex items-start">
+                                          <div class="flex-shrink-0">
+                                            <span class="flex h-8 w-8 items-center justify-center rounded-full bg-primary-100 text-primary-600">
+                                              <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
+                                              </svg>
+                                            </span>
+                                          </div>
+                                          <div class="ml-3 w-0 flex-1">
+                                            <p class="text-sm font-medium text-gray-900">New task assigned</p>
+                                            <p class="mt-1 text-xs text-gray-500">5 minutes ago</p>
+                                          </div>
+                                        </div>
+                                      </a>
+                                      <a href="#" class="block px-4 py-2 hover:bg-gray-100">
+                                        <div class="flex items-start">
+                                          <div class="flex-shrink-0">
+                                            <span class="flex h-8 w-8 items-center justify-center rounded-full bg-green-100 text-green-600">
+                                              <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                              </svg>
+                                            </span>
+                                          </div>
+                                          <div class="ml-3 w-0 flex-1">
+                                            <p class="text-sm font-medium text-gray-900">Task completed successfully</p>
+                                            <p class="mt-1 text-xs text-gray-500">1 hour ago</p>
+                                          </div>
+                                        </div>
+                                      </a>
+                                    </div>
+                                    <div class="border-t border-gray-200 px-4 py-2 text-center">
+                                      <a href="#" class="text-xs font-medium text-primary-600 hover:text-primary-500">View all notifications</a>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                              
+                              <!-- User Menu -->
+                              <div class="relative" x-data="{ userMenuOpen: false }">
+                                <button 
+                                  @click="userMenuOpen = !userMenuOpen" 
+                                  class="flex items-center space-x-2 rounded-full text-gray-700 hover:text-gray-900 focus:outline-none"
+                                >
+                                  <span class="hidden text-sm font-medium md:block">Admin</span>
+                                  <img class="h-8 w-8 rounded-full" src="https://ui-avatars.com/api/?name=Admin&background=4f46e5&color=fff" alt="User avatar">
+                                </button>
+                                
+                                <!-- User Dropdown -->
+                                <div 
+                                  x-show="userMenuOpen" 
+                                  @click.away="userMenuOpen = false"
+                                  x-transition:enter="transition ease-out duration-100"
+                                  x-transition:enter-start="transform opacity-0 scale-95"
+                                  x-transition:enter-end="transform opacity-100 scale-100"
+                                  x-transition:leave="transition ease-in duration-75"
+                                  x-transition:leave-start="transform opacity-100 scale-100"
+                                  x-transition:leave-end="transform opacity-0 scale-95"
+                                  class="absolute right-0 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
+                                  style="display: none;"
+                                >
+                                  <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Your Profile</a>
+                                  <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Settings</a>
+                                  <div class="border-t border-gray-100"></div>
+                                  <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Sign out</a>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </header>
+                        
+                        <!-- Main Content Area -->
+                        <main class="flex-1 overflow-y-auto bg-secondary-50 p-4 sm:p-6 lg:p-8">
+                          <!-- Page Header -->
+                          <div class="mb-8 sm:flex sm:items-center sm:justify-between">
+                            <div>
+                              <h1 class="text-2xl font-bold text-secondary-900">Dashboard Overview</h1>
+                              <p class="mt-1 text-sm text-gray-500">Monitor your key metrics and performance</p>
+                            </div>
+                            <div class="mt-4 flex sm:mt-0">
+                              <button class="inline-flex items-center rounded-md border border-transparent bg-primary-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2">
+                                <svg class="-ml-1 mr-2 h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
+                                </svg>
+                                Add New Task
+                              </button>
+                            </div>
+                          </div>
+                          
+                          <!-- Stats Cards -->
+                          <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+                            <!-- Visitors -->
+                            <div class="stat-card overflow-hidden rounded-lg bg-white shadow transition">
+                              <div class="p-5">
+                                <div class="flex items-center">
+                                  <div class="flex-shrink-0 rounded-md bg-indigo-100 p-3">
+                                    <svg class="h-6 w-6 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path>
+                                    </svg>
+                                  </div>
+                                  <div class="ml-4 flex-1">
+                                    <h3 class="text-sm font-medium text-gray-500">Visitors</h3>
+                                    <div class="mt-1 flex items-baseline">
+                                      <p class="text-2xl font-semibold text-gray-900">1,342</p>
+                                      <p class="ml-2 text-xs font-medium text-green-500">
+                                        <span>↑ 12%</span>
+                                      </p>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="bg-gray-50 px-5 py-3">
+                                <div class="text-sm">
+                                  <a href="#" class="font-medium text-primary-600 hover:text-primary-500">View all</a>
+                                </div>
+                              </div>
+                            </div>
+                            
+                            <!-- Total Users -->
+                            <div class="stat-card overflow-hidden rounded-lg bg-white shadow transition">
+                              <div class="p-5">
+                                <div class="flex items-center">
+                                  <div class="flex-shrink-0 rounded-md bg-blue-100 p-3">
+                                    <svg class="h-6 w-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"></path>
+                                    </svg>
+                                  </div>
+                                  <div class="ml-4 flex-1">
+                                    <h3 class="text-sm font-medium text-gray-500">Total Users</h3>
+                                    <div class="mt-1 flex items-baseline">
+                                      <p class="text-2xl font-semibold text-gray-900">2,840</p>
+                                      <p class="ml-2 text-xs font-medium text-green-500">
+                                        <span>↑ 8.2%</span>
+                                      </p>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="bg-gray-50 px-5 py-3">
+                                <div class="text-sm">
+                                  <a href="#" class="font-medium text-primary-600 hover:text-primary-500">View all</a>
+                                </div>
+                              </div>
+                            </div>
+                            
+                            <!-- Orders -->
+                            <div class="stat-card overflow-hidden rounded-lg bg-white shadow transition">
+                              <div class="p-5">
+                                <div class="flex items-center">
+                                  <div class="flex-shrink-0 rounded-md bg-purple-100 p-3">
+                                    <svg class="h-6 w-6 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path>
+                                    </svg>
+                                  </div>
+                                  <div class="ml-4 flex-1">
+                                    <h3 class="text-sm font-medium text-gray-500">Orders</h3>
+                                    <div class="mt-1 flex items-baseline">
+                                      <p class="text-2xl font-semibold text-gray-900">543</p>
+                                      <p class="ml-2 text-xs font-medium text-green-500">
+                                        <span>↑ 5.7%</span>
+                                      </p>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="bg-gray-50 px-5 py-3">
+                                <div class="text-sm">
+                                  <a href="#" class="font-medium text-primary-600 hover:text-primary-500">View all</a>
+                                </div>
+                              </div>
+                            </div>
+                            
+                            <!-- Admins -->
+                            <div class="stat-card overflow-hidden rounded-lg bg-white shadow transition">
+                              <div class="p-5">
+                                <div class="flex items-center">
+                                  <div class="flex-shrink-0 rounded-md bg-teal-100 p-3">
+                                    <svg class="h-6 w-6 text-teal-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5.121 17.804A13.937 13.937 0 0112 16c2.5 0 4.847.655 6.879 1.804M15 10a3 3 0 11-6 0 3 3 0 016 0zm6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                    </svg>
+                                  </div>
+                                  <div class="ml-4 flex-1">
+                                    <h3 class="text-sm font-medium text-gray-500">Admins</h3>
+                                    <div class="mt-1 flex items-baseline">
+                                      <p class="text-2xl font-semibold text-gray-900">5</p>
+                                      <p class="ml-2 text-xs font-medium text-gray-500">Active</p>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="bg-gray-50 px-5 py-3">
+                                <div class="text-sm">
+                                  <a href="#" class="font-medium text-primary-600 hover:text-primary-500">Manage</a>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          
+                          <!-- Tasks Table -->
+                          <div class="mt-8">
+                            <div class="rounded-lg bg-white shadow">
+                              <div class="border-b border-gray-200 px-6 py-4 sm:flex sm:items-center sm:justify-between">
+                                <h3 class="text-lg font-medium text-gray-900">Tasks Panel</h3>
+                                <div class="mt-3 flex sm:mt-0 sm:space-x-3">
+                                  <div class="flex items-center">
+                                    <label for="entries" class="mr-2 text-sm font-medium text-gray-700">Show:</label>
+                                    <select id="entries" class="rounded-md border-gray-300 py-1 pl-3 pr-8 text-sm focus:border-primary-500 focus:outline-none focus:ring-primary-500">
+                                      <option>10</option>
+                                      <option>25</option>
+                                      <option>50</option>
+                                    </select>
+                                  </div>
+                                  <div class="relative mt-1 rounded-md shadow-sm">
+                                    <input type="text" class="block w-full rounded-md border-gray-300 pl-10 focus:border-primary-500 focus:ring-primary-<!-- filepath: d:\MyWebsites\Croponer-website-development\admin\dist\modern-admin.html -->
+                  <!DOCTYPE html>
+                  <html lang="en">
+                  <head>
+                    <meta charset="UTF-8">
+                    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                    <title>Croponer Admin Dashboard</title>
+                    
+                    <!-- Font Awesome -->
+                    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+                    
+                    <!-- Google Fonts -->
+                    <link rel="preconnect" href="https://fonts.googleapis.com">
+                    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+                    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+                    
+                    <!-- Alpine.js -->
+                    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.14.8/dist/cdn.min.js"></script>
+                    
+                    <!-- Tailwind CSS -->
+                    <script src="https://cdn.tailwindcss.com"></script>
+                    
+                    <script>
+                      tailwind.config = {
+                        theme: {
+                          extend: {
+                            colors: {
+                              primary: {
+                                50: '#eef2ff',
+                                100: '#e0e7ff',
+                                500: '#6366f1',
+                                600: '#4f46e5',
+                                700: '#4338ca',
+                                800: '#3730a3',
+                                900: '#312e81'
+                              },
+                              secondary: {
+                                50: '#f8fafc',
+                                100: '#f1f5f9',
+                                200: '#e2e8f0',
+                                800: '#1e293b',
+                                900: '#0f172a'
+                              }
+                            },
+                            fontFamily: {
+                              sans: ['Inter', 'sans-serif']
+                            }
+                          }
+                        }
+                      }
+                    </script>
+                    
+                    <style type="text/css">
+                      body {
+                        font-family: 'Inter', sans-serif;
+                      }
+                      
+                      /* Custom Scrollbar */
+                      ::-webkit-scrollbar {
+                        width: 6px;
+                        height: 6px;
+                      }
+                      
+                      ::-webkit-scrollbar-track {
+                        background: #f1f5f9;
+                      }
+                      
+                      ::-webkit-scrollbar-thumb {
+                        background: #94a3b8;
+                        border-radius: 3px;
+                      }
+                      
+                      ::-webkit-scrollbar-thumb:hover {
+                        background: #64748b;
+                      }
+                      
+                      /* Card hover effects */
+                      .stat-card {
+                        transition: all 0.3s ease;
+                      }
+                      
+                      .stat-card:hover {
+                        transform: translateY(-5px);
+                        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+                      }
+                      
+                      /* Table hover animation */
+                      .table-row-fade {
+                        transition: background-color 0.2s ease;
+                      }
+                    </style>
+                  </head>
+                  
+                  <body class="bg-secondary-100 antialiased">
+                    <div x-data="{ sidebarOpen: true, userDropdownOpen: false, notificationsOpen: false }" class="flex h-screen overflow-hidden">
+                      
+                      <!-- Sidebar -->
+                      <div 
+                        :class="sidebarOpen ? 'translate-x-0 w-64' : '-translate-x-full lg:translate-x-0 lg:w-20'"
+                        class="fixed inset-y-0 left-0 z-30 flex-shrink-0 bg-primary-900 text-white transition-all duration-300 lg:static"
+                      >
+                        <!-- Logo and Toggle -->
+                        <div class="flex h-16 items-center justify-between px-4 py-5">
+                          <div class="flex items-center space-x-2">
+                            <svg class="h-8 w-8 text-primary-100" viewBox="0 0 24 24" fill="currentColor">
+                              <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
+                            </svg>
+                            <span :class="sidebarOpen ? 'opacity-100' : 'opacity-0 lg:hidden'" class="text-xl font-bold transition-opacity">Croponer</span>
+                          </div>
+                          <button 
+                            @click="sidebarOpen = !sidebarOpen"
+                            class="text-white focus:outline-none lg:hidden"
+                          >
+                            <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                            </svg>
+                          </button>
+                        </div>
+                        
+                        <!-- Navigation -->
+                        <nav class="mt-5 px-2">
+                          <div class="space-y-1">
+                            <!-- Dashboard -->
+                            <a href="#" class="group flex items-center rounded-lg bg-primary-800 px-4 py-3 text-sm font-medium text-white">
+                              <svg class="mr-3 h-5 w-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path>
+                              </svg>
+                              <span :class="sidebarOpen ? 'opacity-100' : 'opacity-0 hidden lg:inline-block'" class="transition-opacity">Dashboard</span>
+                            </a>
+                            
+                            <!-- Users -->
+                            <a href="#" class="group flex items-center rounded-lg px-4 py-3 text-sm font-medium text-primary-100 hover:bg-primary-800">
+                              <svg class="mr-3 h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"></path>
+                              </svg>
+                              <span :class="sidebarOpen ? 'opacity-100' : 'opacity-0 hidden lg:inline-block'" class="transition-opacity">Manage Users</span>
+                            </a>
+                            
+                            <!-- Tasks -->
+                            <a href="#" class="group flex items-center rounded-lg px-4 py-3 text-sm font-medium text-primary-100 hover:bg-primary-800">
+                              <svg class="mr-3 h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"></path>
+                              </svg>
+                              <span :class="sidebarOpen ? 'opacity-100' : 'opacity-0 hidden lg:inline-block'" class="transition-opacity">Task Panel</span>
+                            </a>
+                            
+                            <!-- Settings -->
+                            <a href="#" class="group flex items-center rounded-lg px-4 py-3 text-sm font-medium text-primary-100 hover:bg-primary-800">
+                              <svg class="mr-3 h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path>
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                              </svg>
+                              <span :class="sidebarOpen ? 'opacity-100' : 'opacity-0 hidden lg:inline-block'" class="transition-opacity">Admin Settings</span>
+                            </a>
+                          </div>
+                        </nav>
+                      </div>
+                      
+                      <!-- Main Content -->
+                      <div class="flex flex-1 flex-col overflow-hidden">
+                        <!-- Navbar -->
+                        <header class="bg-white shadow">
+                          <div class="flex h-16 items-center justify-between px-4 sm:px-6 lg:px-8">
+                            <!-- Left: Hamburger menu & Search -->
+                            <div class="flex items-center space-x-3">
+                              <button 
+                                @click="sidebarOpen = !sidebarOpen"
+                                class="rounded-md p-2 text-gray-500 hover:bg-gray-100 hover:text-gray-900 focus:outline-none lg:hidden"
+                              >
+                                <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                                </svg>
+                              </button>
+                              
+                              <div class="hidden sm:block">
+                                <div class="relative max-w-xs">
+                                  <input type="text" class="block w-full rounded-md border border-gray-300 bg-gray-50 py-2 pl-10 pr-3 text-sm placeholder-gray-400 focus:border-primary-500 focus:outline-none focus:ring-1 focus:ring-primary-500" placeholder="Search...">
+                                  <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
+                                    <svg class="h-4 w-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                                    </svg>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                            
+                            <!-- Right: Notifications & User -->
+                            <div class="flex items-center space-x-4">
+                              <!-- Notifications -->
+                              <div class="relative" x-data="{ notificationsOpen: false }">
+                                <button 
+                                  @click="notificationsOpen = !notificationsOpen"
+                                  class="flex rounded-full p-1 text-gray-500 hover:bg-gray-100 hover:text-gray-900 focus:outline-none"
+                                >
+                                  <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"></path>
+                                  </svg>
+                                  <span class="absolute right-0 top-0 flex h-2 w-2">
+                                    <span class="absolute inline-flex h-full w-full animate-ping rounded-full bg-red-400 opacity-75"></span>
+                                    <span class="relative inline-flex h-2 w-2 rounded-full bg-red-500"></span>
+                                  </span>
+                                </button>
+                                
+                                <!-- Notification Dropdown -->
+                                <div 
+                                  x-show="notificationsOpen" 
+                                  @click.away="notificationsOpen = false"
+                                  x-transition:enter="transition ease-out duration-100"
+                                  x-transition:enter-start="transform opacity-0 scale-95"
+                                  x-transition:enter-end="transform opacity-100 scale-100"
+                                  x-transition:leave="transition ease-in duration-75"
+                                  x-transition:leave-start="transform opacity-100 scale-100"
+                                  x-transition:leave-end="transform opacity-0 scale-95"
+                                  class="absolute right-0 mt-2 w-80 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
+                                  style="display: none;"
+                                >
+                                  <div class="py-1">
+                                    <div class="border-b border-gray-200 px-4 py-2">
+                                      <p class="text-sm font-medium text-gray-700">Notifications</p>
+                                    </div>
+                                    <div class="max-h-64 overflow-y-auto">
+                                      <a href="#" class="block px-4 py-2 hover:bg-gray-100">
+                                        <div class="flex items-start">
+                                          <div class="flex-shrink-0">
+                                            <span class="flex h-8 w-8 items-center justify-center rounded-full bg-primary-100 text-primary-600">
+                                              <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
+                                              </svg>
+                                            </span>
+                                          </div>
+                                          <div class="ml-3 w-0 flex-1">
+                                            <p class="text-sm font-medium text-gray-900">New task assigned</p>
+                                            <p class="mt-1 text-xs text-gray-500">5 minutes ago</p>
+                                          </div>
+                                        </div>
+                                      </a>
+                                      <a href="#" class="block px-4 py-2 hover:bg-gray-100">
+                                        <div class="flex items-start">
+                                          <div class="flex-shrink-0">
+                                            <span class="flex h-8 w-8 items-center justify-center rounded-full bg-green-100 text-green-600">
+                                              <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                              </svg>
+                                            </span>
+                                          </div>
+                                          <div class="ml-3 w-0 flex-1">
+                                            <p class="text-sm font-medium text-gray-900">Task completed successfully</p>
+                                            <p class="mt-1 text-xs text-gray-500">1 hour ago</p>
+                                          </div>
+                                        </div>
+                                      </a>
+                                    </div>
+                                    <div class="border-t border-gray-200 px-4 py-2 text-center">
+                                      <a href="#" class="text-xs font-medium text-primary-600 hover:text-primary-500">View all notifications</a>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                              
+                              <!-- User Menu -->
+                              <div class="relative" x-data="{ userMenuOpen: false }">
+                                <button 
+                                  @click="userMenuOpen = !userMenuOpen" 
+                                  class="flex items-center space-x-2 rounded-full text-gray-700 hover:text-gray-900 focus:outline-none"
+                                >
+                                  <span class="hidden text-sm font-medium md:block">Admin</span>
+                                  <img class="h-8 w-8 rounded-full" src="https://ui-avatars.com/api/?name=Admin&background=4f46e5&color=fff" alt="User avatar">
+                                </button>
+                                
+                                <!-- User Dropdown -->
+                                <div 
+                                  x-show="userMenuOpen" 
+                                  @click.away="userMenuOpen = false"
+                                  x-transition:enter="transition ease-out duration-100"
+                                  x-transition:enter-start="transform opacity-0 scale-95"
+                                  x-transition:enter-end="transform opacity-100 scale-100"
+                                  x-transition:leave="transition ease-in duration-75"
+                                  x-transition:leave-start="transform opacity-100 scale-100"
+                                  x-transition:leave-end="transform opacity-0 scale-95"
+                                  class="absolute right-0 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
+                                  style="display: none;"
+                                >
+                                  <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Your Profile</a>
+                                  <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Settings</a>
+                                  <div class="border-t border-gray-100"></div>
+                                  <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Sign out</a>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </header>
+                        
+                        <!-- Main Content Area -->
+                        <main class="flex-1 overflow-y-auto bg-secondary-50 p-4 sm:p-6 lg:p-8">
+                          <!-- Page Header -->
+                          <div class="mb-8 sm:flex sm:items-center sm:justify-between">
+                            <div>
+                              <h1 class="text-2xl font-bold text-secondary-900">Dashboard Overview</h1>
+                              <p class="mt-1 text-sm text-gray-500">Monitor your key metrics and performance</p>
+                            </div>
+                            <div class="mt-4 flex sm:mt-0">
+                              <button class="inline-flex items-center rounded-md border border-transparent bg-primary-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2">
+                                <svg class="-ml-1 mr-2 h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
+                                </svg>
+                                Add New Task
+                              </button>
+                            </div>
+                          </div>
+                          
+                          <!-- Stats Cards -->
+                          <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+                            <!-- Visitors -->
+                            <div class="stat-card overflow-hidden rounded-lg bg-white shadow transition">
+                              <div class="p-5">
+                                <div class="flex items-center">
+                                  <div class="flex-shrink-0 rounded-md bg-indigo-100 p-3">
+                                    <svg class="h-6 w-6 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path>
+                                    </svg>
+                                  </div>
+                                  <div class="ml-4 flex-1">
+                                    <h3 class="text-sm font-medium text-gray-500">Visitors</h3>
+                                    <div class="mt-1 flex items-baseline">
+                                      <p class="text-2xl font-semibold text-gray-900">1,342</p>
+                                      <p class="ml-2 text-xs font-medium text-green-500">
+                                        <span>↑ 12%</span>
+                                      </p>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="bg-gray-50 px-5 py-3">
+                                <div class="text-sm">
+                                  <a href="#" class="font-medium text-primary-600 hover:text-primary-500">View all</a>
+                                </div>
+                              </div>
+                            </div>
+                            
+                            <!-- Total Users -->
+                            <div class="stat-card overflow-hidden rounded-lg bg-white shadow transition">
+                              <div class="p-5">
+                                <div class="flex items-center">
+                                  <div class="flex-shrink-0 rounded-md bg-blue-100 p-3">
+                                    <svg class="h-6 w-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"></path>
+                                    </svg>
+                                  </div>
+                                  <div class="ml-4 flex-1">
+                                    <h3 class="text-sm font-medium text-gray-500">Total Users</h3>
+                                    <div class="mt-1 flex items-baseline">
+                                      <p class="text-2xl font-semibold text-gray-900">2,840</p>
+                                      <p class="ml-2 text-xs font-medium text-green-500">
+                                        <span>↑ 8.2%</span>
+                                      </p>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="bg-gray-50 px-5 py-3">
+                                <div class="text-sm">
+                                  <a href="#" class="font-medium text-primary-600 hover:text-primary-500">View all</a>
+                                </div>
+                              </div>
+                            </div>
+                            
+                            <!-- Orders -->
+                            <div class="stat-card overflow-hidden rounded-lg bg-white shadow transition">
+                              <div class="p-5">
+                                <div class="flex items-center">
+                                  <div class="flex-shrink-0 rounded-md bg-purple-100 p-3">
+                                    <svg class="h-6 w-6 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path>
+                                    </svg>
+                                  </div>
+                                  <div class="ml-4 flex-1">
+                                    <h3 class="text-sm font-medium text-gray-500">Orders</h3>
+                                    <div class="mt-1 flex items-baseline">
+                                      <p class="text-2xl font-semibold text-gray-900">543</p>
+                                      <p class="ml-2 text-xs font-medium text-green-500">
+                                        <span>↑ 5.7%</span>
+                                      </p>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="bg-gray-50 px-5 py-3">
+                                <div class="text-sm">
+                                  <a href="#" class="font-medium text-primary-600 hover:text-primary-500">View all</a>
+                                </div>
+                              </div>
+                            </div>
+                            
+                            <!-- Admins -->
+                            <div class="stat-card overflow-hidden rounded-lg bg-white shadow transition">
+                              <div class="p-5">
+                                <div class="flex items-center">
+                                  <div class="flex-shrink-0 rounded-md bg-teal-100 p-3">
+                                    <svg class="h-6 w-6 text-teal-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5.121 17.804A13.937 13.937 0 0112 16c2.5 0 4.847.655 6.879 1.804M15 10a3 3 0 11-6 0 3 3 0 016 0zm6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                    </svg>
+                                  </div>
+                                  <div class="ml-4 flex-1">
+                                    <h3 class="text-sm font-medium text-gray-500">Admins</h3>
+                                    <div class="mt-1 flex items-baseline">
+                                      <p class="text-2xl font-semibold text-gray-900">5</p>
+                                      <p class="ml-2 text-xs font-medium text-gray-500">Active</p>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="bg-gray-50 px-5 py-3">
+                                <div class="text-sm">
+                                  <a href="#" class="font-medium text-primary-600 hover:text-primary-500">Manage</a>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          
+                          <!-- Tasks Table -->
+                          <div class="mt-8">
+                            <div class="rounded-lg bg-white shadow">
+                              <div class="border-b border-gray-200 px-6 py-4 sm:flex sm:items-center sm:justify-between">
+                                <h3 class="text-lg font-medium text-gray-900">Tasks Panel</h3>
+                                <div class="mt-3 flex sm:mt-0 sm:space-x-3">
+                                  <div class="flex items-center">
+                                    <label for="entries" class="mr-2 text-sm font-medium text-gray-700">Show:</label>
+                                    <select id="entries" class="rounded-md border-gray-300 py-1 pl-3 pr-8 text-sm focus:border-primary-500 focus:outline-none focus:ring-primary-500">
+                                      <option>10</option>
+                                      <option>25</option>
+                                      <option>50</option>
+                                    </select>
+                                  </div>
+                                  <!-- Completing the search input in the tasks panel -->
+<input type="text" class="block w-full rounded-md border-gray-300 pl-10 focus:border-primary-500 focus:ring-primary-500 text-sm" placeholder="Search tasks...">
+<div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
+  <svg class="h-4 w-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+  </svg>
+</div>
+<!-- Completing the search input in the tasks panel -->
+<input type="text" class="block w-full rounded-md border-gray-300 pl-10 focus:border-primary-500 focus:ring-primary-500 text-sm" placeholder="Search tasks...">
+<div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
+  <svg class="h-4 w-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+  </svg>
+</div>
+<!-- Users Table -->
+<div class="mt-8">
+  <div class="rounded-lg bg-white shadow">
+    <div class="border-b border-gray-200 px-6 py-4 sm:flex sm:items-center sm:justify-between">
+      <h3 class="text-lg font-medium text-gray-900">Users Panel</h3>
+      <div class="mt-3 flex sm:mt-0 sm:space-x-3">
+        <div class="flex items-center">
+          <label for="user-entries" class="mr-2 text-sm font-medium text-gray-700">Show:</label>
+          <select id="user-entries" class="rounded-md border-gray-300 py-1 pl-3 pr-8 text-sm focus:border-primary-500 focus:outline-none focus:ring-primary-500">
+            <option>10</option>
+            <option>25</option>
+            <option>50</option>
+          </select>
+        </div>
+        <div class="relative mt-1 rounded-md shadow-sm">
+          <input type="text" class="block w-full rounded-md border-gray-300 pl-10 focus:border-primary-500 focus:ring-primary-500 text-sm" placeholder="Search users...">
+          <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
+            <svg class="h-4 w-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+            </svg>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Users Table Content -->
+    <div class="overflow-x-auto">
+      <table class="min-w-full divide-y divide-gray-200">
+        <thead class="bg-gray-50">
+          <tr>
+            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Username</th>
+            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Name</th>
+            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Email</th>
+            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Role</th>
+            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
+            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
+          </tr>
+        </thead>
+        <tbody class="bg-white divide-y divide-gray-200">
+          <!-- User Row 1 -->
+          <tr class="table-row-fade hover:bg-gray-50">
+            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">john_doe</td>
+            <td class="px-6 py-4 whitespace-nowrap">
+              <div class="flex items-center">
+                <div class="flex-shrink-0 h-10 w-10">
+                  <img class="h-10 w-10 rounded-full" src="https://ui-avatars.com/api/?name=John+Doe&background=4f46e5&color=fff" alt="">
+                </div>
+                <div class="ml-4">
+                  <div class="text-sm font-medium text-gray-900">John Doe</div>
+                </div>
+              </div>
+            </td>
+            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">john@example.com</td>
+            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">Customer</td>
+            <td class="px-6 py-4 whitespace-nowrap">
+              <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">Active</span>
+            </td>
+            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
+              <div class="flex space-x-2">
+                <button class="text-primary-600 hover:text-primary-900">Edit</button>
+                <button class="text-red-600 hover:text-red-900">Delete</button>
+              </div>
+            </td>
+          </tr>
 
-      <!-- Table Body -->
-      <tbody class="divide-y divide-gray-300">
-        <tr class="hover:bg-[#4d4d4d33] transition">
-          <td class="py-4 px-6 font-medium text-gray-900">001</td>
-          <td class="py-4 px-6 text-gray-800">Database Optimization</td>
-          <td class="py-4 px-6 text-gray-800">John Doe</td>
-          <td class="py-4 px-6">
-            <span
-              class="px-3 py-1 rounded-full bg-gray-400 text-green-700 text-sm"
-              >low</span
-            >
-          </td>
-          <td class="py-4 px-6">
-            <span
-              class="px-3 py-1 rounded-full bg-green-200 text-green-800 text-sm"
-              >Completed</span
-            >
-          </td>
-          <td class="py-4 px-6 text-gray-800">March 10, 2025</td>
-          <td class="py-3 px-6">
-            <button
-              onclick="updateTask('${task._id}', 'in-progress')"
-              class="bg-[#0b41e1] hover:bg-blue-600 text-white px-4  rounded-lg"
-            >
-              Start
-            </button>
-            <button
-              onclick="updateTask('${task._id}', 'completed')"
-              class="bg-[#07b12b] hover:bg-green-500 text-white px-1  rounded-md my-1"
-            >
-              Complete
-            </button>
-            <button
-              onclick="deleteTask('${task._id}')"
-              class="bg-[#e1121c] hover:bg-red-500 text-white px-4  rounded-md"
-            >
-              Delete
-            </button>
-          </td>
-        </tr>
-      </tbody>
-    </table>
+          <!-- User Row 2 -->
+          <tr class="table-row-fade hover:bg-gray-50">
+            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">jane_smith</td>
+            <td class="px-6 py-4 whitespace-nowrap">
+              <div class="flex items-center">
+                <div class="flex-shrink-0 h-10 w-10">
+                  <img class="h-10 w-10 rounded-full" src="https://ui-avatars.com/api/?name=Jane+Smith&background=0694a2&color=fff" alt="">
+                </div>
+                <div class="ml-4">
+                  <div class="text-sm font-medium text-gray-900">Jane Smith</div>
+                </div>
+              </div>
+            </td>
+            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">jane@example.com</td>
+            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">Admin</td>
+            <td class="px-6 py-4 whitespace-nowrap">
+              <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">Active</span>
+            </td>
+            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
+              <div class="flex space-x-2">
+                <button class="text-primary-600 hover:text-primary-900">Edit</button>
+                <button class="text-red-600 hover:text-red-900">Delete</button>
+              </div>
+            </td>
+          </tr>
+
+          <!-- User Row 3 -->
+          <tr class="table-row-fade hover:bg-gray-50">
+            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">alex_johnson</td>
+            <td class="px-6 py-4 whitespace-nowrap">
+              <div class="flex items-center">
+                <div class="flex-shrink-0 h-10 w-10">
+                  <img class="h-10 w-10 rounded-full" src="https://ui-avatars.com/api/?name=Alex+Johnson&background=9061f9&color=fff" alt="">
+                </div>
+                <div class="ml-4">
+                  <div class="text-sm font-medium text-gray-900">Alex Johnson</div>
+                </div>
+              </div>
+            </td>
+            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">alex@example.com</td>
+            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">Developer</td>
+            <td class="px-6 py-4 whitespace-nowrap">
+              <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-yellow-100 text-yellow-800">Away</span>
+            </td>
+            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
+              <div class="flex space-x-2">
+                <button class="text-primary-600 hover:text-primary-900">Edit</button>
+                <button class="text-red-600 hover:text-red-900">Delete</button>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    
+    <!-- Pagination -->
+    <div class="bg-white px-4 py-3 flex items-center justify-between border-t border-gray-200 sm:px-6">
+      <div class="flex-1 flex justify-between sm:hidden">
+        <a href="#" class="relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50">Previous</a>
+        <a href="#" class="ml-3 relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50">Next</a>
+      </div>
+      <div class="hidden sm:flex-1 sm:flex sm:items-center sm:justify-between">
+        <div>
+          <p class="text-sm text-gray-700">
+            Showing <span class="font-medium">1</span> to <span class="font-medium">10</span> of <span class="font-medium">45</span> users
+          </p>
+        </div>
+        <div>
+          <nav class="relative z-0 inline-flex rounded-md shadow-sm -space-x-px" aria-label="Pagination">
+            <a href="#" class="relative inline-flex items-center px-2 py-2 rounded-l-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50">
+              <span class="sr-only">Previous</span>
+              <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                <path fill-rule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clip-rule="evenodd" />
+              </svg>
+            </a>
+            <a href="#" class="relative inline-flex items-center px-4 py-2 border border-gray-300 bg-primary-50 text-sm font-medium text-primary-600 hover:bg-primary-100">1</a>
+            <a href="#" class="relative inline-flex items-center px-4 py-2 border border-gray-300 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50">2</a>
+            <a href="#" class="relative inline-flex items-center px-4 py-2 border border-gray-300 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50">3</a>
+            <a href="#" class="relative inline-flex items-center px-4 py-2 border border-gray-300 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50">4</a>
+            <a href="#" class="relative inline-flex items-center px-4 py-2 border border-gray-300 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50">5</a>
+            <a href="#" class="relative inline-flex items-center px-2 py-2 rounded-r-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50">
+              <span class="sr-only">Next</span>
+              <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" />
+              </svg>
+            </a>
+          </nav>
+        </div>
+      </div>
+    </div>
   </div>
-</body>
-</html>
+</div>
