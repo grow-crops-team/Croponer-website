@@ -30,8 +30,7 @@ if (userLogin) {
 
                 console.log("Login Data frontend:", result)
 
-                if (result.statuscode === 200) {
-
+                if (result.statusCode === 200) {
                     displayMessage(result.message, "success")
                     localStorage.setItem("isLoggedIn", true);
                     localStorage.setItem("userID", result.data.user._id);
@@ -39,11 +38,8 @@ if (userLogin) {
                     localStorage.setItem("expiresAt", result.data.expiresAt); 
                     localStorage.setItem("email", result.data.user.email);
                     localStorage.setItem("avatar", result.data.user.avatar);
-                
+                    localStorage.setItem("userFullname", result.data.user.fullName);
                     
-                
-                    
-
                     setTimeout(() => {
                         window.location.href = "/"
                     }, 3000)

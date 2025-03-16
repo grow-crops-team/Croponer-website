@@ -176,15 +176,16 @@ const refreshAccessToken = asyncHandler(async (req, res) => {
         )
 
         return res
-            .status(200)
-            .cookie("accessToken", accessToken, {...options, maxAge: 5 * 60 * 1000} )
-            .cookie("refreshToken", newRefreshToken, options)
-            .json(
-                new ApiResponse(200, {
-                    accessToken,
-                    refreshToken: newRefreshToken,
-                })
-            )
+        .status(200)
+        .cookie("accessToken", accessToken, {...options, maxAge: 5 * 60 * 1000} )
+        .cookie("refreshToken", newRefreshToken, {...options, maxAge: 10 * 60 * 1000} )
+        .json(
+            new ApiResponse(200, {
+                accessToken,
+                newRefreshToken,
+                expiresAt: Date.now() + 5 * 60 * 1000
+            }, "Token refreshed successfully")
+        )
     } catch (error) {
         throw new ApiError(401, error?.message, "Invalid Refresh token")
 

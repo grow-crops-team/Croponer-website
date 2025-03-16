@@ -132,26 +132,28 @@ async function refreshAccessToken() {
         });
 
         const result = await response.json();
-
-        if (result.accessToken) {
-            localStorage.setItem("expiresAt", result.expiresAt); // Update expiry time
+        
+        if (result.statusCode === 200 && result.data) {
+            // Set expiration time (5 minutes from now, matching server cookie expiry)
+            const expiresAt = Date.now() + 5 * 60 * 1000;
+            localStorage.setItem("expiresAt", expiresAt);
             console.log("🔄 Access token refreshed successfully.");
+            return true;
         } else {
             console.log("⛔ Refresh failed. Logging out...");
             UserLogout();
+            return false;
         }
     } catch (error) {
         console.error("Refresh token error:", error);
         UserLogout();
+        return false;
     }
 }
-
 const logoutChannel = new BroadcastChannel("logout_channel");
-
-
 logoutChannel.onmessage = (event) => {
     if (event.data === "logout") {
-        window.location.href = "/"; // Redirect all tabs to login page
+        window.location.href = "/"; 
     }
 };
 
@@ -163,13 +165,13 @@ function checkSessionExpiration() {
     
     if (timeLeft <= 0) {
         console.log("⏳ Access token expired. Logging out...");
-        UserLogout(); // Auto logout
+        UserLogout(); 
     } else if (timeLeft <= 60 * 1000) {
         console.log("⚠️ Access token expiring soon. Refreshing...");
-        refreshAccessToken(); // Refresh token before expiry
+        refreshAccessToken(); 
     }
 
-    setTimeout(checkSessionExpiration, 30 * 1000); // Check every 30s
+    setTimeout(checkSessionExpiration, 30 * 1000); 
 }
 
 checkSessionExpiration(); 
