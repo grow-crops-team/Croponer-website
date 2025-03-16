@@ -274,18 +274,21 @@
                   <td class="py-4 px-6 text-gray-800">March 10, 2025</td>
                   <td class="py-3 px-6">
                     <button
+                      type="button"
                       onclick="updateTask('${task._id}', 'in-progress')"
                       class="bg-blue-500 hover:bg-blue-600 text-white px-3 py-1 rounded-md"
                     >
                       Start
                     </button>
                     <button
+                      type="button"
                       onclick="updateTask('${task._id}', 'completed')"
                       class="bg-green-500 hover:bg-green-600 text-white px-3 py-1 rounded-md"
                     >
                       Complete
                     </button>
                     <button
+                      type="button"
                       onclick="deleteTask('${task._id}')"
                       class="bg-red-500 hover:bg-red-600 text-white px-3 py-1 rounded-md"
                     >
@@ -371,6 +374,30 @@
                 </tr>
               </tbody>
             </table>
+            <div id="paginationUserTable" class="flex space-x-2">
+              <button
+                type="button"
+                class="px-3 py-1 bg-gray-200 rounded hover:bg-gray-300 disabled:opacity-50"
+              >
+                Previous
+              </button>
+              <button type="button" class="px-3 py-1 bg-blue-600 text-white rounded">
+                1
+              </button>
+              <button type="button" class="px-3 py-1 bg-gray-200 rounded hover:bg-gray-300">
+                2
+              </button>
+              <button type="button" class="px-3 py-1 bg-gray-200 rounded hover:bg-gray-300">
+                3
+              </button>
+              <span class="px-3 py-1">...</span>
+              <button type="button" class="px-3 py-1 bg-gray-200 rounded hover:bg-gray-300">
+                10
+              </button>
+              <button type="button" class="px-3 py-1 bg-gray-200 rounded hover:bg-gray-300">
+                Next
+              </button>
+            </div>
           </div>
         </div>
 

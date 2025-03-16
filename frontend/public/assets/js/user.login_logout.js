@@ -82,8 +82,6 @@ async function UserLogout() {
             sessionStorage.clear();
             localStorage.clear();
             logoutChannel.postMessage("logout");
-
-           
             setTimeout(() => {
                 window.location.href = "/";
             }, 3000)
