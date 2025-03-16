@@ -113,6 +113,7 @@ const loginUser = asyncHandler(async (req, res) => {
                     user: userResponse,
                     accessToken,
                     refreshToken,
+                    expiresAt: Date.now() + 5 * 60 * 1000
                 },
                 "Login is successful !! \n Glad to see you again"
             )

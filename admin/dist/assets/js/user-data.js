@@ -95,7 +95,7 @@ async function fetchUserDetails() {
                 row.innerHTML = `
                         <td class="py-2 px-6 text-gray-800">${user.user}</td>
                         <td class="py-2 px-6 text-gray-800">${user.fullName}</td>
-                        <td class="py-2 px-6 text-gray-800">${user.email}</td>
+                       
                         <td class="py-2 px-6 text-gray-800">${userPhone}</td>
                         <td class="py-2 px-6 text-gray-800">${userAddress}</td>
                         <td class="py-2 px-6">
@@ -121,74 +121,6 @@ async function fetchUserDetails() {
         hideLoader()
     }
 }
-
-function searchTable(inputId, tableClass) {
-    const query = document.getElementById(inputId).value.toLowerCase();
-    const rows = document.querySelectorAll(`.${tableClass} tbody tr`);
-
-    rows.forEach(row => {
-        const textContent = row.innerText.toLowerCase();
-        row.style.display = textContent.includes(query) ? "" : "none";
-    });
-}
-
-// Event listeners for both tables
-document.getElementById("searchUserTable").addEventListener("input", () => searchTable("searchUserTable", "user-registerData-table"));
-document.getElementById("searchUserProfileTable").addEventListener("input", () => searchTable("searchUserProfileTable", "user-profileData-table"));
-
-function setupPagination(tableClass, entriesSelectId, paginationId) {
-    const entriesPerPageSelect = document.getElementById(entriesSelectId);
-    const paginationContainer = document.getElementById(paginationId);
-
-    let currentPage = 1;
-    let entriesPerPage = parseInt(entriesPerPageSelect.value);
-
-    entriesPerPageSelect.addEventListener("change", function () {
-        entriesPerPage = parseInt(this.value);
-        renderTable();
-    });
-
-    function renderTable() {
-        const tableBody = document.querySelector(`.${tableClass} tbody`);
-        const rows = Array.from(tableBody.rows);
-
-        const start = (currentPage - 1) * entriesPerPage;
-        const end = start + entriesPerPage;
-
-        rows.forEach((row, index) => {
-            row.style.display = index >= start && index < end ? "" : "none";
-        });
-
-        updatePaginationControls(rows.length);
-    }
-
-    function updatePaginationControls(totalRows) {
-        const totalPages = Math.ceil(totalRows / entriesPerPage);
-        paginationContainer.innerHTML = `
-            <button onclick="changePage(-1)" ${currentPage === 1 ? "disabled" : ""}>Previous</button>
-            ${Array.from({ length: totalPages }, (_, i) => 
-                `<button onclick="goToPage(${i + 1})" ${i + 1 === currentPage ? "class='active'" : ""}>${i + 1}</button>`).join("")}
-            <button onclick="changePage(1)" ${currentPage === totalPages ? "disabled" : ""}>Next</button>
-        `;
-    }
-
-    function changePage(direction) {
-        currentPage += direction;
-        renderTable();
-    }
-
-    function goToPage(page) {
-        currentPage = page;
-        renderTable();
-    }
-
-    renderTable();
-}
-
-// Call the function for both tables
-setupPagination("user-registerData-table", "entriesUserTable", "paginationUserTable");
-setupPagination("user-profileData-table", "entriesUserProfileTable", "paginationUserProfileTable");
-
 
 window.deleteUser = deleteUser;
 async function deleteUser(userId) {
@@ -216,19 +148,154 @@ async function deleteUser(userId) {
 }
 
 
-const showDataBtn = document.querySelector("#showdataBtn")
-const userProfileTable = document.querySelector(".user-profileData-table")
+// search logic for user data table
 
-showDataBtn.addEventListener("click", (evt)=>{
-    const isAdminLoggedIn = sessionStorage.getItem("adminLoggedIn")
-    const role = sessionStorage.getItem("role")
-    // console.log(role);
+
+const searchUserRegisterData = document.querySelector("#searchUserREgister")
+const entriesUserRegisterTable = document.querySelector("#entriesUserRegisterTable")
+const showEntries1 = document.querySelector("#showEntries1")
+const userRegisterDataTable =  document.querySelector(".user-registerData-table")
+const paginationUserRegisterTable = document.querySelector("#paginationUserRegisterTable")
+
+// Pagination and entries logic for user register table
+let currentPage = 1;
+let rowsPerPage = 10; // default value
+
+entriesUserRegisterTable.addEventListener("change", (evt) => {
+    rowsPerPage = parseInt(evt.target.value);
+    currentPage = 1; // Reset to first page when changing entries
+    updateTableDisplay();
+});
+
+function updateTableDisplay() {
+    const rows = Array.from(userRegisterDataTable.querySelectorAll("tbody tr:not(.hidden)"));
+    const totalRows = rows.length;
+    const totalPages = Math.ceil(totalRows / rowsPerPage);
+
+    // Update entries show text
+    showEntries1.textContent = `Showing ${Math.min((currentPage - 1) * rowsPerPage + 1, totalRows)} to ${Math.min(currentPage * rowsPerPage, totalRows)} of ${totalRows} entries`;
+
+    // Hide all rows first
+    rows.forEach(row => row.style.display = 'none');
+
+    // Show rows for current page
+    const start = (currentPage - 1) * rowsPerPage;
+    const end = start + rowsPerPage;
+    rows.slice(start, end).forEach(row => row.style.display = '');
+
+    // Update pagination
+    updatePagination(totalPages);
+}
+
+function updatePagination(totalPages) {
+    paginationUserRegisterTable.innerHTML = '';
+
+    // Previous button
+    const prevButton = createPaginationButton('Previous', () => {
+        if (currentPage > 1) {
+            currentPage--;
+            updateTableDisplay();
+        }
+    });
+    prevButton.classList.toggle('opacity-50', currentPage === 1);
+    paginationUserRegisterTable.appendChild(prevButton);
+
+    // Page numbers
+    for (let i = 1; i <= totalPages; i++) {
+        const pageButton = createPaginationButton(i.toString(), () => {
+            currentPage = i;
+            updateTableDisplay();
+        });
+        if (i === currentPage) {
+            pageButton.classList.add('bg-blue-500', 'text-white');
+        }
+        paginationUserRegisterTable.appendChild(pageButton);
+    }
+
+    // Next button
+    const nextButton = createPaginationButton('Next', () => {
+        if (currentPage < totalPages) {
+            currentPage++;
+            updateTableDisplay();
+        }
+    });
+    nextButton.classList.toggle('opacity-50', currentPage === totalPages);
+    paginationUserRegisterTable.appendChild(nextButton);
+}
+
+function createPaginationButton(text, onClick) {
+    const button = document.createElement('button');
+    button.textContent = text;
+    button.className = 'px-3 py-1 mx-1 rounded border hover:bg-gray-100';
+    button.addEventListener('click', onClick);
+    return button;
+}
+
+// Call updateTableDisplay initially and after search
+updateTableDisplay();
+
+searchUserRegisterData.addEventListener("input", (evt) => {
+    const searchValue = evt.target.value.trim().toLowerCase();
+    const rows = userRegisterDataTable.querySelectorAll("tbody tr");
+
+    rows.forEach((row) => {
+        try {
+            // Cache cell values for better performance
+            const cells = {
+                id: row.querySelector("td:first-child")?.textContent?.toLowerCase() || "",
+                username: row.querySelector("td:nth-child(2)")?.textContent?.toLowerCase() || "",
+                fullName: row.querySelector("td:nth-child(3)")?.textContent?.toLowerCase() || "",
+                email: row.querySelector("td:nth-child(4)")?.textContent?.toLowerCase() || ""
+            };
+
+            const isMatch = Object.values(cells).some(cellValue => 
+                cellValue.includes(searchValue)
+            );
+
+            row.classList.toggle("hidden", !isMatch);
+        } catch (error) {
+            console.error("Error processing row:", error);
+            // Keep row visible in case of error
+            row.classList.remove("hidden");
+        }
+    });
+    
+    currentPage = 1; // Reset to first page after search
+    updateTableDisplay();
+});
+
+
+
+
+
+
+// search logic for user profile data table
+
+const searchUserByName = document.querySelector("#searchUserByName")
+const searchUserByPhone = document.querySelector("#searchUserByPhone")
+const searchUserByAddress = document.querySelector("#searchUserByAddress")
+const entriesUserProfileTable = document.querySelector("#entriesUserProfileTable")
+const showEntries2 = document.querySelector("#showEntries2")
+const userProfileDataTable =  document.querySelector(".user-profileData-table")
+const paginationUserProfileTable = document.querySelector("#paginationUserProfileTable")
+
+
+
+
+
+// const showDataBtn = document.querySelector("#showdataBtn")
+// const userProfileTable = document.querySelector(".user-profileData-table")
+
+// showDataBtn.addEventListener("click", (evt)=>{
+//     const isAdminLoggedIn = sessionStorage.getItem("adminLoggedIn")
+//     const role = sessionStorage.getItem("role")
+//     // console.log(role);
     
 
-    if (isAdminLoggedIn && role === "super-admin") {
-        userProfileTable.classList.remove("hidden")
-    }
-    else{
-        displayMessage("error", "Your are not Authorized to User details.")
-    }
-})
+//     if (isAdminLoggedIn && role === "super-admin") {
+//         userProfileTable.classList.remove("hidden")
+//     }
+//     else{
+//         displayMessage("error", "Your are not Authorized to User details.")
+//     }
+// })

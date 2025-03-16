@@ -123,37 +123,27 @@ if (logoutBtn) {
     })
 }
 
-async function fetchWithAuth(url, options = {}) {
-    let token = sessionStorage.getItem("accessToken")
-
-    // Attach Authorization header
-    options.headers = {
-        ...options.headers,
-        "Authorization": `Bearer ${token}`
-    };
-
-    let response = await fetch(url, options);
-
-    // If accessToken is expired, refresh it
-    if (response.status === 401) {
-        const refreshResponse = await fetch("/api/v1/users/refresh-token", {
+async function refreshAccessToken() {
+    try {
+        const response = await fetch("/api/v1/users/refresh-token", {
             method: "POST",
-            credentials: "include"
+            credentials: "include",
+            headers: { "Content-Type": "application/json" }
         });
 
-        const refreshData = await refreshResponse.json();
+        const result = await response.json();
 
-        if (refreshData.accessToken) {
-            sessionStorage.setItem("accessToken", refreshData.accessToken);
-            options.headers["Authorization"] = `Bearer ${refreshData.accessToken}`;
-            response = await fetch(url, options); // Retry request
+        if (result.accessToken) {
+            localStorage.setItem("expiresAt", result.expiresAt); // Update expiry time
+            console.log("🔄 Access token refreshed successfully.");
         } else {
-            sessionStorage.clear();
-            window.location.href = "/login";
+            console.log("⛔ Refresh failed. Logging out...");
+            UserLogout();
         }
+    } catch (error) {
+        console.error("Refresh token error:", error);
+        UserLogout();
     }
-
-    return response.json();
 }
 
 const logoutChannel = new BroadcastChannel("logout_channel");
@@ -164,3 +154,23 @@ logoutChannel.onmessage = (event) => {
         window.location.href = "/"; // Redirect all tabs to login page
     }
 };
+
+function checkSessionExpiration() {
+    const expiresAt = localStorage.getItem("expiresAt"); 
+    if (!expiresAt) return;
+
+    const timeLeft = expiresAt - Date.now();
+    
+    if (timeLeft <= 0) {
+        console.log("⏳ Access token expired. Logging out...");
+        UserLogout(); // Auto logout
+    } else if (timeLeft <= 60 * 1000) {
+        console.log("⚠️ Access token expiring soon. Refreshing...");
+        refreshAccessToken(); // Refresh token before expiry
+    }
+
+    setTimeout(checkSessionExpiration, 30 * 1000); // Check every 30s
+}
+
+checkSessionExpiration(); 
+ export {checkSessionExpiration}

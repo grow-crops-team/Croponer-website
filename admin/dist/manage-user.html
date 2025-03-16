@@ -161,7 +161,7 @@
           </div>
           <!-- User Table -->
           <div
-            id="user-Data"
+            id="user-register-Data"
             class="overflow-x-auto bg-slate-400 rounded-lg mt-10 mx-5 lg:mx-10 shadow-md p-4"
           >
             <!-- Title and Controls Header -->
@@ -175,7 +175,7 @@
                 <!-- Search Field -->
                 <div class="relative">
                   <input
-                    id="searchUserTable"
+                    id="searchUserREgister"
                     type="text"
                     placeholder="Search users..."
                     class="pl-3 pr-10 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
@@ -203,9 +203,10 @@
               <div class="flex items-center mb-2 sm:mb-0">
                 <span class="text-[#04043b] mr-2">Show</span>
                 <select
-                  id="entriesUserTable"
+                  id="entriesUserRegisterTable"
                   class="border rounded px-2 py-1 bg-white"
                 >
+                <option value="10">5</option>
                   <option value="10">10</option>
                   <option value="25">25</option>
                   <option value="50">50</option>
@@ -214,7 +215,7 @@
                 <span class="text-[#04043b] ml-2">entries</span>
               </div>
               <div class="mb-2 sm:mb-0">
-                <span>Showing 1 to 10 of 100 entries</span>
+                Showing 1 to <span id="showEntries1">5</span> of 100 entries
               </div>
             </div>
 
@@ -243,7 +244,7 @@
             <div
               class="flex flex-col sm:flex-row justify-between items-center mt-4 text-[#04043b]"
             >
-              <div id="paginationUserTable" class="flex space-x-2">
+              <div id="paginationUserRegisterTable" class="flex space-x-2">
                 <button
                   class="px-3 py-1 bg-gray-200 rounded hover:bg-gray-300 disabled:opacity-50"
                 >
@@ -271,7 +272,7 @@
 
           <!-- User Table for details -->
           <div
-            id="user-Data"
+            id="user-profile-Data"
             class="overflow-x-auto bg-slate-400 rounded-lg mt-10 mx-5 lg:mx-10 shadow-md p-4"
           >
             <!-- Title and Controls Header -->
@@ -285,7 +286,7 @@
                 <!-- Search Field -->
                 <div class="relative">
                   <input
-                    id="searchUserProfileTable"
+                    id="searchUserByName"
                     type="text"
                     placeholder="Search users by Name..."
                     class="pl-3 pr-10 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
@@ -307,7 +308,7 @@
                 </div>
                 <div class="relative">
                   <input
-                    id="searchUserProfileTable"
+                    id="searchUserByPhone"
                     type="text"
                     placeholder="Search users by phone..."
                     class="pl-3 pr-10 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
@@ -329,7 +330,7 @@
                 </div>
                 <div class="relative">
                   <input
-                    id="searchUserProfileTable"
+                    id="searchUserByAddress"
                     type="text"
                     placeholder="Search users by Address..."
                     class="pl-3 pr-10 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
@@ -369,6 +370,7 @@
                   id="entriesUserProfileTable"
                   class="border rounded px-2 py-1 bg-white"
                 >
+                <option value="10">5</option>
                   <option value="10">10</option>
                   <option value="25">25</option>
                   <option value="50">50</option>
@@ -377,7 +379,7 @@
                 <span class="text-[#04043b] ml-2">entries</span>
               </div>
               <div class="mb-2 sm:mb-0">
-                <span>Showing 1 to 10 of 100 entries</span>
+                Showing 1 to <span id="showEntries2">5</span> of 100 entries
               </div>
             </div>
 
