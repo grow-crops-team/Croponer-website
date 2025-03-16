@@ -30,7 +30,7 @@ if (userLogin) {
 
                 console.log("Login Data frontend:", result)
 
-                if (result.statusCode === 200) {
+                if (result.statuscode === 200) {
                     displayMessage(result.message, "success")
                     localStorage.setItem("isLoggedIn", true);
                     localStorage.setItem("userID", result.data.user._id);

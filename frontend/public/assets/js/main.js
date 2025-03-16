@@ -123,6 +123,7 @@ if (logoutBtn) {
     })
 }
 
+
 async function refreshAccessToken() {
     try {
         const response = await fetch("/api/v1/users/refresh-token", {
@@ -131,25 +132,25 @@ async function refreshAccessToken() {
             headers: { "Content-Type": "application/json" }
         });
 
+        if (!response.ok) {
+            throw new Error("Token refresh failed");
+        }
+
         const result = await response.json();
         
-        if (result.statusCode === 200 && result.data) {
-            // Set expiration time (5 minutes from now, matching server cookie expiry)
+        if (result.statuscode === 200) {
             const expiresAt = Date.now() + 5 * 60 * 1000;
             localStorage.setItem("expiresAt", expiresAt);
-            console.log("🔄 Access token refreshed successfully.");
             return true;
-        } else {
-            console.log("⛔ Refresh failed. Logging out...");
-            UserLogout();
-            return false;
         }
+        throw new Error("Invalid refresh response");
     } catch (error) {
-        console.error("Refresh token error:", error);
-        UserLogout();
+        console.error("Token refresh failed:", error);
+        await UserLogout();
         return false;
     }
 }
+
 const logoutChannel = new BroadcastChannel("logout_channel");
 logoutChannel.onmessage = (event) => {
     if (event.data === "logout") {
@@ -174,5 +175,11 @@ function checkSessionExpiration() {
     setTimeout(checkSessionExpiration, 30 * 1000); 
 }
 
-checkSessionExpiration(); 
- export {checkSessionExpiration}
+function initializeSessionCheck() {
+ 
+    checkSessionExpiration();
+    
+    setInterval(checkSessionExpiration, 30 * 1000);
+}
+
+document.addEventListener('DOMContentLoaded', initializeSessionCheck);
