@@ -3,20 +3,48 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
     <title>Croponer | AI-Powered Agricultural Solutions</title>
 
-    <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <!-- preload Images -->
+
     <link
-      href="https://fonts.googleapis.com/css2?family=Amaranth:wght@400;700&family=Inter:wght@300;400;500;600;700&family=Bevan&display=swap"
-      rel="stylesheet"
+      rel="preload"
+      href="./assets/images/hero/main_bg.jpg"
+      as="image"
+      type="image/jpeg"
+    />
+    <link
+      rel="preload"
+      href="./assets/images/hero/paddy.jpg"
+      as="image"
+      type="image/jpeg"
+    />
+    <link
+      rel="preload"
+      href="./assets/images/hero/peanuts-1735672.jpg"
+      as="image"
+      type="image/jpeg"
+    />
+    <link
+      rel="preload"
+      href="./assets/images/hero/potato.jpg"
+      as="image"
+      type="image/jpeg"
     />
 
-    <!-- Icons and CSS -->
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/swiper/swiper-bundle.min.css"
+    />
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+      integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
     />
     <link
       rel="stylesheet"
@@ -25,163 +53,83 @@
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css"
+      integrity="sha512-1cK78a1o+ht2JcaW6g8OXYwqpev9+6GqOkz9xmBN9iUUhIndKtxwILGWYOSibOKjLsEdjyjZvYDq/cZwNeak0w=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
     />
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"
+      integrity="sha512-A7AYk1fGKX6S2SsHywmPkrnzTZHrgiVT7GcQkLGDe2ev0aWb8zejytzS8wjo7PGEXKqJOrjQ4oORtnimIRZBtw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
 
-    <!-- Swiper -->
-    <link
-      rel="stylesheet"
-      href="https://unpkg.com/swiper/swiper-bundle.min.css"
-    />
-
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-      tailwind.config = {
-        theme: {
-          extend: {
-            colors: {
-              primary: {
-                50: "#e7e7ff",
-                100: "#c3c3ff",
-                500: "#3333cc",
-                600: "#1f1faa",
-                700: "#000480",
-                800: "#000366",
-                900: "#00024d",
-              },
-              accent: {
-                orange: "#fd8637",
-                green: "#41aa4e",
-                blue: "#32bfff",
-              },
-            },
-            fontFamily: {
-              amaranth: ["Amaranth", "sans-serif"],
-              bevan: ["Bevan", "serif"],
-              sans: ["Inter", "sans-serif"],
-            },
-          },
-        },
-      };
-    </script>
-
-    <!-- Custom CSS -->
-    <style>
-      body {
-        font-family: "Inter", sans-serif;
-        scroll-behavior: smooth;
-      }
-
-      .text-gradient {
-        background: linear-gradient(to right, #fd8637, #41aa4e, #32bfff);
-        -webkit-background-clip: text;
-        background-clip: text;
-        -webkit-text-fill-color: transparent;
-      }
-
-      .bg-gradient-blue {
-        background: linear-gradient(120deg, #000480, #1f1faa);
-      }
-
-      .bg-gradient-light {
-        background: linear-gradient(120deg, #f0f4ff, #ecfcff);
-      }
-
-      .card-hover {
-        transition: all 0.3s ease;
-      }
-
-      .card-hover:hover {
-        transform: translateY(-5px);
-      }
-
-      .animate-float {
-        animation: float 3s ease-in-out infinite;
-      }
-
-      @keyframes float {
-        0% {
-          transform: translateY(0px);
-        }
-        50% {
-          transform: translateY(-10px);
-        }
-        100% {
-          transform: translateY(0px);
-        }
-      }
-
-      .clip-path-diagonal {
-        clip-path: polygon(0 0, 100% 0, 100% 85%, 0% 100%);
-      }
-
-      .wave-divider {
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        width: 100%;
-        overflow: hidden;
-        line-height: 0;
-      }
-
-      .wave-divider svg {
-        display: block;
-        width: calc(100% + 1.3px);
-        height: 46px;
-      }
-    </style>
+    <link rel="stylesheet" href="./assets/css/style.css?v=1.0" />
+    <link rel="stylesheet" href="./assets/css/coustomCss.css?v=1.0" />
   </head>
 
   <body class="bg-gray-50">
     <!-- Header -->
-    <header class="fixed w-full z-50 bg-white/90 backdrop-blur-md shadow-sm">
+    <header
+      class="fixed w-full z-50 bg-white/90 backdrop-blur-md shadow-sm select-none"
+    >
       <nav
         class="container mx-auto flex justify-between items-center px-4 py-3"
       >
+        <!-- logo section -->
         <div class="flex items-center">
           <div
-            class="h-10 w-10 bg-primary-700 rounded-lg flex items-center justify-center"
+            class="h-10 w-10 bg-[#000480] rounded-lg flex items-center justify-center"
           >
             <span class="text-white font-bold text-lg">C</span>
           </div>
-          <span class="text-primary-700 font-bold ml-2 text-xl">Croponer</span>
+          <span class="text-[#000480] font-bold ml-2 text-xl">Croponer</span>
         </div>
 
         <!-- Desktop Menu -->
         <div class="hidden md:flex items-center space-x-8">
-          <a href="#" class="text-gray-900 hover:text-primary-600 font-medium"
+          <a href="/" class="text-gray-900 hover:text-[#1f1faa] font-medium"
             >Home</a
           >
-          <a href="#solutions" class="text-gray-700 hover:text-primary-600"
-            >Solutions</a
+          <a href="/about" class="text-gray-700 hover:text-[#1f1faa]"
+            >About us</a
           >
-          <a href="#crops" class="text-gray-700 hover:text-primary-600"
-            >3P Crops</a
-          >
-          <a href="#about" class="text-gray-700 hover:text-primary-600"
-            >About Us</a
-          >
-          <a href="#contact" class="text-gray-700 hover:text-primary-600"
-            >Contact</a
+          <a href="/blog" class="text-gray-700 hover:text-[#1f1faa]">Blog</a>
+          <a href="/research" class="text-gray-700 hover:text-[#1f1faa]"
+            >Research</a
           >
         </div>
-
+        <!-- login/signup -->
         <div class="flex items-center space-x-4">
+          <div id="profile" class="hidden">
+            <div class="flex items-center space-x-2 group cursor-pointer">
+              <div class="avatar w-10 h-10 rounded-full"></div>
+              <p class="group-hover:text-[#1f1faa]">
+                Hi
+                <span id="showName1" class="group-hover:text-[#1f1faa]"
+                  >user</span
+                >
+              </p>
+            </div>
+          </div>
           <a
+            id="loginDesktop"
             href="/login"
-            class="hidden md:inline-block text-gray-700 hover:text-primary-600 font-medium"
+            class="hidden md:inline-block text-gray-700 hover:text-[#1f1faa] font-medium"
             >Login</a
           >
+
           <a
+            id="register"
             href="/register"
-            class="bg-primary-700 hover:bg-primary-600 text-white px-4 py-2 rounded-lg transition-colors"
+            class="bg-[#000480] hover:bg-[#1f1faa] text-white px-4 py-2 rounded-lg transition-colors"
           >
             Get Started
           </a>
           <!-- Mobile Menu Button -->
           <button
-            id="mobile-menu-button"
-            class="md:hidden text-gray-700 hover:text-primary-600"
+            id="menubar"
+            class="md:hidden text-gray-700 hover:text-[#1f1faa] cursor-pointer"
           >
             <i class="fas fa-bars text-xl"></i>
           </button>
@@ -190,205 +138,575 @@
 
       <!-- Mobile Menu -->
       <div
-        id="mobile-menu"
-        class="hidden md:hidden bg-white border-t border-gray-100"
+        id="menu"
+        class="bg-white/90 h-screen w-56 top-16 right-[-224px] transition-all duration-500 delay-200 ease-in-out fixed rounded-bl-md z-20 md:hidden"
       >
-        <div class="container mx-auto px-4 py-3 space-y-1">
+        <div class="container ml-4 mx-auto px-4 py-3 space-y-1">
           <a
-            href="#"
-            class="block py-2 text-gray-900 hover:text-primary-600 font-medium"
+            href="/"
+            class="block py-2 text-gray-900 hover:text-[#1f1faa] font-medium"
             >Home</a
           >
-          <a
-            href="#solutions"
-            class="block py-2 text-gray-700 hover:text-primary-600"
-            >Solutions</a
+          <a href="/about" class="block py-2 text-gray-800 hover:text-[#1f1faa]"
+            >About us</a
+          >
+          <a href="/blog" class="block py-2 text-gray-800 hover:text-[#1f1faa]"
+            >Blog</a
           >
           <a
-            href="#crops"
-            class="block py-2 text-gray-700 hover:text-primary-600"
-            >3P Crops</a
+            href="/research"
+            class="block py-2 text-gray-800 hover:text-[#1f1faa]"
+            >Research</a
           >
           <a
-            href="#about"
-            class="block py-2 text-gray-700 hover:text-primary-600"
-            >About Us</a
-          >
-          <a
-            href="#contact"
-            class="block py-2 text-gray-700 hover:text-primary-600"
-            >Contact</a
-          >
-          <a
+            id="loginMobile"
             href="/login"
-            class="block py-2 text-gray-700 hover:text-primary-600"
+            class="block py-2 text-gray-800 hover:text-[#1f1faa]"
             >Login</a
           >
         </div>
       </div>
     </header>
 
-    <!-- Hero Section -->
-
-    <!-- Contact Section -->
-    <section id="contact" class="py-16 bg-gray-50">
-      <div class="container mx-auto px-4">
-        <div class="text-center mb-12" data-aos="fade-up">
-          <span
-            class="inline-block px-3 py-1 bg-primary-50 text-primary-700 text-sm font-medium rounded-lg mb-3"
-          >
-            GET IN TOUCH
-          </span>
-          <h2
-            class="text-3xl md:text-4xl font-amaranth font-bold text-gray-900"
-          >
-            Contact Us
-          </h2>
-          <p class="mt-4 text-lg text-gray-600 max-w-3xl mx-auto">
-            Have questions or need more information? Our team is here to help.
-          </p>
-        </div>
-
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
-          <div
-            class="bg-white rounded-xl p-6 shadow-sm"
-            data-aos="fade-up"
-            data-aos-delay="100"
-          >
-            <h3 class="text-xl font-semibold mb-4">Send us a message</h3>
-            <form action="#" method="POST">
-              <div class="mb-4">
-                <label for="name" class="block text-gray-700 mb-2">Name</label>
-                <input
-                  type="text"
-                  id="name"
-                  name="name"
-                  class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500"
-                />
-              </div>
-              <div class="mb-4">
-                <label for="email" class="block text-gray-700 mb-2"
-                  >Email</label
-                >
-                <input
-                  type="email"
-                  id="email"
-                  name="email"
-                  class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500"
-                />
-              </div>
-              <div class="mb-4">
-                <label for="message" class="block text-gray-700 mb-2"
-                  >Message</label
-                >
-                <textarea
-                  id="message"
-                  name="message"
-                  rows="4"
-                  class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500"
-                ></textarea>
-              </div>
-              <button
-                type="submit"
-                class="bg-primary-700 hover:bg-primary-800 text-white px-6 py-2 rounded-lg transition-colors"
+    <!-- main content for contact page -->
+    <main class="pt-24 pb-10">
+      <!-- Hero Section with enhanced design -->
+      <section
+        class="relative bg-gradient-to-r from-[#000480] to-[#1f1faa] text-white py-20 overflow-hidden"
+      >
+        <div class="container mx-auto px-4 relative z-10">
+          <div class="max-w-3xl mx-auto text-center">
+            <h1 class="text-4xl md:text-5xl font-bold mb-4" data-aos="fade-up">
+              Get In Touch
+            </h1>
+            <p
+              class="text-lg opacity-90 mb-8"
+              data-aos="fade-up"
+              data-aos-delay="100"
+            >
+              Have questions about our AI-powered agricultural solutions? We're
+              here to help you grow smarter.
+            </p>
+            <div
+              class="flex justify-center space-x-4"
+              data-aos="fade-up"
+              data-aos-delay="150"
+            >
+              <a
+                href="#contactForm"
+                class="bg-white text-[#000480] hover:bg-gray-100 px-6 py-3 rounded-lg font-medium transition-all flex items-center"
               >
-                Send Message
-              </button>
-            </form>
+                Send a Message <i class="fas fa-paper-plane ml-2"></i>
+              </a>
+              <a
+                href="tel:+919800068420"
+                class="bg-transparent hover:bg-white/10 border border-white px-6 py-3 rounded-lg font-medium transition-all flex items-center"
+              >
+                Call Us Now <i class="fas fa-phone-alt ml-2"></i>
+              </a>
+            </div>
           </div>
+        </div>
+        <!-- Enhanced background pattern -->
+        <div class="absolute inset-0 opacity-10">
+          <div class="absolute right-0 top-0 w-1/2 h-full">
+            <svg
+              viewBox="0 0 200 200"
+              xmlns="http://www.w3.org/2000/svg"
+              class="w-full h-full"
+            >
+              <path
+                fill="#FFFFFF"
+                d="M41.9,-70.8C53.1,-62.4,60.3,-48.7,67.1,-34.9C73.8,-21.1,80.2,-7.2,79.5,6.2C78.9,19.7,71.2,32.8,61.7,43.9C52.2,54.9,40.8,63.8,28.2,68.3C15.6,72.8,1.9,72.7,-13.1,71.1C-28,69.5,-44.1,66.3,-55.2,57.1C-66.2,47.9,-72.1,32.8,-73.8,17.7C-75.5,2.5,-73,-12.5,-65.8,-23.2C-58.7,-33.9,-47,-40.3,-35.6,-48.5C-24.2,-56.6,-12.1,-66.5,2,-69.7C16.1,-73,32.1,-77.6,41.9,-70.8Z"
+                transform="translate(100 100)"
+              />
+            </svg>
+          </div>
+          <div class="absolute left-0 bottom-0 w-1/3 h-full">
+            <svg
+              viewBox="0 0 200 200"
+              xmlns="http://www.w3.org/2000/svg"
+              class="w-full h-full"
+            >
+              <path
+                fill="#FFFFFF"
+                d="M50.6,-77.8C62,-69.1,65.2,-49.1,69.6,-32C74.1,-14.9,79.8,-0.6,78.8,13.2C77.9,27,70.2,40.3,59.7,50.1C49.1,60,35.7,66.5,21.2,72.1C6.8,77.7,-8.7,82.5,-23.7,78.8C-38.7,75.2,-53,63.1,-62,48.5C-71,33.9,-74.8,16.9,-74.3,0.3C-73.8,-16.3,-69,-32.6,-59.7,-44.2C-50.3,-55.7,-36.6,-62.5,-22.9,-69.8C-9.2,-77.1,4.5,-84.9,19.7,-84.5C34.9,-84.1,51.5,-75.5,50.6,-77.8Z"
+                transform="translate(100 100)"
+              />
+            </svg>
+          </div>
+        </div>
+        <!-- Floating elements for visual interest -->
+        <div
+          class="absolute top-10 left-10 w-16 h-16 border-2 border-white/20 rounded-full"
+        ></div>
+        <div
+          class="absolute bottom-10 right-10 w-24 h-24 border-2 border-white/20 rounded-full"
+        ></div>
+        <div
+          class="absolute top-32 right-32 w-8 h-8 border-2 border-white/20 rounded-full"
+        ></div>
+      </section>
 
-          <div
-            class="bg-white rounded-xl p-6 shadow-sm"
-            data-aos="fade-up"
-            data-aos-delay="200"
-          >
-            <h3 class="text-xl font-semibold mb-4">Contact Information</h3>
-            <div class="space-y-4">
-              <div class="flex items-start">
-                <div class="mt-1 mr-3 text-primary-600">
-                  <i class="fas fa-map-marker-alt"></i>
-                </div>
-                <div>
-                  <p class="font-medium">Address</p>
-                  <p class="text-gray-600">
-                    123 Agri Tech Park, Bengaluru, Karnataka, India - 560001
-                  </p>
-                </div>
-              </div>
-              <div class="flex items-start">
-                <div class="mt-1 mr-3 text-primary-600">
-                  <i class="fas fa-envelope"></i>
-                </div>
-                <div>
-                  <p class="font-medium">Email</p>
-                  <p class="text-gray-600">info@croponer.com</p>
-                </div>
-              </div>
-              <div class="flex items-start">
-                <div class="mt-1 mr-3 text-primary-600">
-                  <i class="fas fa-phone"></i>
-                </div>
-                <div>
-                  <p class="font-medium">Phone</p>
-                  <p class="text-gray-600">+91 123 456 7890</p>
-                </div>
-              </div>
-              <div class="flex items-start">
-                <div class="mt-1 mr-3 text-primary-600">
-                  <i class="fas fa-clock"></i>
-                </div>
-                <div>
-                  <p class="font-medium">Business Hours</p>
-                  <p class="text-gray-600">
-                    Monday - Friday: 9:00 AM - 6:00 PM
-                  </p>
+      <!-- Contact Info & Form Section -->
+      <section class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+          <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            <!-- Contact Information with enhanced design -->
+            <div class="lg:col-span-1">
+              <div
+                class="bg-gray-50 p-8 rounded-xl shadow-sm h-full border border-gray-100"
+              >
+                <h2
+                  class="text-3xl font-semibold text-gray-800 mb-6"
+                  data-aos="fade-right"
+                >
+                  Contact Information
+                </h2>
+
+                <div class="space-y-6">
+                  <!-- Office Address -->
+                  <div class="flex items-start space-x-4" data-aos="fade-up">
+                    <div class="bg-[#000480]/10 p-3 rounded-lg">
+                      <i
+                        class="fas fa-map-marker-alt text-xl text-[#000480]"
+                      ></i>
+                    </div>
+                    <div>
+                      <h3 class="font-medium text-gray-900 mb-1">
+                        Our Location
+                      </h3>
+                      <p class="text-gray-700">
+                        120 Kohinoor Building, <br />
+                        Egra, East Midnapore, WB, <br />
+                        In-721429
+                      </p>
+                    </div>
+                  </div>
+
+                  <!-- Phone -->
+                  <div
+                    class="flex items-start space-x-4"
+                    data-aos="fade-up"
+                    data-aos-delay="100"
+                  >
+                    <div class="bg-[#000480]/10 p-3 rounded-lg">
+                      <i class="fas fa-phone-alt text-xl text-[#000480]"></i>
+                    </div>
+                    <div>
+                      <h3 class="font-medium text-gray-900 mb-1">Call Us</h3>
+                      <p class="text-gray-700">+91 9800068420</p>
+                      <p class="text-gray-700">+91 8355578824</p>
+                    </div>
+                  </div>
+
+                  <!-- Email -->
+                  <div
+                    class="flex items-start space-x-4"
+                    data-aos="fade-up"
+                    data-aos-delay="150"
+                  >
+                    <div class="bg-[#000480]/10 p-3 rounded-lg">
+                      <i class="fas fa-envelope text-xl text-[#000480]"></i>
+                    </div>
+                    <div>
+                      <h3 class="font-medium text-gray-900 mb-1">Email Us</h3>
+                      <p class="text-gray-700">info@croponer.com</p>
+                      <p class="text-gray-700">support@croponer.com</p>
+                    </div>
+                  </div>
+
+                  <!-- Office Hours -->
+                  <div
+                    class="flex items-start space-x-4"
+                    data-aos="fade-up"
+                    data-aos-delay="200"
+                  >
+                    <div class="bg-[#000480]/10 p-3 rounded-lg">
+                      <i class="fas fa-clock text-xl text-[#000480]"></i>
+                    </div>
+                    <div>
+                      <h3 class="font-medium text-gray-900 mb-1">
+                        Working Hours
+                      </h3>
+                      <p class="text-gray-700">
+                        Monday - Friday: 9:00 AM - 6:00 PM
+                      </p>
+                      <p class="text-gray-700">Saturday: 10:00 AM - 2:00 PM</p>
+                    </div>
+                  </div>
+
+                  <!-- Social Media -->
+                  <div
+                    class="pt-6 border-t border-gray-200"
+                    data-aos="fade-up"
+                    data-aos-delay="250"
+                  >
+                    <h3 class="font-medium text-gray-900 mb-3">
+                      Connect With Us
+                    </h3>
+                    <div class="flex space-x-4">
+                      <a
+                        href="#"
+                        class="bg-[#000480]/10 hover:bg-[#000480]/20 p-3 rounded-lg transition-colors"
+                      >
+                        <i class="fab fa-facebook-f text-[#000480]"></i>
+                      </a>
+                      <a
+                        href="#"
+                        class="bg-[#000480]/10 hover:bg-[#000480]/20 p-3 rounded-lg transition-colors"
+                      >
+                        <i class="fab fa-twitter text-[#000480]"></i>
+                      </a>
+                      <a
+                        href="#"
+                        class="bg-[#000480]/10 hover:bg-[#000480]/20 p-3 rounded-lg transition-colors"
+                      >
+                        <i class="fab fa-linkedin-in text-[#000480]"></i>
+                      </a>
+                      <a
+                        href="#"
+                        class="bg-[#000480]/10 hover:bg-[#000480]/20 p-3 rounded-lg transition-colors"
+                      >
+                        <i class="fab fa-instagram text-[#000480]"></i>
+                      </a>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
-            <div class="mt-6">
-              <h4 class="font-medium mb-2">Follow Us</h4>
-              <div class="flex space-x-4">
-                <a
-                  href="#"
-                  class="text-gray-400 hover:text-primary-600 transition-colors"
-                >
-                  <i class="fab fa-twitter text-xl"></i>
-                </a>
-                <a
-                  href="#"
-                  class="text-gray-400 hover:text-primary-600 transition-colors"
-                >
-                  <i class="fab fa-facebook text-xl"></i>
-                </a>
-                <a
-                  href="#"
-                  class="text-gray-400 hover:text-primary-600 transition-colors"
-                >
-                  <i class="fab fa-linkedin text-xl"></i>
-                </a>
-                <a
-                  href="#"
-                  class="text-gray-400 hover:text-primary-600 transition-colors"
-                >
-                  <i class="fab fa-instagram text-xl"></i>
-                </a>
+
+            <!-- Contact Form with enhanced design -->
+            <div class="lg:col-span-2" data-aos="fade-left">
+              <div
+                class="bg-white rounded-xl p-8 shadow-md border border-gray-100"
+              >
+                <div class="flex items-center mb-6">
+                  <span
+                    class="w-10 h-10 bg-[#000480] rounded-full text-white flex items-center justify-center"
+                  >
+                    <i class="fas fa-comment-alt"></i>
+                  </span>
+                  <h2 class="text-3xl font-semibold text-gray-800 ml-3">
+                    Send Us a Message
+                  </h2>
+                </div>
+
+                <p class="text-gray-600 mb-8">
+                  Have a question or need assistance with our agricultural
+                  solutions? Fill out the form below and our team will get back
+                  to you shortly.
+                </p>
+
+                <form id="contactForm" class="space-y-6">
+                  <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <!-- Name -->
+                    <div>
+                      <label
+                        for="name"
+                        class="block text-sm font-medium text-gray-700 mb-1"
+                        >Full Name</label
+                      >
+                      <div class="relative">
+                        <div
+                          class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none"
+                        >
+                          <i class="fas fa-user text-gray-400"></i>
+                        </div>
+                        <input
+                          type="text"
+                          id="name"
+                          name="name"
+                          class="w-full pl-10 px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#1f1faa]/50 focus:border-[#1f1faa] outline-none transition-all"
+                          placeholder="John Doe"
+                          required
+                        />
+                      </div>
+                    </div>
+
+                    <!-- Email -->
+                    <div>
+                      <label
+                        for="email"
+                        class="block text-sm font-medium text-gray-700 mb-1"
+                        >Email Address</label
+                      >
+                      <div class="relative">
+                        <div
+                          class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none"
+                        >
+                          <i class="fas fa-envelope text-gray-400"></i>
+                        </div>
+                        <input
+                          type="email"
+                          id="email"
+                          name="email"
+                          class="w-full pl-10 px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#1f1faa]/50 focus:border-[#1f1faa] outline-none transition-all"
+                          placeholder="john@example.com"
+                          required
+                        />
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Phone -->
+                  <div>
+                    <label
+                      for="phone"
+                      class="block text-sm font-medium text-gray-700 mb-1"
+                      >Phone Number (Optional)</label
+                    >
+                    <div class="relative">
+                      <div
+                        class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none"
+                      >
+                        <i class="fas fa-phone text-gray-400"></i>
+                      </div>
+                      <input
+                        type="tel"
+                        id="phone"
+                        name="phone"
+                        class="w-full pl-10 px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#1f1faa]/50 focus:border-[#1f1faa] outline-none transition-all"
+                        placeholder="+1 (555) 123-4567"
+                      />
+                    </div>
+                  </div>
+
+                  <!-- Subject -->
+                  <div>
+                    <label
+                      for="subject"
+                      class="block text-sm font-medium text-gray-700 mb-1"
+                      >Subject</label
+                    >
+                    <div class="relative">
+                      <div
+                        class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none"
+                      >
+                        <i class="fas fa-tag text-gray-400"></i>
+                      </div>
+                      <input
+                        type="text"
+                        id="subject"
+                        name="subject"
+                        class="w-full pl-10 px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#1f1faa]/50 focus:border-[#1f1faa] outline-none transition-all"
+                        placeholder="How can we help you?"
+                        required
+                      />
+                    </div>
+                  </div>
+
+                  <!-- Message -->
+                  <div>
+                    <label
+                      for="message"
+                      class="block text-sm font-medium text-gray-700 mb-1"
+                      >Your Message</label
+                    >
+                    <div class="relative">
+                      <div
+                        class="absolute top-3 left-0 pl-3 flex items-center pointer-events-none"
+                      >
+                        <i class="fas fa-comment text-gray-400"></i>
+                      </div>
+                      <textarea
+                        id="message"
+                        name="message"
+                        rows="5"
+                        class="w-full pl-10 px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#1f1faa]/50 focus:border-[#1f1faa] outline-none transition-all"
+                        placeholder="Write your message here..."
+                        required
+                      ></textarea>
+                    </div>
+                  </div>
+
+                  <!-- Submit Button -->
+                  <div>
+                    <button
+                      type="submit"
+                      class="w-full bg-gradient-to-r from-[#000480] to-[#1f1faa] hover:from-[#1f1faa] hover:to-[#000480] text-white font-medium py-3 px-6 rounded-lg transition-all duration-300 flex items-center justify-center"
+                    >
+                      Send Message
+                      <i class="fas fa-paper-plane ml-2"></i>
+                    </button>
+                  </div>
+
+                  <p class="text-sm text-gray-600 text-center mt-4">
+                    <i class="fas fa-shield-alt text-[#000480] mr-1"></i>
+                    Your information is secure and will never be shared with
+                    third parties
+                  </p>
+                </form>
               </div>
             </div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
+
+      <!-- Map Section (smaller) -->
+      <section class="py-12 bg-gray-50">
+        <div class="container mx-auto px-4">
+          <div class="max-w-4xl mx-auto">
+            <div
+              class="flex flex-col md:flex-row items-center md:items-start gap-8"
+            >
+              <div class="md:w-1/3">
+                <h2
+                  class="text-2xl font-semibold text-gray-800 mb-4"
+                  data-aos="fade-up"
+                >
+                  Visit Our Office
+                </h2>
+                <p
+                  class="text-gray-600 mb-6"
+                  data-aos="fade-up"
+                  data-aos-delay="100"
+                >
+                  Experience our AI agricultural solutions in person at our
+                  innovation center.
+                </p>
+                <div
+                  class="bg-white p-4 rounded-lg shadow-sm border border-gray-100"
+                  data-aos="fade-up"
+                  data-aos-delay="200"
+                >
+                  <div class="flex items-center mb-3 text-[#000480]">
+                    <i class="fas fa-directions mr-2"></i>
+                    <span class="font-medium">Directions</span>
+                  </div>
+                  <p class="text-sm text-gray-700">
+                    From downtown, take Market Street east for 2 miles, then
+                    turn right onto Innovation Avenue. Our campus is on the
+                    right side.
+                  </p>
+                </div>
+              </div>
+
+              <div
+                class="md:w-2/3 rounded-xl overflow-hidden shadow-md border border-gray-100"
+                data-aos="zoom-in"
+              >
+                <!-- Smaller map -->
+                <iframe
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d8231.01938870817!2d87.53188498056622!3d21.897213187153913!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a02d4c9be1ba715%3A0x871dab9fe65e657d!2sEgra%2C%20West%20Bengal!5e0!3m2!1sen!2sin!4v1742223851127!5m2!1sen!2sin"
+                  width="100%"
+                  height="350"
+                  style="border: 0"
+                  allowfullscreen=""
+                  loading="lazy"
+                  referrerpolicy="no-referrer-when-downgrade"
+                >
+                </iframe>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Support callout section -->
+      <section class="py-16 bg-[#000480]/5">
+        <div class="container mx-auto px-4">
+          <div
+            class="max-w-4xl mx-auto bg-white rounded-2xl shadow-md overflow-hidden"
+            data-aos="fade-up"
+          >
+            <div class="flex flex-col md:flex-row">
+              <div
+                class="md:w-2/5 bg-[#000480] p-8 text-white flex flex-col justify-center"
+              >
+                <h3 class="text-2xl font-semibold mb-4">
+                  Need Immediate Support?
+                </h3>
+                <p class="opacity-90 mb-6">
+                  Our dedicated team is ready to assist you with any urgent
+                  agricultural technology needs.
+                </p>
+                <div class="space-y-4">
+                  <a
+                    href="tel:+15551234567"
+                    class="flex items-center text-white/90 hover:text-white transition-colors"
+                  >
+                    <i class="fas fa-phone-alt mr-3 w-5 text-center"></i>
+                    +1 (555) 123-4567
+                  </a>
+                  <a
+                    href="mailto:support@croponer.com"
+                    class="flex items-center text-white/90 hover:text-white transition-colors"
+                  >
+                    <i class="fas fa-envelope mr-3 w-5 text-center"></i>
+                    support@croponer.com
+                  </a>
+                </div>
+              </div>
+              <div class="md:w-3/5 p-8">
+                <div class="flex items-center mb-4">
+                  <div
+                    class="h-10 w-10 bg-[#000480]/10 rounded-full flex items-center justify-center mr-3"
+                  >
+                    <i class="fas fa-headset text-[#000480]"></i>
+                  </div>
+                  <h3 class="text-xl font-semibold text-gray-800">
+                    Customer Service
+                  </h3>
+                </div>
+                <p class="text-gray-600 mb-6">
+                  Get personalized assistance for your farm's unique challenges.
+                  Our experts are available 24/7 to help you maximize your
+                  agricultural potential.
+                </p>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div class="bg-gray-50 p-4 rounded-lg">
+                    <div class="flex items-center">
+                      <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                      <span class="font-medium text-gray-800"
+                        >Technical Support</span
+                      >
+                    </div>
+                  </div>
+                  <div class="bg-gray-50 p-4 rounded-lg">
+                    <div class="flex items-center">
+                      <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                      <span class="font-medium text-gray-800"
+                        >Consultation</span
+                      >
+                    </div>
+                  </div>
+                  <div class="bg-gray-50 p-4 rounded-lg">
+                    <div class="flex items-center">
+                      <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                      <span class="font-medium text-gray-800"
+                        >24/7 Availability</span
+                      >
+                    </div>
+                  </div>
+                  <div class="bg-gray-50 p-4 rounded-lg">
+                    <div class="flex items-center">
+                      <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                      <span class="font-medium text-gray-800"
+                        >Implementation Help</span
+                      >
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
 
     <!-- Footer -->
-    <footer class="bg-gray-900 text-white pt-16 pb-8">
-      <div class="container mx-auto px-4">
-        <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+    <footer class="bg-gray-900 select-none mt-20">
+      <div
+        class="flex flex-col lg:flex-row lg:space-x-2 lg:space-y-0 lg:justify-center mx-5 mt-10 lg:pt-8 lg:pb-4 px-5 pt-10 pb-10 space-y-16 text-gray-400"
+      >
+        <div class="lg:h-60 lg:w-56 lg:mr-24 text-pretty">
           <div>
             <div class="flex items-center mb-6">
               <div
                 class="h-10 w-10 bg-white rounded-lg flex items-center justify-center"
               >
-                <span class="text-primary-700 font-bold text-lg">C</span>
+                <span class="text-[#000480] font-bold text-lg">C</span>
               </div>
               <span class="text-white font-bold ml-2 text-xl">Croponer</span>
             </div>
@@ -423,121 +741,229 @@
               </a>
             </div>
           </div>
-
-          <div>
-            <h3 class="text-lg font-semibold mb-6">Quick Links</h3>
-            <ul class="space-y-3">
-              <li>
-                <a
-                  href="#"
-                  class="text-gray-400 hover:text-white transition-colors"
-                  >Home</a
-                >
-              </li>
-              <li>
-                <a
-                  href="#about"
-                  class="text-gray-400 hover:text-white transition-colors"
-                  >About Us</a
-                >
-              </li>
-              <li>
-                <a
-                  href="#solutions"
-                  class="text-gray-400 hover:text-white transition-colors"
-                  >Solutions</a
-                >
-              </li>
-              <li>
-                <a
-                  href="#crops"
-                  class="text-gray-400 hover:text-white transition-colors"
-                  >3P Crops</a
-                >
-              </li>
-              <li>
-                <a
-                  href="#contact"
-                  class="text-gray-400 hover:text-white transition-colors"
-                  >Contact</a
-                >
-              </li>
-            </ul>
-          </div>
-
-          <div>
-            <h3 class="text-lg font-semibold mb-6">Resources</h3>
-            <ul class="space-y-3">
-              <li>
-                <a
-                  href="#"
-                  class="text-gray-400 hover:text-white transition-colors"
-                  >Blog</a
-                >
-              </li>
-              <li>
-                <a
-                  href="#"
-                  class="text-gray-400 hover:text-white transition-colors"
-                  >Research</a
-                >
-              </li>
-              <li>
-                <a
-                  href="#"
-                  class="text-gray-400 hover:text-white transition-colors"
-                  >Case Studies</a
-                >
-              </li>
-              <li>
-                <a
-                  href="#"
-                  class="text-gray-400 hover:text-white transition-colors"
-                  >Knowledge Base</a
-                >
-              </li>
-              <li>
-                <a
-                  href="#"
-                  class="text-gray-400 hover:text-white transition-colors"
-                  >FAQs</a
-                >
-              </li>
-            </ul>
-          </div>
-
-          <div>
-            <h3 class="text-lg font-semibold mb-6">Write a Review</h3>
-            <p class="text-gray-400 mb-4"><a href="#">feedback</a></p>
-          </div>
         </div>
 
-        <div
-          class="border-t border-gray-800 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center"
-        >
-          <p class="text-gray-400 text-sm">
-            &copy; 2025 Croponer. All rights reserved. Developed by
-            <a href="https://amarnath404.in">Amarnath Bera</a>
-          </p>
-          <div class="flex space-x-6 mt-4 md:mt-0">
-            <a
-              href="#"
-              class="text-gray-400 hover:text-white transition-colors text-sm"
-              >Privacy Policy</a
-            >
-            <a
-              href="#"
-              class="text-gray-400 hover:text-white transition-colors text-sm"
-              >Terms of Service</a
-            >
-            <a
-              href="#"
-              class="text-gray-400 hover:text-white transition-colors text-sm"
-              >Cookie Policy</a
-            >
+        <div class="lg:h-60 w-60 text-pretty">
+          <p class="text-xl font-semibold text-gray-300 mb-2">Quick Links</p>
+          <ul class="space-y-2">
+            <li class="hover:text-gray-100"><a href="/about">About Us</a></li>
+            <li class="hover:text-gray-100"><a href="/work">our Works</a></li>
+            <li class="hover:text-gray-100"><a href="/team">Our Team</a></li>
+            <li class="hover:text-gray-100">
+              <a href="/articles">Read Article</a>
+            </li>
+          </ul>
+        </div>
+
+        <div class="lg:h-60 w-60 text-pretty">
+          <p class="text-xl font-semibold text-gray-300 mb-2">Help/Support</p>
+          <ul class="space-y-3">
+            <li class="hover:text-gray-100">
+              <a href="/contact">Contact Us</a>
+            </li>
+            <li class="hover:text-gray-100"><a href="/help">help</a></li>
+            <li class="hover:text-gray-100"><a href="/support">Support</a></li>
+            <li class="hover:text-gray-100">
+              <a href="/terms">Terms & Condition</a>
+            </li>
+          </ul>
+        </div>
+
+        <div class="lg:h-60 w-60 text-pretty">
+          <p class="text-xl font-semibold text-gray-300 mb-2">Community</p>
+          <ul class="space-y-3">
+            <li class="hover:text-gray-100">
+              <a href="/team">Join our Community</a>
+            </li>
+            <li class="hover:text-gray-100"><a href="/gallery">Gallery</a></li>
+            <li class="hover:text-gray-100"><a href="/blog">Our Blogs</a></li>
+            <li class="hover:text-gray-100">
+              <a href="/events">Special Events</a>
+            </li>
+          </ul>
+        </div>
+
+        <div class="w-60">
+          <div>
+            <p class="text-xl font-semibold text-gray-300">Write a review</p>
+            <p class="hover:text-gray-100"><a href="/review">feedback</a></p>
           </div>
         </div>
       </div>
+
+      <!-- footer last -->
+
+      <div
+        class="border-t border-gray-800 mt-10 pt-8 flex flex-col md:flex-row justify-between items-center pb-5 px-5"
+      >
+        <p class="text-gray-400 text-sm">
+          &copy; 2025 Croponer. All rights reserved. Developed by
+          <a class="hover:text-blue-600" href="https://amarnath404.in"
+            >Amaranth Bera</a
+          >
+        </p>
+        <div class="flex space-x-6 mt-4 md:mt-0">
+          <a
+            href="#"
+            class="text-gray-400 hover:text-white transition-colors text-sm"
+            >Privacy Policy</a
+          >
+          <a
+            href="#"
+            class="text-gray-400 hover:text-white transition-colors text-sm"
+            >Terms of Service</a
+          >
+          <a
+            href="#"
+            class="text-gray-400 hover:text-white transition-colors text-sm"
+            >Cookie Policy</a
+          >
+        </div>
+      </div>
     </footer>
+
+    <!--  WhatsApp Button with  Tooltip -->
+    <div class="fixed bottom-6 right-6 z-50 group">
+      <div
+        class="absolute bottom-20 right-0 bg-green-600 text-white px-3 py-2 rounded-lg shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 border border-gray-300 whitespace-nowrap transform translate-y-2 group-hover:translate-y-0 w-32 text-center"
+      >
+        <div
+          class="absolute bottom-[-6px] right-6 w-3 h-4 bg-green-600 border-r border-b border-gray-300 transform rotate-45"
+        ></div>
+        <span class="font-medium">Chat with us </span>
+      </div>
+
+      <!-- Main Button with Effects -->
+      <a
+        href="https://wa.me/919800068420?text=Hi%20Croponer,%20I%20have%20a%20question%20about%20your%20services"
+        target="_blank"
+        aria-label="Chat with us on WhatsApp"
+      >
+        <!-- Outer Ring Animation -->
+        <span
+          class="absolute inset-0 rounded-full animate-ping bg-green-400 opacity-50"
+        ></span>
+
+        <!-- Shadow Effect -->
+        <span
+          class="absolute inset-0 rounded-full shadow-lg bg-green-500 opacity-80 group-hover:opacity-0 transition-opacity duration-300"
+        ></span>
+
+        <!-- Main Button -->
+        <div
+          class="relative bg-green-500 hover:bg-green-600 w-16 h-16 rounded-full shadow-lg flex items-center justify-center transform transition-all duration-300 group-hover:scale-110 z-10"
+        >
+          <i class="fab fa-whatsapp text-white text-3xl"></i>
+        </div>
+      </a>
+    </div>
+
+    <!-- user profile modal after login -->
+    <div
+      id="userProfileModal"
+      class="absolute hidden z-50 top-14 right-10 lg:right-0 select-none"
+    >
+      <div
+        class="bg-blue-100 w-56 flex flex-col items-center py-5 rounded-xl shadow-lg border border-blue-100/50 relative overflow-hidden"
+      >
+        <div class="relative mb-3 z-10">
+          <div
+            class="avatar w-20 h-20 rounded-full border-2 border-blue-400 shadow-md bg-gray-100 flex items-center justify-center overflow-hidden"
+          >
+            <!-- If image fails to load, show initials -->
+            <span class="text-[#000480] text-2xl font-bold hidden">U</span>
+          </div>
+          <div
+            class="absolute bottom-0 right-0 w-5 h-5 bg-green-500 border-2 border-white rounded-full"
+          ></div>
+        </div>
+
+        <!-- Username -->
+        <div class="w-full px-4 mb-4 relative z-10">
+          <p class="text-center font-medium text-gray-800 text-lg">
+            <span id="showName2" class="truncate block">Username</span>
+          </p>
+        </div>
+
+        <!-- Menu Options -->
+        <div
+          class="w-full border-t border-blue-200/70 pt-3 px-3 space-y-1 relative z-10"
+        >
+          <!-- View Profile -->
+          <p>
+            <a
+              href="/user-profile"
+              class="flex items-center text-gray-700 px-3 py-2 rounded-lg hover:bg-blue-200/70 transition-colors group"
+            >
+              <i
+                class="fas fa-user mr-2.5 text-[#000480] opacity-70 group-hover:opacity-100"
+              ></i>
+              <span class="text-base">View Profile</span>
+            </a>
+          </p>
+
+          <!-- Update Profile -->
+          <p>
+            <a
+              href="/edit-profile"
+              class="flex items-center text-gray-700 px-3 py-2 rounded-lg hover:bg-blue-200/70 transition-colors group"
+            >
+              <i
+                class="fas fa-user-edit mr-2.5 text-[#000480] opacity-70 group-hover:opacity-100"
+              ></i>
+              <span class="text-base">Update Profile</span>
+            </a>
+          </p>
+
+          <!-- Divider -->
+          <div class="border-t border-blue-200/70 my-1"></div>
+
+          <!-- Logout -->
+          <p class="logout">
+            <a
+              class="flex items-center px-3 py-2 rounded-lg text-red-600 hover:bg-red-100/70 transition-colors group cursor-pointer"
+            >
+              <i
+                class="fas fa-sign-out-alt mr-2.5 opacity-70 group-hover:opacity-100"
+              ></i>
+              <span class="text-base">Logout</span>
+            </a>
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Enhanced display message system -->
+    <div id="displayMessage" class="hidden">
+      <div id="messageContent" class="message-type-error">
+        <p id="message"></p>
+      </div>
+    </div>
+
+    <!-- Loader -->
+    <div id="loader" class="hidden">
+      <div
+        class="fixed inset-0 flex z-30 items-center justify-center bg-[#000000d0]"
+      >
+        <div class="bouncing-balls">
+          <div class="bouncing-ball"></div>
+          <div class="bouncing-ball"></div>
+          <div class="bouncing-ball"></div>
+          <div class="bouncing-ball"></div>
+          <div class="bouncing-ball"></div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      // Initialize AOS
+      AOS.init({
+        duration: 800,
+        once: true,
+        offset: 100,
+      });
+    </script>
+
+    <script type="module" src="./assets/js/main.js"></script>
   </body>
 </html>

@@ -1,0 +1,902 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Croponer | AI-Powered Agricultural Solutions</title>
+
+    <!-- preload Images -->
+
+    <link
+      rel="preload"
+      href="./assets/images/hero/main_bg.jpg"
+      as="image"
+      type="image/jpeg"
+    />
+    <link
+      rel="preload"
+      href="./assets/images/hero/paddy.jpg"
+      as="image"
+      type="image/jpeg"
+    />
+    <link
+      rel="preload"
+      href="./assets/images/hero/peanuts-1735672.jpg"
+      as="image"
+      type="image/jpeg"
+    />
+    <link
+      rel="preload"
+      href="./assets/images/hero/potato.jpg"
+      as="image"
+      type="image/jpeg"
+    />
+
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/swiper/swiper-bundle.min.css"
+    />
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+      integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css"
+      integrity="sha512-1cK78a1o+ht2JcaW6g8OXYwqpev9+6GqOkz9xmBN9iUUhIndKtxwILGWYOSibOKjLsEdjyjZvYDq/cZwNeak0w=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"
+      integrity="sha512-A7AYk1fGKX6S2SsHywmPkrnzTZHrgiVT7GcQkLGDe2ev0aWb8zejytzS8wjo7PGEXKqJOrjQ4oORtnimIRZBtw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+
+    <link rel="stylesheet" href="./assets/css/style.css?v=1.0" />
+    <link rel="stylesheet" href="./assets/css/coustomCss.css?v=1.0" />
+  </head>
+
+  <body class="bg-gray-50">
+    <!-- Header -->
+    <header
+      class="fixed w-full z-50 bg-white/90 backdrop-blur-md shadow-sm select-none"
+    >
+      <nav
+        class="container mx-auto flex justify-between items-center px-4 py-3"
+      >
+        <!-- logo section -->
+        <div class="flex items-center">
+          <div
+            class="h-10 w-10 bg-[#000480] rounded-lg flex items-center justify-center"
+          >
+            <span class="text-white font-bold text-lg">C</span>
+          </div>
+          <span class="text-[#000480] font-bold ml-2 text-xl">Croponer</span>
+        </div>
+
+        <!-- Desktop Menu -->
+        <div class="hidden md:flex items-center space-x-8">
+          <a href="/" class="text-gray-900 hover:text-[#1f1faa] font-medium"
+            >Home</a
+          >
+          <a href="/about" class="text-gray-700 hover:text-[#1f1faa]"
+            >About us</a
+          >
+          <a href="/blog" class="text-gray-700 hover:text-[#1f1faa]">Blog</a>
+          <a href="/research" class="text-gray-700 hover:text-[#1f1faa]"
+            >Research</a
+          >
+        </div>
+        <!-- login/signup -->
+        <div class="flex items-center space-x-4">
+          <div id="profile" class="hidden">
+            <div class="flex items-center space-x-2 group cursor-pointer">
+              <div class="avatar w-10 h-10 rounded-full"></div>
+              <p class="group-hover:text-[#1f1faa]">
+                Hi
+                <span id="showName1" class="group-hover:text-[#1f1faa]"
+                  >user</span
+                >
+              </p>
+            </div>
+          </div>
+          <a
+            id="loginDesktop"
+            href="/login"
+            class="hidden md:inline-block text-gray-700 hover:text-[#1f1faa] font-medium"
+            >Login</a
+          >
+
+          <a
+            id="register"
+            href="/register"
+            class="bg-[#000480] hover:bg-[#1f1faa] text-white px-4 py-2 rounded-lg transition-colors"
+          >
+            Get Started
+          </a>
+          <!-- Mobile Menu Button -->
+          <button
+            id="menubar"
+            class="md:hidden text-gray-700 hover:text-[#1f1faa] cursor-pointer"
+          >
+            <i class="fas fa-bars text-xl"></i>
+          </button>
+        </div>
+      </nav>
+
+      <!-- Mobile Menu -->
+      <div
+        id="menu"
+        class="bg-white/90 h-screen w-56 top-16 right-[-224px] transition-all duration-500 delay-200 ease-in-out fixed rounded-bl-md z-20 md:hidden"
+      >
+        <div class="container ml-4 mx-auto px-4 py-3 space-y-1">
+          <a
+            href="/"
+            class="block py-2 text-gray-900 hover:text-[#1f1faa] font-medium"
+            >Home</a
+          >
+          <a href="/about" class="block py-2 text-gray-800 hover:text-[#1f1faa]"
+            >About us</a
+          >
+          <a href="/blog" class="block py-2 text-gray-800 hover:text-[#1f1faa]"
+            >Blog</a
+          >
+          <a
+            href="/research"
+            class="block py-2 text-gray-800 hover:text-[#1f1faa]"
+            >Research</a
+          >
+          <a
+            id="loginMobile"
+            href="/login"
+            class="block py-2 text-gray-800 hover:text-[#1f1faa]"
+            >Login</a
+          >
+        </div>
+      </div>
+    </header>
+
+    <!-- main content for help and Support page -->
+    <!-- main content for help and Support page -->
+<main class="pt-24 pb-10">
+    <!-- Hero Section -->
+    <section class="relative bg-gradient-to-r from-[#000480] to-[#1f1faa] text-white py-20 overflow-hidden">
+      <div class="container mx-auto px-4 relative z-10">
+        <div class="max-w-3xl mx-auto text-center">
+          <h1 class="text-4xl md:text-5xl font-bold mb-4" data-aos="fade-up">Help & Support Center</h1>
+          <p class="text-lg opacity-90 mb-8" data-aos="fade-up" data-aos-delay="100">
+            Find answers to common questions about our agricultural AI solutions
+          </p>
+          
+          <!-- Search Bar -->
+          <div class="relative max-w-2xl mx-auto" data-aos="fade-up" data-aos-delay="200">
+            <div class="relative">
+              <input type="text" id="faqSearch" placeholder="Search for answers..." 
+                    class="w-full px-5 py-4 rounded-full pl-12 pr-36 text-gray-800 focus:outline-none focus:ring-2 focus:ring-[#1f1faa]/50" />
+              <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+                <i class="fas fa-search text-gray-400"></i>
+              </div>
+              <button class="absolute right-2 top-2 bottom-2 bg-[#000480] hover:bg-[#1f1faa] transition-colors text-white px-6 rounded-full">
+                Search
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Background pattern -->
+      <div class="absolute inset-0 opacity-10">
+        <div class="absolute right-0 top-0 w-1/3 h-full">
+          <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" class="w-full h-full">
+            <path fill="#FFFFFF" d="M41.9,-70.8C53.1,-62.4,60.3,-48.7,67.1,-34.9C73.8,-21.1,80.2,-7.2,79.5,6.2C78.9,19.7,71.2,32.8,61.7,43.9C52.2,54.9,40.8,63.8,28.2,68.3C15.6,72.8,1.9,72.7,-13.1,71.1C-28,69.5,-44.1,66.3,-55.2,57.1C-66.2,47.9,-72.1,32.8,-73.8,17.7C-75.5,2.5,-73,-12.5,-65.8,-23.2C-58.7,-33.9,-47,-40.3,-35.6,-48.5C-24.2,-56.6,-12.1,-66.5,2,-69.7C16.1,-73,32.1,-77.6,41.9,-70.8Z" transform="translate(100 100)" />
+          </svg>
+        </div>
+        <div class="absolute left-0 bottom-0 w-1/4 h-full">
+          <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" class="w-full h-full">
+            <path fill="#FFFFFF" d="M50.6,-77.8C62,-69.1,65.2,-49.1,69.6,-32C74.1,-14.9,79.8,-0.6,78.8,13.2C77.9,27,70.2,40.3,59.7,50.1C49.1,60,35.7,66.5,21.2,72.1C6.8,77.7,-8.7,82.5,-23.7,78.8C-38.7,75.2,-53,63.1,-62,48.5C-71,33.9,-74.8,16.9,-74.3,0.3C-73.8,-16.3,-69,-32.6,-59.7,-44.2C-50.3,-55.7,-36.6,-62.5,-22.9,-69.8C-9.2,-77.1,4.5,-84.9,19.7,-84.5C34.9,-84.1,51.5,-75.5,50.6,-77.8Z" transform="translate(100 100)" />
+          </svg>
+        </div>
+      </div>
+    </section>
+  
+    <!-- FAQ Categories -->
+    <section class="py-12 bg-gray-50">
+      <div class="container mx-auto px-4">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6" data-aos="fade-up">
+          <!-- Getting Started -->
+          <div class="bg-white rounded-xl shadow-sm p-6 border border-gray-100 hover:shadow-md transition-shadow cursor-pointer" 
+               onclick="scrollToCategory('getting-started')">
+            <div class="bg-[#000480]/10 w-14 h-14 rounded-full flex items-center justify-center mb-4">
+              <i class="fas fa-rocket text-[#000480] text-xl"></i>
+            </div>
+            <h3 class="text-xl font-semibold text-gray-800 mb-2">Getting Started</h3>
+            <p class="text-gray-600">New to Croponer? Learn how our platform works and how to get started.</p>
+          </div>
+  
+          <!-- Account & Billing -->
+          <div class="bg-white rounded-xl shadow-sm p-6 border border-gray-100 hover:shadow-md transition-shadow cursor-pointer"
+               onclick="scrollToCategory('account-billing')">
+            <div class="bg-[#000480]/10 w-14 h-14 rounded-full flex items-center justify-center mb-4">
+              <i class="fas fa-user-circle text-[#000480] text-xl"></i>
+            </div>
+            <h3 class="text-xl font-semibold text-gray-800 mb-2">Account & Billing</h3>
+            <p class="text-gray-600">Questions about your account, subscription plans, and payments.</p>
+          </div>
+  
+          <!-- Features & Tools -->
+          <div class="bg-white rounded-xl shadow-sm p-6 border border-gray-100 hover:shadow-md transition-shadow cursor-pointer"
+               onclick="scrollToCategory('features-tools')">
+            <div class="bg-[#000480]/10 w-14 h-14 rounded-full flex items-center justify-center mb-4">
+              <i class="fas fa-tools text-[#000480] text-xl"></i>
+            </div>
+            <h3 class="text-xl font-semibold text-gray-800 mb-2">Features & Tools</h3>
+            <p class="text-gray-600">Explore our AI tools and learn how to use them effectively.</p>
+          </div>
+  
+          <!-- Troubleshooting -->
+          <div class="bg-white rounded-xl shadow-sm p-6 border border-gray-100 hover:shadow-md transition-shadow cursor-pointer"
+               onclick="scrollToCategory('troubleshooting')">
+            <div class="bg-[#000480]/10 w-14 h-14 rounded-full flex items-center justify-center mb-4">
+              <i class="fas fa-bug text-[#000480] text-xl"></i>
+            </div>
+            <h3 class="text-xl font-semibold text-gray-800 mb-2">Troubleshooting</h3>
+            <p class="text-gray-600">Having technical issues? Find solutions to common problems.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  
+    <!-- FAQ Content -->
+    <section class="py-16 bg-white">
+      <div class="container mx-auto px-4">
+        <div class="max-w-4xl mx-auto">
+          <!-- Getting Started FAQs -->
+          <div id="getting-started" class="mb-14" data-aos="fade-up">
+            <div class="flex items-center mb-8">
+              <div class="bg-[#000480]/10 w-12 h-12 rounded-full flex items-center justify-center mr-4">
+                <i class="fas fa-rocket text-[#000480] text-xl"></i>
+              </div>
+              <h2 class="text-3xl font-semibold text-gray-800">Getting Started</h2>
+            </div>
+  
+            <div class="space-y-6">
+              <!-- FAQ Item 1 -->
+              <div class="border border-gray-200 rounded-lg overflow-hidden">
+                <button class="faq-toggle flex justify-between items-center w-full px-6 py-4 text-left bg-gray-50 hover:bg-gray-100 transition-colors">
+                  <span class="font-medium text-gray-800">What is Croponer and how does it work?</span>
+                  <i class="fas fa-plus text-[#000480] transition-transform"></i>
+                </button>
+                <div class="faq-content hidden px-6 py-4 bg-white">
+                  <p class="text-gray-700">
+                    Croponer is an AI-powered agricultural technology platform that helps farmers optimize their crop yield and resource management. Our platform uses advanced machine learning algorithms to analyze soil conditions, weather patterns, and crop health to provide tailored recommendations. We offer tools for disease detection, yield prediction, irrigation optimization, and more, all accessible through our mobile and web applications.
+                  </p>
+                </div>
+              </div>
+  
+              <!-- FAQ Item 2 -->
+              <div class="border border-gray-200 rounded-lg overflow-hidden">
+                <button class="faq-toggle flex justify-between items-center w-full px-6 py-4 text-left bg-gray-50 hover:bg-gray-100 transition-colors">
+                  <span class="font-medium text-gray-800">How do I create an account?</span>
+                  <i class="fas fa-plus text-[#000480] transition-transform"></i>
+                </button>
+                <div class="faq-content hidden px-6 py-4 bg-white">
+                  <p class="text-gray-700">
+                    Creating an account is easy! Click on the "Get Started" button in the top-right corner of our website. Fill in your details in the registration form, including your name, email address, and password. You'll receive a verification email - click the link to verify your account. Once verified, you can complete your profile with information about your farm to receive personalized recommendations.
+                  </p>
+                </div>
+              </div>
+  
+              <!-- FAQ Item 3 -->
+              <div class="border border-gray-200 rounded-lg overflow-hidden">
+                <button class="faq-toggle flex justify-between items-center w-full px-6 py-4 text-left bg-gray-50 hover:bg-gray-100 transition-colors">
+                  <span class="font-medium text-gray-800">What equipment do I need to use Croponer?</span>
+                  <i class="fas fa-plus text-[#000480] transition-transform"></i>
+                </button>
+                <div class="faq-content hidden px-6 py-4 bg-white">
+                  <p class="text-gray-700">
+                    You can start using Croponer with just a smartphone or computer with internet access. For basic features like crop identification and disease detection, you can simply take photos with your smartphone. For more advanced analytics, we offer compatible sensors and weather stations that are easy to install and connect to our platform. Our team can help you determine which equipment would be most beneficial for your specific farming needs.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+  
+          <!-- Account & Billing FAQs -->
+          <div id="account-billing" class="mb-14" data-aos="fade-up">
+            <div class="flex items-center mb-8">
+              <div class="bg-[#000480]/10 w-12 h-12 rounded-full flex items-center justify-center mr-4">
+                <i class="fas fa-user-circle text-[#000480] text-xl"></i>
+              </div>
+              <h2 class="text-3xl font-semibold text-gray-800">Account & Billing</h2>
+            </div>
+  
+            <div class="space-y-6">
+              <!-- FAQ Item 1 -->
+              <div class="border border-gray-200 rounded-lg overflow-hidden">
+                <button class="faq-toggle flex justify-between items-center w-full px-6 py-4 text-left bg-gray-50 hover:bg-gray-100 transition-colors">
+                  <span class="font-medium text-gray-800">What subscription plans do you offer?</span>
+                  <i class="fas fa-plus text-[#000480] transition-transform"></i>
+                </button>
+                <div class="faq-content hidden px-6 py-4 bg-white">
+                  <p class="text-gray-700">
+                    We offer several subscription tiers to accommodate farms of all sizes:
+                  </p>
+                  <ul class="list-disc pl-5 mt-2 space-y-1 text-gray-700">
+                    <li><strong>Basic Plan:</strong> Perfect for small farms, includes crop identification and basic weather forecasting.</li>
+                    <li><strong>Premium Plan:</strong> For medium-sized operations, adds disease detection, yield prediction, and irrigation recommendations.</li>
+                    <li><strong>Enterprise Plan:</strong> For large commercial farms, includes all features plus custom analytics and dedicated support.</li>
+                  </ul>
+                  <p class="text-gray-700 mt-2">
+                    We also offer a free trial for 14 days so you can experience the benefits before committing.
+                  </p>
+                </div>
+              </div>
+  
+              <!-- FAQ Item 2 -->
+              <div class="border border-gray-200 rounded-lg overflow-hidden">
+                <button class="faq-toggle flex justify-between items-center w-full px-6 py-4 text-left bg-gray-50 hover:bg-gray-100 transition-colors">
+                  <span class="font-medium text-gray-800">How do I change my subscription plan?</span>
+                  <i class="fas fa-plus text-[#000480] transition-transform"></i>
+                </button>
+                <div class="faq-content hidden px-6 py-4 bg-white">
+                  <p class="text-gray-700">
+                    You can upgrade or downgrade your subscription plan at any time by logging into your account, navigating to "Settings" > "Subscription", and selecting "Change Plan". If you upgrade, you'll have immediate access to additional features and will be charged the prorated difference. If you downgrade, your current plan will continue until the end of your billing cycle, then switch to the new plan.
+                  </p>
+                </div>
+              </div>
+  
+              <!-- FAQ Item 3 -->
+              <div class="border border-gray-200 rounded-lg overflow-hidden">
+                <button class="faq-toggle flex justify-between items-center w-full px-6 py-4 text-left bg-gray-50 hover:bg-gray-100 transition-colors">
+                  <span class="font-medium text-gray-800">What payment methods do you accept?</span>
+                  <i class="fas fa-plus text-[#000480] transition-transform"></i>
+                </button>
+                <div class="faq-content hidden px-6 py-4 bg-white">
+                  <p class="text-gray-700">
+                    We accept all major credit cards (Visa, Mastercard, American Express), PayPal, and direct bank transfers for annual subscriptions. For Enterprise customers, we can also accommodate purchase orders and specialized payment arrangements. All payments are processed securely using industry-standard encryption and security practices.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+  
+          <!-- Features & Tools FAQs -->
+          <div id="features-tools" class="mb-14" data-aos="fade-up">
+            <div class="flex items-center mb-8">
+              <div class="bg-[#000480]/10 w-12 h-12 rounded-full flex items-center justify-center mr-4">
+                <i class="fas fa-tools text-[#000480] text-xl"></i>
+              </div>
+              <h2 class="text-3xl font-semibold text-gray-800">Features & Tools</h2>
+            </div>
+  
+            <div class="space-y-6">
+              <!-- FAQ Item 1 -->
+              <div class="border border-gray-200 rounded-lg overflow-hidden">
+                <button class="faq-toggle flex justify-between items-center w-full px-6 py-4 text-left bg-gray-50 hover:bg-gray-100 transition-colors">
+                  <span class="font-medium text-gray-800">How accurate is the crop disease detection?</span>
+                  <i class="fas fa-plus text-[#000480] transition-transform"></i>
+                </button>
+                <div class="faq-content hidden px-6 py-4 bg-white">
+                  <p class="text-gray-700">
+                    Our crop disease detection system has an accuracy rate of over 95% for common diseases across major crop types. The system is continuously learning and improving through machine learning. For the most accurate results, photos should be taken in good lighting and close enough to clearly show the affected area. If the system is uncertain, it will indicate this and may suggest sending the image for review by our agricultural experts.
+                  </p>
+                </div>
+              </div>
+  
+              <!-- FAQ Item 2 -->
+              <div class="border border-gray-200 rounded-lg overflow-hidden">
+                <button class="faq-toggle flex justify-between items-center w-full px-6 py-4 text-left bg-gray-50 hover:bg-gray-100 transition-colors">
+                  <span class="font-medium text-gray-800">Can I integrate Croponer with my existing farm management software?</span>
+                  <i class="fas fa-plus text-[#000480] transition-transform"></i>
+                </button>
+                <div class="faq-content hidden px-6 py-4 bg-white">
+                  <p class="text-gray-700">
+                    Yes! Croponer is designed to work with many popular farm management systems through our API. We currently support direct integrations with systems like John Deere Operations Center, Climate FieldView, and Trimble Ag Software. For custom integrations or other systems, our technical team can help establish data connections. Please contact our support team with details about your specific system for integration assistance.
+                  </p>
+                </div>
+              </div>
+  
+              <!-- FAQ Item 3 -->
+              <div class="border border-gray-200 rounded-lg overflow-hidden">
+                <button class="faq-toggle flex justify-between items-center w-full px-6 py-4 text-left bg-gray-50 hover:bg-gray-100 transition-colors">
+                  <span class="font-medium text-gray-800">How far in advance can your system predict weather patterns?</span>
+                  <i class="fas fa-plus text-[#000480] transition-transform"></i>
+                </button>
+                <div class="faq-content hidden px-6 py-4 bg-white">
+                  <p class="text-gray-700">
+                    Our standard weather forecasting provides accurate predictions for up to 10 days in advance. For Premium and Enterprise subscribers, we offer extended forecasting with seasonal trends and probability-based long-term projections up to 30 days out. Our AI system combines multiple meteorological models with historical data specific to your location to achieve higher accuracy than conventional forecast methods. Weather alerts for extreme conditions are pushed as notifications to help you protect your crops.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+  
+          <!-- Troubleshooting FAQs -->
+          <div id="troubleshooting" class="mb-14" data-aos="fade-up">
+            <div class="flex items-center mb-8">
+              <div class="bg-[#000480]/10 w-12 h-12 rounded-full flex items-center justify-center mr-4">
+                <i class="fas fa-bug text-[#000480] text-xl"></i>
+              </div>
+              <h2 class="text-3xl font-semibold text-gray-800">Troubleshooting</h2>
+            </div>
+  
+            <div class="space-y-6">
+              <!-- FAQ Item 1 -->
+              <div class="border border-gray-200 rounded-lg overflow-hidden">
+                <button class="faq-toggle flex justify-between items-center w-full px-6 py-4 text-left bg-gray-50 hover:bg-gray-100 transition-colors">
+                  <span class="font-medium text-gray-800">The app is not connecting to my soil sensors. What should I do?</span>
+                  <i class="fas fa-plus text-[#000480] transition-transform"></i>
+                </button>
+                <div class="faq-content hidden px-6 py-4 bg-white">
+                  <p class="text-gray-700">
+                    If you're experiencing connection issues with soil sensors, try these steps:
+                  </p>
+                  <ol class="list-decimal pl-5 mt-2 space-y-2 text-gray-700">
+                    <li>Check that your sensors are properly powered and within signal range.</li>
+                    <li>Ensure your phone's Bluetooth and location services are enabled.</li>
+                    <li>Restart the sensor by removing and reinserting the batteries.</li>
+                    <li>Force close and reopen the Croponer app.</li>
+                    <li>Check for firmware updates for your sensors in the "Devices" section.</li>
+                  </ol>
+                  <p class="text-gray-700 mt-2">
+                    If problems persist, contact our technical support team with your sensor model and app version.
+                  </p>
+                </div>
+              </div>
+  
+              <!-- FAQ Item 2 -->
+              <div class="border border-gray-200 rounded-lg overflow-hidden">
+                <button class="faq-toggle flex justify-between items-center w-full px-6 py-4 text-left bg-gray-50 hover:bg-gray-100 transition-colors">
+                  <span class="font-medium text-gray-800">I forgot my password. How do I reset it?</span>
+                  <i class="fas fa-plus text-[#000480] transition-transform"></i>
+                </button>
+                <div class="faq-content hidden px-6 py-4 bg-white">
+                  <p class="text-gray-700">
+                    To reset your password, click on the "Login" button at the top of our website, then select "Forgot password?" link below the login form. Enter the email address associated with your account, and we'll send you a password reset link. Click the link in the email and follow the instructions to create a new password. For security reasons, the reset link expires after 24 hours. If you don't receive the email, please check your spam folder or contact support.
+                  </p>
+                </div>
+              </div>
+  
+              <!-- FAQ Item 3 -->
+              <div class="border border-gray-200 rounded-lg overflow-hidden">
+                <button class="faq-toggle flex justify-between items-center w-full px-6 py-4 text-left bg-gray-50 hover:bg-gray-100 transition-colors">
+                  <span class="font-medium text-gray-800">The crop identification feature isn't working properly. How can I improve results?</span>
+                  <i class="fas fa-plus text-[#000480] transition-transform"></i>
+                </button>
+                <div class="faq-content hidden px-6 py-4 bg-white">
+                  <p class="text-gray-700">
+                    For best results with crop identification and disease detection:
+                  </p>
+                  <ul class="list-disc pl-5 mt-2 space-y-1 text-gray-700">
+                    <li>Take photos in good, natural lighting (avoid shadows or glare)</li>
+                    <li>Capture clear, close-up images of the plant features or problem areas</li>
+                    <li>Include multiple angles of the same plant when possible</li>
+                    <li>Ensure the app has the latest update installed</li>
+                    <li>Check your internet connection - identification requires cloud processing</li>
+                  </ul>
+                  <p class="text-gray-700 mt-2">
+                    If you're still having issues after trying these tips, use the "Report Problem" button in the app to send examples to our team for investigation.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  
+    <!-- Still Have Questions -->
+    <section class="py-16 bg-gray-50">
+      <div class="container mx-auto px-4">
+        <div class="max-w-4xl mx-auto bg-white rounded-2xl shadow-md overflow-hidden" data-aos="fade-up">
+          <div class="flex flex-col md:flex-row">
+            <div class="md:w-2/5 bg-[#000480] p-8 text-white flex flex-col justify-center">
+              <h3 class="text-2xl font-semibold mb-4">Still Have Questions?</h3>
+              <p class="opacity-90 mb-6">
+                Our support team is here to help you with any questions not covered in our FAQs.
+              </p>
+              <div class="space-y-4">
+                <a href="tel:+15551234567" class="flex items-center text-white/90 hover:text-white transition-colors">
+                  <i class="fas fa-phone-alt mr-3 w-5 text-center"></i>
+                  +1 (555) 123-4567
+                </a>
+                <a href="mailto:support@croponer.com" class="flex items-center text-white/90 hover:text-white transition-colors">
+                  <i class="fas fa-envelope mr-3 w-5 text-center"></i>
+                  support@croponer.com
+                </a>
+              </div>
+            </div>
+            <div class="md:w-3/5 p-8">
+              <div class="flex items-center mb-4">
+                <div class="h-10 w-10 bg-[#000480]/10 rounded-full flex items-center justify-center mr-3">
+                  <i class="fas fa-headset text-[#000480]"></i>
+                </div>
+                <h3 class="text-xl font-semibold text-gray-800">Contact Support</h3>
+              </div>
+              <p class="text-gray-600 mb-6">
+                Send us a message and one of our agricultural technology experts will get back to you within 24 hours.
+              </p>
+              <a href="/contact" class="inline-block bg-[#000480] hover:bg-[#1f1faa] text-white font-medium py-3 px-6 rounded-lg transition-colors">
+                Contact Us
+                <i class="fas fa-arrow-right ml-2"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+  
+
+ 
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 select-none mt-20">
+      <div
+        class="flex flex-col lg:flex-row lg:space-x-2 lg:space-y-0 lg:justify-center mx-5 mt-10 lg:pt-8 lg:pb-4 px-5 pt-10 pb-10 space-y-16 text-gray-400"
+      >
+        <div class="lg:h-60 lg:w-56 lg:mr-24 text-pretty">
+          <div>
+            <div class="flex items-center mb-6">
+              <div
+                class="h-10 w-10 bg-white rounded-lg flex items-center justify-center"
+              >
+                <span class="text-[#000480] font-bold text-lg">C</span>
+              </div>
+              <span class="text-white font-bold ml-2 text-xl">Croponer</span>
+            </div>
+            <p class="text-gray-400 mb-6">
+              AI-powered agricultural technology for smarter, more efficient
+              farming.
+            </p>
+            <div class="flex space-x-4">
+              <a
+                href="#"
+                class="text-gray-400 hover:text-white transition-colors"
+              >
+                <i class="fab fa-twitter"></i>
+              </a>
+              <a
+                href="#"
+                class="text-gray-400 hover:text-white transition-colors"
+              >
+                <i class="fab fa-facebook"></i>
+              </a>
+              <a
+                href="#"
+                class="text-gray-400 hover:text-white transition-colors"
+              >
+                <i class="fab fa-linkedin"></i>
+              </a>
+              <a
+                href="#"
+                class="text-gray-400 hover:text-white transition-colors"
+              >
+                <i class="fab fa-instagram"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div class="lg:h-60 w-60 text-pretty">
+          <p class="text-xl font-semibold text-gray-300 mb-2">Quick Links</p>
+          <ul class="space-y-2">
+            <li class="hover:text-gray-100"><a href="/about">About Us</a></li>
+            <li class="hover:text-gray-100"><a href="/work">our Works</a></li>
+            <li class="hover:text-gray-100"><a href="/team">Our Team</a></li>
+            <li class="hover:text-gray-100">
+              <a href="/articles">Read Article</a>
+            </li>
+          </ul>
+        </div>
+
+        <div class="lg:h-60 w-60 text-pretty">
+          <p class="text-xl font-semibold text-gray-300 mb-2">Help/Support</p>
+          <ul class="space-y-3">
+            <li class="hover:text-gray-100">
+              <a href="/contact">Contact Us</a>
+            </li>
+            <li class="hover:text-gray-100"><a href="/help">help</a></li>
+            <li class="hover:text-gray-100"><a href="/support">Support</a></li>
+            <li class="hover:text-gray-100">
+              <a href="/terms">Terms & Condition</a>
+            </li>
+          </ul>
+        </div>
+
+        <div class="lg:h-60 w-60 text-pretty">
+          <p class="text-xl font-semibold text-gray-300 mb-2">Community</p>
+          <ul class="space-y-3">
+            <li class="hover:text-gray-100">
+              <a href="/team">Join our Community</a>
+            </li>
+            <li class="hover:text-gray-100"><a href="/gallery">Gallery</a></li>
+            <li class="hover:text-gray-100"><a href="/blog">Our Blogs</a></li>
+            <li class="hover:text-gray-100">
+              <a href="/events">Special Events</a>
+            </li>
+          </ul>
+        </div>
+
+        <div class="w-60">
+          <div>
+            <p class="text-xl font-semibold text-gray-300">Write a review</p>
+            <p class="hover:text-gray-100"><a href="/review">feedback</a></p>
+          </div>
+        </div>
+      </div>
+
+      <!-- footer last -->
+
+      <div
+        class="border-t border-gray-800 mt-10 pt-8 flex flex-col md:flex-row justify-between items-center pb-5 px-5"
+      >
+        <p class="text-gray-400 text-sm">
+          &copy; 2025 Croponer. All rights reserved. Developed by
+          <a class="hover:text-blue-600" href="https://amarnath404.in"
+            >Amaranth Bera</a
+          >
+        </p>
+        <div class="flex space-x-6 mt-4 md:mt-0">
+          <a
+            href="#"
+            class="text-gray-400 hover:text-white transition-colors text-sm"
+            >Privacy Policy</a
+          >
+          <a
+            href="#"
+            class="text-gray-400 hover:text-white transition-colors text-sm"
+            >Terms of Service</a
+          >
+          <a
+            href="#"
+            class="text-gray-400 hover:text-white transition-colors text-sm"
+            >Cookie Policy</a
+          >
+        </div>
+      </div>
+    </footer>
+
+    <!--  WhatsApp Button with  Tooltip -->
+    <div class="fixed bottom-6 right-6 z-50 group">
+      <div
+        class="absolute bottom-20 right-0 bg-green-600 text-white px-3 py-2 rounded-lg shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 border border-gray-300 whitespace-nowrap transform translate-y-2 group-hover:translate-y-0 w-32 text-center"
+      >
+        <div
+          class="absolute bottom-[-6px] right-6 w-3 h-4 bg-green-600 border-r border-b border-gray-300 transform rotate-45"
+        ></div>
+        <span class="font-medium">Chat with us </span>
+      </div>
+
+      <!-- Main Button with Effects -->
+      <a
+        href="https://wa.me/919800068420?text=Hi%20Croponer,%20I%20have%20a%20question%20about%20your%20services"
+        target="_blank"
+        aria-label="Chat with us on WhatsApp"
+      >
+        <!-- Outer Ring Animation -->
+        <span
+          class="absolute inset-0 rounded-full animate-ping bg-green-400 opacity-50"
+        ></span>
+
+        <!-- Shadow Effect -->
+        <span
+          class="absolute inset-0 rounded-full shadow-lg bg-green-500 opacity-80 group-hover:opacity-0 transition-opacity duration-300"
+        ></span>
+
+        <!-- Main Button -->
+        <div
+          class="relative bg-green-500 hover:bg-green-600 w-16 h-16 rounded-full shadow-lg flex items-center justify-center transform transition-all duration-300 group-hover:scale-110 z-10"
+        >
+          <i class="fab fa-whatsapp text-white text-3xl"></i>
+        </div>
+      </a>
+    </div>
+
+    <!-- user profile modal after login -->
+    <div
+      id="userProfileModal"
+      class="absolute hidden z-50 top-14 right-10 lg:right-0 select-none"
+    >
+      <div
+        class="bg-blue-100 w-56 flex flex-col items-center py-5 rounded-xl shadow-lg border border-blue-100/50 relative overflow-hidden"
+      >
+        <div class="relative mb-3 z-10">
+          <div
+            class="avatar w-20 h-20 rounded-full border-2 border-blue-400 shadow-md bg-gray-100 flex items-center justify-center overflow-hidden"
+          >
+            <!-- If image fails to load, show initials -->
+            <span class="text-[#000480] text-2xl font-bold hidden">U</span>
+          </div>
+          <div
+            class="absolute bottom-0 right-0 w-5 h-5 bg-green-500 border-2 border-white rounded-full"
+          ></div>
+        </div>
+
+        <!-- Username -->
+        <div class="w-full px-4 mb-4 relative z-10">
+          <p class="text-center font-medium text-gray-800 text-lg">
+            <span id="showName2" class="truncate block">Username</span>
+          </p>
+        </div>
+
+        <!-- Menu Options -->
+        <div
+          class="w-full border-t border-blue-200/70 pt-3 px-3 space-y-1 relative z-10"
+        >
+          <!-- View Profile -->
+          <p>
+            <a
+              href="/user-profile"
+              class="flex items-center text-gray-700 px-3 py-2 rounded-lg hover:bg-blue-200/70 transition-colors group"
+            >
+              <i
+                class="fas fa-user mr-2.5 text-[#000480] opacity-70 group-hover:opacity-100"
+              ></i>
+              <span class="text-base">View Profile</span>
+            </a>
+          </p>
+
+          <!-- Update Profile -->
+          <p>
+            <a
+              href="/edit-profile"
+              class="flex items-center text-gray-700 px-3 py-2 rounded-lg hover:bg-blue-200/70 transition-colors group"
+            >
+              <i
+                class="fas fa-user-edit mr-2.5 text-[#000480] opacity-70 group-hover:opacity-100"
+              ></i>
+              <span class="text-base">Update Profile</span>
+            </a>
+          </p>
+
+          <!-- Divider -->
+          <div class="border-t border-blue-200/70 my-1"></div>
+
+          <!-- Logout -->
+          <p class="logout">
+            <a
+              class="flex items-center px-3 py-2 rounded-lg text-red-600 hover:bg-red-100/70 transition-colors group cursor-pointer"
+            >
+              <i
+                class="fas fa-sign-out-alt mr-2.5 opacity-70 group-hover:opacity-100"
+              ></i>
+              <span class="text-base">Logout</span>
+            </a>
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Enhanced display message system -->
+    <div id="displayMessage" class="hidden">
+      <div id="messageContent" class="message-type-error">
+        <p id="message"></p>
+      </div>
+    </div>
+
+    <!-- Loader -->
+    <div id="loader" class="hidden">
+      <div
+        class="fixed inset-0 flex z-30 items-center justify-center bg-[#000000d0]"
+      >
+        <div class="bouncing-balls">
+          <div class="bouncing-ball"></div>
+          <div class="bouncing-ball"></div>
+          <div class="bouncing-ball"></div>
+          <div class="bouncing-ball"></div>
+          <div class="bouncing-ball"></div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      // Initialize AOS
+      AOS.init({
+        duration: 800,
+        once: true,
+        offset: 100,
+      });
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+          // Initialize FAQ toggles
+          const faqToggles = document.querySelectorAll('.faq-toggle');
+          
+          faqToggles.forEach(toggle => {
+            toggle.addEventListener('click', function() {
+              const content = this.nextElementSibling;
+              const icon = this.querySelector('i');
+              
+              // Toggle content visibility
+              content.classList.toggle('hidden');
+              
+              // Toggle icon
+              if (content.classList.contains('hidden')) {
+                icon.classList.remove('fa-minus');
+                icon.classList.add('fa-plus');
+              } else {
+                icon.classList.remove('fa-plus');
+                icon.classList.add('fa-minus');
+              }
+            });
+          });
+      
+          // Smooth scroll for category navigation
+          function scrollToCategory(id) {
+            const element = document.getElementById(id);
+            if (element) {
+              window.scrollTo({
+                top: element.offsetTop - 120,
+                behavior: 'smooth'
+              });
+            }
+          }
+      
+          // Make the function available globally
+          window.scrollToCategory = scrollToCategory;
+      
+          // Search functionality
+          const searchInput = document.getElementById('faqSearch');
+          if (searchInput) {
+            searchInput.addEventListener('input', function() {
+              const searchTerm = this.value.toLowerCase();
+              const faqItems = document.querySelectorAll('.faq-toggle');
+              
+              faqItems.forEach(item => {
+                const questionText = item.querySelector('span').textContent.toLowerCase();
+                const contentText = item.nextElementSibling.textContent.toLowerCase();
+                const match = questionText.includes(searchTerm) || contentText.includes(searchTerm);
+                
+                // Show/hide FAQ items based on search
+                if (match) {
+                  item.parentElement.style.display = 'block';
+                  
+                  // Highlight the matching text if needed
+                  if (searchTerm.length > 2) {
+                    // Expand the FAQ if it contains the search term
+                    const content = item.nextElementSibling;
+                    const icon = item.querySelector('i');
+                    
+                    if (content.classList.contains('hidden')) {
+                      content.classList.remove('hidden');
+                      icon.classList.remove('fa-plus');
+                      icon.classList.add('fa-minus');
+                    }
+                  }
+                } else {
+                  item.parentElement.style.display = 'none';
+                }
+              });
+              
+              // Show/hide category headers based on visibility of their FAQ items
+              const categories = document.querySelectorAll('[id^="getting-"], [id^="account-"], [id^="features-"], [id^="troubleshooting"]');
+              categories.forEach(category => {
+                const faqItems = category.querySelectorAll('.faq-toggle');
+                const visibleItems = Array.from(faqItems).filter(item => item.parentElement.style.display !== 'none');
+                
+                if (visibleItems.length === 0) {
+                  category.style.display = 'none';
+                } else {
+                  category.style.display = 'block';
+                }
+              });
+            });
+          }
+        });
+      </script>
+
+    <script type="module" src="./assets/js/main.js"></script>
+  </body>
+</html>
