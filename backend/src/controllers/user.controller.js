@@ -102,10 +102,12 @@ const loginUser = asyncHandler(async (req, res) => {
     }
     // secure: process.env.NODE_ENV === "production",
 
+    const accessTokenExpiry = process.env.ACCESS_TOKEN_EXPIRY 
+    
     return res
         .status(200)
-        .cookie("accessToken", accessToken, {...options , maxAge: 5 * 60 * 1000} )
-        .cookie("refreshToken", refreshToken,  {...options, maxAge: 10 * 60 * 1000}  )
+        .cookie("accessToken", accessToken, {...options , maxAge: 2 * 24 * 60 * 60 * 1000} )
+        .cookie("refreshToken", refreshToken,  {...options, maxAge: 10 * 24 * 60 * 60 * 1000}  )
         .json(
             new ApiResponse(
                 200,
@@ -113,7 +115,7 @@ const loginUser = asyncHandler(async (req, res) => {
                     user: userResponse,
                     accessToken,
                     refreshToken,
-                    expiresAt: Date.now() + 5 * 60 * 1000
+                    expiresAt: Date.now() +2 * 24 * 60 * 60 * 1000
                 },
                 "Login is successful !! \n Glad to see you again"
             )
@@ -177,13 +179,13 @@ const refreshAccessToken = asyncHandler(async (req, res) => {
 
         return res
         .status(200)
-        .cookie("accessToken", accessToken, {...options, maxAge: 5 * 60 * 1000} )
-        .cookie("refreshToken", newRefreshToken, {...options, maxAge: 10 * 60 * 1000} )
+        .cookie("accessToken", accessToken, {...options, maxAge: 2 * 24 * 60 * 60 * 1000} )
+        .cookie("refreshToken", newRefreshToken, {...options, maxAge: 10 * 24 * 60 * 60 * 1000} )
         .json(
             new ApiResponse(200, {
                 accessToken,
                 newRefreshToken,
-                expiresAt: Date.now() + 5 * 60 * 1000
+                expiresAt: Date.now() + 2 * 24 * 60 * 60 * 1000
             }, "Token refreshed successfully")
         )
     } catch (error) {

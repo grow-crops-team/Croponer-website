@@ -124,6 +124,13 @@ if (logoutBtn) {
 }
 
 
+const logoutChannel = new BroadcastChannel("logout_channel");
+logoutChannel.onmessage = (event) => {
+    if (event.data === "logout") {
+        window.location.href = "/"; 
+    }
+};
+
 async function refreshAccessToken() {
     try {
         const response = await fetch("/api/v1/users/refresh-token", {
@@ -138,8 +145,9 @@ async function refreshAccessToken() {
 
         const result = await response.json();
         
+        
         if (result.statuscode === 200) {
-            const expiresAt = Date.now() + 5 * 60 * 1000;
+            const expiresAt = Date.now() + 2 * 24 * 60 * 60 * 1000; 
             localStorage.setItem("expiresAt", expiresAt);
             return true;
         }
@@ -151,35 +159,29 @@ async function refreshAccessToken() {
     }
 }
 
-const logoutChannel = new BroadcastChannel("logout_channel");
-logoutChannel.onmessage = (event) => {
-    if (event.data === "logout") {
-        window.location.href = "/"; 
-    }
-};
-
 function checkSessionExpiration() {
-    const expiresAt = localStorage.getItem("expiresAt"); 
-    if (!expiresAt) return;
+    const expiresAt = localStorage.getItem("expiresAt");
+    const isLoggedIn = localStorage.getItem("isLoggedIn") === "true";
+    
+    if (!expiresAt || !isLoggedIn) return;
 
-    const timeLeft = expiresAt - Date.now();
+    const timeLeft = parseInt(expiresAt) - Date.now();
     
     if (timeLeft <= 0) {
-        console.log("⏳ Access token expired. Logging out...");
-        UserLogout(); 
-    } else if (timeLeft <= 60 * 1000) {
+        console.log("⏳ Session expired. Logging out...");
+        UserLogout();
+    } else if (timeLeft <= 60 * 60 * 1000) { 
         console.log("⚠️ Access token expiring soon. Refreshing...");
-        refreshAccessToken(); 
+        refreshAccessToken();
     }
-
-    setTimeout(checkSessionExpiration, 30 * 1000); 
 }
 
-function initializeSessionCheck() {
- 
+document.addEventListener('DOMContentLoaded', () => {
     checkSessionExpiration();
     
-    setInterval(checkSessionExpiration, 30 * 1000);
-}
-
-document.addEventListener('DOMContentLoaded', initializeSessionCheck);
+    document.addEventListener('visibilitychange', () => {
+        if (document.visibilityState === 'visible') {
+            checkSessionExpiration();
+        }
+    });
+});
