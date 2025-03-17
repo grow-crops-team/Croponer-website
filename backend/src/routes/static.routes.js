@@ -109,6 +109,24 @@ router.route("/forgot-password")
         // console.log(req.url)
     })
 
+    router.route("/contact")
+    .get((req, res) => {
+        res.sendFile(path.join(staticPath, "contact_us.html"), (err) => {
+            if (err) {
+                res.status(500).send("Error loading contact_us.html")
+            }
+        })
+        // console.log(req.url)
+    })
+    router.route("/help")
+    .get((req, res) => {
+        res.sendFile(path.join(staticPath, "help&FAQ_page.html"), (err) => {
+            if (err) {
+                res.status(500).send("Error loading help&FAQ_page.html")
+            }
+        })
+        // console.log(req.url)
+    })
 
 router.use((req, res, next) => {
     res.status(404).sendFile(path.join(staticPath, "404.html"), (err) => {
