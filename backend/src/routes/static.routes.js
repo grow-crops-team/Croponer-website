@@ -108,6 +108,15 @@ router.route("/forgot-password")
         })
         // console.log(req.url)
     })
+    router.route("/gallery")
+    .get((req, res) => {
+        res.sendFile(path.join(staticPath, "gallery.html"), (err) => {
+            if (err) {
+                res.status(500).send("Error loading gallery.html")
+            }
+        })
+        // console.log(req.url)
+    })
 
     router.route("/contact")
     .get((req, res) => {
@@ -123,6 +132,24 @@ router.route("/forgot-password")
         res.sendFile(path.join(staticPath, "help&FAQ_page.html"), (err) => {
             if (err) {
                 res.status(500).send("Error loading help&FAQ_page.html")
+            }
+        })
+        // console.log(req.url)
+    })
+    router.route("/terms")
+    .get((req, res) => {
+        res.sendFile(path.join(staticPath, "terms.html"), (err) => {
+            if (err) {
+                res.status(500).send("Error loading terms.html")
+            }
+        })
+        // console.log(req.url)
+    })
+    router.route("/cookies-policy")
+    .get((req, res) => {
+        res.sendFile(path.join(staticPath, "cookie-policy.html"), (err) => {
+            if (err) {
+                res.status(500).send("Error loading cookie-policy.html")
             }
         })
         // console.log(req.url)

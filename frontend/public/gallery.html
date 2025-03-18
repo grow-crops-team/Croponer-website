@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Croponer | AI-Powered Agricultural Solutions</title>
+
+    <!-- preload Images -->
+
+    <link
+      rel="preload"
+      href="./assets/images/hero/main_bg.jpg"
+      as="image"
+      type="image/jpeg"
+    />
+    <link
+      rel="preload"
+      href="./assets/images/hero/paddy.jpg"
+      as="image"
+      type="image/jpeg"
+    />
+    <link
+      rel="preload"
+      href="./assets/images/hero/peanuts-1735672.jpg"
+      as="image"
+      type="image/jpeg"
+    />
+    <link
+      rel="preload"
+      href="./assets/images/hero/potato.jpg"
+      as="image"
+      type="image/jpeg"
+    />
+
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/swiper/swiper-bundle.min.css"
+    />
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+      integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css"
+      integrity="sha512-1cK78a1o+ht2JcaW6g8OXYwqpev9+6GqOkz9xmBN9iUUhIndKtxwILGWYOSibOKjLsEdjyjZvYDq/cZwNeak0w=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"
+      integrity="sha512-A7AYk1fGKX6S2SsHywmPkrnzTZHrgiVT7GcQkLGDe2ev0aWb8zejytzS8wjo7PGEXKqJOrjQ4oORtnimIRZBtw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+
+    <link rel="stylesheet" href="./assets/css/style.css" />
+    <link rel="stylesheet" href="./assets/css/coustomCss.css" />
+  </head>
+
+  <body class="bg-gray-50">
+    <!-- Header -->
+    <header
+      class="fixed w-full z-50 bg-white/90 backdrop-blur-md shadow-sm select-none"
+    >
+      <nav
+        class="container mx-auto flex justify-between items-center px-4 py-3"
+      >
+        <!-- logo section -->
+        <div class="flex items-center">
+          <div
+            class="h-10 w-10 bg-[#000480] rounded-lg flex items-center justify-center"
+          >
+            <span class="text-white font-bold text-lg">C</span>
+          </div>
+          <span class="text-[#000480] font-bold ml-2 text-xl">Croponer</span>
+        </div>
+
+        <!-- Desktop Menu -->
+        <div class="hidden md:flex items-center space-x-8">
+          <a href="/" class="text-gray-900 hover:text-[#1f1faa] font-medium"
+            >Home</a
+          >
+          <a href="/about" class="text-gray-700 hover:text-[#1f1faa]"
+            >About us</a
+          >
+          <a href="/blog" class="text-gray-700 hover:text-[#1f1faa]">Blog</a>
+          <a href="/research" class="text-gray-700 hover:text-[#1f1faa]"
+            >Research</a
+          >
+        </div>
+        <!-- login/signup -->
+        <div class="flex items-center space-x-4">
+          <div id="profile" class="hidden">
+            <div class="flex items-center space-x-2 group cursor-pointer">
+              <div class="avatar w-10 h-10 rounded-full"></div>
+              <p class="group-hover:text-[#1f1faa]">
+                Hi
+                <span id="showName1" class="group-hover:text-[#1f1faa]"
+                  >user</span
+                >
+              </p>
+            </div>
+          </div>
+          <a
+            id="loginDesktop"
+            href="/login"
+            class="hidden md:inline-block text-gray-700 hover:text-[#1f1faa] font-medium"
+            >Login</a
+          >
+
+          <a
+            id="register"
+            href="/register"
+            class="bg-[#000480] hover:bg-[#1f1faa] text-white px-4 py-2 rounded-lg transition-colors"
+          >
+            Get Started
+          </a>
+          <!-- Mobile Menu Button -->
+          <button
+            id="menubar"
+            class="md:hidden text-gray-700 hover:text-[#1f1faa] cursor-pointer"
+          >
+            <i class="fas fa-bars text-xl"></i>
+          </button>
+        </div>
+      </nav>
+
+      <!-- Mobile Menu -->
+      <div
+        id="menu"
+        class="bg-white/90 h-screen w-56 top-16 right-[-224px] transition-all duration-500 delay-200 ease-in-out fixed rounded-bl-md z-20 md:hidden"
+      >
+        <div class="container ml-4 mx-auto px-4 py-3 space-y-1">
+          <a
+            href="/"
+            class="block py-2 text-gray-900 hover:text-[#1f1faa] font-medium"
+            >Home</a
+          >
+          <a href="/about" class="block py-2 text-gray-800 hover:text-[#1f1faa]"
+            >About us</a
+          >
+          <a href="/blog" class="block py-2 text-gray-800 hover:text-[#1f1faa]"
+            >Blog</a
+          >
+          <a
+            href="/research"
+            class="block py-2 text-gray-800 hover:text-[#1f1faa]"
+            >Research</a
+          >
+          <a
+            id="loginMobile"
+            href="/login"
+            class="block py-2 text-gray-800 hover:text-[#1f1faa]"
+            >Login</a
+          >
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Gallery Content -->
+<main class="pt-24 pb-10">
+  <!-- Hero Section -->
+  <section class="relative bg-gradient-to-r from-[#000480] to-[#1f1faa] text-white py-16">
+    <div class="container mx-auto px-4 relative z-10">
+      <div class="max-w-3xl mx-auto text-center">
+        <h1 class="text-4xl md:text-5xl font-bold mb-4" data-aos="fade-up">Our Gallery</h1>
+        <p class="text-lg opacity-90" data-aos="fade-up" data-aos-delay="100">
+          Showcasing the impact of AI-powered agricultural technology across farms worldwide
+        </p>
+      </div>
+    </div>
+    <!-- Background elements -->
+    <div class="absolute inset-0 opacity-10">
+      <div class="absolute right-0 top-0 w-1/3 h-full">
+        <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" class="w-full h-full">
+          <path fill="#FFFFFF" d="M41.9,-70.8C53.1,-62.4,60.3,-48.7,67.1,-34.9C73.8,-21.1,80.2,-7.2,79.5,6.2C78.9,19.7,71.2,32.8,61.7,43.9C52.2,54.9,40.8,63.8,28.2,68.3C15.6,72.8,1.9,72.7,-13.1,71.1C-28,69.5,-44.1,66.3,-55.2,57.1C-66.2,47.9,-72.1,32.8,-73.8,17.7C-75.5,2.5,-73,-12.5,-65.8,-23.2C-58.7,-33.9,-47,-40.3,-35.6,-48.5C-24.2,-56.6,-12.1,-66.5,2,-69.7C16.1,-73,32.1,-77.6,41.9,-70.8Z" transform="translate(100 100)" />
+        </svg>
+      </div>
+    </div>
+  </section>
+
+  <!-- Filter Navigation -->
+  <section class="py-8 bg-white border-b">
+    <div class="container mx-auto px-4">
+      <div class="flex flex-wrap justify-center gap-3 mb-4" data-aos="fade-up">
+        <button class="filter-btn active px-4 py-2 rounded-full bg-[#000480] text-white hover:bg-[#1f1faa] transition-all" data-filter="all">
+          All Images
+        </button>
+        <button class="filter-btn px-4 py-2 rounded-full bg-gray-100 text-gray-700 hover:bg-gray-200 transition-all" data-filter="crop-analysis">
+          Crop Analysis
+        </button>
+        <button class="filter-btn px-4 py-2 rounded-full bg-gray-100 text-gray-700 hover:bg-gray-200 transition-all" data-filter="field-implementation">
+          Field Implementation
+        </button>
+        <button class="filter-btn px-4 py-2 rounded-full bg-gray-100 text-gray-700 hover:bg-gray-200 transition-all" data-filter="case-studies">
+          Case Studies
+        </button>
+        <button class="filter-btn px-4 py-2 rounded-full bg-gray-100 text-gray-700 hover:bg-gray-200 transition-all" data-filter="team">
+          Our Team
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Gallery Grid -->
+  <section class="py-12 bg-gray-50">
+    <div class="container mx-auto px-4">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="gallery-grid">
+        
+        <!-- Image 1 -->
+        <div class="gallery-item crop-analysis" data-aos="fade-up">
+          <div class="bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow cursor-pointer group">
+            <div class="relative overflow-hidden">
+              <img src="https://images.unsplash.com/photo-1625246333195-78d9c38ad449?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1000&q=80" alt="AI Wheat Analysis" class="w-full h-64 object-cover transition-transform duration-500 group-hover:scale-105">
+              <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end">
+                <div class="p-4 w-full">
+                  <span class="px-2 py-1 bg-[#000480] text-white text-xs rounded-full">Crop Analysis</span>
+                </div>
+              </div>
+            </div>
+            <div class="p-4">
+              <h3 class="font-semibold text-gray-800">AI-Powered Wheat Field Analysis</h3>
+              <p class="text-sm text-gray-600 mt-1">Early disease detection using computer vision technology</p>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Image 2 -->
+        <div class="gallery-item field-implementation" data-aos="fade-up" data-aos-delay="100">
+          <div class="bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow cursor-pointer group">
+            <div class="relative overflow-hidden">
+              <img src="https://images.unsplash.com/photo-1595876524611-c3128f8932fc?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1000&q=80" alt="Smart Farming Implementation" class="w-full h-64 object-cover transition-transform duration-500 group-hover:scale-105">
+              <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end">
+                <div class="p-4 w-full">
+                  <span class="px-2 py-1 bg-[#000480] text-white text-xs rounded-full">Field Implementation</span>
+                </div>
+              </div>
+            </div>
+            <div class="p-4">
+              <h3 class="font-semibold text-gray-800">Sensor Deployment in Rice Fields</h3>
+              <p class="text-sm text-gray-600 mt-1">Real-time monitoring for optimal water management</p>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Image 3 -->
+        <div class="gallery-item case-studies" data-aos="fade-up" data-aos-delay="200">
+          <div class="bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow cursor-pointer group">
+            <div class="relative overflow-hidden">
+              <img src="https://images.unsplash.com/photo-1592982573332-d937f62a5538?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1000&q=80" alt="Yield Improvement Case Study" class="w-full h-64 object-cover transition-transform duration-500 group-hover:scale-105">
+              <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end">
+                <div class="p-4 w-full">
+                  <span class="px-2 py-1 bg-[#000480] text-white text-xs rounded-full">Case Studies</span>
+                </div>
+              </div>
+            </div>
+            <div class="p-4">
+              <h3 class="font-semibold text-gray-800">Central Valley Yield Improvement</h3>
+              <p class="text-sm text-gray-600 mt-1">27% yield increase after 6 months of AI implementation</p>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Image 4 -->
+        <div class="gallery-item crop-analysis" data-aos="fade-up">
+          <div class="bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow cursor-pointer group">
+            <div class="relative overflow-hidden">
+              <img src="https://images.unsplash.com/photo-1574323347407-f5e1c5a6ec32?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1000&q=80" alt="Soil Analysis" class="w-full h-64 object-cover transition-transform duration-500 group-hover:scale-105">
+              <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end">
+                <div class="p-4 w-full">
+                  <span class="px-2 py-1 bg-[#000480] text-white text-xs rounded-full">Crop Analysis</span>
+                </div>
+              </div>
+            </div>
+            <div class="p-4">
+              <h3 class="font-semibold text-gray-800">Advanced Soil Analysis</h3>
+              <p class="text-sm text-gray-600 mt-1">Spectral imaging for nutrient deficiency detection</p>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Image 5 -->
+        <div class="gallery-item team" data-aos="fade-up" data-aos-delay="100">
+          <div class="bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow cursor-pointer group">
+            <div class="relative overflow-hidden">
+              <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1000&q=80" alt="Research Team" class="w-full h-64 object-cover transition-transform duration-500 group-hover:scale-105">
+              <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end">
+                <div class="p-4 w-full">
+                  <span class="px-2 py-1 bg-[#000480] text-white text-xs rounded-full">Our Team</span>
+                </div>
+              </div>
+            </div>
+            <div class="p-4">
+              <h3 class="font-semibold text-gray-800">Research & Development Team</h3>
+              <p class="text-sm text-gray-600 mt-1">Our machine learning specialists developing next-gen algorithms</p>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Image 6 -->
+        <div class="gallery-item field-implementation" data-aos="fade-up" data-aos-delay="200">
+          <div class="bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow cursor-pointer group">
+            <div class="relative overflow-hidden">
+              <img src="https://images.unsplash.com/photo-1570586437263-ab629fccc818?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1000&q=80" alt="Drone Mapping" class="w-full h-64 object-cover transition-transform duration-500 group-hover:scale-105">
+              <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end">
+                <div class="p-4 w-full">
+                  <span class="px-2 py-1 bg-[#000480] text-white text-xs rounded-full">Field Implementation</span>
+                </div>
+              </div>
+            </div>
+            <div class="p-4">
+              <h3 class="font-semibold text-gray-800">Drone-Based Field Mapping</h3>
+              <p class="text-sm text-gray-600 mt-1">Multispectral imaging for comprehensive field assessment</p>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Image 7 -->
+        <div class="gallery-item team" data-aos="fade-up">
+          <div class="bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow cursor-pointer group">
+            <div class="relative overflow-hidden">
+              <img src="https://images.unsplash.com/photo-1542744173-8659d8bde375?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1000&q=80" alt="Field Consultation" class="w-full h-64 object-cover transition-transform duration-500 group-hover:scale-105">
+              <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end">
+                <div class="p-4 w-full">
+                  <span class="px-2 py-1 bg-[#000480] text-white text-xs rounded-full">Our Team</span>
+                </div>
+              </div>
+            </div>
+            <div class="p-4">
+              <h3 class="font-semibold text-gray-800">On-Site Consultation</h3>
+              <p class="text-sm text-gray-600 mt-1">Our agricultural experts providing hands-on guidance</p>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Image 8 -->
+        <div class="gallery-item case-studies" data-aos="fade-up" data-aos-delay="100">
+          <div class="bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow cursor-pointer group">
+            <div class="relative overflow-hidden">
+              <img src="https://images.unsplash.com/photo-1605000797499-95a51c5269ae?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1000&q=80" alt="Water Conservation" class="w-full h-64 object-cover transition-transform duration-500 group-hover:scale-105">
+              <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end">
+                <div class="p-4 w-full">
+                  <span class="px-2 py-1 bg-[#000480] text-white text-xs rounded-full">Case Studies</span>
+                </div>
+              </div>
+            </div>
+            <div class="p-4">
+              <h3 class="font-semibold text-gray-800">Water Conservation Project</h3>
+              <p class="text-sm text-gray-600 mt-1">32% reduction in water usage while maintaining crop yield</p>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Image 9 -->
+        <div class="gallery-item crop-analysis" data-aos="fade-up" data-aos-delay="200">
+          <div class="bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow cursor-pointer group">
+            <div class="relative overflow-hidden">
+              <img src="https://images.unsplash.com/photo-1530836369250-ef72a3f5cda8?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1000&q=80" alt="Pest Detection" class="w-full h-64 object-cover transition-transform duration-500 group-hover:scale-105">
+              <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end">
+                <div class="p-4 w-full">
+                  <span class="px-2 py-1 bg-[#000480] text-white text-xs rounded-full">Crop Analysis</span>
+                </div>
+              </div>
+            </div>
+            <div class="p-4">
+              <h3 class="font-semibold text-gray-800">Early Pest Detection System</h3>
+              <p class="text-sm text-gray-600 mt-1">AI-powered image recognition for insect identification</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Call to Action -->
+  <section class="py-16 bg-white">
+    <div class="container mx-auto px-4">
+      <div class="max-w-4xl mx-auto bg-gradient-to-r from-[#000480] to-[#1f1faa] rounded-2xl shadow-lg overflow-hidden" data-aos="fade-up">
+        <div class="p-10 text-white text-center">
+          <h2 class="text-3xl font-bold mb-4">See Our Technology in Action</h2>
+          <p class="opacity-90 mb-6 max-w-2xl mx-auto">
+            Schedule a personalized demo to learn how Croponer's AI-powered solutions can transform your agricultural operations.
+          </p>
+          <div class="flex flex-col sm:flex-row justify-center gap-4">
+            <a href="/contact" class="bg-white text-[#000480] hover:bg-gray-100 font-medium px-6 py-3 rounded-lg transition-colors">
+              Request a Demo
+            </a>
+            <a href="/case-studies" class="bg-transparent hover:bg-white/10 border border-white text-white px-6 py-3 rounded-lg font-medium transition-colors">
+              View Case Studies
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- Add this script before the closing body tag -->
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    
+    
+    // Gallery filtering
+    const filterButtons = document.querySelectorAll('.filter-btn');
+    const galleryItems = document.querySelectorAll('.gallery-item');
+    
+    filterButtons.forEach(button => {
+      button.addEventListener('click', function() {
+        // Remove active class from all buttons
+        filterButtons.forEach(btn => btn.classList.remove('active', 'bg-[#000480]', 'text-white'));
+        filterButtons.forEach(btn => btn.classList.add('bg-gray-100', 'text-gray-700'));
+        
+        // Add active class to clicked button
+        this.classList.add('active', 'bg-[#000480]', 'text-white');
+        this.classList.remove('bg-gray-100', 'text-gray-700');
+        
+        const filter = this.getAttribute('data-filter');
+        
+        // Show/hide gallery items based on filter
+        galleryItems.forEach(item => {
+          if (filter === 'all' || item.classList.contains(filter)) {
+            item.style.display = 'block';
+          } else {
+            item.style.display = 'none';
+          }
+        });
+      });
+    });
+    
+    // Simple lightbox functionality for gallery images
+    galleryItems.forEach(item => {
+      item.addEventListener('click', function() {
+        const imgSrc = this.querySelector('img').src;
+        const imgAlt = this.querySelector('img').alt;
+        const imgTitle = this.querySelector('h3').textContent;
+        const imgDesc = this.querySelector('p').textContent;
+        
+        // Create lightbox
+        const lightbox = document.createElement('div');
+        lightbox.classList.add('fixed', 'inset-0', 'bg-black/90', 'z-50', 'flex', 'items-center', 'justify-center', 'p-4');
+        
+        lightbox.innerHTML = `
+          <div class="max-w-4xl w-full bg-white rounded-lg overflow-hidden relative">
+            <button class="absolute top-4 right-4 text-white bg-black/50 w-8 h-8 rounded-full flex items-center justify-center hover:bg-black transition-colors">
+              <i class="fas fa-times"></i>
+            </button>
+            <div class="h-[60vh] overflow-hidden bg-gray-100">
+              <img src="${imgSrc}" alt="${imgAlt}" class="w-full h-full object-contain">
+            </div>
+            <div class="p-6">
+              <h3 class="text-xl font-bold text-gray-800">${imgTitle}</h3>
+              <p class="text-gray-600 mt-2">${imgDesc}</p>
+            </div>
+          </div>
+        `;
+        
+        document.body.appendChild(lightbox);
+        document.body.style.overflow = 'hidden';
+        
+        // Close lightbox on click
+        lightbox.addEventListener('click', function(e) {
+          if (e.target === lightbox || e.target.closest('button')) {
+            document.body.removeChild(lightbox);
+            document.body.style.overflow = 'auto';
+          }
+        });
+      });
+    });
+  });
+</script>
+
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 select-none mt-20">
+      <div
+        class="flex flex-col lg:flex-row lg:space-x-2 lg:space-y-0 lg:justify-center mx-5 mt-10 lg:pt-8 lg:pb-4 px-5 pt-10 pb-10 space-y-16 text-gray-400"
+      >
+        <div class="lg:h-60 lg:w-56 lg:mr-24 text-pretty">
+          <div>
+            <div class="flex items-center mb-6">
+              <div
+                class="h-10 w-10 bg-white rounded-lg flex items-center justify-center"
+              >
+                <span class="text-[#000480] font-bold text-lg">C</span>
+              </div>
+              <span class="text-white font-bold ml-2 text-xl">Croponer</span>
+            </div>
+            <p class="text-gray-400 mb-6">
+              AI-powered agricultural technology for smarter, more efficient
+              farming.
+            </p>
+            <div class="flex space-x-4">
+              <a
+                href="#"
+                class="text-gray-400 hover:text-white transition-colors"
+              >
+                <i class="fab fa-twitter"></i>
+              </a>
+              <a
+                href="#"
+                class="text-gray-400 hover:text-white transition-colors"
+              >
+                <i class="fab fa-facebook"></i>
+              </a>
+              <a
+                href="#"
+                class="text-gray-400 hover:text-white transition-colors"
+              >
+                <i class="fab fa-linkedin"></i>
+              </a>
+              <a
+                href="#"
+                class="text-gray-400 hover:text-white transition-colors"
+              >
+                <i class="fab fa-instagram"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div class="lg:h-60 w-60 text-pretty">
+          <p class="text-xl font-semibold text-gray-300 mb-2">Quick Links</p>
+          <ul class="space-y-2">
+            <li class="hover:text-gray-100"><a href="/about">About Us</a></li>
+            <li class="hover:text-gray-100"><a href="/work">our Works</a></li>
+            <li class="hover:text-gray-100"><a href="/team">Our Team</a></li>
+            <li class="hover:text-gray-100">
+              <a href="/articles">Read Article</a>
+            </li>
+          </ul>
+        </div>
+
+        <div class="lg:h-60 w-60 text-pretty">
+          <p class="text-xl font-semibold text-gray-300 mb-2">Help/Support</p>
+          <ul class="space-y-3">
+            <li class="hover:text-gray-100">
+              <a href="/contact">Contact Us</a>
+            </li>
+            <li class="hover:text-gray-100"><a href="/help">help</a></li>
+            <li class="hover:text-gray-100"><a href="/help">Support</a></li>
+            <li class="hover:text-gray-100">
+              <a href="/terms">Terms & Condition</a>
+            </li>
+          </ul>
+        </div>
+
+        <div class="lg:h-60 w-60 text-pretty">
+          <p class="text-xl font-semibold text-gray-300 mb-2">Community</p>
+          <ul class="space-y-3">
+            <li class="hover:text-gray-100">
+              <a href="/team">Join our Community</a>
+            </li>
+            <li class="hover:text-gray-100"><a href="/gallery">Gallery</a></li>
+            <li class="hover:text-gray-100"><a href="/blog">Our Blogs</a></li>
+            <li class="hover:text-gray-100">
+              <a href="/events">Special Events</a>
+            </li>
+          </ul>
+        </div>
+
+        <div class="w-60">
+          <div>
+            <p class="text-xl font-semibold text-gray-300">Write a review</p>
+            <p class="hover:text-gray-100"><a href="/review">feedback</a></p>
+          </div>
+        </div>
+      </div>
+
+      <!-- footer last -->
+
+      <div
+        class="border-t border-gray-800 mt-10 pt-8 flex flex-col md:flex-row justify-between items-center pb-5 px-5"
+      >
+        <p class="text-gray-400 text-sm">
+          &copy; 2025 Croponer. All rights reserved. Developed by
+          <a class="hover:text-blue-600" href="https://amarnath404.in"
+            >Amaranth Bera</a
+          >
+        </p>
+        <div class="flex space-x-6 mt-4 md:mt-0">
+          <a
+            href="#"
+            class="text-gray-400 hover:text-white transition-colors text-sm"
+            >Privacy Policy</a
+          >
+          <a
+            href="#"
+            class="text-gray-400 hover:text-white transition-colors text-sm"
+            >Terms of Service</a
+          >
+          <a
+            href="#"
+            class="text-gray-400 hover:text-white transition-colors text-sm"
+            >Cookie Policy</a
+          >
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      AOS.init({
+        duration: 800,
+        easing: "ease-in-out",
+        once: true,
+      });
+    </script>
+  </body>
+</html>
