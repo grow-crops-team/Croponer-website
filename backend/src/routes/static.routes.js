@@ -36,8 +36,6 @@ router.route("/register")
 
     })
 
-
-
 router.route("/login")
     .get((req, res) => {
         res.sendFile(path.join(staticPath, "login.html"), (err) => {
