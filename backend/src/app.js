@@ -25,11 +25,13 @@ import staticRoutes from './routes/static.routes.js'
 import adminRoutes from "./routes/admin.routes.js"
 import adminStaticRoutes from './routes/admin.static.routes.js'
 import visitorRoutes from './routes/visitor.routes.js'
+import aiRoutes from "./routes/ai.routes.js";
 
 //Routes Declaration
 app.use("/admin", adminStaticRoutes)
 app.use("/api/v1/admin", adminRoutes)
 app.use("/api/v1/users", userRoutes)
+app.use("/api/v1/ai", aiRoutes);
 app.use("/", staticRoutes)
 app.use("/api", visitorRoutes);
 
