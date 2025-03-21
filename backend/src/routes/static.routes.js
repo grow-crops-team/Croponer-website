@@ -152,6 +152,16 @@ router.route("/forgot-password")
         })
         // console.log(req.url)
     })
+    
+    router.route("/review")
+    .get((req, res) => {
+        res.sendFile(path.join(staticPath, "review.html"), (err) => {
+            if (err) {
+                res.status(500).send("Error loading review.html")
+            }
+        })
+        // console.log(req.url)
+    })
 
 router.use((req, res, next) => {
     res.status(404).sendFile(path.join(staticPath, "404.html"), (err) => {
