@@ -19,8 +19,12 @@ const fileSchema = new Schema(
                 },
                 status: {
                     type: String,
-                    enum: ["Processing", "Completed"],
-                    default: "Processing" 
+                    enum: ["pending", "completed", "failed"],
+                    default: "pending" 
+                },
+                disease_class: {  
+                    type: String,
+                    default: "" 
                 },
                 ai_recommendation: {
                     type: String,

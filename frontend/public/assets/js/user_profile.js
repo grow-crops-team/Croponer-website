@@ -144,7 +144,7 @@ document.addEventListener("DOMContentLoaded", async () => {
             <div class="absolute inset-0 bg-black bg-opacity-20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center space-x-3">
                 <button 
                     class="p-2 bg-gray-800 bg-opacity-20 rounded-full hover:bg-opacity-100 transition-all" 
-                    onclick="viewPhoto('${photo.url}', '${photo.ai_recommendation}' )"
+                    onclick="viewPhoto('${photo.url}', '${photo.disease_class}', \`${photo.ai_recommendation.replace(/\n/g, '<br>')}\`   )"
                     aria-label="View photo"
                 >
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -200,34 +200,47 @@ document.addEventListener("DOMContentLoaded", async () => {
     }
 
     window.viewPhoto = viewPhoto;
-    async function viewPhoto(imageUrl, recommendationData) {
+    async function viewPhoto(imageUrl, diseaseClass, recommendationData) {
         const newWindow = window.open();
-
+    
+        let statusText = "Processing... Check back later.";
         let recommendationText = "Processing... Check back later.";
+    
+        if (diseaseClass && diseaseClass.trim() !== "") {
+            if (diseaseClass === "Healthy") {
+                statusText = `<strong class="text-green-600">✅ Status: Healthy Plant 🌱</strong>`;
+            } else {
+                statusText = `<strong class="text-red-600">🦠 Detected Disease: ${diseaseClass}</strong>`;
+            }
+        }
+    
         if (recommendationData && recommendationData.trim() !== "") {
             recommendationText = recommendationData;
         }
-
+    
         newWindow.document.write(`
             <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Show photo with recommendation</title>
-    <link rel="stylesheet" href="./assets/css/style.css">
-</head>
-<body class="bg-black">
-    <div class=" my-5 px-10 flex flex-col lg:flex-row items-center ">
-        <img class="shadow-xl bg-white p-2 max-w-2xl" src="${imageUrl}" alt="">
-        <div class="bg-gray-100 text-black text-2xl w-100 h-auto py-5 px-5 mt-5 lg:mt-0 lg:ml-8">
-            <p class="text-center mb-5">Recommendations :</p>
-            <p class="text-xl">${recommendationText}</p>
-        </div>
-    </div>
-</body>
-</html>
+            <head>
+                <meta charset="UTF-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                <title>Show Photo with AI Prediction</title>
+                <link rel="stylesheet" href="./assets/css/style.css">
+            </head>
+            <body class="bg-black">
+                <div class="my-5 px-10 flex flex-col lg:flex-row items-center">
+                    <img class="shadow-xl bg-white p-2 max-w-2xl" src="${imageUrl}" alt="Uploaded Photo">
+                    <div class="bg-gray-100 text-black text-2xl w-100 h-auto py-5 px-5 mt-5 lg:mt-0 lg:ml-8">
+                        <p class="text-center mb-5">${statusText}</p>
+                        <hr class="my-2">
+                        <p class="text-center mb-5"><strong>AI Recommendation:</strong></p>
+                        <p class="text-xl">${recommendationText}</p>
+                    </div>
+                </div>
+            </body>
+            </html>
         `);
     }
+    
 });
 
 // file upload functions
