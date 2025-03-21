@@ -143,7 +143,7 @@ router.route("/forgot-password")
         })
         // console.log(req.url)
     })
-    router.route("/cookies-policy")
+    router.route("/cookie-policy")
     .get((req, res) => {
         res.sendFile(path.join(staticPath, "cookie-policy.html"), (err) => {
             if (err) {

@@ -1359,14 +1359,14 @@
           <p class="text-gray-700">
             We use cookies to enhance your experience on our website. By
             continuing to browse, you agree to our
-            <a href="/cookie-policy.html" class="text-[#000480] underline"
+            <a href="/cookie-policy" class="text-[#000480] underline"
               >Cookie Policy</a
             >.
           </p>
         </div>
         <div class="flex gap-3 shrink-0">
           <button
-            id="cookie-preferences"
+            id="open-cookie-settings"
             class="px-4 py-2 border border-gray-300 rounded text-gray-700 hover:bg-gray-100 transition-colors"
           >
             Preferences
@@ -1381,38 +1381,7 @@
       </div>
     </div>
 
-    <script>
-      // Show cookie consent banner if consent hasn't been given
-      document.addEventListener("DOMContentLoaded", function () {
-        const consentBanner = document.getElementById("cookie-consent");
-        const hasConsent = localStorage.getItem("cookie-consent");
-
-        if (!hasConsent) {
-          consentBanner.style.display = "block";
-          setTimeout(() => {
-            consentBanner.classList.remove("translate-y-full");
-          }, 300);
-        }
-
-        document
-          .getElementById("accept-cookies")
-          .addEventListener("click", function () {
-            localStorage.setItem("cookie-consent", "accepted");
-            consentBanner.classList.add("translate-y-full");
-            setTimeout(() => {
-              consentBanner.style.display = "none";
-            }, 500);
-          });
-
-        document
-          .getElementById("cookie-preferences")
-          .addEventListener("click", function () {
-            // This would open your cookie preferences modal/page
-            console.log("Open cookie preferences");
-          });
-      });
-    </script>
-
+    
     <!-- Scripts -->
     <script>
       // Initialize AOS
@@ -1446,7 +1415,7 @@
         },
       });
     </script>
-
+<script src="./assets/js/cookie-manager.js"></script>
     <script type="module" src="./assets/js/main.js"></script>
   </body>
 </html>
